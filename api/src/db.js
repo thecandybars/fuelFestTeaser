@@ -1,41 +1,86 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/fuelFest`,
+  {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  }
+);
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+fs.readdirSync(path.join(__dirname, "/models"))
+  .filter(
+    (file) =>
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+  )
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach(model => model(sequelize));
+modelDefiners.forEach((model) => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { Pokemon } = sequelize.models;
+// TABLE RELATIONS
+const {
+  User,
+  Event,
+  Car,
+  Store,
+  Sponsor,
+  VoteCategory,
+  Wallet,
+  Ledger,
+  Transaction,
+  TransactionCategory,
+  TokensInLedger,
+  Asset,
+  AssetCategory,
+} = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+User.belongsToMany(Event, { through: "favEvent" });
+Event.belongsToMany(User, { through: "favEvent" });
+
+User.belongsToMany(Car, { through: "favCar" });
+Car.belongsToMany(User, { through: "favCar" });
+
+User.belongsToMany(Store, { through: "favStore" });
+Store.belongsToMany(User, { through: "favStore" });
+
+User.belongsToMany(Sponsor, { through: "favSponsor" });
+Sponsor.belongsToMany(User, { through: "favSponsor" });
+
+VoteCategory.belongsToMany(Car, { through: "carVoteCategory" });
+Car.belongsToMany(VoteCategory, { through: "carVoteCategory" });
+
+User.belongsTo(Wallet, { foreignKey: "walletID" });
+
+Ledger.belongsTo(Wallet, { foreignKey: "walletID" });
+Ledger.belongsTo(TransactionCategory, { foreignKey: "transactionCategoryID" });
+Ledger.belongsTo(Transaction, { foreignKey: "transactionID" });
+
+TokensInLedger.belongsTo(Ledger, { foreignKey: "ledgerID" });
+
+Ledger.belongsToMany(Asset, { through: "assetInLedger" });
+Asset.belongsToMany(Ledger, { through: "assetInLedger" });
+
+Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
