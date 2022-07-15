@@ -10,5 +10,7 @@ router.use("/user", require("./user.js"));
 router.use("/event", require("./event.js"));
 router.use("/car", require("./car.js"));
 router.use("/vote", require("./vote.js"));
+router.use("/wallet", require("./wallet.js"));
+router.use("/transaction", require("./transaction.js"));
 
 module.exports = router;

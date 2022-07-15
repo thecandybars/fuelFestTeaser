@@ -42,6 +42,7 @@ const {
   Car,
   Store,
   Sponsor,
+  Vote,
   VoteCategory,
   Wallet,
   Ledger,
@@ -50,7 +51,10 @@ const {
   TokensInLedger,
   Asset,
   AssetCategory,
+  AstNFTCard,
 } = sequelize.models;
+
+// FAVORITES
 
 User.belongsToMany(Event, { through: "favEvent" });
 Event.belongsToMany(User, { through: "favEvent" });
@@ -64,21 +68,41 @@ Store.belongsToMany(User, { through: "favStore" });
 User.belongsToMany(Sponsor, { through: "favSponsor" });
 Sponsor.belongsToMany(User, { through: "favSponsor" });
 
+// VOTING
+
 VoteCategory.belongsToMany(Car, { through: "carVoteCategory" });
 Car.belongsToMany(VoteCategory, { through: "carVoteCategory" });
 
+Vote.hasOne(Car, { foreignKey: "carID" });
+Car.belongsTo(Vote, { foreignKey: "carID" });
+
+Vote.hasOne(User, { foreignKey: "userID" });
+User.belongsTo(Vote, { foreignKey: "userID" });
+
+Vote.hasOne(VoteCategory, { foreignKey: "categoryID" });
+VoteCategory.belongsTo(Vote, { foreignKey: "categoryID" });
+
+// USER WALLET
+
+Wallet.hasOne(User, { foreignKey: "walletID" });
 User.belongsTo(Wallet, { foreignKey: "walletID" });
+
+// LEDGER ASSETS AND TOKENS
 
 Ledger.belongsTo(Wallet, { foreignKey: "walletID" });
 Ledger.belongsTo(TransactionCategory, { foreignKey: "transactionCategoryID" });
 Ledger.belongsTo(Transaction, { foreignKey: "transactionID" });
 
+Ledger.hasOne(TokensInLedger, { foreignKey: "ledgerID" });
 TokensInLedger.belongsTo(Ledger, { foreignKey: "ledgerID" });
 
 Ledger.belongsToMany(Asset, { through: "assetInLedger" });
 Asset.belongsToMany(Ledger, { through: "assetInLedger" });
 
 Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
+Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
+
+// ASSETS
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

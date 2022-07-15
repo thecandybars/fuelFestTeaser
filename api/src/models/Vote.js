@@ -9,17 +9,17 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    carId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    userId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    categoryId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    // carId: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // userId: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // categoryId: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
   });
 };

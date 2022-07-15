@@ -9,17 +9,5 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    // walletID: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false,
-    // },
-    // transactionCategoryID: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false,
-    // },
-    // transactionID: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false,
-    // },
   });
 };

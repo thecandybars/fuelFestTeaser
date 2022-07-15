@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Op } = require("sequelize");
-const { User, FavEvent, FavCar } = require("../db.js");
+const { User, FavEvent, FavCar, Wallet } = require("../db.js");
 
 //////// USERS ////////////////
 
@@ -14,7 +14,7 @@ async function getAllUsers() {
 }
 async function getUsersById(id) {
   try {
-    const response = await User.findByPk(id);
+    const response = await User.findByPk(id, { include: Wallet });
     return response;
   } catch (err) {
     return err;

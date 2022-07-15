@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
     },
     liquid: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     frozen: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     // userID: {
     //   type: DataTypes.STRING,

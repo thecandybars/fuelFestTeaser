@@ -7,6 +7,8 @@ const car = require("./car.js");
 const vote = require("./vote.js");
 const store = require("./store.js");
 const sponsor = require("./sponsor.js");
+const wallet = require("./wallet.js");
+const transaction = require("./transaction.js");
 
 module.exports = {
   ...user,
@@ -15,4 +17,6 @@ module.exports = {
   ...vote,
   ...store,
   ...sponsor,
+  ...wallet,
+  ...transaction,
 };
