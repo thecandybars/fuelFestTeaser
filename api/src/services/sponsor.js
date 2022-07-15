@@ -7,7 +7,7 @@ const { Sponsor } = require("../db.js");
 async function getAllSponsors() {
   try {
     const response = await Sponsor.findAll();
-    return response;
+    return !response ? dbError(`No sponsors found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -16,7 +16,7 @@ async function getAllSponsors() {
 async function getSponsorById(id) {
   try {
     const response = await Sponsor.findByPk(id);
-    return response;
+    return !response ? dbError(`Sponsor ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -27,7 +27,7 @@ async function editSponsor(id, data) {
       id,
       ...data,
     });
-    return response;
+    return !response ? dbError(`Event ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -37,7 +37,7 @@ async function createSponsor(data) {
     const response = await Sponsor.create({
       ...data,
     });
-    return response;
+    return !response ? dbError(`Sponsor not created`, 404) : response;
   } catch (err) {
     return err;
   }

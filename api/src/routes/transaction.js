@@ -12,13 +12,17 @@ const {
 // Create new TOKEN transaction
 router.post("/token", async (req, res) => {
   const response = await createTokenTransaction(req.body);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 // Create new transaction category
 router.post("/category", async (req, res) => {
   const response = await createTransactionCategory(req.body);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 module.exports = router;

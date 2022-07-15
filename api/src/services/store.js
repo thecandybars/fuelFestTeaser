@@ -7,7 +7,7 @@ const { Store } = require("../db.js");
 async function getAllStores() {
   try {
     const response = await Store.findAll();
-    return response;
+    return !response ? dbError(`No stores found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -16,7 +16,7 @@ async function getAllStores() {
 async function getStoreById(id) {
   try {
     const response = await Store.findByPk(id);
-    return response;
+    return !response ? dbError(`Store ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -27,7 +27,7 @@ async function editStore(id, data) {
       id,
       ...data,
     });
-    return response;
+    return !response ? dbError(`Store ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -37,7 +37,7 @@ async function createStore(data) {
     const response = await Store.create({
       ...data,
     });
-    return response;
+    return !response ? dbError(`Store not created`, 404) : response;
   } catch (err) {
     return err;
   }

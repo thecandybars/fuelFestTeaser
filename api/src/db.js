@@ -56,17 +56,17 @@ const {
 
 // FAVORITES
 
-User.belongsToMany(Event, { through: "favEvent" });
-Event.belongsToMany(User, { through: "favEvent" });
+User.belongsToMany(Event, { through: "FavEvent" });
+Event.belongsToMany(User, { through: "FavEvent" });
 
-User.belongsToMany(Car, { through: "favCar" });
-Car.belongsToMany(User, { through: "favCar" });
+User.belongsToMany(Car, { through: "FavCar" });
+Car.belongsToMany(User, { through: "FavCar" });
 
-User.belongsToMany(Store, { through: "favStore" });
-Store.belongsToMany(User, { through: "favStore" });
+User.belongsToMany(Store, { through: "FavStore" });
+Store.belongsToMany(User, { through: "FavStore" });
 
-User.belongsToMany(Sponsor, { through: "favSponsor" });
-Sponsor.belongsToMany(User, { through: "favSponsor" });
+User.belongsToMany(Sponsor, { through: "FavSponsor" });
+Sponsor.belongsToMany(User, { through: "FavSponsor" });
 
 // VOTING
 

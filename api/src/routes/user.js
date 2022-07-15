@@ -17,19 +17,25 @@ const {
 // Get all users
 router.get("/", async (req, res) => {
   const response = await getAllUsers();
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // Get user by ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const response = await getUsersById(id);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 // create new user
 router.post("/", async (req, res) => {
   const response = await createUser(req.body);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 ////////////////
@@ -40,27 +46,34 @@ router.post("/", async (req, res) => {
 router.get("/:id/fav/event/", async (req, res) => {
   const { id } = req.params;
   const response = await getUserFavEvents(id);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // user toggles fav event
 router.post("/:id/fav/event/:eventId", async (req, res) => {
   const { id, eventId } = req.params;
   const response = await toggleFavEvent(id, eventId);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 // user gets all fav cars
 router.get("/:id/fav/car/", async (req, res) => {
   const { id } = req.params;
   const response = await getUserFavCars(id);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // user toggles fav car
 router.post("/:id/fav/car/:carId", async (req, res) => {
-  console.log("Hola");
   const { id, carId } = req.params;
   const response = await toggleFavCar(id, carId);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 module.exports = router;

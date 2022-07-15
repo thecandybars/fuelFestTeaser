@@ -10,9 +10,10 @@ const {
 
 async function createTokenTransaction(data) {
   const { walletID, transactionCategoryID, tokenAmount } = data;
-
+  // needs testing and error checking on every step
   try {
     const { debit } = await TransactionCategory.findByPk(transactionCategoryID);
+
     const newTransaction = await Transaction.create();
     const newLedgerEntry = await Ledger.create({
       walletID,
@@ -21,15 +22,21 @@ async function createTokenTransaction(data) {
     });
     const newTokensEntry = await TokensInLedger.create({
       tokenAmount,
+      newLedgerEntry: newLedgerEntry.id,
     });
     const wallet = await Wallet.findByPk(walletID);
     const actualLiquid = wallet.liquid;
 
-    if (debit) {
-      await Wallet.upsert({ id: walletID, liquid: actualLiquid + tokenAmount });
-    } else {
-      await Wallet.upsert({ id: walletID, liquid: actualLiquid - tokenAmount });
-    }
+    debit
+      ? await Wallet.upsert({
+          id: walletID,
+          liquid: actualLiquid + tokenAmount,
+        })
+      : await Wallet.upsert({
+          id: walletID,
+          liquid: actualLiquid - tokenAmount,
+        });
+
     return newTransaction;
   } catch (err) {
     return err;
@@ -40,7 +47,9 @@ async function createTransactionCategory(data) {
     const response = await TransactionCategory.create({
       ...data,
     });
-    return response;
+    return !response
+      ? dbError(`No Transaction Category created`, 404)
+      : response;
   } catch (err) {
     return err;
   }

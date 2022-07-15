@@ -7,7 +7,7 @@ const { Event } = require("../db.js");
 async function getAllEvents() {
   try {
     const response = await Event.findAll();
-    return response;
+    return !response ? dbError(`No events found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -16,7 +16,7 @@ async function getAllEvents() {
 async function getEventById(id) {
   try {
     const response = await Event.findByPk(id);
-    return response;
+    return !response ? dbError(`Event ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -27,7 +27,7 @@ async function editEvent(id, data) {
       id,
       ...data,
     });
-    return response;
+    return !response ? dbError(`Event ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -37,7 +37,7 @@ async function createEvent(data) {
     const response = await Event.create({
       ...data,
     });
-    return response;
+    return !response ? dbError(`Event not created`, 404) : response;
   } catch (err) {
     return err;
   }

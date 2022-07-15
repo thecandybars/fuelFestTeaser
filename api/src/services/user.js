@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Op } = require("sequelize");
+const { dbError } = require("./_common.js");
 const { User, FavEvent, FavCar, Wallet } = require("../db.js");
 
 //////// USERS ////////////////
@@ -7,7 +8,7 @@ const { User, FavEvent, FavCar, Wallet } = require("../db.js");
 async function getAllUsers() {
   try {
     const response = await User.findAll();
-    return response;
+    return !response ? dbError(`No Users found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -15,7 +16,7 @@ async function getAllUsers() {
 async function getUsersById(id) {
   try {
     const response = await User.findByPk(id, { include: Wallet });
-    return response;
+    return !response ? dbError(`User ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -26,7 +27,7 @@ async function createUser(data) {
     const response = await User.create({
       ...data,
     });
-    return response;
+    return !response ? dbError("Error creating user", 401) : response;
   } catch (err) {
     return err;
   }
@@ -42,7 +43,9 @@ async function getUserFavEvents(id) {
         userId: id,
       },
     });
-    return response;
+    return !response
+      ? dbError("No favorite events found for user " + id, 401)
+      : response;
   } catch (err) {
     return err;
   }
@@ -62,7 +65,9 @@ async function toggleFavEvent(userId, eventId) {
         where: { userId: userId, eventId: eventId },
       });
     }
-    return response;
+    return created
+      ? "Favorite event " + eventId + " created for user " + userId
+      : "Favorite event " + eventId + " destroyed for user " + userId;
   } catch (err) {
     return err;
   }
@@ -75,7 +80,9 @@ async function getUserFavCars(id) {
         userId: id,
       },
     });
-    return response;
+    return !response
+      ? dbError(`User ${id} has no favorite cars` + id, 404)
+      : response;
   } catch (err) {
     return err;
   }
@@ -95,7 +102,9 @@ async function toggleFavCar(userId, carId) {
         where: { userId: userId, carId: carId },
       });
     }
-    return response;
+    return created
+      ? "Favorite car " + carId + " created for user " + userId
+      : "Favorite car " + carId + " destroyed for user " + userId;
   } catch (err) {
     return err;
   }

@@ -14,13 +14,17 @@ const {
 // Get ALL events
 router.get("/", async (req, res) => {
   const response = await getAllEvents();
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // Get  event by ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const response = await getEventById(id);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 // Modify event by ID
@@ -28,12 +32,16 @@ router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const data = req.body;
   const response = await editEvent(id, data);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW event
 router.post("/", async (req, res) => {
   const response = await createEvent(req.body);
-  res.json(response);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Op } = require("sequelize");
+const { dbError } = require("./_common.js");
 const { Car, CarVoteCategory } = require("../db.js");
 
 /////// CAR /////////////////
@@ -7,7 +8,7 @@ const { Car, CarVoteCategory } = require("../db.js");
 async function getAllCars() {
   try {
     const response = await Car.findAll();
-    return response;
+    return !response ? dbError(`No cars found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -16,7 +17,7 @@ async function getAllCars() {
 async function getCarById(id) {
   try {
     const response = await Car.findByPk(id);
-    return response;
+    return !response ? dbError(`Car ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -27,7 +28,7 @@ async function editCar(id, data) {
       id,
       ...data,
     });
-    return response;
+    return !response ? dbError(`Car ${id} not found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -37,7 +38,7 @@ async function getVoteCategories(id) {
     const response = await CarVoteCategory.findAll({
       where: { carId: id },
     });
-    return response;
+    return !response ? dbError(`No vote categories found`, 404) : response;
   } catch (err) {
     return err;
   }
@@ -71,7 +72,9 @@ async function addCategoryToCar(carId, categoryId) {
 
     const response = await CarVoteCategory.create({ carId, categoryId });
 
-    return response;
+    return !response
+      ? dbError(`Category ${categoryId} added to car ${carId}`, 404)
+      : response;
   } catch (err) {
     return err;
   }
@@ -95,7 +98,8 @@ async function createCar(data) {
         await CarVoteCategory.create({ carId, voteCategoryId: e });
         // await newCar.addCarVoteCategory(carVoteCategory);
       });
-    return newCar;
+    const response = newCar;
+    return !response ? dbError(`Car not created`, 400) : response;
   } catch (err) {
     return err;
   }
