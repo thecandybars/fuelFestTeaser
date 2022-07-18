@@ -1,5 +1,3 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
 const { Vote, VoteCategory } = require("../db.js");
 
 /////// Vote /////////////////
