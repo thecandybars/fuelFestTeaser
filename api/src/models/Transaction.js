@@ -9,5 +9,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 };

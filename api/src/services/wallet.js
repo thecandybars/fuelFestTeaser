@@ -1,6 +1,6 @@
 // const axios = require("axios");
 // const { Op } = require("sequelize");
-const { Wallet, User } = require("../db.js");
+const { Wallet, User, Transaction, TokenLedger } = require("../db.js");
 
 /////// WALLET /////////////////
 
@@ -58,9 +58,44 @@ async function createWallet(data) {
   }
 }
 
+async function sendTokens(data) {
+  try {
+    const { fromWalletID, toWalletID, amount } = data;
+    const fromWallet = await Wallet.findByPk(fromWalletID);
+    const toWallet = await Wallet.findByPk(toWalletID);
+
+    // console.table(toWallet.toJSON());
+
+    // if (fromWallet && toWallet && fromWallet.liquid >= amount) {
+    const newTransaction = await Transaction.create({ title: "hola" });
+    const newTokenLedger = await TokenLedger.create({
+      fromWalletID,
+      toWalletID,
+      amount,
+      transactionID: newTransaction.id,
+    });
+    await Wallet.upsert({
+      id: toWalletID,
+      liquid: toWallet.liquid + amount,
+    });
+    await Wallet.upsert({
+      id: fromWalletID,
+      liquid: fromWallet.liquid - amount,
+    });
+    // } else {
+    //   console.log("error"); // error
+    // }
+    const response = newTokenLedger;
+    return !response ? dbError(`No vote categories found`, 404) : response;
+  } catch (err) {
+    return err;
+  }
+}
+
 module.exports = {
   getAllWallets,
   getWalletById,
   createWallet,
   editWallet,
+  sendTokens,
 };

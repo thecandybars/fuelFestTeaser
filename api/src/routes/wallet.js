@@ -9,6 +9,7 @@ const {
   getWalletById,
   editWallet,
   createWallet,
+  sendTokens,
 } = require("../services/index.js");
 
 // Get ALL wallets
@@ -36,6 +37,18 @@ router.put("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const response = await createWallet(req.body);
   res.json(response);
+});
+
+/////////////////////////
+// TRANSACTIONS
+/////////////////////////
+
+// Send tokens
+router.post("/transaction", async (req, res) => {
+  const response = await sendTokens(req.body);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 module.exports = router;

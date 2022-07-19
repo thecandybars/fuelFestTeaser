@@ -2,7 +2,8 @@ const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  sequelize.define("transactionCategory", {
+  // defino el modelo
+  sequelize.define("vendor", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -13,11 +14,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    debit: {
-      type: DataTypes.BOOLEAN,
+    category: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    table: {
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    geolocation: {
       type: DataTypes.STRING,
       allowNull: false,
     },

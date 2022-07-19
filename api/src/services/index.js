@@ -6,7 +6,7 @@ const event = require("./event.js");
 const car = require("./car.js");
 const favorite = require("./favorite.js");
 const vote = require("./vote.js");
-const store = require("./store.js");
+const vendor = require("./vendor.js");
 const sponsor = require("./sponsor.js");
 const wallet = require("./wallet.js");
 const transaction = require("./transaction.js");
@@ -17,7 +17,7 @@ module.exports = {
   ...car,
   ...favorite,
   ...vote,
-  ...store,
+  ...vendor,
   ...sponsor,
   ...wallet,
   ...transaction,

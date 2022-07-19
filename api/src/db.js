@@ -40,15 +40,14 @@ const {
   User,
   Event,
   Car,
-  Store,
   Sponsor,
+  Vendor,
   Vote,
   VoteCategory,
   Wallet,
-  Ledger,
+  TokenLedger,
+  AssetLedger,
   Transaction,
-  TransactionCategory,
-  TokensInLedger,
   Asset,
   AssetCategory,
   AstNFTCard,
@@ -62,8 +61,8 @@ Event.belongsToMany(User, { through: "FavEvent" });
 User.belongsToMany(Car, { through: "FavCar" });
 Car.belongsToMany(User, { through: "FavCar" });
 
-User.belongsToMany(Store, { through: "FavStore" });
-Store.belongsToMany(User, { through: "FavStore" });
+User.belongsToMany(Vendor, { through: "FavVendor" });
+Vendor.belongsToMany(User, { through: "FavVendor" });
 
 User.belongsToMany(Sponsor, { through: "FavSponsor" });
 Sponsor.belongsToMany(User, { through: "FavSponsor" });
@@ -73,14 +72,14 @@ Sponsor.belongsToMany(User, { through: "FavSponsor" });
 VoteCategory.belongsToMany(Car, { through: "carVoteCategory" });
 Car.belongsToMany(VoteCategory, { through: "carVoteCategory" });
 
-Vote.hasOne(Car, { foreignKey: "carID" });
-Car.belongsTo(Vote, { foreignKey: "carID" });
+Car.hasMany(Vote, { foreignKey: "carID" });
+Vote.belongsTo(Car, { foreignKey: "carID" });
 
-Vote.hasOne(User, { foreignKey: "userID" });
-User.belongsTo(Vote, { foreignKey: "userID" });
+Wallet.hasMany(Vote, { foreignKey: "walletID" });
+Vote.belongsTo(Wallet, { foreignKey: "walletID" });
 
-Vote.hasOne(VoteCategory, { foreignKey: "categoryID" });
-VoteCategory.belongsTo(Vote, { foreignKey: "categoryID" });
+VoteCategory.hasMany(Vote, { foreignKey: "categoryID" });
+Vote.belongsTo(VoteCategory, { foreignKey: "categoryID" });
 
 // USER WALLET
 
@@ -89,15 +88,14 @@ User.belongsTo(Wallet, { foreignKey: "walletID" });
 
 // LEDGER ASSETS AND TOKENS
 
-Ledger.belongsTo(Wallet, { foreignKey: "walletID" });
-Ledger.belongsTo(TransactionCategory, { foreignKey: "transactionCategoryID" });
-Ledger.belongsTo(Transaction, { foreignKey: "transactionID" });
+AssetLedger.belongsTo(Wallet, { foreignKey: "fromWalletID" });
+AssetLedger.belongsTo(Wallet, { foreignKey: "toWalletID" });
+AssetLedger.belongsTo(Transaction, { foreignKey: "transactionID" });
+AssetLedger.belongsTo(Asset, { foreignKey: "assetID" });
 
-Ledger.hasOne(TokensInLedger, { foreignKey: "ledgerID" });
-TokensInLedger.belongsTo(Ledger, { foreignKey: "ledgerID" });
-
-Ledger.belongsToMany(Asset, { through: "assetInLedger" });
-Asset.belongsToMany(Ledger, { through: "assetInLedger" });
+TokenLedger.belongsTo(Wallet, { foreignKey: "fromWalletID" });
+TokenLedger.belongsTo(Wallet, { foreignKey: "toWalletID" });
+TokenLedger.belongsTo(Transaction, { foreignKey: "transactionID" });
 
 Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
 Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });

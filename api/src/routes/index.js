@@ -8,6 +8,8 @@ const router = Router();
 // Example: router.use('/auth', authRouter);
 router.use("/user", require("./user.js"));
 router.use("/event", require("./event.js"));
+router.use("/vendor", require("./vendor.js"));
+router.use("/sponsor", require("./sponsor.js"));
 router.use("/car", require("./car.js"));
 router.use("/favorite", require("./favorite.js"));
 router.use("/vote", require("./vote.js"));

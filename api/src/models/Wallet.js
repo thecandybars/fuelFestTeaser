@@ -11,16 +11,12 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     liquid: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
     frozen: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
-    // userID: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
   });
 };
