@@ -9,5 +9,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    votingTokens: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
 };

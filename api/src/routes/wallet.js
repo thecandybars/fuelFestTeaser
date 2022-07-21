@@ -9,7 +9,8 @@ const {
   getWalletById,
   editWallet,
   createWallet,
-  sendTokens,
+  freezeTokens,
+  unFreezeTokens,
 } = require("../services/index.js");
 
 // Get ALL wallets
@@ -40,14 +41,23 @@ router.post("/", async (req, res) => {
 });
 
 /////////////////////////
-// TRANSACTIONS
+// MANAGE
 /////////////////////////
 
-// Send tokens
-router.post("/transaction", async (req, res) => {
-  const response = await sendTokens(req.body);
+// Freeze some tokens
+router.put("/:id/freeze/:amount", async (req, res) => {
+  const { id, amount } = req.params;
+  const response = await freezeTokens({ id, amount: parseInt(amount) });
   !response.error
-    ? res.status(200).json(response)
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Unfreeze some tokens
+router.put("/:id/unfreeze/:amount", async (req, res) => {
+  const { id, amount } = req.params;
+  const response = await unFreezeTokens({ id, amount: parseInt(amount) });
+  !response.error
+    ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
 

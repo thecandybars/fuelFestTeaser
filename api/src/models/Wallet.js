@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     liquid: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     frozen: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   });

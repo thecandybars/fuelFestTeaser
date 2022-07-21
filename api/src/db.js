@@ -51,6 +51,8 @@ const {
   Asset,
   AssetCategory,
   AstNFTCard,
+
+  TokenCoupon,
 } = sequelize.models;
 
 // FAVORITES
@@ -97,8 +99,12 @@ TokenLedger.belongsTo(Wallet, { foreignKey: "fromWalletID" });
 TokenLedger.belongsTo(Wallet, { foreignKey: "toWalletID" });
 TokenLedger.belongsTo(Transaction, { foreignKey: "transactionID" });
 
+Asset.belongsTo(Wallet, { foreignKey: "walletID" });
 Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
-Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
+Asset.hasMany(TokenCoupon, { foreignKey: "assetID" });
+Asset.hasMany(AstNFTCard, { foreignKey: "assetID" });
+// Asset.belongsTo(TokenCoupon, { foreignKey: "assetID" });
+// Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
 
 // ASSETS
 

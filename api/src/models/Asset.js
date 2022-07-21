@@ -13,8 +13,16 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    assetID: {
+    // assetID: {
+    //   type: DataTypes.UUID,
+    //   allowNull: true,
+    // },
+    walletID: {
       type: DataTypes.UUID,
+      allowNull: true,
+    },
+    isListed: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
     },
   });

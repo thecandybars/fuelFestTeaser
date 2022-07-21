@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    coolection: {
+    collection: {
       type: DataTypes.STRING,
       allowNull: true,
     },

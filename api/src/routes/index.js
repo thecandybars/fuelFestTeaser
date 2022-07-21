@@ -15,5 +15,6 @@ router.use("/favorite", require("./favorite.js"));
 router.use("/vote", require("./vote.js"));
 router.use("/wallet", require("./wallet.js"));
 router.use("/transaction", require("./transaction.js"));
+router.use("/asset", require("./asset.js"));
 
 module.exports = router;

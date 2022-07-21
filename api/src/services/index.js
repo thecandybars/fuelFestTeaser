@@ -10,6 +10,7 @@ const vendor = require("./vendor.js");
 const sponsor = require("./sponsor.js");
 const wallet = require("./wallet.js");
 const transaction = require("./transaction.js");
+const asset = require("./asset.js");
 
 module.exports = {
   ...user,
@@ -21,4 +22,5 @@ module.exports = {
   ...sponsor,
   ...wallet,
   ...transaction,
+  ...asset,
 };
