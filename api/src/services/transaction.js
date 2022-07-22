@@ -7,7 +7,10 @@ const {
   TransactionCategory,
   Wallet,
   Asset,
+  AssetCategory,
+  TokenCoupon,
 } = require("../db.js");
+const { dbError } = require("./_common.js");
 
 async function createAssetTransaction(data) {
   try {
@@ -32,10 +35,6 @@ async function createAssetTransaction(data) {
       assetID,
       transactionID: newTransaction.id,
     });
-    console.log(
-      "🚀 ~ file: transaction.js ~ line 35 ~ createAssetTransaction ~ newAssetLedger",
-      newAssetLedger
-    );
     await Asset.update(
       {
         walletID: toWalletID,
@@ -86,6 +85,46 @@ async function createTokenTransaction(data) {
     return err;
   }
 }
+async function createCouponTransaction(data) {
+  try {
+    const { toWalletID, assetID } = data;
+
+    const asset = await Asset.findByPk(assetID, {
+      include: AssetCategory,
+    });
+    if (!asset) return dbError(`Asset ${assetID} not found`, 404);
+    if (asset.assetCategory.table !== "TokenCoupon")
+      return dbError(`Asset ${assetID} is not a Token Coupon`, 404);
+
+    const tokenCoupon = await TokenCoupon.findOne({
+      where: { assetID: assetID },
+    });
+    if (tokenCoupon.isBurnt)
+      return dbError(`Token coupon ${assetID} was already burnt`);
+
+    const fromWallet = await Wallet.findByPk(asset.walletID);
+    if (fromWallet.liquid < tokenCoupon.tokenAmount)
+      return dbError(
+        `Owner wallet ${asset.walletID} hasn't enough liquid tokens`
+      );
+
+    //burn!!
+    await TokenCoupon.update(
+      { isBurnt: true },
+      { where: { assetID: assetID } }
+    );
+    // transfer tokens
+    const newTokenTransaction = await createTokenTransaction({
+      fromWalletID: asset.walletID,
+      toWalletID,
+      amount: tokenCoupon.tokenAmount,
+    });
+
+    return { coupon: tokenCoupon, tokenTransaction: newTokenTransaction };
+  } catch (err) {
+    return err;
+  }
+}
 
 async function createTransactionCategory(data) {
   try {
@@ -104,4 +143,5 @@ module.exports = {
   createTransactionCategory,
   createTokenTransaction,
   createAssetTransaction,
+  createCouponTransaction,
 };

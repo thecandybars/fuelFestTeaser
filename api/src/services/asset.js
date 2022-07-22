@@ -14,6 +14,19 @@ const {
 
 /////// ASSET /////////////////
 
+async function getAssets(walletID) {
+  try {
+    const assets = Asset.findAll({
+      where: { walletID },
+      include: [TokenCoupon, AssetCategory, AstNFTCard],
+    });
+    return !assets || assets.length === 0
+      ? dbError(`No assets found for wallet ${walletID}`, 404)
+      : assets;
+  } catch (err) {
+    return err;
+  }
+}
 async function createAssetCategory(data) {
   try {
     const newCategory = AssetCategory.create({
@@ -28,7 +41,6 @@ async function createAssetCategory(data) {
 async function buyAsset({ assetID, walletID }) {
   try {
     // 1. SEND TOKENS TO ASSET OWNER
-
     // Get asset for toWalletID
     const asset = await Asset.findOne({
       where: { id: assetID },
@@ -53,7 +65,7 @@ async function buyAsset({ assetID, walletID }) {
       amount: assetDetails.price,
     });
 
-    // 2. Send asset
+    // 2. SEND ASSET
     const newAssetTransaction = await createAssetTransaction({
       fromWalletID: asset.walletID,
       toWalletID: walletID,
@@ -100,6 +112,36 @@ async function createNFTCard(data) {
     return err;
   }
 }
+async function createVoucher(data) {
+  try {
+    const collectionUUID = randomUUID();
+    const assetsCreated = [];
+    const assetCategory = await AssetCategory.findOne({
+      where: { table: "Voucher" },
+    });
+    for (let i = 1; i <= data.quantity; i++) {
+      const newAsset = await Asset.create({
+        categoryID: assetCategory.id,
+        isListed: true,
+        walletID: data.walletID,
+      });
+      const newVoucher = await Voucher.create({
+        assetID: newAsset.id,
+        name: data.name,
+        collection: collectionUUID,
+        schema: data.schema,
+        template: data.template,
+        burnable: data.burnable,
+        transferable: data.transferable,
+      });
+      assetsCreated.push(newVoucher);
+    }
+    const response = assetsCreated;
+    return !response.length ? dbError(`No Vouchers created`, 404) : response;
+  } catch (err) {
+    return err;
+  }
+}
 async function createTokenCoupon(data) {
   try {
     const collectionUUID = randomUUID();
@@ -136,4 +178,6 @@ module.exports = {
   createAssetCategory,
   createNFTCard,
   buyAsset,
+  getAssets,
+  createVoucher,
 };

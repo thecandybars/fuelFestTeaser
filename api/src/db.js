@@ -51,7 +51,7 @@ const {
   Asset,
   AssetCategory,
   AstNFTCard,
-
+  Voucher,
   TokenCoupon,
 } = sequelize.models;
 
@@ -103,6 +103,7 @@ Asset.belongsTo(Wallet, { foreignKey: "walletID" });
 Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
 Asset.hasMany(TokenCoupon, { foreignKey: "assetID" });
 Asset.hasMany(AstNFTCard, { foreignKey: "assetID" });
+Asset.hasMany(Voucher, { foreignKey: "assetID" });
 // Asset.belongsTo(TokenCoupon, { foreignKey: "assetID" });
 // Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
 
