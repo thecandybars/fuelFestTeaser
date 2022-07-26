@@ -9,7 +9,7 @@ const {
   getUserFavEvents,
   toggleFavCar,
   getUserFavCars,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
 
 // user gets all fav events
 router.get("/:id/event/", async (req, res) => {

@@ -1,7 +1,5 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
-const { dbError } = require("./_common.js");
-const { Car, CarVoteCategory } = require("../db.js");
+const dbError = require("../utils/dbError");
+const { Car, CarVoteCategory, CarImage } = require("../db.js");
 
 /////// CAR /////////////////
 
@@ -62,13 +60,16 @@ async function addCategoryToCar(carId, categoryId) {
     // // );
 
     const car = await Car.findByPk(carId);
-    if (car === null) return "Car " + carId + " not found";
+    if (car === null) return dbError("Car " + carId + " not found", 404);
 
     const category = await CarVoteCategory.findOne({
       where: { carId: carId, categoryId: categoryId },
     });
     if (category !== null)
-      return "Car " + carId + " already has category " + categoryId;
+      return dbError(
+        "Car " + carId + " already has category " + categoryId,
+        404
+      );
 
     const response = await CarVoteCategory.create({ carId, categoryId });
 
@@ -80,24 +81,30 @@ async function addCategoryToCar(carId, categoryId) {
   }
 }
 async function createCar(data) {
-  const { carVoteCategories } = data;
-  // delete data["carVoteCategories"];
-
   try {
     const newCar = await Car.create({
-      ...data,
+      ...data.body,
     });
-    const carId = newCar.id;
     // Tried using mixin method addCarVoteCategories, didn't work
+    const { carVoteCategories } = data.body;
     // newCar.addCarVoteCategories(carVoteCategories);
 
+    // console.log(Array.isArray(carVoteCategories));
     carVoteCategories &&
       carVoteCategories.length > 0 &&
       carVoteCategories.forEach(async (e) => {
         // This works but problem using addCarVoteCategories needs to be solved
-        await CarVoteCategory.create({ carId, voteCategoryId: e });
-        // await newCar.addCarVoteCategory(carVoteCategory);
+        await CarVoteCategory.create({ carId: newCar.id, voteCategoryId: e });
+        // await newCar.addCarVoteCategory(e);
       });
+
+    data.files.map(async (image) => {
+      await CarImage.create({
+        carID: newCar.id,
+        image: image.path,
+      });
+    });
+
     const response = newCar;
     return !response ? dbError(`Car not created`, 400) : response;
   } catch (err) {

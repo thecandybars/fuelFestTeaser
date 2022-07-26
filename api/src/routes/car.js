@@ -11,7 +11,10 @@ const {
   createCar,
   addCategoryToCar,
   getVoteCategories,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
+
+const handleStorage = require("../utils/handleStorage");
+const upload = handleStorage("car");
 
 // Get ALL cars
 router.get("/", async (req, res) => {
@@ -47,8 +50,9 @@ router.put("/:carId/category/:categoryId", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW car
-router.post("/", async (req, res) => {
-  const response = await createCar(req.body);
+router.post("/", upload.array("images"), async (req, res) => {
+  // const response = req.body;
+  const response = await createCar(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

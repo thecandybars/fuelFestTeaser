@@ -8,7 +8,10 @@ const {
   getAllUsers,
   getUsersById,
   createUser,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
+
+const handleStorage = require("../utils/handleStorage");
+const uploadUser = handleStorage("user");
 
 // Get all users
 router.get("/", async (req, res) => {
@@ -27,8 +30,8 @@ router.get("/:id", async (req, res) => {
 });
 
 // create new user
-router.post("/", async (req, res) => {
-  const response = await createUser(req.body);
+router.post("/", uploadUser.single("image"), async (req, res) => {
+  const response = await createUser(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

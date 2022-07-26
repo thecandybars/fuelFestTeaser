@@ -11,7 +11,7 @@ const {
   createWallet,
   freezeTokens,
   unFreezeTokens,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
 
 // Get ALL wallets
 router.get("/", async (req, res) => {

@@ -1,6 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
-const { dbError } = require("./_common.js");
+const dbError = require("../utils/dbError");
 const { User, Wallet } = require("../db.js");
 
 //////// USERS ////////////////
@@ -27,7 +25,9 @@ async function createUser(data) {
   const { firstName, lastName, image, walletID } = data;
   try {
     const response = await User.create({
-      ...data,
+      firstName: data.body.firstName,
+      lastName: data.body.lastName,
+      image: data.file.path,
     });
     return !response ? dbError("Error creating user", 401) : response;
   } catch (err) {

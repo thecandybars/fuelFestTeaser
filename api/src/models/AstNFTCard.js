@@ -37,6 +37,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    imageFront: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageBack: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     price: {
       type: DataTypes.FLOAT,
       allowNull: true,

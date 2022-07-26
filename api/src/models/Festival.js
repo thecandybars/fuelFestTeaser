@@ -2,39 +2,27 @@ const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  sequelize.define("voucher", {
+  sequelize.define("festival", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    collection: {
-      type: DataTypes.STRING,
+    dateStart: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
-    schema: {
-      type: DataTypes.STRING,
+    dateEnd: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
-    template: {
+    location: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    burnable: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-    },
-    transferable: {
-      type: DataTypes.BOOLEAN,
       allowNull: true,
     },
   });

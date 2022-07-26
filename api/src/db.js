@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const { createVoteCategory } = require("./controllers");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -37,9 +38,11 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // TABLE RELATIONS
 const {
+  Festival,
   User,
   Event,
   Car,
+  CarImage,
   Sponsor,
   Vendor,
   Vote,
@@ -55,6 +58,10 @@ const {
   TokenCoupon,
 } = sequelize.models;
 
+// FESTIVAL
+
+Festival.hasOne(Event, { through: "festivalId" });
+
 // FAVORITES
 
 User.belongsToMany(Event, { through: "FavEvent" });
@@ -69,10 +76,13 @@ Vendor.belongsToMany(User, { through: "FavVendor" });
 User.belongsToMany(Sponsor, { through: "FavSponsor" });
 Sponsor.belongsToMany(User, { through: "FavSponsor" });
 
+Car.hasMany(CarImage, { foreignKey: "carID" });
+// CarImage.hasMany(Car, { foreignKey: "carID" });
+
 // VOTING
 
-VoteCategory.belongsToMany(Car, { through: "carVoteCategory" });
-Car.belongsToMany(VoteCategory, { through: "carVoteCategory" });
+VoteCategory.belongsToMany(Car, { through: "CarVoteCategory" });
+Car.belongsToMany(VoteCategory, { through: "CarVoteCategory" });
 
 Car.hasMany(Vote, { foreignKey: "carID" });
 Vote.belongsTo(Car, { foreignKey: "carID" });
@@ -106,8 +116,6 @@ Asset.hasMany(AstNFTCard, { foreignKey: "assetID" });
 Asset.hasMany(Voucher, { foreignKey: "assetID" });
 // Asset.belongsTo(TokenCoupon, { foreignKey: "assetID" });
 // Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
-
-// ASSETS
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

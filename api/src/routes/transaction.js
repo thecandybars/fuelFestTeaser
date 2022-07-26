@@ -9,7 +9,7 @@ const {
   createTransactionCategory,
   createAssetTransaction,
   createCouponTransaction,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
 
 // Create new ASSET transaction (send asset, buy asset)
 router.post("/asset", async (req, res) => {

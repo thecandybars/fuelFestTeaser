@@ -1,5 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
+const dbError = require("../utils/dbError");
 const { Vendor } = require("../db.js");
 
 /////// Vendors /////////////////
@@ -35,7 +34,8 @@ async function editVendor(id, data) {
 async function createVendor(data) {
   try {
     const response = await Vendor.create({
-      ...data,
+      ...data.body,
+      image: data.file.path,
     });
     return !response ? dbError(`Vendor not created`, 404) : response;
   } catch (err) {

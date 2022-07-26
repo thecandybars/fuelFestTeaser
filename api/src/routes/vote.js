@@ -4,7 +4,7 @@
 */
 
 const router = require("express").Router();
-const { createVoteCategory, carVote } = require("../services/index.js");
+const { createVoteCategory, carVote } = require("../controllers/index.js");
 
 // Create NEW vote category
 router.post("/category", async (req, res) => {

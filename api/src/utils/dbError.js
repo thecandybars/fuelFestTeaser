@@ -7,6 +7,4 @@ function dbError(title, status) {
   };
 }
 
-module.exports = {
-  dbError,
-};
+module.exports = dbError;

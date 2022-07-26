@@ -9,7 +9,10 @@ const {
   createVendor,
   getVendorById,
   editVendor,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
+
+const handleStorage = require("../utils/handleStorage");
+const upload = handleStorage("vendor");
 
 // Get ALL vendors
 router.get("/", async (req, res) => {
@@ -37,8 +40,8 @@ router.put("/:id", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW vendor
-router.post("/", async (req, res) => {
-  const response = await createVendor(req.body);
+router.post("/", upload.single("image"), async (req, res) => {
+  const response = await createVendor(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

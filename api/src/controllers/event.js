@@ -1,5 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
+const dbError = require("../utils/dbError");
 const { Event } = require("../db.js");
 
 /////// EVENTS /////////////////
@@ -35,8 +34,10 @@ async function editEvent(id, data) {
 async function createEvent(data) {
   try {
     const response = await Event.create({
-      ...data,
+      ...data.body,
+      image: data.file.path,
     });
+    // const response = data.file;
     return !response ? dbError(`Event not created`, 404) : response;
   } catch (err) {
     return err;

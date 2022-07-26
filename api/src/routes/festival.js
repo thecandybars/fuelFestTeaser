@@ -1,46 +1,44 @@
 /*  
     ROUTES FOR :
-    /event
+    /festival
 */
 
 const router = require("express").Router();
 const {
-  getAllEvents,
-  createEvent,
-  getEventById,
-  editEvent,
+  getAllFestivals,
+  getFestivalById,
+  createFestival,
+  editFestival,
 } = require("../controllers/index.js");
 
-const handleStorage = require("../utils/handleStorage");
-const upload = handleStorage("event");
-// Get ALL events
+// Get ALL festivals
 router.get("/", async (req, res) => {
-  const response = await getAllEvents();
+  const response = await getAllFestivals();
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-// Get  event by ID
+// Get  festival by ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const response = await getEventById(id);
+  const response = await getFestivalById(id);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
 
-// Modify event by ID
+// Modify festival by ID
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const data = req.body;
-  const response = await editEvent(id, data);
+  const response = await editFestival(id, data);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-// Create NEW event
-router.post("/", upload.single("image"), async (req, res) => {
-  const response = await createEvent(req);
+// Create NEW festival
+router.post("/", async (req, res) => {
+  const response = await createFestival(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

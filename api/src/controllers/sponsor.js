@@ -1,5 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
+const dbError = require("../utils/dbError");
 const { Sponsor } = require("../db.js");
 
 /////// SPONSORS /////////////////
@@ -35,7 +34,8 @@ async function editSponsor(id, data) {
 async function createSponsor(data) {
   try {
     const response = await Sponsor.create({
-      ...data,
+      ...data.body,
+      image: data.file.path,
     });
     return !response ? dbError(`Sponsor not created`, 404) : response;
   } catch (err) {

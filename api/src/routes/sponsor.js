@@ -9,7 +9,10 @@ const {
   createSponsor,
   getSponsorById,
   editSponsor,
-} = require("../services/index.js");
+} = require("../controllers/index.js");
+
+const handleStorage = require("../utils/handleStorage");
+const upload = handleStorage("sponsor");
 
 // Get ALL Sponsors
 router.get("/", async (req, res) => {
@@ -37,8 +40,8 @@ router.put("/:id", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW Sponsor
-router.post("/", async (req, res) => {
-  const response = await createSponsor(req.body);
+router.post("/", upload.single("image"), async (req, res) => {
+  const response = await createSponsor(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

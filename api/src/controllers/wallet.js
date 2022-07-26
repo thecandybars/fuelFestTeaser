@@ -1,6 +1,4 @@
-// const axios = require("axios");
-// const { Op } = require("sequelize");
-const { dbError } = require("./_common.js");
+const dbError = require("../utils/dbError");
 const { Wallet, User, Transaction, TokenLedger } = require("../db.js");
 
 /////// WALLET /////////////////

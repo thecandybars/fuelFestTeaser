@@ -1,6 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
-const { dbError } = require("./_common.js");
+const dbError = require("../utils/dbError");
 const { FavEvent, FavCar } = require("../db.js");
 
 async function getUserFavEvents(id) {

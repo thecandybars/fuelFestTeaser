@@ -1,4 +1,5 @@
 const { Vote, VoteCategory } = require("../db.js");
+const dbError = require("../utils/dbError");
 
 /////// Vote /////////////////
 

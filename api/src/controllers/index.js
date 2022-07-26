@@ -1,6 +1,4 @@
-const axios = require("axios");
-const { Op } = require("sequelize");
-
+const festival = require("./festival");
 const user = require("./user");
 const event = require("./event.js");
 const car = require("./car.js");
@@ -13,6 +11,7 @@ const transaction = require("./transaction.js");
 const asset = require("./asset.js");
 
 module.exports = {
+  ...festival,
   ...user,
   ...event,
   ...car,

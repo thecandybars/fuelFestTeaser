@@ -1,11 +1,12 @@
 const { randomUUID } = require("crypto");
-const { dbError } = require("./_common.js");
+const dbError = require("../utils/dbError");
 const {
   Asset,
   AssetCategory,
   AstNFTCard,
   TokenCoupon,
   Voucher,
+  Wallet,
 } = require("../db.js");
 const {
   createTokenTransaction,
@@ -80,29 +81,36 @@ async function buyAsset({ assetID, walletID }) {
 
 async function createNFTCard(data) {
   try {
+    const wallet = await Wallet.findByPk(data.params.walletID);
+    if (!wallet)
+      return dbError(`WalletID ${data.params.walletID} not found`, 404);
     const collectionUUID = randomUUID();
     const assetsCreated = [];
     const assetCategory = await AssetCategory.findOne({
       where: { table: "AstNFTCard" },
     });
-    for (let i = 1; i <= data.quantity; i++) {
+    if (!assetCategory)
+      return dbError(`NFT Card category not found. Create category first`, 404);
+    for (let i = 1; i <= data.params.quantity; i++) {
       const newAsset = await Asset.create({
         categoryID: assetCategory.id,
         isListed: true,
-        walletID: data.walletID,
+        walletID: data.params.walletID,
       });
       const newNFTCard = await AstNFTCard.create({
         assetID: newAsset.id,
-        name: data.name,
+        name: data.body.name,
         mintNum: i,
-        mintTotal: data.quantity,
-        mintMax: data.quantity,
+        mintTotal: data.params.quantity,
+        mintMax: data.params.quantity,
         collection: collectionUUID,
-        schema: data.schema,
-        template: data.template,
-        price: data.price,
-        burnable: data.burnable,
-        transferable: data.transferable,
+        schema: data.body.schema,
+        template: data.body.template,
+        imageFront: data.files[0].path,
+        imageBack: data.files[1].path,
+        price: data.body.price,
+        burnable: data.body.burnable,
+        transferable: data.body.transferable,
       });
       assetsCreated.push(newNFTCard);
     }
@@ -114,25 +122,35 @@ async function createNFTCard(data) {
 }
 async function createVoucher(data) {
   try {
+    const wallet = await Wallet.findByPk(data.params.walletID);
+    if (!wallet)
+      return dbError(`WalletID ${data.params.walletID} not found`, 404);
     const collectionUUID = randomUUID();
     const assetsCreated = [];
     const assetCategory = await AssetCategory.findOne({
       where: { table: "Voucher" },
     });
-    for (let i = 1; i <= data.quantity; i++) {
+    if (!assetCategory)
+      return dbError(
+        `Voucher asset category not found. Create category first`,
+        404
+      );
+
+    for (let i = 1; i <= data.params.quantity; i++) {
       const newAsset = await Asset.create({
         categoryID: assetCategory.id,
         isListed: true,
-        walletID: data.walletID,
+        walletID: data.params.walletID,
       });
       const newVoucher = await Voucher.create({
         assetID: newAsset.id,
-        name: data.name,
+        name: data.body.name,
         collection: collectionUUID,
-        schema: data.schema,
-        template: data.template,
-        burnable: data.burnable,
-        transferable: data.transferable,
+        schema: data.body.schema,
+        template: data.body.template,
+        image: data.file.path,
+        burnable: data.body.burnable,
+        transferable: data.body.transferable,
       });
       assetsCreated.push(newVoucher);
     }
@@ -144,22 +162,31 @@ async function createVoucher(data) {
 }
 async function createTokenCoupon(data) {
   try {
+    const wallet = await Wallet.findByPk(data.params.walletID);
+    if (!wallet)
+      return dbError(`WalletID ${data.params.walletID} not found`, 404);
     const collectionUUID = randomUUID();
     const tokensCreated = [];
     const tokenCouponCategory = await AssetCategory.findOne({
       where: { table: "TokenCoupon" },
     });
-    for (let i = 0; i < data.quantity; i++) {
+    if (!tokenCouponCategory)
+      return dbError(
+        `Token Coupon category not found. Create category first`,
+        404
+      );
+    for (let i = 0; i < data.params.quantity; i++) {
       const newAsset = await Asset.create({
         categoryID: tokenCouponCategory.id,
         isListed: false,
-        walletID: data.walletID,
+        walletID: data.params.walletID,
       });
       const newToken = await TokenCoupon.create({
         assetID: newAsset.id,
-        name: data.name,
+        name: data.body.name,
         collection: collectionUUID,
-        tokenAmount: parseInt(data.amount),
+        image: data.file.path,
+        tokenAmount: parseInt(data.body.amount),
         isBurnt: false,
       });
       tokensCreated.push(newToken);

@@ -10,7 +10,7 @@ const {
   AssetCategory,
   TokenCoupon,
 } = require("../db.js");
-const { dbError } = require("./_common.js");
+const dbError = require("../utils/dbError");
 
 async function createAssetTransaction(data) {
   try {
