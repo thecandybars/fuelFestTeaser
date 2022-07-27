@@ -50,7 +50,7 @@ router.put("/:carId/category/:categoryId", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW car
-router.post("/", upload.array("images"), async (req, res) => {
+router.post("/", upload.array("image"), async (req, res) => {
   // const response = req.body;
   const response = await createCar(req);
   !response.error

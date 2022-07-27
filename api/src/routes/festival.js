@@ -9,11 +9,19 @@ const {
   getFestivalById,
   createFestival,
   editFestival,
+  getCurrentFestival,
 } = require("../controllers/index.js");
 
 // Get ALL festivals
 router.get("/", async (req, res) => {
   const response = await getAllFestivals();
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Get current festival
+router.get("/current", async (req, res) => {
+  const response = await getCurrentFestival();
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

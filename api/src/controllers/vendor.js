@@ -1,11 +1,15 @@
 const dbError = require("../utils/dbError");
 const { Vendor } = require("../db.js");
+const { getCurrentFestival } = require("./festival");
 
 /////// Vendors /////////////////
 
 async function getAllVendors() {
   try {
-    const response = await Vendor.findAll();
+    const festival = await getCurrentFestival();
+    const response = await Vendor.findAll({
+      where: { festivalId: festival.id },
+    });
     return !response ? dbError(`No Vendors found`, 404) : response;
   } catch (err) {
     return err;
@@ -14,7 +18,12 @@ async function getAllVendors() {
 
 async function getVendorById(id) {
   try {
-    const response = await Vendor.findByPk(id);
+    const festival = await getCurrentFestival();
+    const vendor = await Vendor.findByPk(id);
+    const response =
+      vendor.festivalId === festival.id
+        ? sponsor
+        : dbError(`Vendor ${id} belongs to festival ${vendor.festivalId}`, 404);
     return !response ? dbError(`Vendor ${id} not found`, 404) : response;
   } catch (err) {
     return err;

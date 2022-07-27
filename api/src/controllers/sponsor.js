@@ -1,11 +1,15 @@
 const dbError = require("../utils/dbError");
 const { Sponsor } = require("../db.js");
+const { getCurrentFestival } = require("./festival");
 
 /////// SPONSORS /////////////////
 
 async function getAllSponsors() {
   try {
-    const response = await Sponsor.findAll();
+    const festival = await getCurrentFestival();
+    const response = await Sponsor.findAll({
+      where: { festivalId: festival.id },
+    });
     return !response ? dbError(`No sponsors found`, 404) : response;
   } catch (err) {
     return err;
@@ -14,7 +18,15 @@ async function getAllSponsors() {
 
 async function getSponsorById(id) {
   try {
-    const response = await Sponsor.findByPk(id);
+    const festival = await getCurrentFestival();
+    const sponsor = await Sponsor.findByPk(id);
+    const response =
+      sponsor.festivalId === festival.id
+        ? sponsor
+        : dbError(
+            `Sponsor ${id} belongs to festival ${sponsor.festivalId}`,
+            404
+          );
     return !response ? dbError(`Sponsor ${id} not found`, 404) : response;
   } catch (err) {
     return err;

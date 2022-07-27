@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { createVoteCategory } = require("./controllers");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -40,6 +39,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const {
   Festival,
   User,
+  UserCategory,
   Event,
   Car,
   CarImage,
@@ -59,8 +59,13 @@ const {
 } = sequelize.models;
 
 // FESTIVAL
-
 Festival.hasOne(Event, { through: "festivalId" });
+Festival.hasOne(Vendor, { through: "festivalId" });
+Festival.hasOne(Sponsor, { through: "festivalId" });
+Festival.hasOne(Car, { through: "festivalId" });
+
+// USERS
+User.belongsTo(UserCategory, { foreignKey: "userCategoryID" });
 
 // FAVORITES
 

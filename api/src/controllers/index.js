@@ -1,5 +1,19 @@
+// const fs = require("fs");
+
+// const controllers = {};
+// const files = fs
+//   .readdirSync(__dirname)
+//   .filter((file) => file !== "index.js" && file.split(".").pop() === "js")
+//   .map((file) => {
+//     const controller = require(`./${file.slice(0, file.lastIndexOf("."))}`); // const festival = require("./festival");
+//     controllers[file.split(".").shift()] = controller;
+//   });
+
+// module.exports = { ...controllers };
+
 const festival = require("./festival");
 const user = require("./user");
+const userCategory = require("./userCategory");
 const event = require("./event.js");
 const car = require("./car.js");
 const favorite = require("./favorite.js");
@@ -13,6 +27,7 @@ const asset = require("./asset.js");
 module.exports = {
   ...festival,
   ...user,
+  ...userCategory,
   ...event,
   ...car,
   ...favorite,

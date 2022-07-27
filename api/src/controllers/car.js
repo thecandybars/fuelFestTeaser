@@ -1,10 +1,14 @@
 const dbError = require("../utils/dbError");
 const { Car, CarVoteCategory, CarImage } = require("../db.js");
+const { getCurrentFestival } = require("./festival");
 
 /////// CAR /////////////////
 
 async function getAllCars() {
   try {
+    const festival = await getCurrentFestival({
+      where: { festivalId: festival.id },
+    });
     const response = await Car.findAll();
     return !response ? dbError(`No cars found`, 404) : response;
   } catch (err) {
@@ -14,7 +18,12 @@ async function getAllCars() {
 
 async function getCarById(id) {
   try {
-    const response = await Car.findByPk(id);
+    const festival = await getCurrentFestival();
+    const car = await Car.findByPk(id);
+    const response =
+      car.festivalId === festival.id
+        ? car
+        : dbError(`Car ${id} belongs to festival ${car.festivalId}`, 404);
     return !response ? dbError(`Car ${id} not found`, 404) : response;
   } catch (err) {
     return err;
@@ -33,15 +42,16 @@ async function editCar(id, data) {
 }
 async function getVoteCategories(id) {
   try {
+    const festival = await getCurrentFestival();
     const response = await CarVoteCategory.findAll({
-      where: { carId: id },
+      where: { carId: id, festivalId: festival.id },
     });
     return !response ? dbError(`No vote categories found`, 404) : response;
   } catch (err) {
     return err;
   }
 }
-async function addCategoryToCar(carId, categoryId) {
+async function addCategoryToCar(carId, voteCategoryId) {
   try {
     // const response = "";
     // // const car = await Car.findByPk(carId);
@@ -63,15 +73,15 @@ async function addCategoryToCar(carId, categoryId) {
     if (car === null) return dbError("Car " + carId + " not found", 404);
 
     const category = await CarVoteCategory.findOne({
-      where: { carId: carId, categoryId: categoryId },
+      where: { carId, voteCategoryId },
     });
     if (category !== null)
       return dbError(
-        "Car " + carId + " already has category " + categoryId,
+        "Car " + carId + " already has category " + voteCategoryId,
         404
       );
 
-    const response = await CarVoteCategory.create({ carId, categoryId });
+    const response = await CarVoteCategory.create({ carId, voteCategoryId });
 
     return !response
       ? dbError(`Category ${categoryId} added to car ${carId}`, 404)

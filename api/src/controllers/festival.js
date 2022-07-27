@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Festival } = require("../db.js");
 const dbError = require("../utils/dbError");
 
@@ -22,6 +23,21 @@ async function getFestivalById(id) {
     return err;
   }
 }
+async function getCurrentFestival() {
+  try {
+    const response = await Festival.findOne({
+      where: {
+        dateStart: { [Op.lt]: Date.now() },
+        dateEnd: { [Op.gt]: Date.now() },
+      },
+    });
+
+    return !response ? {} : response;
+  } catch (err) {
+    return err;
+  }
+}
+
 async function editFestival(id, data) {
   try {
     const response = await Festival.upsert({
@@ -49,4 +65,5 @@ module.exports = {
   getFestivalById,
   createFestival,
   editFestival,
+  getCurrentFestival,
 };
