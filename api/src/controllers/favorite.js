@@ -35,28 +35,28 @@ async function getFavEvent(id) {
     return err;
   }
 }
-async function toggleFavEvent(userId, eventId) {
-  try {
-    const [response, created] = await FavEvent.findOrCreate({
-      where: { userId: userId, eventId: eventId },
-      default: {
-        userId,
-        eventId,
-      },
-    });
+// async function toggleFavEvent(userId, eventId) {
+//   try {
+//     const [response, created] = await FavEvent.findOrCreate({
+//       where: { userId: userId, eventId: eventId },
+//       default: {
+//         userId,
+//         eventId,
+//       },
+//     });
 
-    if (!created) {
-      await FavEvent.destroy({
-        where: { userId: userId, eventId: eventId },
-      });
-    }
-    return `Favorite event ${eventId} ${
-      created ? "created" : "destroyed"
-    } for user ${userId}`;
-  } catch (err) {
-    return err;
-  }
-}
+//     if (!created) {
+//       await FavEvent.destroy({
+//         where: { userId: userId, eventId: eventId },
+//       });
+//     }
+//     return `Favorite event ${eventId} ${
+//       created ? "created" : "destroyed"
+//     } for user ${userId}`;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 ////////// SPONSOR
 async function getFavSponsor(id) {
@@ -82,28 +82,28 @@ async function getFavSponsor(id) {
     return err;
   }
 }
-async function toggleFavSponsor(userId, sponsorId) {
-  try {
-    const [response, created] = await FavSponsor.findOrCreate({
-      where: { userId, sponsorId },
-      default: {
-        userId,
-        sponsorId,
-      },
-    });
+// async function toggleFavSponsor(userId, sponsorId) {
+//   try {
+//     const [response, created] = await FavSponsor.findOrCreate({
+//       where: { userId, sponsorId },
+//       default: {
+//         userId,
+//         sponsorId,
+//       },
+//     });
 
-    if (!created) {
-      await FavSponsor.destroy({
-        where: { userId, sponsorId },
-      });
-    }
-    return `Favorite sponsor ${sponsorId} ${
-      created ? "created" : "destroyed"
-    } for user ${userId}`;
-  } catch (err) {
-    return err;
-  }
-}
+//     if (!created) {
+//       await FavSponsor.destroy({
+//         where: { userId, sponsorId },
+//       });
+//     }
+//     return `Favorite sponsor ${sponsorId} ${
+//       created ? "created" : "destroyed"
+//     } for user ${userId}`;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 ////////// CAR
 async function getFavCar(id) {
@@ -129,28 +129,28 @@ async function getFavCar(id) {
     return err;
   }
 }
-async function toggleFavCar(userId, carId) {
-  try {
-    const [response, created] = await FavCar.findOrCreate({
-      where: { userId: userId, carId: carId },
-      default: {
-        userId,
-        carId,
-      },
-    });
+// async function toggleFavCar(userId, carId) {
+//   try {
+//     const [response, created] = await FavCar.findOrCreate({
+//       where: { userId: userId, carId: carId },
+//       default: {
+//         userId,
+//         carId,
+//       },
+//     });
 
-    if (!created) {
-      await FavCar.destroy({
-        where: { userId: userId, carId: carId },
-      });
-    }
-    return `Favorite car ${carId} ${
-      created ? "created" : "destroyed"
-    } for user ${userId}`;
-  } catch (err) {
-    return err;
-  }
-}
+//     if (!created) {
+//       await FavCar.destroy({
+//         where: { userId: userId, carId: carId },
+//       });
+//     }
+//     return `Favorite car ${carId} ${
+//       created ? "created" : "destroyed"
+//     } for user ${userId}`;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 ////////// VENDOR
 async function getFavVendor(id) {
@@ -176,36 +176,36 @@ async function getFavVendor(id) {
     return err;
   }
 }
-async function toggleFavVendor(userId, vendorId) {
-  try {
-    const [response, created] = await FavVendor.findOrCreate({
-      where: { userId, vendorId },
-      default: {
-        userId,
-        vendorId,
-      },
-    });
+// async function toggleFavVendor(userId, vendorId) {
+//   try {
+//     const [response, created] = await FavVendor.findOrCreate({
+//       where: { userId, vendorId },
+//       default: {
+//         userId,
+//         vendorId,
+//       },
+//     });
 
-    if (!created) {
-      await FavVendor.destroy({
-        where: { userId: userId, vendorId: vendorId },
-      });
-    }
-    return `Favorite vendor ${vendorId} ${
-      created ? "created" : "destroyed"
-    } for user ${userId}`;
-  } catch (err) {
-    return err;
-  }
-}
+//     if (!created) {
+//       await FavVendor.destroy({
+//         where: { userId: userId, vendorId: vendorId },
+//       });
+//     }
+//     return `Favorite vendor ${vendorId} ${
+//       created ? "created" : "destroyed"
+//     } for user ${userId}`;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 module.exports = {
   getFavEvent,
-  toggleFavEvent,
+  // toggleFavEvent,
   getFavCar,
-  toggleFavCar,
+  // toggleFavCar,
   getFavSponsor,
-  toggleFavSponsor,
+  // toggleFavSponsor,
   getFavVendor,
-  toggleFavVendor,
+  // toggleFavVendor,
 };

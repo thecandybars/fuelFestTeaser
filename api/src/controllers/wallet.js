@@ -5,7 +5,7 @@ const { Wallet, User, Transaction, TokenLedger } = require("../db.js");
 
 async function getAllWallets() {
   try {
-    const response = await Wallet.findAll();
+    const response = await Wallet.findAll({ include: User });
     return response;
   } catch (err) {
     return err;
@@ -42,14 +42,20 @@ async function editWallet(id, data) {
 
 async function createWallet(data) {
   try {
+    let user = "";
+    if (data.userID) {
+      user = await User.findByPk(data.userID);
+      if (user.walletID) return dbError("User already has a wallet!", 401);
+    }
     const newWallet = await Wallet.create({
       ...data,
     });
-
-    if (data.userID) {
-      const newUser = await User.findByPk(data.userID);
-      newUser && (await newUser.setWallet(newWallet));
-    }
+    // !!user && (await newUser.setWallet(newWallet));
+    !!user &&
+      (await User.update(
+        { walletID: newWallet.id },
+        { where: { id: user.id } }
+      ));
 
     return newWallet;
   } catch (err) {

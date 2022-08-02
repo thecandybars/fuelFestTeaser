@@ -1,4 +1,5 @@
-const { randomUUID } = require("crypto");
+const { getCurrentFestival } = require("./festival");
+
 const dbError = require("../utils/dbError");
 const {
   Asset,
@@ -7,6 +8,7 @@ const {
   TokenCoupon,
   Voucher,
   Wallet,
+  Template,
 } = require("../db.js");
 const {
   createTokenTransaction,
@@ -17,7 +19,7 @@ const {
 
 async function getAssets(walletID) {
   try {
-    const assets = Asset.findAll({
+    const assets = await Asset.findAll({
       where: { walletID },
       include: [TokenCoupon, AssetCategory, AstNFTCard],
     });
@@ -28,9 +30,19 @@ async function getAssets(walletID) {
     return err;
   }
 }
+async function getAllAssetCategory() {
+  try {
+    const response = await AssetCategory.findAll();
+    return !response.length
+      ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
 async function createAssetCategory(data) {
   try {
-    const newCategory = AssetCategory.create({
+    const newCategory = await AssetCategory.create({
       title: data.title,
       table: data.table,
     });
@@ -57,7 +69,9 @@ async function buyAsset({ assetID, walletID }) {
       });
     }
     if (table === "Voucher") {
-      assetDetails = await Voucher.findByPk(assetID);
+      assetDetails = await Voucher.findOne({
+        where: { assetID },
+      });
     }
     // Send tokens
     const newTokenTransaction = await createTokenTransaction({
@@ -84,7 +98,12 @@ async function createNFTCard(data) {
     const wallet = await Wallet.findByPk(data.params.walletID);
     if (!wallet)
       return dbError(`WalletID ${data.params.walletID} not found`, 404);
-    const collectionUUID = randomUUID();
+    const festival = await getCurrentFestival();
+    const template = await Template.create({
+      festivalID: festival.id,
+      walletID: wallet.id,
+    });
+
     const assetsCreated = [];
     const assetCategory = await AssetCategory.findOne({
       where: { table: "AstNFTCard" },
@@ -103,9 +122,7 @@ async function createNFTCard(data) {
         mintNum: i,
         mintTotal: data.params.quantity,
         mintMax: data.params.quantity,
-        collection: collectionUUID,
-        schema: data.body.schema,
-        template: data.body.template,
+        templateID: template.id,
         imageFront: data.files[0].path,
         imageBack: data.files[1].path,
         price: data.body.price,
@@ -125,8 +142,12 @@ async function createVoucher(data) {
     const wallet = await Wallet.findByPk(data.params.walletID);
     if (!wallet)
       return dbError(`WalletID ${data.params.walletID} not found`, 404);
-    const collectionUUID = randomUUID();
-    const assetsCreated = [];
+    const festival = await getCurrentFestival();
+    const template = await Template.create({
+      festivalID: festival.id,
+      walletID: wallet.id,
+    });
+
     const assetCategory = await AssetCategory.findOne({
       where: { table: "Voucher" },
     });
@@ -136,7 +157,8 @@ async function createVoucher(data) {
         404
       );
 
-    for (let i = 1; i <= data.params.quantity; i++) {
+    const assetsCreated = [];
+    for (let i = 0; i < data.params.quantity; i++) {
       const newAsset = await Asset.create({
         categoryID: assetCategory.id,
         isListed: true,
@@ -145,12 +167,12 @@ async function createVoucher(data) {
       const newVoucher = await Voucher.create({
         assetID: newAsset.id,
         name: data.body.name,
-        collection: collectionUUID,
-        schema: data.body.schema,
-        template: data.body.template,
+        templateID: template.id,
         image: data.file.path,
         burnable: data.body.burnable,
         transferable: data.body.transferable,
+        expires: data.body.expires,
+        price: data.body.price,
       });
       assetsCreated.push(newVoucher);
     }
@@ -165,7 +187,7 @@ async function createTokenCoupon(data) {
     const wallet = await Wallet.findByPk(data.params.walletID);
     if (!wallet)
       return dbError(`WalletID ${data.params.walletID} not found`, 404);
-    const collectionUUID = randomUUID();
+    const festival = await getCurrentFestival();
     const tokensCreated = [];
     const tokenCouponCategory = await AssetCategory.findOne({
       where: { table: "TokenCoupon" },
@@ -175,6 +197,13 @@ async function createTokenCoupon(data) {
         `Token Coupon category not found. Create category first`,
         404
       );
+    if (parseInt(data.body.amount) <= 0)
+      return dbError(`Amount must be greater than 0`, 401);
+    //create
+    const template = await Template.create({
+      festivalID: festival.id,
+      walletID: wallet.id,
+    });
     for (let i = 0; i < data.params.quantity; i++) {
       const newAsset = await Asset.create({
         categoryID: tokenCouponCategory.id,
@@ -184,10 +213,11 @@ async function createTokenCoupon(data) {
       const newToken = await TokenCoupon.create({
         assetID: newAsset.id,
         name: data.body.name,
-        collection: collectionUUID,
+        templateID: template.id,
         image: data.file.path,
         tokenAmount: parseInt(data.body.amount),
         isBurnt: false,
+        expires: data.body.expires.toUpperCase() === "TRUE" ? true : false,
       });
       tokensCreated.push(newToken);
     }
@@ -200,11 +230,60 @@ async function createTokenCoupon(data) {
   }
 }
 
+async function createVoucherCoupon(data) {
+  // Do I need a Coupon Voucher table? Isn´t just a send/receive transfer asset action?
+  try {
+    const wallet = await Wallet.findByPk(data.params.walletID);
+    if (!wallet)
+      return dbError(`WalletID ${data.params.walletID} not found`, 404);
+    const festival = await getCurrentFestival();
+    const vouchersCreated = [];
+    const voucherCouponCategory = await AssetCategory.findOne({
+      where: { table: "VoucherCoupon" },
+    });
+    if (!voucherCouponCategory)
+      return dbError(
+        `Voucher Coupon category not found. Create category first`,
+        404
+      );
+    //create
+    const template = await Template.create({
+      festivalID: festival.id,
+      walletID: wallet.id,
+    });
+    for (let i = 0; i < data.params.quantity; i++) {
+      const newAsset = await Asset.create({
+        categoryID: tokenCouponCategory.id,
+        isListed: false,
+        walletID: data.params.walletID,
+      });
+      const newVoucherCoupon = await VoucherCoupon.create({
+        assetID: newAsset.id,
+        name: data.body.name,
+        templateID: template.id,
+        image: data.file.path,
+        voucherID: data.body.voucherID,
+        isBurnt: false,
+        expires: data.body.expires.toUpperCase() === "TRUE" ? true : false,
+      });
+      vouchersCreated.push(newVoucherCoupon);
+    }
+    const response = vouchersCreated;
+    return !response.length
+      ? dbError(`No Voucher Coupons created`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
+
 module.exports = {
   createTokenCoupon,
+  createVoucherCoupon,
   createAssetCategory,
   createNFTCard,
   buyAsset,
   getAssets,
+  getAllAssetCategory,
   createVoucher,
 };

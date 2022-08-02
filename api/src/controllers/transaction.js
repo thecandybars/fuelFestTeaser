@@ -4,7 +4,7 @@ const {
   Transaction,
   TokenLedger,
   AssetLedger,
-  TransactionCategory,
+  Voucher,
   Wallet,
   Asset,
   AssetCategory,
@@ -15,16 +15,6 @@ const dbError = require("../utils/dbError");
 async function createAssetTransaction(data) {
   try {
     const { fromWalletID, toWalletID, assetID } = data;
-
-    // const fromWallet = await Wallet.findByPk(fromWalletID);
-    // if (!fromWallet)
-    //   return dbError(`No origin wallet ${fromWalletID} found`, 404);
-    // if (fromWallet.liquid < amount)
-    //   return dbError(`Origin wallet ${fromWalletID} hasn't enough tokens`, 404);
-
-    // const toWallet = await Wallet.findByPk(toWalletID);
-    // if (!toWallet)
-    //   return dbError(`No destination wallet ${toWalletID} found`, 404);
 
     const newTransaction = await Transaction.create({
       title: "asset transaction",
@@ -51,7 +41,10 @@ async function createAssetTransaction(data) {
 }
 async function createTokenTransaction(data) {
   try {
-    const { fromWalletID, toWalletID, amount } = data;
+    const { fromWalletID, toWalletID, amount, title } = data;
+
+    if (amount <= 0)
+      return dbError(`Only positive token amounts. That's stealing!`, 400);
 
     const fromWallet = await Wallet.findByPk(fromWalletID);
     if (!fromWallet)
@@ -64,27 +57,34 @@ async function createTokenTransaction(data) {
       return dbError(`No destination wallet ${toWalletID} found`, 404);
 
     // console.table(toWallet.toJSON());
-    const newTransaction = await Transaction.create({ title: "hola" });
+    const newTransaction = await Transaction.create({
+      title: title ? title : "",
+    });
     const newTokenLedger = await TokenLedger.create({
       fromWalletID,
       toWalletID,
       amount,
       transactionID: newTransaction.id,
     });
-    await Wallet.upsert({
-      id: toWalletID,
-      liquid: toWallet.liquid + amount,
-    });
-    await Wallet.upsert({
-      id: fromWalletID,
-      liquid: fromWallet.liquid - amount,
-    });
+    await Wallet.update(
+      {
+        liquid: toWallet.liquid + amount,
+      },
+      { where: { id: toWalletID } }
+    );
+    await Wallet.update(
+      {
+        liquid: fromWallet.liquid - amount,
+      },
+      { where: { id: fromWalletID } }
+    );
 
     return newTokenLedger;
   } catch (err) {
     return err;
   }
 }
+// Create new COUPON transaction (Owner burns token coupon, the recepient receives tokens)
 async function createCouponTransaction(data) {
   try {
     const { toWalletID, assetID } = data;
@@ -96,27 +96,30 @@ async function createCouponTransaction(data) {
     if (asset.assetCategory.table !== "TokenCoupon")
       return dbError(`Asset ${assetID} is not a Token Coupon`, 404);
 
-    const tokenCoupon = await TokenCoupon.findOne({
-      where: { assetID: assetID },
-    });
+    const tokenCoupon = await TokenCoupon.findOne({ where: { assetID } });
     if (tokenCoupon.isBurnt)
       return dbError(`Token coupon ${assetID} was already burnt`);
 
     const fromWallet = await Wallet.findByPk(asset.walletID);
-    if (fromWallet.liquid < tokenCoupon.tokenAmount)
-      return dbError(
-        `Owner wallet ${asset.walletID} hasn't enough liquid tokens`
-      );
+    const toWallet = await Wallet.findByPk(toWalletID);
+
+    // Don´t needed: tokens are created on demand
+    // if (fromWallet.liquid < tokenCoupon.tokenAmount)
+    //   return dbError(
+    //     `Owner wallet ${asset.walletID} hasn't enough liquid tokens`
+    //   );
 
     //burn!!
-    await TokenCoupon.update(
-      { isBurnt: true },
-      { where: { assetID: assetID } }
+    await TokenCoupon.update({ isBurnt: true }, { where: { assetID } });
+    // create tokens on demand for fromWallet (this way we can keep track of the token transaction)
+    await Wallet.update(
+      { liquid: fromWallet.liquid + tokenCoupon.tokenAmount },
+      { where: { id: fromWallet.id } }
     );
     // transfer tokens
     const newTokenTransaction = await createTokenTransaction({
-      fromWalletID: asset.walletID,
-      toWalletID,
+      fromWalletID: fromWallet.id,
+      toWalletID: toWallet.id,
       amount: tokenCoupon.tokenAmount,
     });
 
@@ -126,22 +129,45 @@ async function createCouponTransaction(data) {
   }
 }
 
-async function createTransactionCategory(data) {
+// Create new VOUCHER transaction = SPEND (Owner sends voucher, the recepient burns coupon)
+async function createVoucherTransaction(data) {
   try {
-    const response = await TransactionCategory.create({
-      ...data,
+    const { toWalletID, assetID } = data;
+
+    const asset = await Asset.findByPk(assetID, {
+      include: AssetCategory,
     });
-    return !response
-      ? dbError(`No Transaction Category created`, 404)
-      : response;
+    if (!asset) return dbError(`Asset ${assetID} not found`, 404);
+    if (asset.assetCategory.table !== "Voucher")
+      return dbError(`Asset ${assetID} is not a Voucher`, 404);
+
+    const voucher = await Voucher.findOne({ where: { assetID } });
+    if (voucher.isBurnt) return dbError(`Voucher ${assetID} was already burnt`);
+
+    const fromWallet = await Wallet.findByPk(asset.walletID);
+    const toWallet = await Wallet.findByPk(toWalletID);
+
+    // Owner sends voucher to recipient
+    const newAssetTransaction = await createAssetTransaction({
+      fromWalletID: fromWallet.id,
+      toWalletID: toWallet.id,
+      assetID: asset.id,
+    });
+    // Recipient burns voucher
+    const newVoucher = await Voucher.update(
+      { isBurnt: true },
+      { where: { assetID } }
+    );
+
+    return newVoucher;
   } catch (err) {
     return err;
   }
 }
 
 module.exports = {
-  createTransactionCategory,
   createTokenTransaction,
   createAssetTransaction,
   createCouponTransaction,
+  createVoucherTransaction,
 };

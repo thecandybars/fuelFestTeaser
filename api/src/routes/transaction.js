@@ -6,9 +6,9 @@
 const router = require("express").Router();
 const {
   createTokenTransaction,
-  createTransactionCategory,
   createAssetTransaction,
   createCouponTransaction,
+  createVoucherTransaction,
 } = require("../controllers/index.js");
 
 // Create new ASSET transaction (send asset, buy asset)
@@ -25,17 +25,16 @@ router.post("/token", async (req, res) => {
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-// Create new COUPON transaction (Owner burns token coupon, the recepient receives tokens)
+// Create new TOKEN COUPON transaction (Owner burns token coupon, the recepient receives tokens)
 router.post("/tokenCoupon", async (req, res) => {
   const response = await createCouponTransaction(req.body);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-
-// Create new transaction category
-router.post("/category", async (req, res) => {
-  const response = await createTransactionCategory(req.body);
+// Create new VOUCHER transaction (Owner sends token coupon, the recepient burns coupon)
+router.post("/voucher", async (req, res) => {
+  const response = await createVoucherTransaction(req.body);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

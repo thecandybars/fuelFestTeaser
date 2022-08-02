@@ -1,4 +1,4 @@
-const { Vote, VoteCategory } = require("../db.js");
+const { Vote, VoteCategory, CarVoteCategory, Wallet } = require("../db.js");
 const dbError = require("../utils/dbError");
 
 /////// Vote /////////////////
@@ -15,13 +15,29 @@ async function createVoteCategory(data) {
   }
 }
 
-async function carVote(userId, carId, categoryId) {
+async function carVote(walletID, carID, categoryID) {
   try {
-    const [response, created] = await Vote.findOrCreate({
-      where: { userId: userId, carId: carId, categoryId: categoryId },
-      default: { userId: userId, carId: carId, categoryId: categoryId },
+    const wallet = Wallet.findByPk(walletID);
+    if (!wallet) return dbError(`Wallet ${walletID} not found`, 404);
+    if (wallet.frozen === 0)
+      return dbError(`You have to freeze some tokens before voting`, 400);
+
+    const carVoteCategory = await CarVoteCategory.findOne({
+      where: { carId: carID, voteCategoryId: categoryID },
     });
-    return created && !response ? dbError(`Alredy voted!`, 404) : response;
+    if (!carVoteCategory)
+      return dbError(`Can't vote category ${categoryID} for car ${carID}`, 404);
+
+    const vote = await Vote.findOne({ where: { walletID, carID, categoryID } });
+    if (vote) return dbError(`Alredy voted!`, 404);
+
+    const response = await Vote.create({
+      walletID,
+      carID,
+      categoryID,
+      votingTokens: 333,
+    });
+    return !response ? dbError(`Alredy voted!`, 404) : response;
   } catch (err) {
     return err;
   }

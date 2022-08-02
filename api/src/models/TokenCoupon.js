@@ -12,10 +12,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    collection: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     image: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,6 +21,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     isBurnt: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    expires: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },

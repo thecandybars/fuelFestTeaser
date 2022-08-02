@@ -25,18 +25,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    collection: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    schema: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    template: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     imageFront: {
       type: DataTypes.STRING,
       allowNull: false,

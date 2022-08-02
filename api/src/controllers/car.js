@@ -1,5 +1,5 @@
 const dbError = require("../utils/dbError");
-const { Car, CarVoteCategory, CarImage } = require("../db.js");
+const { Car, CarVoteCategory, CarImage, VoteCategory } = require("../db.js");
 const { getCurrentFestival } = require("./festival");
 
 /////// CAR /////////////////
@@ -19,7 +19,9 @@ async function getAllCars() {
 async function getCarById(id) {
   try {
     const festival = await getCurrentFestival();
-    const car = await Car.findByPk(id);
+    const car = await Car.findByPk(id, {
+      include: { model: VoteCategory, attributes: ["id", "title", "desc"] },
+    });
     const response =
       car.festivalId === festival.id
         ? car

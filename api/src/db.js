@@ -11,10 +11,9 @@ const sequelize = new Sequelize(
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
 );
+
 const basename = path.basename(__filename);
-
 const modelDefiners = [];
-
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, "/models"))
   .filter(
@@ -24,7 +23,6 @@ fs.readdirSync(path.join(__dirname, "/models"))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
-
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
@@ -56,6 +54,9 @@ const {
   AstNFTCard,
   Voucher,
   TokenCoupon,
+  VoucherCoupon,
+  Badge,
+  Template,
 } = sequelize.models;
 
 // FESTIVAL
@@ -86,7 +87,10 @@ Car.hasMany(CarImage, { foreignKey: "carID" });
 
 // VOTING
 
-VoteCategory.belongsToMany(Car, { through: "CarVoteCategory" });
+VoteCategory.belongsToMany(Car, {
+  through: "CarVoteCategory",
+  timestamps: false,
+});
 Car.belongsToMany(VoteCategory, { through: "CarVoteCategory" });
 
 Car.hasMany(Vote, { foreignKey: "carID" });
@@ -119,8 +123,14 @@ Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
 Asset.hasMany(TokenCoupon, { foreignKey: "assetID" });
 Asset.hasMany(AstNFTCard, { foreignKey: "assetID" });
 Asset.hasMany(Voucher, { foreignKey: "assetID" });
-// Asset.belongsTo(TokenCoupon, { foreignKey: "assetID" });
-// Asset.belongsTo(AstNFTCard, { foreignKey: "assetID" });
+Asset.hasMany(VoucherCoupon, { foreignKey: "assetID" });
+Asset.hasMany(Badge, { foreignKey: "assetID" });
+
+Template.hasMany(AstNFTCard, { foreignKey: "templateID" });
+Template.hasMany(Voucher, { foreignKey: "templateID" });
+Template.hasMany(TokenCoupon, { foreignKey: "templateID" });
+Template.hasMany(VoucherCoupon, { foreignKey: "templateID" });
+Template.hasMany(Badge, { foreignKey: "templateID" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

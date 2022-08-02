@@ -32,12 +32,16 @@ router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const data = req.body;
   const response = await editWallet(id, data);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW wallet
 router.post("/", async (req, res) => {
   const response = await createWallet(req.body);
-  res.json(response);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
 });
 
 /////////////////////////
