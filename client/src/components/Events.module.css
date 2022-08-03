@@ -1,0 +1,10 @@
+.container {
+  margin: 10px;
+}
+.title {
+  font-family: "Oswald", sans-serif;
+}
+.events_nav {
+  display: flex;
+  justify-content: space-between;
+}

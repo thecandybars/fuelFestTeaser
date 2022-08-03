@@ -1,0 +1,22 @@
+.topNav,
+.topNavLeft,
+.topNavRight {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topNav {
+  margin: 15px 15px;
+  /* font-size: 30px; */
+}
+
+.topNavLeft li {
+  margin-right: 15px;
+}
+.topNavRight li {
+  margin-left: 15px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL", "wght" 400, "GRAD" 0, "opsz" 48;
+}
