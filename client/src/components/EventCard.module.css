@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.eventData {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.eventTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.eventData p {
+  display: flex;
+  align-items: center;
+}
+
+.isFavorite {
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%); /* Color=white */
+  width: 28px;
+  height: 28px;
+}
