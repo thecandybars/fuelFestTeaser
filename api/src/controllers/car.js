@@ -1,15 +1,23 @@
 const dbError = require("../utils/dbError");
-const { Car, CarVoteCategory, CarImage, VoteCategory } = require("../db.js");
+const {
+  Car,
+  CarVoteCategory,
+  CarImage,
+  VoteCategory,
+  CarOwner,
+  Sponsor,
+} = require("../db.js");
 const { getCurrentFestival } = require("./festival");
 
 /////// CAR /////////////////
 
 async function getAllCars() {
   try {
-    const festival = await getCurrentFestival({
+    const festival = await getCurrentFestival();
+    const response = await Car.findAll({
       where: { festivalId: festival.id },
+      include: CarImage,
     });
-    const response = await Car.findAll();
     return !response ? dbError(`No cars found`, 404) : response;
   } catch (err) {
     return err;
@@ -20,7 +28,12 @@ async function getCarById(id) {
   try {
     const festival = await getCurrentFestival();
     const car = await Car.findByPk(id, {
-      include: { model: VoteCategory, attributes: ["id", "title", "desc"] },
+      include: [
+        { model: VoteCategory, attributes: ["id", "title", "desc"] },
+        CarImage,
+        Sponsor,
+        CarOwner,
+      ],
     });
     const response =
       car.festivalId === festival.id

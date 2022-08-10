@@ -17,9 +17,7 @@ async function getFavEvent(id) {
     const currentFestival = await getCurrentFestival();
 
     const events = await FavEvent.findAll({
-      where: {
-        userId: id,
-      },
+      where: { userId: id },
     });
 
     const response = [];
@@ -28,9 +26,10 @@ async function getFavEvent(id) {
       if (event.festivalId === currentFestival.id) response.push(event);
     }
 
-    return response && response.length === 0
-      ? dbError("No favorite events found for user " + id, 401)
-      : response;
+    return response;
+    // return response && response.length === 0
+    //   ? dbError("No favorite events found for user " + id, 401)
+    //   : response;
   } catch (err) {
     return err;
   }
@@ -75,9 +74,10 @@ async function getFavSponsor(id) {
       if (sponsor.festivalId === currentFestival.id) response.push(sponsor);
     }
 
-    return response && response.length === 0
-      ? dbError("No favorite sponsors found for user " + id, 401)
-      : response;
+    return response;
+    // return response && response.length === 0
+    //   ? dbError("No favorite sponsors found for user " + id, 401)
+    //   : response;
   } catch (err) {
     return err;
   }
@@ -122,9 +122,10 @@ async function getFavCar(id) {
       if (car.festivalId === currentFestival.id) response.push(car);
     }
 
-    return response && response.length === 0
-      ? dbError("No favorite cars found for user " + id, 401)
-      : response;
+    return response;
+    // return response && response.length === 0
+    //   ? dbError("No favorite cars found for user " + id, 401)
+    //   : response;
   } catch (err) {
     return err;
   }
@@ -168,10 +169,10 @@ async function getFavVendor(id) {
       const vendor = await Vendor.findByPk(vendors[i].vendorId);
       if (vendor.festivalId === currentFestival.id) response.push(vendor);
     }
-
-    return response && response.length === 0
-      ? dbError("No favorite vendor found for user " + id, 401)
-      : response;
+    return response;
+    // return response && response.length === 0
+    //   ? dbError("No favorite vendor found for user " + id, 401)
+    //   : response;
   } catch (err) {
     return err;
   }

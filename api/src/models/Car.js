@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      otherSponsors: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       geolocation: {
         type: DataTypes.STRING,
         allowNull: true,

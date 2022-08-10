@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./TopNav.module.css";
+import style from "./css/TopNav.module.css";
 import logo from "../img/fuelFestLogo.png";
 
 export default function TopNav() {

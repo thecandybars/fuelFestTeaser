@@ -9,6 +9,8 @@ async function getAllEvents() {
     const festival = await getCurrentFestival();
     const response = await Event.findAll({
       where: { festivalId: festival.id },
+      order: [["date", "ASC"]],
+      // order: sequelize.literal("date DESC"),
     });
     return !response ? dbError(`No events found`, 404) : response;
   } catch (err) {

@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.carData {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.carTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.carData p {
+  display: flex;
+  align-items: center;
+}
+.car_image_container {
+}
+.car_image {
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+}
+.isFavorite {
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%); /* Color=white */
+  width: 28px;
+  height: 28px;
+}

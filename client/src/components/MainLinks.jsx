@@ -5,7 +5,9 @@ export default function MainLinks() {
   return (
     <div>
       <ul>
-        <li>Cars</li>
+        <NavLink to="/cars">
+          <li>Cars</li>
+        </NavLink>
         <NavLink to="/events">
           <li>Events</li>
         </NavLink>

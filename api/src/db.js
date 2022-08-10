@@ -41,6 +41,7 @@ const {
   Event,
   Car,
   CarImage,
+  CarOwner,
   Sponsor,
   Vendor,
   Vote,
@@ -83,7 +84,10 @@ User.belongsToMany(Sponsor, { through: "FavSponsor" });
 Sponsor.belongsToMany(User, { through: "FavSponsor" });
 
 Car.hasMany(CarImage, { foreignKey: "carID" });
-// CarImage.hasMany(Car, { foreignKey: "carID" });
+CarOwner.hasMany(Car, { foreignKey: "carOwnerID" });
+Car.belongsTo(CarOwner, { foreignKey: "carOwnerID" });
+Car.belongsToMany(Sponsor, { through: "CarSponsor" });
+Sponsor.belongsToMany(Car, { through: "CarSponsor" });
 
 // VOTING
 

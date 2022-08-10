@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./BottomNav.module.css";
+import style from "./css/BottomNav.module.css";
 
 export default function BottomNav() {
   return (

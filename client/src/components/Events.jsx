@@ -2,30 +2,32 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import EventCard from "./EventCard";
-import style from "./Events.module.css";
+import style from "./css/Events.module.css";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [fetchedFavs, setFetchedFavs] = useState([]);
 
-  const [showEvents, setShowEvents] = useState([]);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("all");
-  const [date_time, setDate_time] = useState("all");
+  const [eventShowingDesc, setEventShowingDesc] = useState("");
 
   const today = Date.now();
 
   async function toggleFav(eventId) {
     await axios.post(
-      "http://localhost:3001/user/ddf40198-fc6c-4595-95cc-bda6d77fffaa/favEvent/" +
-        eventId
+      "/user/ddf40198-fc6c-4595-95cc-bda6d77fffaa/favEvent/" + eventId
     );
     fetchFavorites();
   }
+  async function handleShowDesc(eventId) {
+    eventShowingDesc !== eventId
+      ? setEventShowingDesc(eventId)
+      : setEventShowingDesc("");
+  }
 
   const eventCards =
-    showEvents.length > 0 ? (
-      showEvents.map((event) => (
+    filteredEvents.length > 0 ? (
+      filteredEvents.map((event) => (
         <EventCard
           key={event.id}
           id={event.id}
@@ -33,11 +35,12 @@ export default function Events() {
           date={event.date}
           image={event.image}
           location={event.location}
-          desc={event.description}
+          desc={eventShowingDesc === event.id ? event.description : ""}
           isFavorite={
             !!fetchedFavs.find((favEvent) => event.id === favEvent.id)
           }
           togFav={toggleFav}
+          showDesc={handleShowDesc}
         />
       ))
     ) : (
@@ -49,38 +52,38 @@ export default function Events() {
     fetchFavorites();
   }, []);
   const fetchEvents = async () => {
-    const events = await axios.get("http://localhost:3001/event");
+    const events = await axios.get("/event");
     setFetchedEvents(events.data);
-    setShowEvents(events.data);
+    setFilteredEvents(events.data);
   };
   const fetchFavorites = async () => {
     const favs = await axios.get(
-      "http://localhost:3001/favorite/ddf40198-fc6c-4595-95cc-bda6d77fffaa/event"
+      "/favorite/ddf40198-fc6c-4595-95cc-bda6d77fffaa/event"
     );
     setFetchedFavs(favs.data);
   };
 
   // ************ FILTERS
-  function handleCategory(e) {
-    setCategory(e.target.value);
-  }
-  function handleSearch(e) {
-    setSearch(e.target.value);
-  }
-  function handleDate_time(e) {
-    setDate_time(e.target.value);
-  }
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
+  const [date_time, setDate_time] = useState("all");
   useEffect(() => {
-    setShowEvents(
+    setFilteredEvents(
       fetchedEvents.filter(
         (event) =>
+          (category !== "all"
+            ? category !== "liked"
+              ? event.category === category
+              : !!fetchedFavs.find((favEvent) => favEvent.id === event.id)
+            : true) &&
+          (date_time !== "all"
+            ? date_time === "upcoming"
+              ? Date.parse(event.date) > today
+              : Date.parse(event.date) < today
+            : true) &&
           (search !== ""
             ? event.title.toLowerCase().includes(search.toLowerCase())
-            : true) &&
-          (category !== "all" ? event.category === category : true) &&
-          (date_time !== "all" && date_time === "upcoming"
-            ? Date.parse(event.date) > today
-            : Date.parse(event.date) < today)
+            : true)
       )
     );
   }, [search, category, date_time]);
@@ -89,18 +92,24 @@ export default function Events() {
     <div className={style.container}>
       <h1 className={style.title}>Events</h1>
       <nav className={style.events_nav}>
-        <select name="category" onChange={handleCategory}>
+        <select name="category" onChange={(e) => setCategory(e.target.value)}>
+          {/* <select name="category" onChange={handleCategory}> */}
           <option value="all">All categories</option>
           <option value="drifting">Drifting</option>
           <option value="guest">Guest</option>
           <option value="music">Music</option>
+          <option value="liked">Liked</option>
         </select>
-        <select name="date_time" onChange={handleDate_time}>
+        <select name="date_time" onChange={(e) => setDate_time(e.target.value)}>
           <option value="all">All dates</option>
           <option value="upcoming">Upcoming</option>
           <option value="past">Past</option>
         </select>
-        <input type="text" size="15" onChange={handleSearch} />
+        <input
+          type="text"
+          size="15"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </nav>
       <main>{eventCards}</main>
     </div>

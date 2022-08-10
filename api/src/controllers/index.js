@@ -17,6 +17,7 @@ const user = require("./user");
 const userCategory = require("./userCategory");
 const event = require("./event.js");
 const car = require("./car.js");
+const carOwner = require("./carOwner.js");
 const favorite = require("./favorite.js");
 const vote = require("./vote.js");
 const vendor = require("./vendor.js");
@@ -31,6 +32,7 @@ module.exports = {
   ...userCategory,
   ...event,
   ...car,
+  ...carOwner,
   ...favorite,
   ...vote,
   ...vendor,
