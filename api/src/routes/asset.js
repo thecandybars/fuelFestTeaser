@@ -31,16 +31,16 @@ router.get("/category", async (req, res) => {
 });
 
 // Get all assets for a wallet
-router.get("/:walletID", async (req, res) => {
-  const { walletID } = req.params;
-  const response = await getAssets(walletID);
+router.get("/:walletId", async (req, res) => {
+  const { walletId } = req.params;
+  const response = await getAssets(walletId);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
 // Create new Token Coupon
 router.post(
-  "/tokenCoupon/:walletID/:quantity",
+  "/tokenCoupon/:walletId/:quantity",
   uploadTokenCoupon.single("image"),
   async (req, res) => {
     const response = await createTokenCoupon(req);
@@ -51,7 +51,7 @@ router.post(
 );
 // Create new Voucher Coupon
 router.post(
-  "/voucherCoupon/:walletID/:quantity",
+  "/voucherCoupon/:walletId/:quantity",
   uploadTokenCoupon.single("image"),
   async (req, res) => {
     const response = await createVoucherCoupon(req);
@@ -62,7 +62,7 @@ router.post(
 );
 // Create new NFT Cards
 router.post(
-  "/nftCard/:walletID/:quantity",
+  "/nftCard/:walletId/:quantity",
   uploadNFTCard.array("images"),
   async (req, res) => {
     const response = await createNFTCard(req);
@@ -73,7 +73,7 @@ router.post(
 );
 // Create new Voucher
 router.post(
-  "/voucher/:walletID/:quantity",
+  "/voucher/:walletId/:quantity",
   uploadVoucher.single("image"),
   async (req, res) => {
     const response = await createVoucher(req);
@@ -91,7 +91,7 @@ router.post("/category", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // // Wallet buys available asset from marketplace
-router.post("/:assetID/buy/:walletID", async (req, res) => {
+router.post("/:assetId/buy/:walletId", async (req, res) => {
   const response = await buyAsset(req.params);
   !response.error
     ? res.status(200).json(response)

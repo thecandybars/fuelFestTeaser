@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      carID: {
+      carId: {
         type: DataTypes.UUID,
         allowNull: false,
       },

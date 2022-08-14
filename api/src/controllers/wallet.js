@@ -1,5 +1,5 @@
 const dbError = require("../utils/dbError");
-const { Wallet, User, Transaction, TokenLedger } = require("../db.js");
+const { Wallet, User, Vote } = require("../db.js");
 
 /////// WALLET /////////////////
 
@@ -12,9 +12,11 @@ async function getAllWallets() {
   }
 }
 
-async function getWalletById(id) {
+async function getWalletById(data) {
   try {
-    const response = await Wallet.findByPk(id, { include: User });
+    const response = await Wallet.findByPk(data.params.id, {
+      include: [User, Vote],
+    });
     return response;
   } catch (err) {
     return err;
@@ -45,7 +47,7 @@ async function createWallet(data) {
     let user = "";
     if (data.userID) {
       user = await User.findByPk(data.userID);
-      if (user.walletID) return dbError("User already has a wallet!", 401);
+      if (user.walletId) return dbError("User already has a wallet!", 401);
     }
     const newWallet = await Wallet.create({
       ...data,
@@ -53,7 +55,7 @@ async function createWallet(data) {
     // !!user && (await newUser.setWallet(newWallet));
     !!user &&
       (await User.update(
-        { walletID: newWallet.id },
+        { walletId: newWallet.id },
         { where: { id: user.id } }
       ));
 
@@ -115,6 +117,28 @@ async function unFreezeTokens(data) {
     return err;
   }
 }
+async function manageTokens(data) {
+  console.log("🚀 ~ file: wallet.js ~ line 121 ~ manageTokens ~ data", data);
+  try {
+    // const wallet = await Wallet.findByPk(data.body.walletId);
+
+    const updated = await Wallet.update(
+      { liquid: data.body.liquid, frozen: data.body.frozen },
+      {
+        where: { id: data.params.walletId },
+      }
+    );
+    console.log(
+      "🚀 ~ file: wallet.js ~ line 130 ~ manageTokens ~ updated",
+      updated
+    );
+    return updated[0] === 1
+      ? { wallet }
+      : dbError(`ERROR: Wallet was not updated`, 404);
+  } catch (err) {
+    return err;
+  }
+}
 module.exports = {
   getAllWallets,
   getWalletById,
@@ -122,4 +146,5 @@ module.exports = {
   editWallet,
   freezeTokens,
   unFreezeTokens,
+  manageTokens,
 };

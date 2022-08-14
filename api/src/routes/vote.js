@@ -16,9 +16,7 @@ router.post("/category", async (req, res) => {
 
 // Vote for a car
 router.post("/car/:walletId", async (req, res) => {
-  const { walletId } = req.params;
-  const { carId, categoryId } = req.body;
-  const response = await carVote(walletId, carId, categoryId);
+  const response = await carVote(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

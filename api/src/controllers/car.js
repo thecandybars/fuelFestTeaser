@@ -66,7 +66,7 @@ async function getVoteCategories(id) {
     return err;
   }
 }
-async function addCategoryToCar(carId, voteCategoryId) {
+async function addCategoryToCar(carId, votecategoryId) {
   try {
     // const response = "";
     // // const car = await Car.findByPk(carId);
@@ -88,15 +88,15 @@ async function addCategoryToCar(carId, voteCategoryId) {
     if (car === null) return dbError("Car " + carId + " not found", 404);
 
     const category = await CarVoteCategory.findOne({
-      where: { carId, voteCategoryId },
+      where: { carId, votecategoryId },
     });
     if (category !== null)
       return dbError(
-        "Car " + carId + " already has category " + voteCategoryId,
+        "Car " + carId + " already has category " + votecategoryId,
         404
       );
 
-    const response = await CarVoteCategory.create({ carId, voteCategoryId });
+    const response = await CarVoteCategory.create({ carId, votecategoryId });
 
     return !response
       ? dbError(`Category ${categoryId} added to car ${carId}`, 404)
@@ -119,13 +119,13 @@ async function createCar(data) {
       carVoteCategories.length > 0 &&
       carVoteCategories.forEach(async (e) => {
         // This works but problem using addCarVoteCategories needs to be solved
-        await CarVoteCategory.create({ carId: newCar.id, voteCategoryId: e });
+        await CarVoteCategory.create({ carId: newCar.id, votecategoryId: e });
         // await newCar.addCarVoteCategory(e);
       });
 
     data.files.map(async (image) => {
       await CarImage.create({
-        carID: newCar.id,
+        carId: newCar.id,
         image: image.path,
       });
     });

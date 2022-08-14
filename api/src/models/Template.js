@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    festivalID: {
+    festivalId: {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    walletID: {
+    walletId: {
       type: DataTypes.UUID,
       allowNull: true,
     },

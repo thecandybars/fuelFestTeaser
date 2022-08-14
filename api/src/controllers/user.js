@@ -61,7 +61,7 @@ async function getUsersById(data) {
 async function createUser(data) {
   console.log(
     "🚀 ~ file: user.js ~ line 62 ~ createUser ~ data",
-    !!data.body.walletID
+    !!data.body.walletId
   );
 
   try {
@@ -69,8 +69,8 @@ async function createUser(data) {
       firstName: data.body.firstName,
       lastName: data.body.lastName,
       image: data.file.path,
-      userCategoryID: data.body.userCategoryID,
-      walletID: !!data.body.walletID ? data.body.walletID : null,
+      usercategoryId: data.body.usercategoryId,
+      walletId: !!data.body.walletId ? data.body.walletId : null,
     });
     return !response ? dbError("Error creating user", 401) : response;
   } catch (err) {

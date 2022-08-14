@@ -11,6 +11,7 @@ const {
   createWallet,
   freezeTokens,
   unFreezeTokens,
+  manageTokens,
 } = require("../controllers/index.js");
 
 // Get ALL wallets
@@ -20,8 +21,7 @@ router.get("/", async (req, res) => {
 });
 // Get  wallet by ID
 router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const response = await getWalletById(id);
+  const response = await getWalletById(req);
 
   if (!response || response.hasOwnProperty("parent")) res.sendStatus(400);
   else res.json(response);
@@ -60,6 +60,13 @@ router.put("/:id/freeze/:amount", async (req, res) => {
 router.put("/:id/unfreeze/:amount", async (req, res) => {
   const { id, amount } = req.params;
   const response = await unFreezeTokens({ id, amount: parseInt(amount) });
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Manage wallet tokens (liquid, frozen)
+router.put("/:walletId/manage/", async (req, res) => {
+  const response = await manageTokens(req);
   !response.error
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);

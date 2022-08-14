@@ -9,15 +9,15 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    categoryID: {
+    categoryId: {
       type: DataTypes.UUID,
       allowNull: true,
     },
-    // assetID: {
+    // assetId: {
     //   type: DataTypes.UUID,
     //   allowNull: true,
     // },
-    walletID: {
+    walletId: {
       type: DataTypes.UUID,
       allowNull: true,
     },

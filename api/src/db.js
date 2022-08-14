@@ -67,7 +67,7 @@ Festival.hasOne(Sponsor, { through: "festivalId" });
 Festival.hasOne(Car, { through: "festivalId" });
 
 // USERS
-User.belongsTo(UserCategory, { foreignKey: "userCategoryID" });
+User.belongsTo(UserCategory, { foreignKey: "usercategoryId" });
 
 // FAVORITES
 
@@ -83,9 +83,9 @@ Vendor.belongsToMany(User, { through: "FavVendor" });
 User.belongsToMany(Sponsor, { through: "FavSponsor" });
 Sponsor.belongsToMany(User, { through: "FavSponsor" });
 
-Car.hasMany(CarImage, { foreignKey: "carID" });
-CarOwner.hasMany(Car, { foreignKey: "carOwnerID" });
-Car.belongsTo(CarOwner, { foreignKey: "carOwnerID" });
+Car.hasMany(CarImage, { foreignKey: "carId" });
+CarOwner.hasMany(Car, { foreignKey: "carOwnerId" });
+Car.belongsTo(CarOwner, { foreignKey: "carOwnerId" });
 Car.belongsToMany(Sponsor, { through: "CarSponsor" });
 Sponsor.belongsToMany(Car, { through: "CarSponsor" });
 
@@ -97,44 +97,44 @@ VoteCategory.belongsToMany(Car, {
 });
 Car.belongsToMany(VoteCategory, { through: "CarVoteCategory" });
 
-Car.hasMany(Vote, { foreignKey: "carID" });
-Vote.belongsTo(Car, { foreignKey: "carID" });
+Car.hasMany(Vote, { foreignKey: "carId" });
+Vote.belongsTo(Car, { foreignKey: "carId" });
 
-Wallet.hasMany(Vote, { foreignKey: "walletID" });
-Vote.belongsTo(Wallet, { foreignKey: "walletID" });
+Wallet.hasMany(Vote, { foreignKey: "walletId" });
+Vote.belongsTo(Wallet, { foreignKey: "walletId" });
 
-VoteCategory.hasMany(Vote, { foreignKey: "categoryID" });
-Vote.belongsTo(VoteCategory, { foreignKey: "categoryID" });
+VoteCategory.hasMany(Vote, { foreignKey: "categoryId" });
+Vote.belongsTo(VoteCategory, { foreignKey: "categoryId" });
 
 // USER WALLET
 
-Wallet.hasOne(User, { foreignKey: "walletID" });
-User.belongsTo(Wallet, { foreignKey: "walletID" });
+Wallet.hasOne(User, { foreignKey: "walletId" });
+User.belongsTo(Wallet, { foreignKey: "walletId" });
 
 // LEDGER ASSETS AND TOKENS
 
-AssetLedger.belongsTo(Wallet, { foreignKey: "fromWalletID" });
-AssetLedger.belongsTo(Wallet, { foreignKey: "toWalletID" });
-AssetLedger.belongsTo(Transaction, { foreignKey: "transactionID" });
-AssetLedger.belongsTo(Asset, { foreignKey: "assetID" });
+AssetLedger.belongsTo(Wallet, { foreignKey: "fromWalletId" });
+AssetLedger.belongsTo(Wallet, { foreignKey: "toWalletId" });
+AssetLedger.belongsTo(Transaction, { foreignKey: "transactionId" });
+AssetLedger.belongsTo(Asset, { foreignKey: "assetId" });
 
-TokenLedger.belongsTo(Wallet, { foreignKey: "fromWalletID" });
-TokenLedger.belongsTo(Wallet, { foreignKey: "toWalletID" });
-TokenLedger.belongsTo(Transaction, { foreignKey: "transactionID" });
+TokenLedger.belongsTo(Wallet, { foreignKey: "fromWalletId" });
+TokenLedger.belongsTo(Wallet, { foreignKey: "toWalletId" });
+TokenLedger.belongsTo(Transaction, { foreignKey: "transactionId" });
 
-Asset.belongsTo(Wallet, { foreignKey: "walletID" });
-Asset.belongsTo(AssetCategory, { foreignKey: "categoryID" });
-Asset.hasMany(TokenCoupon, { foreignKey: "assetID" });
-Asset.hasMany(AstNFTCard, { foreignKey: "assetID" });
-Asset.hasMany(Voucher, { foreignKey: "assetID" });
-Asset.hasMany(VoucherCoupon, { foreignKey: "assetID" });
-Asset.hasMany(Badge, { foreignKey: "assetID" });
+Asset.belongsTo(Wallet, { foreignKey: "walletId" });
+Asset.belongsTo(AssetCategory, { foreignKey: "categoryId" });
+Asset.hasMany(TokenCoupon, { foreignKey: "assetId" });
+Asset.hasMany(AstNFTCard, { foreignKey: "assetId" });
+Asset.hasMany(Voucher, { foreignKey: "assetId" });
+Asset.hasMany(VoucherCoupon, { foreignKey: "assetId" });
+Asset.hasMany(Badge, { foreignKey: "assetId" });
 
-Template.hasMany(AstNFTCard, { foreignKey: "templateID" });
-Template.hasMany(Voucher, { foreignKey: "templateID" });
-Template.hasMany(TokenCoupon, { foreignKey: "templateID" });
-Template.hasMany(VoucherCoupon, { foreignKey: "templateID" });
-Template.hasMany(Badge, { foreignKey: "templateID" });
+Template.hasMany(AstNFTCard, { foreignKey: "templateId" });
+Template.hasMany(Voucher, { foreignKey: "templateId" });
+Template.hasMany(TokenCoupon, { foreignKey: "templateId" });
+Template.hasMany(VoucherCoupon, { foreignKey: "templateId" });
+Template.hasMany(Badge, { foreignKey: "templateId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
