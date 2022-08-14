@@ -21,13 +21,19 @@
 .car_image_container {
 }
 .car_image {
-  width: 100px;
+  width: 150px;
   object-fit: cover;
   object-position: center;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .isFavorite {
   filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
     brightness(118%) contrast(100%); /* Color=white */
-  width: 28px;
-  height: 28px;
+  width: 60px;
+  /* height: 28p  x; */
 }

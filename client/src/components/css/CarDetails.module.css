@@ -9,11 +9,14 @@
 .carDetail_container {
   position: relative;
   width: 90%;
-  /* height: 80%; */
+  height: 85%;
   margin: 50px auto;
   background: #d9d9d9;
   backdrop-filter: blur(10px);
   color: black;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .carDetail_close {
   position: relative;
@@ -49,4 +52,16 @@
 .carOwner_links {
   display: flex;
   justify-content: space-around;
+}
+
+.carVoteCategories {
+  display: flex;
+  justify-content: space-around;
+}
+
+.carVoteCategory {
+  text-align: center;
+}
+.carVoteCategory p {
+  font-size: small;
 }

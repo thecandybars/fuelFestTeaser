@@ -3,6 +3,7 @@ import style from "./css/PhotoSlider.module.css";
 
 export default function PhotoSlider(props) {
   const [index, setIndex] = useState(0);
+  const apiURL = process.env.REACT_APP_API;
   return (
     <div className={style.slider_container}>
       <button
@@ -18,7 +19,7 @@ export default function PhotoSlider(props) {
       {props.images.length && (
         <img
           alt="car"
-          src={"http://localhost:3001/" + props.images[index]}
+          src={`${apiURL}/${props.images[index]}`}
           onClick={(e) => e.stopPropagation()} // ignore click on image
         />
       )}

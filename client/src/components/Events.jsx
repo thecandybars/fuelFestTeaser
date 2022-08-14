@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import EventCard from "./EventCard";
 import style from "./css/Events.module.css";
+import { getEvents, getFavEvent, toggleFavEvent } from "../services/event";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
@@ -14,9 +14,7 @@ export default function Events() {
   const today = Date.now();
 
   async function toggleFav(eventId) {
-    await axios.post(
-      "/user/ddf40198-fc6c-4595-95cc-bda6d77fffaa/favEvent/" + eventId
-    );
+    await toggleFavEvent(eventId);
     fetchFavorites();
   }
   async function handleShowDesc(eventId) {
@@ -52,15 +50,13 @@ export default function Events() {
     fetchFavorites();
   }, []);
   const fetchEvents = async () => {
-    const events = await axios.get("/event");
-    setFetchedEvents(events.data);
-    setFilteredEvents(events.data);
+    const events = await getEvents();
+    setFetchedEvents(events);
+    setFilteredEvents(events);
   };
   const fetchFavorites = async () => {
-    const favs = await axios.get(
-      "/favorite/ddf40198-fc6c-4595-95cc-bda6d77fffaa/event"
-    );
-    setFetchedFavs(favs.data);
+    const favs = await getFavEvent();
+    setFetchedFavs(favs);
   };
 
   // ************ FILTERS
@@ -93,7 +89,6 @@ export default function Events() {
       <h1 className={style.title}>Events</h1>
       <nav className={style.events_nav}>
         <select name="category" onChange={(e) => setCategory(e.target.value)}>
-          {/* <select name="category" onChange={handleCategory}> */}
           <option value="all">All categories</option>
           <option value="drifting">Drifting</option>
           <option value="guest">Guest</option>

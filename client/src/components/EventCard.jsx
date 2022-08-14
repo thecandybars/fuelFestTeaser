@@ -13,6 +13,7 @@ export default function EventCard(props) {
       : "0" + fullDate.getMinutes();
   const monthName = months[fullDate.getMonth()].toLowerCase();
 
+  const apiURL = process.env.REACT_APP_API;
   return (
     <>
       <div
@@ -23,7 +24,7 @@ export default function EventCard(props) {
       >
         <img
           alt="The band"
-          src={"http://localhost:3001/" + props.image}
+          src={`${apiURL}/${props.image}`}
           width="150px"
           className={style.event_image}
         />

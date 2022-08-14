@@ -1,0 +1,79 @@
+.container {
+  margin: 10px;
+}
+
+.title {
+  font-family: "Oswald", sans-serif;
+}
+
+.wallet {
+  display: flex;
+  justify-content: space-around;
+}
+.wallet_data {
+  border: 2px solid #feae2e;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+}
+.wallet_data_title {
+  color: #da1921;
+  text-align: center;
+  font-weight: 700;
+  font-size: larger;
+}
+.wallet_drift {
+  display: flex;
+}
+.wallet_drift img {
+  width: 30px;
+  height: 30px;
+  /* padding: 0     5px; */
+}
+.wallet_drift_total {
+  font-size: larger;
+  font-weight: bolder;
+}
+.wallet_drift_unit {
+  font-size: smaller;
+  font-weight: lighter;
+  text-align: center;
+}
+.wallet_gridContent p {
+  color: #da1921;
+  text-align: center;
+}
+.wallet_gridContent p span {
+  color: #d9d9d9;
+  text-align: right;
+}
+/* .wallet_gridContent {
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: auto;
+} 
+ .wallet_gridContent_col1 {
+  color: #da1921;
+}
+.wallet_gridContent_col2 {
+  color: #d9d9d9;
+} */
+
+.wallet_manage {
+  text-align: center;
+}
+
+/* ************ ACTIONS */
+
+.actions,
+.actions_coupons,
+.actions_tokens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.actions_tokens {
+}
+.actions_coupons {
+}

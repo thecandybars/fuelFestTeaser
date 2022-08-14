@@ -1,14 +1,14 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+// axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 const container = document.getElementById("root");
 const root = createRoot(container);

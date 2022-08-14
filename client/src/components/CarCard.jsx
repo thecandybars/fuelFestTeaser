@@ -2,8 +2,10 @@ import React from "react";
 import style from "./css/CarCard.module.css";
 import favYes from "../icons/favorite_FILL1_wght400_GRAD0_opsz48.svg";
 import favNo from "../icons/favorite_FILL0_wght400_GRAD0_opsz48.svg";
+// import Button1 from "../assets/Button1";
 
 export default function CarCard(props) {
+  const apiURL = process.env.REACT_APP_API;
   return (
     <>
       <div
@@ -14,7 +16,7 @@ export default function CarCard(props) {
       >
         <img
           alt="The band"
-          src={"http://localhost:3001/" + props.image}
+          src={`${apiURL}/${props.image}`}
           width="150px"
           className={style.car_image}
         />
@@ -33,15 +35,18 @@ export default function CarCard(props) {
             {props.chasis}
           </p>
         </div>
-        <img
-          className={style.isFavorite}
-          alt={props.isFavorite ? "Favorite" : "Not favorite"}
-          src={props.isFavorite ? favYes : favNo}
-          onClick={(e) => {
-            e.stopPropagation();
-            props.togFav(props.id);
-          }}
-        />
+        <div className={style.buttons}>
+          <img
+            className={style.isFavorite}
+            alt={props.isFavorite ? "Favorite" : "Not favorite"}
+            src={props.isFavorite ? favYes : favNo}
+            onClick={(e) => {
+              e.stopPropagation();
+              props.togFav(props.id);
+            }}
+          />
+          {/* <Button1 title="Vote" href="/voting" style={{ fontSize: "16px" }} /> */}
+        </div>
       </div>
     </>
   );
