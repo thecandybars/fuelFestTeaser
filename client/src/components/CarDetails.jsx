@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./css/CarDetails.module.css";
-import PhotoSlider from "./PhotoSlider";
 import favYes from "../icons/favorite_FILL1_wght400_GRAD0_opsz48.svg";
 import favNo from "../icons/favorite_FILL0_wght400_GRAD0_opsz48.svg";
 import { getCarById } from "../services/car";
@@ -67,7 +66,6 @@ export default function CarDetails(props) {
     >
       <div className={style.carDetail_container}>
         <button className={style.carDetail_close}>X</button>
-        {/* <PhotoSlider images={carImages} /> */}
         <div onClick={(e) => e.stopPropagation()}>
           <ImageGallery
             items={carImages}
