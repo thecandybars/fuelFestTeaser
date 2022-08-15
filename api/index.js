@@ -1,4 +1,3 @@
-const { Events } = require("pg");
 const server = require("./src/app.js");
 const {
   conn,
