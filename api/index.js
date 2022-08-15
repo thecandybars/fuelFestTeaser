@@ -16,7 +16,7 @@ const {
 
 // Syncing all the models at once.
 // force:true to erase data
-conn.sync({ force: true, alter: true }).then(() => {
+conn.sync({ force: false, alter: true }).then(() => {
   server.listen(process.env.PORT, () => {
     console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
@@ -147,14 +147,6 @@ conn.sync({ force: true, alter: true }).then(() => {
   CarImage.bulkCreate(
     [
       {
-        image: "uploads/car/car-1659971663360.jpg",
-        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-      },
-      {
-        image: "uploads/car/car-1659971663362.jpg",
-        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-      },
-      {
         image: "uploads/car/car-1660054875610.jpg",
         carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
       },
@@ -183,6 +175,14 @@ conn.sync({ force: true, alter: true }).then(() => {
       {
         image: "uploads/car/GM2.png",
         carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+      },
+      {
+        image: "uploads/car/car-1659971663360.jpg",
+        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+      },
+      {
+        image: "uploads/car/car-1659971663362.jpg",
+        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
       },
     ],
     {
