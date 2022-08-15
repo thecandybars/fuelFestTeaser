@@ -1,5 +1,6 @@
 import axios from "axios";
-const apiURL = process.env.REACT_APP_API;
+// const apiURL = process.env.REACT_APP_API;
+const apiURL = "";
 
 export async function toggleFavEvent(eventId) {
   await axios.post(
