@@ -16,7 +16,7 @@ const {
 
 // Syncing all the models at once.
 // force:true to erase data
-conn.sync({ force: true, alter: true }).then(() => {
+conn.sync({ force: false, alter: true }).then(() => {
   server.listen(process.env.PORT, () => {
     console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
