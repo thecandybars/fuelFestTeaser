@@ -21,7 +21,7 @@ conn.sync({ force: false, alter: false }).then(() => {
     console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
   async () => {
-    Festival.bulkCreate(
+    await Festival.bulkCreate(
       [
         {
           id: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
@@ -35,7 +35,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    UserCategory.bulkCreate(
+    await UserCategory.bulkCreate(
       [
         {
           id: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
@@ -47,7 +47,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    Wallet.bulkCreate(
+    await Wallet.bulkCreate(
       [
         {
           id: "147a9663-e722-4667-b54e-44b5817e0bd8",
@@ -59,7 +59,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    User.bulkCreate(
+    await User.bulkCreate(
       [
         {
           id: "ddf40198-fc6c-4595-95cc-bda6d77fffaa",
@@ -73,7 +73,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    Car.bulkCreate(
+    await Car.bulkCreate(
       [
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319d",
@@ -145,7 +145,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    CarImage.bulkCreate(
+    await CarImage.bulkCreate(
       [
         {
           image: "uploads/car/car-1660054875610.jpg",
@@ -188,7 +188,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    CarOwner.bulkCreate(
+    await CarOwner.bulkCreate(
       [
         {
           id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
@@ -203,7 +203,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    VoteCategory.bulkCreate(
+    await VoteCategory.bulkCreate(
       [
         {
           id: "43957a19-fa0d-4796-8614-87b427039f81",
@@ -235,7 +235,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    CarVoteCategory.bulkCreate(
+    await CarVoteCategory.bulkCreate(
       [
         // OVERALL
         {
@@ -347,7 +347,7 @@ conn.sync({ force: false, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    Event.bulkCreate(
+    await Event.bulkCreate(
       [
         {
           id: "330003c5-777e-4b1c-9eff-de34b1680e06",
