@@ -10,6 +10,7 @@ import { getWallet } from "../services/wallet";
 import Button2 from "../assets/Button2";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { walletId } from "../common/getLoginData";
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
@@ -44,7 +45,7 @@ export default function CarDetails(props) {
     setUser(user);
   };
   const fetchWallet = async () => {
-    const wallet = await getWallet();
+    const wallet = await getWallet(walletId);
     setWallet(wallet);
   };
   async function handleVote(categoryId) {
@@ -70,7 +71,7 @@ export default function CarDetails(props) {
         <div onClick={(e) => e.stopPropagation()}>
           <ImageGallery
             items={carImages}
-            showBullets={true}
+            showBullets={false}
             showIndex={false}
             showThumbnails={false}
             lazyLoad={true}
@@ -175,7 +176,7 @@ export default function CarDetails(props) {
               </div>
             )}
             {/* CAR VOTING */}
-            {!!wallet && (
+            {
               <div className={style.carVote}>
                 <h3>Voting</h3>
                 <div className={style.carVoteCategories}>
@@ -185,6 +186,7 @@ export default function CarDetails(props) {
                         vote.carId === carDetails.id &&
                         vote.categoryId === category.id
                     );
+
                     return (
                       <div className={style.carVoteCategory} key={category.id}>
                         <Button2
@@ -211,7 +213,7 @@ export default function CarDetails(props) {
                   })}
                 </div>
               </div>
-            )}
+            }
           </div>
         )}
       </div>

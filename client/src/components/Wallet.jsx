@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getWallet, manageTokens } from "../services/wallet";
 import style from "./css/Wallet.module.css";
 import driftCoin from "../img/driftCoin.png";
+import { walletId } from "../common/getLoginData";
 
 export default function Wallet() {
   const [wallet, setWallet] = useState({});
@@ -15,7 +16,7 @@ export default function Wallet() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet]);
   const fetchWallet = async () => {
-    const wallet = await getWallet();
+    const wallet = await getWallet(walletId);
     setWallet(wallet);
   };
   const resetDisplayDrift = () => {
@@ -28,7 +29,10 @@ export default function Wallet() {
     });
   };
   const handleManageRange = (e) => {
-    setDisplayDrift({ liquid: e.target.value, frozen: 10100 - e.target.value });
+    setDisplayDrift({
+      liquid: e.target.value,
+      frozen: wallet.liquid + wallet.frozen - e.target.value,
+    });
   };
   const handleManageConfirm = () => {
     manageTokens({
@@ -77,6 +81,7 @@ export default function Wallet() {
                 type="range"
                 min="0"
                 max={wallet.liquid + wallet.frozen}
+                step="10"
                 // max={wallet.liquid + wallet.frozen}
                 onChange={handleManageRange}
                 value={displayDrift.liquid}

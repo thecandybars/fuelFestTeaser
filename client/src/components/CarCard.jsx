@@ -15,7 +15,7 @@ export default function CarCard(props) {
         }}
       >
         <img
-          alt="The band"
+          alt="A car"
           src={`${apiURL}/${props.image}`}
           width="150px"
           className={style.car_image}

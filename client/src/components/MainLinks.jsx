@@ -27,9 +27,9 @@ export default function MainLinks() {
         <li>
           <img src={sponsorsImg} alt="sponsors menu oprion" width="125px" />
         </li>
-        <li>
+        {/* <li>
           <img src={marketImg} alt="market menu oprion" width="264px" />
-        </li>
+        </li> */}
       </ul>
     </div>
   );

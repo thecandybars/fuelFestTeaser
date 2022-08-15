@@ -58,7 +58,7 @@ export default function Cars() {
           key={car.id}
           id={car.id}
           title={car.title}
-          image={car.carImages[0].image}
+          image={!!car.carImages.length && car.carImages[0].image}
           manufacturer={car.manufacturer}
           tire={car.tireManufacturer}
           chasis={car.chasis}

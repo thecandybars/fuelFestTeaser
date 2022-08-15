@@ -1,8 +1,8 @@
 import axios from "axios";
 const apiURL = process.env.REACT_APP_API;
-const walletId = process.env.REACT_APP_WALLET_ID;
+// const walletId = process.env.REACT_APP_WALLET_ID;
 
-export async function getWallet() {
+export async function getWallet(walletId) {
   const { data } = await axios.get(`${apiURL}/wallet/${walletId}`);
   return data;
 }
