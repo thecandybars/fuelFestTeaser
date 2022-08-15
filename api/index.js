@@ -144,64 +144,64 @@ conn.sync({ force: false, alter: false }).then(() => {
   //     ignoreDuplicates: true,
   //   }
   // );
-  CarImage.bulkCreate(
-    [
-      {
-        image: "uploads/car/car-1660054875610.jpg",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-      },
-      {
-        image: "uploads/car/car-1660054875616.jpg",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-      },
-      {
-        image: "uploads/car/GT03.png",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-      },
-      {
-        image: "uploads/car/RX71.png",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-      },
-      {
-        image: "uploads/car/RX72.png",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-      },
-      {
-        image: "uploads/car/GM1.png",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-      },
-      {
-        image: "uploads/car/GM2.png",
-        carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-      },
-      {
-        image: "uploads/car/car-1659971663360.jpg",
-        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-      },
-      {
-        image: "uploads/car/car-1659971663362.jpg",
-        carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-      },
-    ],
-    {
-      ignoreDuplicates: true,
-    }
-  );
-  // CarOwner.bulkCreate(
+  // CarImage.bulkCreate(
   //   [
   //     {
-  //       id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //       name: "John Doe",
-  //       facebook: "www.facebook.com/johndoe",
-  //       twitter: "www.twitter.com/johndoe",
-  //       instagram: "www.instagram.com/johndoe",
-  //       youtube: "www.youtube.com/johndoe",
+  //       image: "uploads/car/car-1660054875610.jpg",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+  //     },
+  //     {
+  //       image: "uploads/car/car-1660054875616.jpg",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+  //     },
+  //     {
+  //       image: "uploads/car/GT03.png",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+  //     },
+  //     {
+  //       image: "uploads/car/RX71.png",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+  //     },
+  //     {
+  //       image: "uploads/car/RX72.png",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+  //     },
+  //     {
+  //       image: "uploads/car/GM1.png",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+  //     },
+  //     {
+  //       image: "uploads/car/GM2.png",
+  //       carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+  //     },
+  //     {
+  //       image: "uploads/car/car-1659971663360.jpg",
+  //       carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+  //     },
+  //     {
+  //       image: "uploads/car/car-1659971663362.jpg",
+  //       carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
   //     },
   //   ],
   //   {
   //     ignoreDuplicates: true,
   //   }
   // );
+  CarOwner.bulkCreate(
+    [
+      {
+        id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+        name: "John Doe",
+        facebook: "www.facebook.com/johndoe",
+        twitter: "www.twitter.com/johndoe",
+        instagram: "www.instagram.com/johndoe",
+        youtube: "www.youtube.com/johndoe",
+      },
+    ],
+    {
+      ignoreDuplicates: true,
+    }
+  );
   // VoteCategory.bulkCreate(
   //   [
   //     {
