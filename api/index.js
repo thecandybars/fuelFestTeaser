@@ -158,7 +158,6 @@ conn.sync({ force: false }).then(() => {
         image: "uploads/car/GT03.png",
         carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
       },
-      //
       {
         image: "uploads/car/RX71.png",
         carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
@@ -167,7 +166,6 @@ conn.sync({ force: false }).then(() => {
         image: "uploads/car/RX72.png",
         carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
       },
-      //
       {
         image: "uploads/car/GM1.png",
         carId: "99ac1b58-3926-45f8-8b73-2a199025318a",

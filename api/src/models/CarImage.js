@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
       },
       carId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     },
     { timestamps: false }
