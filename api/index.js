@@ -46,18 +46,18 @@ conn.sync({ force: false, alter: false }).then(() => {
       ignoreDuplicates: true,
     }
   );
-  // Wallet.bulkCreate(
-  //   [
-  //     {
-  //       id: "147a9663-e722-4667-b54e-44b5817e0bd8",
-  //       liquid: 10000,
-  //       frozen: 0,
-  //     },
-  //   ],
-  //   {
-  //     ignoreDuplicates: true,
-  //   }
-  // );
+  Wallet.bulkCreate(
+    [
+      {
+        id: "147a9663-e722-4667-b54e-44b5817e0bd8",
+        liquid: 10000,
+        frozen: 0,
+      },
+    ],
+    {
+      ignoreDuplicates: true,
+    }
+  );
   // User.bulkCreate(
   //   [
   //     {
