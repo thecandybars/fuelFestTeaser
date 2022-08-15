@@ -17,8 +17,8 @@ const {
 // Syncing all the models at once.
 // force:true to erase data
 conn.sync({ force: false, alter: true }).then(() => {
-  server.listen(3001, () => {
-    console.log("Listening at 3001"); // eslint-disable-line no-console
+  server.listen(process.env.PORT, () => {
+    console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
   Festival.bulkCreate(
     [
@@ -64,7 +64,7 @@ conn.sync({ force: false, alter: true }).then(() => {
         id: "ddf40198-fc6c-4595-95cc-bda6d77fffaa",
         firstName: "Test",
         lastName: "User",
-        // walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
+        walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
         userCategoryId: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
       },
     ],
