@@ -16,7 +16,7 @@ const {
 // Syncing all the models at once.
 //, alter: true
 // force:true to erase data
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: false, alter: false }).then(() => {
   server.listen(process.env.PORT, () => {
     console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
@@ -34,18 +34,18 @@ conn.sync({ force: false }).then(() => {
   //     ignoreDuplicates: true,
   //   }
   // );
-  // UserCategory.bulkCreate(
-  //   [
-  //     {
-  //       id: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
-  //       title: "User",
-  //       category: "U",
-  //     },
-  //   ],
-  //   {
-  //     ignoreDuplicates: true,
-  //   }
-  // );
+  UserCategory.bulkCreate(
+    [
+      {
+        id: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
+        title: "User",
+        category: "U",
+      },
+    ],
+    {
+      ignoreDuplicates: true,
+    }
+  );
   // Wallet.bulkCreate(
   //   [
   //     {
