@@ -187,21 +187,21 @@ conn.sync({ force: false, alter: false }).then(() => {
   //     ignoreDuplicates: true,
   //   }
   // );
-  CarOwner.bulkCreate(
-    [
-      {
-        id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-        name: "John Doe",
-        facebook: "www.facebook.com/johndoe",
-        twitter: "www.twitter.com/johndoe",
-        instagram: "www.instagram.com/johndoe",
-        youtube: "www.youtube.com/johndoe",
-      },
-    ],
-    {
-      ignoreDuplicates: true,
-    }
-  );
+  // CarOwner.bulkCreate(
+  //   [
+  //     {
+  //       id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+  //       name: "John Doe",
+  //       facebook: "www.facebook.com/johndoe",
+  //       twitter: "www.twitter.com/johndoe",
+  //       instagram: "www.instagram.com/johndoe",
+  //       youtube: "www.youtube.com/johndoe",
+  //     },
+  //   ],
+  //   {
+  //     ignoreDuplicates: true,
+  //   }
+  // );
   // VoteCategory.bulkCreate(
   //   [
   //     {
