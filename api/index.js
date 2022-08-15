@@ -72,78 +72,78 @@ conn.sync({ force: false, alter: false }).then(() => {
   //     ignoreDuplicates: true,
   //   }
   // );
-  // Car.bulkCreate(
-  //   [
-  //     {
-  //       id: "99ac1b58-3926-45f8-8b73-2a199025319d",
-  //       title: "Z-Tuned Skyline GT-R",
-  //       number: 23,
-  //       manufacturer: "GT",
-  //       tireManufacturer: "Yokohama",
-  //       chasis: "AZ-76",
-  //       description:
-  //         "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-  //       geolocation: "174.2,65.93",
-  //       festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-  //       carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //     },
-  //     {
-  //       id: "99ac1b58-3926-45f8-8b73-2a199025318d",
-  //       title: "Rx7 Mazda",
-  //       number: 73,
-  //       manufacturer: "Mazda",
-  //       tireManufacturer: "Yokohama",
-  //       chasis: "EWZ-46",
-  //       description:
-  //         "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-  //       geolocation: "174.2,65.93",
-  //       festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-  //       carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //     },
-  //     {
-  //       id: "99ac1b58-3926-45f8-8b73-2a199025318a",
-  //       title: "1997 eclipse f&f replica",
-  //       number: 1984,
-  //       manufacturer: "GM",
-  //       tireManufacturer: "Yokohama",
-  //       chasis: "EWQ-9",
-  //       description:
-  //         "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-  //       geolocation: "174.2,65.93",
-  //       festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-  //       carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //     },
-  //     {
-  //       id: "99ac1b58-3926-45f8-8b73-2a199025319c",
-  //       title: "BDM ARCH 65",
-  //       number: 124,
-  //       manufacturer: "BDM",
-  //       tireManufacturer: "Michelin",
-  //       chasis: "Q29",
-  //       description:
-  //         "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-  //       geolocation: "174.2,65.93",
-  //       festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-  //       carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //     },
-  //     {
-  //       id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-  //       title: "TYRALM 34X",
-  //       number: 34,
-  //       manufacturer: "TYRALM",
-  //       tireManufacturer: "Goodyear",
-  //       chasis: "27Ty",
-  //       description:
-  //         "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-  //       geolocation: "174.2,65.93",
-  //       festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-  //       carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-  //     },
-  //   ],
-  //   {
-  //     ignoreDuplicates: true,
-  //   }
-  // );
+  Car.bulkCreate(
+    [
+      {
+        id: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        title: "Z-Tuned Skyline GT-R",
+        number: 23,
+        manufacturer: "GT",
+        tireManufacturer: "Yokohama",
+        chasis: "AZ-76",
+        description:
+          "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        geolocation: "174.2,65.93",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+      },
+      {
+        id: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        title: "Rx7 Mazda",
+        number: 73,
+        manufacturer: "Mazda",
+        tireManufacturer: "Yokohama",
+        chasis: "EWZ-46",
+        description:
+          "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        geolocation: "174.2,65.93",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+      },
+      {
+        id: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        title: "1997 eclipse f&f replica",
+        number: 1984,
+        manufacturer: "GM",
+        tireManufacturer: "Yokohama",
+        chasis: "EWQ-9",
+        description:
+          "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        geolocation: "174.2,65.93",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+      },
+      {
+        id: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        title: "BDM ARCH 65",
+        number: 124,
+        manufacturer: "BDM",
+        tireManufacturer: "Michelin",
+        chasis: "Q29",
+        description:
+          "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        geolocation: "174.2,65.93",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+      },
+      {
+        id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        title: "TYRALM 34X",
+        number: 34,
+        manufacturer: "TYRALM",
+        tireManufacturer: "Goodyear",
+        chasis: "27Ty",
+        description:
+          "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        geolocation: "174.2,65.93",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+      },
+    ],
+    {
+      ignoreDuplicates: true,
+    }
+  );
   // CarImage.bulkCreate(
   //   [
   //     {
