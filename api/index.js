@@ -14,13 +14,12 @@ const {
 } = require("./src/db.js");
 
 // Syncing all the models at once.
-//, alter: true
-// force:true to erase data
-conn.sync({ force: true, alter: false }).then(() => {
-  server.listen(process.env.PORT, () => {
+const force = true; // force:true to erase data
+const alter = true;
+conn.sync({ force, alter }).then(() => {
+  server.listen(process.env.PORT, async () => {
     console.log(`Listening at ${process.env.PORT}`); // eslint-disable-line no-console
-  });
-  async () => {
+
     await Festival.bulkCreate(
       [
         {
@@ -73,6 +72,21 @@ conn.sync({ force: true, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
+    await CarOwner.bulkCreate(
+      [
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          name: "John Doe",
+          facebook: "www.facebook.com/johndoe",
+          twitter: "www.twitter.com/johndoe",
+          instagram: "www.instagram.com/johndoe",
+          youtube: "www.youtube.com/johndoe",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
     await Car.bulkCreate(
       [
         {
@@ -88,6 +102,7 @@ conn.sync({ force: true, alter: false }).then(() => {
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
         },
+
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025318d",
           title: "Rx7 Mazda",
@@ -163,6 +178,7 @@ conn.sync({ force: true, alter: false }).then(() => {
           image: "uploads/car/RX71.png",
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
         },
+
         {
           image: "uploads/car/RX72.png",
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
@@ -182,21 +198,6 @@ conn.sync({ force: true, alter: false }).then(() => {
         {
           image: "uploads/car/car-1659971663362.jpg",
           carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        },
-      ],
-      {
-        ignoreDuplicates: true,
-      }
-    );
-    await CarOwner.bulkCreate(
-      [
-        {
-          id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-          name: "John Doe",
-          facebook: "www.facebook.com/johndoe",
-          twitter: "www.twitter.com/johndoe",
-          instagram: "www.instagram.com/johndoe",
-          youtube: "www.youtube.com/johndoe",
         },
       ],
       {
@@ -445,5 +446,5 @@ conn.sync({ force: true, alter: false }).then(() => {
         ignoreDuplicates: true,
       }
     );
-  };
+  });
 });
