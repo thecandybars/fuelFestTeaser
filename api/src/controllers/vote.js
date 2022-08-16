@@ -18,6 +18,7 @@ async function createVoteCategory(data) {
 async function carVote(data) {
   try {
     const wallet = await Wallet.findByPk(data.params.walletId);
+    console.log("🚀 ~ file: vote.js ~ line 21 ~ carVote ~ wallet", wallet);
     if (!wallet)
       return dbError(`Wallet ${data.params.walletId} not found`, 404);
     if (wallet.frozen === 0)

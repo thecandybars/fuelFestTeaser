@@ -13,6 +13,7 @@ const {
   buyAsset,
   getAssets,
   getAllAssetCategory,
+  getNFTCards,
 } = require("../controllers/index.js");
 
 // Image middleware
@@ -29,11 +30,9 @@ router.get("/category", async (req, res) => {
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-
-// Get all assets for a wallet
-router.get("/:walletId", async (req, res) => {
-  const { walletId } = req.params;
-  const response = await getAssets(walletId);
+// Get All NFT Cards
+router.get("/nftCards", async (req, res) => {
+  const response = await getNFTCards(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);
@@ -60,7 +59,15 @@ router.post(
       : res.status(response.error.status).send(response.error.title);
   }
 );
-// Create new NFT Cards
+
+// Get all assets for a wallet
+router.get("/:walletId", async (req, res) => {
+  const { walletId } = req.params;
+  const response = await getAssets(walletId);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
 router.post(
   "/nftCard/:walletId/:quantity",
   uploadNFTCard.array("images"),

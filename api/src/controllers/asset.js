@@ -40,6 +40,22 @@ async function getAllAssetCategory() {
     return err;
   }
 }
+async function getNFTCards() {
+  try {
+    const { id } = await AssetCategory.findOne({
+      where: { table: "AstNFTCard" },
+    });
+    const response = await Asset.findAll({
+      where: { categoryId: id },
+      include: AstNFTCard,
+    });
+    return !response.length
+      ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
 async function createAssetCategory(data) {
   try {
     const newCategory = await AssetCategory.create({
@@ -286,4 +302,5 @@ module.exports = {
   getAssets,
   getAllAssetCategory,
   createVoucher,
+  getNFTCards,
 };

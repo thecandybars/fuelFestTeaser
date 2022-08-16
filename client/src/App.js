@@ -9,6 +9,7 @@ import TopNav from "./components/TopNav.jsx";
 import Voting from "./components/Voting";
 import Wallet from "./components/Wallet";
 import WalletVouchers from "./components/WalletVouchers";
+import WalletMarketplace from "./components/WalletMarketplace";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/events" element={<Events />} />
           <Route path="/cars" element={<Cars />} />
-          <Route path="/wallet" element={<Wallet />} />
           <Route path="/voting/:carId" element={<Voting />} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="/wallet/vouchers" element={<WalletVouchers />} />
+          <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
         </Routes>
       </div>
       <BottomNav />

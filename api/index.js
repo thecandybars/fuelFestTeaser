@@ -11,10 +11,11 @@ const {
   CarVoteCategory,
   Event,
   Wallet,
+  AssetCategory,
 } = require("./src/db.js");
 
 // Syncing all the models at once.
-const force = true; // force:true to erase data
+const force = false; // force:true to erase data
 const alter = true;
 conn.sync({ force, alter }).then(() => {
   server.listen(process.env.PORT, async () => {
@@ -50,8 +51,8 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "147a9663-e722-4667-b54e-44b5817e0bd8",
-          liquid: 10000,
-          frozen: 0,
+          liquid: 9500,
+          frozen: 500,
         },
       ],
       {
@@ -440,6 +441,23 @@ conn.sync({ force, alter }).then(() => {
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "guest",
           duartion: "30",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    await AssetCategory.bulkCreate(
+      [
+        {
+          id: "8edb1c31-5005-479c-953d-514bd9bfe5ee",
+          title: "Token Coupon",
+          table: "TokenCoupon",
+        },
+        {
+          id: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          title: "NFT Card",
+          table: "AstNFTCard",
         },
       ],
       {

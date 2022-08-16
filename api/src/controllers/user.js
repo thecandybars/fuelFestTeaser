@@ -69,7 +69,7 @@ async function createUser(data) {
       firstName: data.body.firstName,
       lastName: data.body.lastName,
       image: data.file.path,
-      usercategoryId: data.body.usercategoryId,
+      userCategoryId: data.body.userCategoryId,
       walletId: !!data.body.walletId ? data.body.walletId : null,
     });
     return !response ? dbError("Error creating user", 401) : response;
