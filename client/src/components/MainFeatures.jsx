@@ -2,11 +2,12 @@ import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import style from "./css/MainFeatures.module.css";
-import image01 from "../img/mainFeatures/01.jpg";
-import image02 from "../img/mainFeatures/02.jpg";
-import image03 from "../img/mainFeatures/03.jpg";
-// import image04 from "../img/mainFeatures/04.jpg";
-import image05 from "../img/mainFeatures/05.jpg";
+import image001 from "../img/mainFeatures/001.jpg";
+import image002 from "../img/mainFeatures/002.jpg";
+import image003 from "../img/mainFeatures/003.jpg";
+import image004 from "../img/mainFeatures/004.jpg";
+import image005 from "../img/mainFeatures/005.jpg";
+import image006 from "../img/mainFeatures/006.jpg";
 // import defaultImage from "../img/mainFeatures/04.jpg";
 // import "./styles.css";
 
@@ -14,24 +15,22 @@ export default class MainFeatures extends React.Component {
   render() {
     const images = [
       {
-        original: image01,
-        description: "Info 01",
+        original: image001,
       },
       {
-        original: image02,
-        description: "Info 02",
+        original: image002,
       },
       {
-        original: image03,
-        description: "Info 03",
+        original: image003,
       },
-      // {
-      //   original: image04,        description: "Info 04",
-
-      // },
       {
-        original: image05,
-        description: "Info 05",
+        original: image004,
+      },
+      {
+        original: image005,
+      },
+      {
+        original: image006,
       },
     ];
 
@@ -50,7 +49,9 @@ export default class MainFeatures extends React.Component {
           showThumbnails={false}
           lazyLoad={true}
           showPlayButton={false}
+          autoPlay={true}
           showFullscreenButton={false}
+          slideInterval={8000}
           renderCustomControls={someComponent}
           additionalClass={style.image}
         />
