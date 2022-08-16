@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getWallet, manageTokens } from "../services/wallet";
 import style from "./css/Wallet.module.css";
 import driftCoin from "../img/driftCoin.png";
 import { walletId } from "../common/getLoginData";
+import voucherIcon from "../icons/sell_FILL1_wght400_GRAD0_opsz48.svg";
+import votingIcon from "../icons/military_tech_FILL1_wght400_GRAD0_opsz48.svg";
+import questIcon from "../icons/stars_FILL0_wght400_GRAD0_opsz48.svg";
+import marketplaceIcon from "../icons/storefront_FILL1_wght400_GRAD0_opsz48.svg";
+import inventoryIcon from "../icons/inventory_2_FILL1_wght400_GRAD0_opsz48.svg";
+import statisticsIcon from "../icons/auto_graph_FILL1_wght400_GRAD0_opsz48.svg";
 
 export default function Wallet() {
   const [wallet, setWallet] = useState({});
@@ -102,7 +109,71 @@ export default function Wallet() {
             <button>Spend</button>
             <button>Redeem</button>
           </div>
-        </div>{" "}
+        </div>
+      </div>
+      <div>
+        <ul className={style.walletLinks}>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/vouchers">
+              <img
+                alt="Discount vouchers"
+                src={voucherIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Discount vouchers</p>
+            </Link>
+          </li>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/voting">
+              <img
+                alt="Voting"
+                src={votingIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Voting</p>
+            </Link>
+          </li>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/quest">
+              <img
+                alt="Quest"
+                src={questIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Quest</p>
+            </Link>
+          </li>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/marketplace">
+              <img
+                alt="Marketplace"
+                src={marketplaceIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Marketplace</p>
+            </Link>
+          </li>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/inventory">
+              <img
+                alt="Inventory"
+                src={inventoryIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Inventory</p>
+            </Link>
+          </li>
+          <li className={style.walletLinks_btn}>
+            <Link to="/wallet/statistics">
+              <img
+                alt="Statistics"
+                src={statisticsIcon}
+                className={style.walletLinks_icon}
+              />
+              <p>Statistics</p>
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );
