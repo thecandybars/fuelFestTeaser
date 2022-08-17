@@ -12,10 +12,13 @@ const {
   Event,
   Wallet,
   AssetCategory,
+  AstNFTCard,
+  Asset,
+  Template,
 } = require("./src/db.js");
 
 // Syncing all the models at once.
-const force = false; // force:true to erase data
+const force = true; // force:true to erase data
 const alter = true;
 conn.sync({ force, alter }).then(() => {
   server.listen(process.env.PORT, async () => {
@@ -42,6 +45,11 @@ conn.sync({ force, alter }).then(() => {
           title: "User",
           category: "U",
         },
+        {
+          id: "5f40db04-7e21-4e88-acaa-87d5928f7ebc",
+          title: "Admin",
+          category: "A",
+        },
       ],
       {
         ignoreDuplicates: true,
@@ -51,6 +59,11 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "147a9663-e722-4667-b54e-44b5817e0bd8",
+          liquid: 9500,
+          frozen: 500,
+        },
+        {
+          id: "147a9663-e722-4667-b54e-44b5817e0bd9",
           liquid: 9500,
           frozen: 500,
         },
@@ -67,6 +80,13 @@ conn.sync({ force, alter }).then(() => {
           lastName: "User",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           userCategoryId: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
+        },
+        {
+          id: "ddf40198-fc6c-4595-95cc-bda6d77fffab",
+          firstName: "Fuel",
+          lastName: "Fest",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          userCategoryId: "5f40db04-7e21-4e88-acaa-87d5928f7ebc",
         },
       ],
       {
@@ -458,6 +478,48 @@ conn.sync({ force, alter }).then(() => {
           id: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
           title: "NFT Card",
           table: "AstNFTCard",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    await Template.bulkCreate(
+      [
+        {
+          id: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "593691f2-9c20-4166-99bd-7bc906e35f0d",
+          name: "Toyota Supra",
+          mintNum: "1",
+          mintTotal: "2",
+          mintMax: "2",
+          imageFront: "uploads/NFTCard/NFTCard-1660680037822.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
         },
       ],
       {
