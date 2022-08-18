@@ -33,9 +33,10 @@ router.get("/category", async (req, res) => {
 // Get All NFT Cards
 router.get("/nftCards", async (req, res) => {
   const response = await getNFTCards(req);
-  !response.error
-    ? res.status(200).json(response)
-    : res.status(response.error.status).send(response.error.title);
+  res.status(200).json(response);
+  // !response.error
+  //   ? res.status(200).json(response)
+  //   : res.status(response.error.status).send(response.error.title);
 });
 // Create new Token Coupon
 router.post(

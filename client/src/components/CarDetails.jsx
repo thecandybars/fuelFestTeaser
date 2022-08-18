@@ -114,7 +114,7 @@ export default function CarDetails(props) {
             </div>
             {/* CAR DESCRIPTION */}
             <div className={style.carDescription}>
-              <h3>Details</h3>
+              {/* <h3>Details</h3> */}
               <p>{carDetails.description}</p>
             </div>
             {/* CAR OWNER */}

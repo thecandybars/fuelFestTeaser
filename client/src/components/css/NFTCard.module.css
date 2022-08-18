@@ -1,0 +1,27 @@
+.card {
+  width: 150px;
+  text-align: center;
+  font-size: smaller;
+  margin-top: 20px;
+}
+.car p {
+  margin-top: 5px;
+}
+.collection {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 3px 0;
+}
+.buyButton {
+  background-color: #00703d;
+  width: fit-content;
+  padding: 6px 25px;
+  border: none;
+  border-radius: 15px;
+}
+.detailsButton {
+  color: #feae2e;
+  width: fit-content;
+}

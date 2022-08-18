@@ -26,48 +26,7 @@ export default function WalletMarketplace() {
     return (
       <>
         <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
-        />
-        <NFTCardCard
+          key={card.id}
           imgFront={card.astNFTCard.imageFront}
           collection="fuelFest22LA"
           title={card.astNFTCard.name}

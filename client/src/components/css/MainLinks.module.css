@@ -1,4 +1,40 @@
 .list_links {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* background-color: aquamarine; */
+  margin: 0 auto;
+}
+.row1 {
+  padding: 5px 5px 0 5px;
+}
+
+.row1 img {
+  width: 100%;
+  border-radius: 25px;
+}
+
+.row2 {
+  display: flex;
+  padding-top: 5px;
+}
+.col1 {
+  width: 35%;
+  padding: 0 5px;
+}
+.col1 img {
+  border-radius: 25px;
+}
+.col2 {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
   flex-wrap: wrap;
+  width: 65%;
+}
+.col2 img {
+  width: 50%;
+  border-radius: 25px;
+  padding-right: 5px;
 }

@@ -2,6 +2,8 @@ import React from "react";
 import style from "./css/CarCard.module.css";
 import favYes from "../icons/favorite_FILL1_wght400_GRAD0_opsz48.svg";
 import favNo from "../icons/favorite_FILL0_wght400_GRAD0_opsz48.svg";
+import ownerIcon from "../icons/boy_FILL0_wght400_GRAD0_opsz48.svg";
+import votesIcon from "../icons/check_FILL0_wght400_GRAD0_opsz48.svg";
 // import Button1 from "../assets/Button1";
 
 export default function CarCard(props) {
@@ -23,17 +25,17 @@ export default function CarCard(props) {
         <div className={style.carData}>
           <h3 className={style.carTitle}>{props.title}</h3>
           <p>
-            <span className="material-symbols-outlined">directions_car</span>
-            {props.manufacturer}
+            <img alt="owner icon" src={ownerIcon} className={style.carIcon} />
+            {props.owner}
           </p>
           <p>
-            <span className="material-symbols-outlined">tire_repair</span>
-            {props.tire}
+            <img alt="votes icon" src={votesIcon} className={style.carIcon} />
+            {props.voting.map((voteCat) => voteCat.title + " - ")}
           </p>
-          <p>
+          {/* <p>
             <span className="material-symbols-outlined">location_on</span>
             {props.chasis}
-          </p>
+          </p> */}
         </div>
         <div className={style.buttons}>
           <img

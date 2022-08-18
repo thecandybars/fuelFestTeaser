@@ -4,8 +4,10 @@ const {
   Festival,
   UserCategory,
   User,
+  Sponsor,
   Car,
   CarImage,
+  CarSponsor,
   CarOwner,
   VoteCategory,
   CarVoteCategory,
@@ -29,6 +31,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           title: "FuelFest Test edition",
+          short: "FuelFestTest22",
           dateStart: "2022-01-01 00:00:00.000 -0500",
           dateEnd: "2022-12-31 00:00:00.000 -0500",
           location: "Test City",
@@ -93,6 +96,25 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
+    await Sponsor.bulkCreate(
+      [
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          title: "FritoLay",
+          description: "Volutpat odio facilisis mauris sit.",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          title: "Meguiars",
+          description: "Volutpat odio facilisis mauris sit.",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
     await CarOwner.bulkCreate(
       [
         {
@@ -115,10 +137,10 @@ conn.sync({ force, alter }).then(() => {
           title: "Z-Tuned Skyline GT-R",
           number: 23,
           manufacturer: "GT",
-          tireManufacturer: "Yokohama",
+          tireManufacturer: "Michelin",
           chasis: "AZ-76",
           description:
-            "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+            "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
@@ -152,9 +174,9 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319c",
-          title: "BDM ARCH 65",
+          title: "Mazda ARCH 65",
           number: 124,
-          manufacturer: "BDM",
+          manufacturer: "Mazda",
           tireManufacturer: "Michelin",
           chasis: "Q29",
           description:
@@ -165,16 +187,31 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          title: "TYRALM 34X",
+          title: "GM 34X",
           number: 34,
-          manufacturer: "TYRALM",
+          manufacturer: "GM",
           tireManufacturer: "Goodyear",
           chasis: "27Ty",
           description:
-            "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+            "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    await CarSponsor.bulkCreate(
+      [
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
       ],
       {
@@ -229,7 +266,7 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "43957a19-fa0d-4796-8614-87b427039f81",
-          title: "Overall",
+          title: "Classic",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
@@ -244,12 +281,7 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "43957a19-fa0d-4796-8614-87b423039f41",
-          title: "Drift king",
-          desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
-        },
-        {
-          id: "43957a19-fa0d-4796-8614-87b427039f88",
-          title: "Best rookie",
+          title: "Best rims",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
       ],
@@ -259,7 +291,7 @@ conn.sync({ force, alter }).then(() => {
     );
     await CarVoteCategory.bulkCreate(
       [
-        // OVERALL
+        // CLASSIC
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
@@ -322,7 +354,7 @@ conn.sync({ force, alter }).then(() => {
           carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
         },
-        // BEST DRIFT KING
+        // BEST RIMS
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
@@ -342,27 +374,6 @@ conn.sync({ force, alter }).then(() => {
         {
           carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
-        },
-        // BEST ROOKIE
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f88",
-        },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f88",
-        },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f88",
-        },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f88",
-        },
-        {
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f88",
         },
       ],
       {
@@ -494,10 +505,26 @@ conn.sync({ force, alter }).then(() => {
       ],
       { ignoreDuplicates: true }
     );
+
+    /// NFT CAR CARDS
+
+    //NISSAN GTR
     await Asset.bulkCreate(
       [
         {
           id: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
           categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
           isListed: true,
@@ -508,17 +535,483 @@ conn.sync({ force, alter }).then(() => {
     await AstNFTCard.bulkCreate(
       [
         {
-          id: "593691f2-9c20-4166-99bd-7bc906e35f0d",
-          name: "Toyota Supra",
+          id: "543691f2-9c20-4166-99bd-7bc906e35f0a",
+          name: "Nissan GT-R 'Frank 6.0'",
           mintNum: "1",
-          mintTotal: "2",
-          mintMax: "2",
-          imageFront: "uploads/NFTCard/NFTCard-1660680037822.jpeg",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
           price: 200,
           burnable: true,
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-59bd-7bc906e35f0a",
+          name: "Nissan GT-R 'Frank 6.0'",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-99bd-7bc906e35f0a",
+          name: "Nissan GT-R 'Frank 6.0'",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //MITSUBISHI 1997 Eclipse
+    await Asset.bulkCreate(
+      [
+        {
+          id: "0bb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "1bb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "2bb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-2136-99bd-7bc906e35f0a",
+          name: "Mitsubishi 1997 Eclipse",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "0bb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-29bd-7bc906ed5f0a",
+          name: "Mitsubishi 1997 Eclipse",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "1bb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c23-4166-99bd-7bc906e35f0a",
+          name: "Mitsubishi 1997 Eclipse",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "2bb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //Toyota Supra
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-4390-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4391-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4392-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-2166-99bd-7bc546e35f0a",
+          name: "Toyota Supra",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4390-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-59bd-7bc936ed5f0a",
+          name: "Toyota Supra",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4391-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c20-4166-79bd-7bc906e35f0a",
+          name: "Toyota Supra",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4392-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //PORSCHE 911
+    await Asset.bulkCreate(
+      [
+        {
+          id: "aab148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-4466-99bd-7bc906e35f0a",
+          name: "Porsche 911",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "aab148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-22bd-7bc906ed5f0a",
+          name: "Porsche 911",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c20-4521-99bd-7bc906e35f0a",
+          name: "Porsche 911",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //MCLAREN SENNA
+    await Asset.bulkCreate(
+      [
+        {
+          id: "00b148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "01b148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "02b148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-2776-99bd-7bc906e35f0a",
+          name: "McLaren Senna",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "00b148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-51ed-7bc906ed5f0a",
+          name: "McLaren Senna",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "01b148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c20-4166-9b3d-7bc906e35f0a",
+          name: "McLaren Senna",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "02b148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //Mazda RX7
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-4393-9fc1-1d0974d24a00",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc1-1d0974d24a01",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc1-1d0974d24a02",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-2166-911d-7bc906e35f0a",
+          name: "Mazda RX7",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.17.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a00",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-522d-7bc906ed5f0a",
+          name: "Mazda RX7",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.17.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a01",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c20-4166-44bd-7bc906e35f0a",
+          name: "Mazda RX7",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.17.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a02",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    //NISSAN Z Tuned
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "543691f2-9c20-2166-99bd-7bc906e35f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f2-9c20-4166-59bd-7bc906ed5f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+        {
+          id: "593691f1-9c20-4166-99bd-7bc906e35f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
         },
       ],

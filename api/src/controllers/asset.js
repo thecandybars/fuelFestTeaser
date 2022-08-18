@@ -3,6 +3,7 @@ const { getCurrentFestival } = require("./festival");
 const dbError = require("../utils/dbError");
 const {
   Asset,
+  Festival,
   AssetCategory,
   AstNFTCard,
   TokenCoupon,
@@ -45,13 +46,37 @@ async function getNFTCards() {
     const { id } = await AssetCategory.findOne({
       where: { table: "AstNFTCard" },
     });
-    const response = await Asset.findAll({
+    const assets = await Asset.findAll({
       where: { categoryId: id },
       include: AstNFTCard,
     });
-    return !response.length
-      ? dbError(`No Assets Categories found. Create some.`, 404)
-      : response;
+    // I want to add the collection (=festival short name) to the response. None of the two blocks work.
+    // WHY??
+
+    // const response = assets.map((asset) => {
+    //   const templateId = asset.astNFTCard.templateId;
+    //   const { festivalId } = await Template.findByPk(templateId);
+    //   const collection = await Festival.findByPk(festivalId);
+    //   return { ...asset, ...collection };
+    //   // return templateId;
+    // });
+
+    // const response = [];
+    // for (let i = 0; i < assets.length; i++) {
+    //   const asset = JSON.stringify(assets[i]);
+    //   // const asset = JSON.parse(assets[i]);
+    //   console.log("🚀 ~ file: asset.js ~ line 64 ~ getNFTCards ~ asset", asset);
+    //   const { templateId } = asset.astNFTCard;
+    //   const { festivalId } = await Template.findByPk(templateId);
+    //   const collection = await Festival.findByPk(festivalId);
+    //   asset.collection = collection;
+    //   response.push(asset);
+    // }
+    const response = assets;
+    return response;
+    // return !response.length
+    //   ? dbError(`No Assets Categories found. Create some.`, 404)
+    //   : response;
   } catch (err) {
     return err;
   }

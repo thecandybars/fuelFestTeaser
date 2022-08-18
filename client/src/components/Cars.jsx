@@ -7,7 +7,11 @@ import style from "./css/Cars.module.css";
 import CarDetails from "./CarDetails";
 
 export default function Cars() {
-  const [, setFetchedCars] = useState([]);
+  const [fetchedCars, setFetchedCars] = useState([]);
+  console.log(
+    "🚀 ~ file: Cars.jsx ~ line 11 ~ Cars ~ fetchedCars",
+    fetchedCars
+  );
   const [filteredCars, setFilteredCars] = useState([]);
   const [fetchedFavs, setFetchedFavs] = useState([]);
   const [carDetails, setCarDetails] = useState("");
@@ -51,7 +55,7 @@ export default function Cars() {
     }
   }
 
-  const carCards =
+  const RenderCarCards =
     filteredCars.length > 0 ? (
       filteredCars.map((car) => (
         <CarCard
@@ -59,6 +63,8 @@ export default function Cars() {
           id={car.id}
           title={car.title}
           image={!!car.carImages.length && car.carImages[0].image}
+          owner={car.carOwner.name}
+          voting={car.voteCategories}
           manufacturer={car.manufacturer}
           tire={car.tireManufacturer}
           chasis={car.chasis}
@@ -71,34 +77,68 @@ export default function Cars() {
       <p>No cars to show</p>
     );
 
+  //// FILTER INPUTS
+  const RenderInputManufacturer = fetchedCars
+    .map((car) => car.manufacturer)
+    .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
+    .map((manufacturer) => (
+      <option value={manufacturer}>{manufacturer}</option>
+    ));
+  const RenderInputTire = fetchedCars
+    .map((car) => car.tireManufacturer)
+    .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
+    .map((tireManufacturer) => (
+      <option value={tireManufacturer}>{tireManufacturer}</option>
+    ));
+  //// FILTER STATE
+  const [filterManufacturer, setFilterManufacturer] = useState("all");
+  const [filterTire, setFilterTire] = useState("all");
+  const [filterSearch, setFilterSearch] = useState("");
+  ///FILTER ACTION
+  useEffect(() => {
+    // .filter((car) => car.tireManufacturer === filterTire);
+    setFilteredCars(
+      fetchedCars.filter(
+        (car) =>
+          (filterManufacturer !== "all"
+            ? car.manufacturer === filterManufacturer
+            : true) &&
+          (filterTire !== "all" ? car.tireManufacturer === filterTire : true) &&
+          (filterSearch !== ""
+            ? car.title.toLowerCase().includes(filterSearch.toLowerCase()) ||
+              car.description.toLowerCase().includes(filterSearch.toLowerCase())
+            : true)
+      )
+    );
+  }, [filterManufacturer, filterTire, filterSearch]);
+
   return (
     <div className={style.container}>
       {carDetails && carDetails}
       <h1 className={style.title}>Cars</h1>
       <nav className={style.cars_nav}>
-        <select name="carFilter" onChange={(e) => setCarFilter(e.target.value)}>
-          <option value="all">All categories</option>
-          <option value="drifting">Drifting</option>
-          <option value="guest">Guest</option>
-          <option value="music">Music</option>
-          <option value="liked">Liked</option>
+        <select
+          name="filterManufacturer"
+          onChange={(e) => setFilterManufacturer(e.target.value)}
+        >
+          <option value="all">All manufacturers</option>
+          {RenderInputManufacturer}
         </select>
         <select
-          name="voteFilter"
-          onChange={(e) => setVoteFilter(e.target.value)}
+          name="filterTire"
+          onChange={(e) => setFilterTire(e.target.value)}
         >
-          <option value="all">All dates</option>
-          <option value="upcoming">Upcoming</option>
-          <option value="past">Past</option>
+          <option value="all">All tires</option>
+          {RenderInputTire}
         </select>
-
         <input
           type="text"
           size="15"
-          onChange={(e) => setSearchFilter(e.target.value)}
+          onChange={(e) => setFilterSearch(e.target.value)}
+          placeholder="search"
         />
       </nav>
-      <main>{carCards}</main>
+      <main>{RenderCarCards}</main>
     </div>
   );
 }

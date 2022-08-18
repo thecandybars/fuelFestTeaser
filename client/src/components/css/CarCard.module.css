@@ -9,6 +9,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 5px;
 }
 .carTitle {
   display: flex;
@@ -36,4 +37,9 @@
     brightness(118%) contrast(100%); /* Color=white */
   width: 60px;
   /* height: 28p  x; */
+}
+.carIcon {
+  width: 30px;
+  filter: invert(100%) sepia(4%) saturate(0%) hue-rotate(315deg) brightness(88%)
+    contrast(94%);
 }

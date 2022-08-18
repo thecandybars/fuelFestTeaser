@@ -16,7 +16,7 @@ async function getAllCars() {
     const festival = await getCurrentFestival();
     const response = await Car.findAll({
       where: { festivalId: festival.id },
-      include: CarImage,
+      include: [CarImage, CarOwner, VoteCategory],
     });
     return !response ? dbError(`No cars found`, 404) : response;
   } catch (err) {

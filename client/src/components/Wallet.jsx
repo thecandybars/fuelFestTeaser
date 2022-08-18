@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getWallet, manageTokens } from "../services/wallet";
 import style from "./css/Wallet.module.css";
 import driftCoin from "../img/driftCoin.png";
+import historyIcon from "../icons/history.svg";
 import { walletId } from "../common/getLoginData";
 import voucherIcon from "../icons/sell_FILL1_wght400_GRAD0_opsz48.svg";
 import votingIcon from "../icons/military_tech_FILL1_wght400_GRAD0_opsz48.svg";
@@ -10,6 +11,8 @@ import questIcon from "../icons/stars_FILL0_wght400_GRAD0_opsz48.svg";
 import marketplaceIcon from "../icons/storefront_FILL1_wght400_GRAD0_opsz48.svg";
 import inventoryIcon from "../icons/inventory_2_FILL1_wght400_GRAD0_opsz48.svg";
 import statisticsIcon from "../icons/auto_graph_FILL1_wght400_GRAD0_opsz48.svg";
+import Title from "../assets/Title.jsx";
+import MainContainer from "../assets/MainContainer";
 
 export default function Wallet() {
   const [wallet, setWallet] = useState({});
@@ -50,67 +53,50 @@ export default function Wallet() {
     setManage(false);
   };
   return (
-    <div className={style.container}>
-      <h1 className={style.title}>Wallet</h1>
-      <div className={style.wallet}>
-        <div className={style.wallet_data}>
-          <p className={style.wallet_data_title}>TOTAL</p>
-          <div className={style.wallet_drift}>
-            <img alt="drift" src={driftCoin} />
-            <div>
-              <p className={style.wallet_drift_total}>
-                {parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)}
-              </p>
-              <p className={style.wallet_drift_unit}>DRIFT</p>
-            </div>
-            <img alt="drift" src={driftCoin} />
-          </div>
-          <div className={style.wallet_gridContent}>
-            <p>
-              Liquid <span>{displayDrift.liquid}</span>
-            </p>
-
-            <p>
-              Frozen <span>{displayDrift.frozen}</span>
-            </p>
-            <br />
-            <p>
-              Drift dip <span>120/day</span>
-            </p>
-          </div>
-          <br />
-          <div className={style.wallet_manage}>
-            <button onClick={handleManageButton}>Manage</button>
-          </div>
-          {manage && (
-            <>
-              <input
-                type="range"
-                min="0"
-                max={wallet.liquid + wallet.frozen}
-                step="10"
-                // max={wallet.liquid + wallet.frozen}
-                onChange={handleManageRange}
-                value={displayDrift.liquid}
-              />
-              <button onClick={handleManageConfirm}>Confirm</button>
-              <button onClick={resetDisplayDrift}>Reset</button>
-            </>
-          )}
+    <MainContainer>
+      <Title title="Wallet"></Title>
+      <div className={style.walletData}>
+        <p className={style.walletData_title}>BALANCE</p>
+        <p className={style.walletData_total}>
+          {parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)}
+        </p>
+        <p className={style.walletData_units}>DRIFT</p>
+        <div className={style.walletData_balance}>
+          <p>
+            Liquid <span>{displayDrift.liquid}</span>
+          </p>
+          <p>
+            Frozen <span>{displayDrift.frozen}</span>
+          </p>
+          <p>
+            Drift dip <span>120/day</span>
+          </p>
         </div>
-        <div className={style.actions}>
-          <div className={style.actions_tokens}>
-            <p>TOKENS</p>
-            <button>Send</button>
-            <button>Receive</button>
-          </div>
-          <div className={style.actions_coupons}>
-            <p>COUPONS</p>
-            <button>Spend</button>
-            <button>Redeem</button>
-          </div>
+        <div className={style.walletData_history}>
+          <img alt="history" src={historyIcon} />
+          <p>Token history</p>
         </div>
       </div>
+      <div className={style.wallet_manage}>
+        <button onClick={handleManageButton}>Spend</button>
+        <button onClick={handleManageButton}>Redeem</button>
+        <button onClick={handleManageButton}>Manage</button>
+      </div>{" "}
+      {manage && (
+        <>
+          <input
+            type="range"
+            min="0"
+            max={wallet.liquid + wallet.frozen}
+            step="10"
+            // max={wallet.liquid + wallet.frozen}
+            onChange={handleManageRange}
+            value={displayDrift.liquid}
+          />
+          <button onClick={handleManageConfirm}>Confirm</button>
+          <button onClick={resetDisplayDrift}>Reset</button>
+        </>
+      )}
       <div>
         <ul className={style.walletLinks}>
           <li className={style.walletLinks_btn}>
@@ -175,6 +161,6 @@ export default function Wallet() {
           </li>
         </ul>
       </div>
-    </div>
+    </MainContainer>
   );
 }
