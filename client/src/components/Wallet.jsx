@@ -54,7 +54,7 @@ export default function Wallet() {
   };
   return (
     <MainContainer>
-      <Title title="Wallet"></Title>
+      <Title title="Wallet" backButton="true"></Title>
       <div className={style.walletData}>
         <p className={style.walletData_title}>BALANCE</p>
         <p className={style.walletData_total}>
@@ -120,7 +120,7 @@ export default function Wallet() {
             </Link>
           </li>
           <li className={style.walletLinks_btn}>
-            <Link to="/wallet/quest">
+            <Link to="/wallet/quests">
               <img
                 alt="Quest"
                 src={questIcon}
@@ -140,7 +140,7 @@ export default function Wallet() {
             </Link>
           </li>
           <li className={style.walletLinks_btn}>
-            <Link to="/wallet/inventory">
+            <Link to="/wallet/NFTGarage">
               <img
                 alt="Inventory"
                 src={inventoryIcon}
@@ -150,7 +150,7 @@ export default function Wallet() {
             </Link>
           </li>
           <li className={style.walletLinks_btn}>
-            <Link to="/wallet/statistics">
+            <Link to="/wallet/stats">
               <img
                 alt="Statistics"
                 src={statisticsIcon}

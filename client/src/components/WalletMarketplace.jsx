@@ -37,7 +37,7 @@ export default function WalletMarketplace() {
   });
   return (
     <MainContainer>
-      {<Title title="Marketplace" />}
+      {<Title title="Marketplace" backButton="true" />}
       <select name="assetsFilter" onChange={(e) => console.log(e)}>
         <option value="all">All assets</option>
         <option value="drifting">Cards</option>

@@ -5,6 +5,7 @@ import { getCars, postFavCar, getFavCar } from "../services/car";
 import CarCard from "./CarCard";
 import style from "./css/Cars.module.css";
 import CarDetails from "./CarDetails";
+import Title from "../assets/Title";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
@@ -112,7 +113,7 @@ export default function Cars() {
   return (
     <div className={style.container}>
       {carDetails && carDetails}
-      <h1 className={style.title}>Cars</h1>
+      <Title title="Cars" backButton="true"></Title>
       <nav className={style.cars_nav}>
         <select
           name="filterManufacturer"

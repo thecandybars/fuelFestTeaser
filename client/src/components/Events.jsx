@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import style from "./css/Events.module.css";
 import { getEvents, getFavEvent, toggleFavEvent } from "../services/event";
+import Title from "../assets/Title";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
@@ -86,7 +87,7 @@ export default function Events() {
 
   return (
     <div className={style.container}>
-      <h1 className={style.title}>Events</h1>
+      <Title title="Events" backButton="true"></Title>
       <nav className={style.events_nav}>
         <select name="category" onChange={(e) => setCategory(e.target.value)}>
           <option value="all">All categories</option>

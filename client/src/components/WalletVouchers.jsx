@@ -51,7 +51,7 @@ export default function WalletVouchers() {
   ));
   return (
     <MainContainer>
-      {<Title title="Vouchers" />}
+      {<Title title="Vouchers" backButton="true" />}
       <div
         style={{
           display: "flex",

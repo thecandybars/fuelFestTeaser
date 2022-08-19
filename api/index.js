@@ -543,9 +543,7 @@ conn.sync({ force, alter }).then(() => {
       ],
       { ignoreDuplicates: true }
     );
-
     /// NFT CAR CARDS
-
     //NISSAN GTR
     await Asset.bulkCreate(
       [
@@ -1057,9 +1055,8 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    ///////// VOUCHERS   //////////////////////
-
-    /// CORBEAU SEAT   //////////////////////
+    ///////// VOUCHERS   //////////
+    /// CORBEAU SEAT   ///
     await Asset.bulkCreate(
       [
         {
@@ -1129,7 +1126,7 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    ///////// AIR FRESHNER   //////////////////////
+    /// AIR FRESHNER   ///
     await Asset.bulkCreate(
       [
         {
@@ -1160,7 +1157,7 @@ conn.sync({ force, alter }).then(() => {
           isBurnt: false,
           assetId: "dbb148fa-9031-0003-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
-          brand: "Sir Stink-a-none",
+          brand: "Dafski",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1173,7 +1170,7 @@ conn.sync({ force, alter }).then(() => {
           isBurnt: false,
           assetId: "dbb148fa-9031-0004-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
-          brand: "Sir Stink-a-none",
+          brand: "Dafski",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1186,7 +1183,7 @@ conn.sync({ force, alter }).then(() => {
           isBurnt: false,
           assetId: "dbb148fa-9031-0005-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
-          brand: "Sir Stink-a-none",
+          brand: "Dafski",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1199,7 +1196,7 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    ///////// CERAMIC WHEEL //////////////////////
+    /// CERAMIC WHEEL ///
     await Asset.bulkCreate(
       [
         {
@@ -1259,6 +1256,146 @@ conn.sync({ force, alter }).then(() => {
           brand: "Mr. Ceramic",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837229044.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    /// FREE DRINK ///
+    await Asset.bulkCreate(
+      [
+        {
+          id: "00b148fa-9031-0006-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "01b148fa-9031-0007-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "02b148fa-9031-0008-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Voucher.bulkCreate(
+      [
+        {
+          id: "6ed23fb6-0357-0006-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "00b148fa-9031-0006-9fc1-1d0974d24aea",
+          title: "1 Free drink",
+          brand: "Coca Cola",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917025865.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0117-0007-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "01b148fa-9031-0007-9fc1-1d0974d24aea",
+          title: "1 Free drink",
+          brand: "Coca Cola",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917025865.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0357-0008-85a5-7cab1295f813",
+          isBurnt: false,
+          assetId: "02b148fa-9031-0008-9fc1-1d0974d24aea",
+          title: "1 Free drink",
+          brand: "Coca Cola",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917025865.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    /// FREE TSHIRT ///
+    await Asset.bulkCreate(
+      [
+        {
+          id: "11b148fa-9031-0006-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "12b148fa-9031-0007-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "13b148fa-9031-0008-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Voucher.bulkCreate(
+      [
+        {
+          id: "6ed23fb6-0357-2306-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "11b148fa-9031-0006-9fc1-1d0974d24aea",
+          title: "1 Fuel Fest t-shirt",
+          brand: "Fuel Fest",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917013096.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0557-0007-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "12b148fa-9031-0007-9fc1-1d0974d24aea",
+          title: "1 Fuel Fest t-shirt",
+          brand: "Fuel Fest",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917013096.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0357-0008-8235-7cab1295f813",
+          isBurnt: false,
+          assetId: "13b148fa-9031-0008-9fc1-1d0974d24aea",
+          title: "1 Fuel Fest t-shirt",
+          brand: "Fuel Fest",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660917013096.jpg",
           burnable: true,
           transferable: true,
           expires: true,
