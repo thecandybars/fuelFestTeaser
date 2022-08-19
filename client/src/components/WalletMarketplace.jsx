@@ -26,11 +26,11 @@ export default function WalletMarketplace() {
     return (
       <>
         <NFTCardCard
-          key={card.id}
-          imgFront={card.astNFTCard.imageFront}
-          collection="fuelFest22LA"
-          title={card.astNFTCard.name}
-          price={card.astNFTCard.price}
+          key={card.asset.id}
+          imgFront={card.asset.astNFTCard.imageFront}
+          collection={card.collection.short}
+          title={card.asset.astNFTCard.name}
+          price={card.asset.astNFTCard.price}
         />
       </>
     );

@@ -6,8 +6,9 @@ const dbError = require("../utils/dbError");
 async function createVoteCategory(data) {
   try {
     const response = await VoteCategory.create({
-      title: data.title,
-      desc: data.desc,
+      title: data.body.title,
+      icon: data.file.path,
+      desc: data.body.desc,
     });
     return !response ? dbError(`Vote Category not created`, 404) : response;
   } catch (err) {

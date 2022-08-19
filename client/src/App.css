@@ -47,8 +47,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+a,
+a:hover,
 a:visited {
   color: unset;
+  text-decoration: none;
 }
 /* ========= */
 

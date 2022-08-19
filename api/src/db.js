@@ -157,7 +157,7 @@ Asset.belongsTo(Wallet, { foreignKey: "walletId" });
 Asset.belongsTo(AssetCategory, { foreignKey: "categoryId" });
 Asset.hasMany(TokenCoupon, { foreignKey: "assetId" });
 Asset.hasOne(AstNFTCard, { foreignKey: "assetId" });
-Asset.hasMany(Voucher, { foreignKey: "assetId" });
+Asset.hasOne(Voucher, { foreignKey: "assetId" });
 Asset.hasMany(VoucherCoupon, { foreignKey: "assetId" });
 Asset.hasMany(Badge, { foreignKey: "assetId" });
 

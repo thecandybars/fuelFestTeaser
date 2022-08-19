@@ -1,11 +1,13 @@
 .card {
-  width: 150px;
+  width: 50%;
   text-align: center;
   font-size: smaller;
   margin-top: 20px;
+  padding: 5px;
 }
-.card p {
-  margin-top: 5px;
+.image {
+  border: 1px solid #feae2e;
+  border-radius: 5px;
 }
 .collection {
   border: 1px solid #d9d9d9;

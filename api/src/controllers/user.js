@@ -59,11 +59,6 @@ async function getUsersById(data) {
   }
 }
 async function createUser(data) {
-  console.log(
-    "🚀 ~ file: user.js ~ line 62 ~ createUser ~ data",
-    !!data.body.walletId
-  );
-
   try {
     const response = await User.create({
       firstName: data.body.firstName,

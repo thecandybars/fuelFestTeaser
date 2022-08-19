@@ -17,6 +17,7 @@ const {
   AstNFTCard,
   Asset,
   Template,
+  Voucher,
 } = require("./src/db.js");
 
 // Syncing all the models at once.
@@ -119,7 +120,23 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-          name: "John Doe",
+          name: "Mark Davis",
+          facebook: "www.facebook.com/johndoe",
+          twitter: "www.twitter.com/johndoe",
+          instagram: "www.instagram.com/johndoe",
+          youtube: "www.youtube.com/johndoe",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
+          name: "Malcom Young",
+          facebook: "www.facebook.com/johndoe",
+          twitter: "www.twitter.com/johndoe",
+          instagram: "www.instagram.com/johndoe",
+          youtube: "www.youtube.com/johndoe",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
+          name: "John Peter Graves",
           facebook: "www.facebook.com/johndoe",
           twitter: "www.twitter.com/johndoe",
           instagram: "www.instagram.com/johndoe",
@@ -141,9 +158,10 @@ conn.sync({ force, alter }).then(() => {
           chasis: "AZ-76",
           description:
             "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+          location: "H15",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
         },
 
         {
@@ -155,9 +173,10 @@ conn.sync({ force, alter }).then(() => {
           chasis: "EWZ-46",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+          location: "A72",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025318a",
@@ -168,9 +187,10 @@ conn.sync({ force, alter }).then(() => {
           chasis: "EWQ-9",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+          location: "R35",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319c",
@@ -181,6 +201,7 @@ conn.sync({ force, alter }).then(() => {
           chasis: "Q29",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+          location: "T25",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
@@ -194,6 +215,7 @@ conn.sync({ force, alter }).then(() => {
           chasis: "27Ty",
           description:
             "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+          location: "E02",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
@@ -266,22 +288,32 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "43957a19-fa0d-4796-8614-87b427039f81",
-          title: "Classic",
+          title: "Best interior",
+          icon: "uploads/voteCategory/voteCategory-1660858326182.svg",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
           title: "Best ligths",
+          icon: "uploads/voteCategory/voteCategory-1660858314514.svg",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "43957a19-fa0d-4796-8614-87b427039f41",
           title: "Best paint",
+          icon: "uploads/voteCategory/voteCategory-1660858304071.svg",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "43957a19-fa0d-4796-8614-87b423039f41",
           title: "Best rims",
+          icon: "uploads/voteCategory/voteCategory-1660858293218.svg",
+          desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
+        },
+        {
+          id: "13957a19-fa0d-4796-8614-87b423039f41",
+          title: "Best stereo",
+          icon: "uploads/voteCategory/voteCategory-1660858276661.svg",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
       ],
@@ -291,11 +323,8 @@ conn.sync({ force, alter }).then(() => {
     );
     await CarVoteCategory.bulkCreate(
       [
-        // CLASSIC
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-          voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
-        },
+        // INTERIOR
+
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
@@ -321,14 +350,7 @@ conn.sync({ force, alter }).then(() => {
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
         },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
-        },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
-        },
+
         {
           carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
@@ -338,14 +360,7 @@ conn.sync({ force, alter }).then(() => {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
         },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
-        },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
-        },
+
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
@@ -363,17 +378,25 @@ conn.sync({ force, alter }).then(() => {
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
         },
-        {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
-        },
+
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
         },
+
+        // BEST STEREO
+        {
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
+        },
+        {
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
+        },
+
         {
           carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
+          voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
         },
       ],
       {
@@ -490,6 +513,16 @@ conn.sync({ force, alter }).then(() => {
           title: "NFT Card",
           table: "AstNFTCard",
         },
+        {
+          id: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          title: "Voucher",
+          table: "Voucher",
+        },
+        {
+          id: "8664b015-7972-408a-bf8d-13355b0da2fc",
+          title: "Voucher coupon",
+          table: "VoucherCoupon",
+        },
       ],
       {
         ignoreDuplicates: true,
@@ -499,6 +532,11 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+        },
+        {
+          id: "90505905-3eda-4b8c-a300-64c3caaedcab",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
         },
@@ -1013,6 +1051,218 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    ///////// VOUCHERS   //////////////////////
+
+    /// CORBEAU SEAT   //////////////////////
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-0000-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0001-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0002-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Voucher.bulkCreate(
+      [
+        {
+          id: "6ed13fb6-0357-0000-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0000-9fc1-1d0974d24aea",
+          title: "10% off Corbeau fixed back racing seat",
+          brand: "Corbeau seats",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660836172829.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 100,
+        },
+        {
+          id: "6ed13fb6-0357-0001-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0001-9fc1-1d0974d24aea",
+          title: "10% off Corbeau fixed back racing seat",
+          brand: "Corbeau seats",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660836172829.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 100,
+        },
+        {
+          id: "6ed13fb6-0357-0002-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0002-9fc1-1d0974d24aea",
+          title: "10% off Corbeau fixed back racing seat",
+          brand: "Corbeau seats",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660836172829.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 100,
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    ///////// AIR FRESHNER   //////////////////////
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-0003-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0004-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0005-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Voucher.bulkCreate(
+      [
+        {
+          id: "6ed13fb6-0357-0003-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0003-9fc1-1d0974d24aea",
+          title: "1 free Air freshener",
+          brand: "Sir Stink-a-none",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837031969.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 50,
+        },
+        {
+          id: "6ed13fb6-0357-0004-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0004-9fc1-1d0974d24aea",
+          title: "1 free Air freshener",
+          brand: "Sir Stink-a-none",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837031969.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 50,
+        },
+        {
+          id: "6ed13fb6-0357-0005-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0005-9fc1-1d0974d24aea",
+          title: "1 free Air freshener",
+          brand: "Sir Stink-a-none",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837031969.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 50,
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    ///////// CERAMIC WHEEL //////////////////////
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-0006-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0007-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-0008-9fc1-1d0974d24aea",
+          categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await Voucher.bulkCreate(
+      [
+        {
+          id: "6ed13fb6-0357-0006-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0006-9fc1-1d0974d24aea",
+          title: "15% off Ceramic wheels protection",
+          brand: "Mr. Ceramic",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837229044.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0357-0007-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0007-9fc1-1d0974d24aea",
+          title: "15% off Ceramic wheels protection",
+          brand: "Mr. Ceramic",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837229044.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
+        },
+        {
+          id: "6ed13fb6-0357-0008-80f5-7cab1295f813",
+          isBurnt: false,
+          assetId: "dbb148fa-9031-0008-9fc1-1d0974d24aea",
+          title: "15% off Ceramic wheels protection",
+          brand: "Mr. Ceramic",
+          templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
+          image: "uploads/voucher/voucher-1660837229044.jpg",
+          burnable: true,
+          transferable: true,
+          expires: true,
+          price: 150,
         },
       ],
       {

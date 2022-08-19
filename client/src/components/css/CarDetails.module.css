@@ -39,7 +39,15 @@
   width: 28px;
   height: 28px;
 }
-
+.carDetail {
+  padding-top: 10px;
+}
+.socialIcon {
+  width: 30px;
+  padding-right: 5px;
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%); /* Color=white */
+}
 .mainData {
   display: flex;
   justify-content: space-around;

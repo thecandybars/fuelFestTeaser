@@ -9,7 +9,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    brand: {
       type: DataTypes.STRING,
       allowNull: true,
     },

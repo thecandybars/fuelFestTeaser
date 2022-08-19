@@ -50,33 +50,46 @@ async function getNFTCards() {
       where: { categoryId: id },
       include: AstNFTCard,
     });
-    // I want to add the collection (=festival short name) to the response. None of the two blocks work.
-    // WHY??
-
-    // const response = assets.map((asset) => {
-    //   const templateId = asset.astNFTCard.templateId;
-    //   const { festivalId } = await Template.findByPk(templateId);
-    //   const collection = await Festival.findByPk(festivalId);
-    //   return { ...asset, ...collection };
-    //   // return templateId;
-    // });
-
-    // const response = [];
-    // for (let i = 0; i < assets.length; i++) {
-    //   const asset = JSON.stringify(assets[i]);
-    //   // const asset = JSON.parse(assets[i]);
-    //   console.log("🚀 ~ file: asset.js ~ line 64 ~ getNFTCards ~ asset", asset);
-    //   const { templateId } = asset.astNFTCard;
-    //   const { festivalId } = await Template.findByPk(templateId);
-    //   const collection = await Festival.findByPk(festivalId);
-    //   asset.collection = collection;
-    //   response.push(asset);
-    // }
-    const response = assets;
+    const assetsWithCollections = assets.map(async (asset) => {
+      const templateId = asset.astNFTCard.templateId;
+      const { festivalId } = await Template.findByPk(templateId);
+      const collection = await Festival.findByPk(festivalId);
+      return { asset, collection };
+    });
+    const response = Promise.all(assetsWithCollections).then((res) => res);
     return response;
-    // return !response.length
-    //   ? dbError(`No Assets Categories found. Create some.`, 404)
-    //   : response;
+    return !response.length
+      ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
+async function createAssetCategory(data) {
+  try {
+    const newCategory = await AssetCategory.create({
+      title: data.title,
+      table: data.table,
+    });
+    return newCategory;
+  } catch (err) {
+    return err;
+  }
+}
+async function getVouchers(req) {
+  console.log("🚀 ESTOY");
+  try {
+    const { id } = await AssetCategory.findOne({
+      where: { table: "Voucher" },
+    });
+    const response = await Asset.findAll({
+      where: { categoryId: id },
+      include: Voucher,
+    });
+
+    return !response.length
+      ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
   } catch (err) {
     return err;
   }
@@ -328,4 +341,5 @@ module.exports = {
   getAllAssetCategory,
   createVoucher,
   getNFTCards,
+  getVouchers,
 };

@@ -14,6 +14,7 @@ const {
   getAssets,
   getAllAssetCategory,
   getNFTCards,
+  getVouchers,
 } = require("../controllers/index.js");
 
 // Image middleware
@@ -61,14 +62,6 @@ router.post(
   }
 );
 
-// Get all assets for a wallet
-router.get("/:walletId", async (req, res) => {
-  const { walletId } = req.params;
-  const response = await getAssets(walletId);
-  !response.error
-    ? res.status(200).json(response)
-    : res.status(response.error.status).send(response.error.title);
-});
 router.post(
   "/nftCard/:walletId/:quantity",
   uploadNFTCard.array("images"),
@@ -79,6 +72,13 @@ router.post(
       : res.status(response.error.status).send(response.error.title);
   }
 );
+// Get all Vouchers
+router.get("/voucher", async (req, res) => {
+  const response = await getVouchers(req);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
 // Create new Voucher
 router.post(
   "/voucher/:walletId/:quantity",
@@ -101,6 +101,14 @@ router.post("/category", async (req, res) => {
 // // Wallet buys available asset from marketplace
 router.post("/:assetId/buy/:walletId", async (req, res) => {
   const response = await buyAsset(req.params);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Get all assets for a wallet
+router.get("/:walletId", async (req, res) => {
+  const { walletId } = req.params;
+  const response = await getAssets(walletId);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

@@ -126,7 +126,7 @@ export default function Wallet() {
                 src={questIcon}
                 className={style.walletLinks_icon}
               />
-              <p>Quest</p>
+              <p>Quests / Pins</p>
             </Link>
           </li>
           <li className={style.walletLinks_btn}>
@@ -136,7 +136,7 @@ export default function Wallet() {
                 src={marketplaceIcon}
                 className={style.walletLinks_icon}
               />
-              <p>Marketplace</p>
+              <p>NFT Marketplace</p>
             </Link>
           </li>
           <li className={style.walletLinks_btn}>
@@ -146,7 +146,7 @@ export default function Wallet() {
                 src={inventoryIcon}
                 className={style.walletLinks_icon}
               />
-              <p>Inventory</p>
+              <p>NFT Garage</p>
             </Link>
           </li>
           <li className={style.walletLinks_btn}>

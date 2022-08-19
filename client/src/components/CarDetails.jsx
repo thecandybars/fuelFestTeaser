@@ -10,6 +10,10 @@ import Button2 from "../assets/Button2";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { walletId } from "../common/getLoginData";
+import socialFacebookIcon from "../icons/social/facebook.svg";
+import socialInstagramIcon from "../icons/social/instagram.svg";
+import socialTwitterIcon from "../icons/social/twitter.svg";
+import socialYoutubeIcon from "../icons/social/youtube.svg";
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
@@ -117,6 +121,16 @@ export default function CarDetails(props) {
               {/* <h3>Details</h3> */}
               <p>{carDetails.description}</p>
             </div>
+            {/* CAR DETAILS */}
+            <div className={style.carDetail}>
+              <p className={style.mainData_text}>
+                Brand: {carDetails.manufacturer}
+              </p>
+              <p className={style.mainData_text}>
+                Tires: {carDetails.tireManufacturer}
+              </p>
+              <p className={style.mainData_text}>Chasis: {carDetails.chasis}</p>
+            </div>
             {/* CAR OWNER */}
             {carDetails.carOwner && (
               <div className={style.carOwner}>
@@ -134,14 +148,11 @@ export default function CarDetails(props) {
                     </a>
                   )}
                   {carDetails.carOwner.facebook && (
-                    <a
-                      className={style.carOwner_social}
-                      href={carDetails.carOwner.facebook}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Facebook
-                    </a>
+                    <img
+                      alt="facebook"
+                      src={socialFacebookIcon}
+                      className={style.socialIcon}
+                    />
                   )}
                   {carDetails.carOwner.youtube && (
                     <a

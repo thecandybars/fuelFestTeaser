@@ -8,10 +8,6 @@ import CarDetails from "./CarDetails";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
-  console.log(
-    "🚀 ~ file: Cars.jsx ~ line 11 ~ Cars ~ fetchedCars",
-    fetchedCars
-  );
   const [filteredCars, setFilteredCars] = useState([]);
   const [fetchedFavs, setFetchedFavs] = useState([]);
   const [carDetails, setCarDetails] = useState("");
@@ -66,6 +62,7 @@ export default function Cars() {
           owner={car.carOwner.name}
           voting={car.voteCategories}
           manufacturer={car.manufacturer}
+          location={car.location}
           tire={car.tireManufacturer}
           chasis={car.chasis}
           isFavorite={!!fetchedFavs.find((favCar) => car.id === favCar.id)}

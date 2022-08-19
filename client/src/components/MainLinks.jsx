@@ -31,10 +31,18 @@ export default function MainLinks() {
           </NavLink>
         </div>
         <div className={style.col2}>
+          {/* <NavLink to="#"> */}
           <img src={vendorsImg} alt="vendors" />
+          {/* </NavLink> */}
+          {/* <NavLink to="#"> */}
           <img src={sponsorsImg} alt="sponsors" />
+          {/* </NavLink> */}
+          {/* <NavLink to="#"> */}
           <img src={mapsImg} alt="maps" />
+          {/* </NavLink> */}
+          {/* <NavLink to="/wallet"> */}
           <img src={walletImg} alt="wallet" />
+          {/* </NavLink> */}
         </div>
       </div>
     </div>
