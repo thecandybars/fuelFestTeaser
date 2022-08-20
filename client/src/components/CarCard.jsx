@@ -27,7 +27,20 @@ export default function CarCard(props) {
           className={style.car_image}
         />
         <div className={style.carData}>
-          <h3 className={style.carTitle}>{props.title}</h3>
+          {/* 1ST ROW   TITLE + FAVORITE */}
+          <div className={style.carTitle}>
+            <h3>{props.title}</h3>
+            <img
+              className={`${style.smIcon} ${style.white}`}
+              alt={props.isFavorite ? "Favorite" : "Not favorite"}
+              src={props.isFavorite ? favYes : favNo}
+              onClick={(e) => {
+                e.stopPropagation();
+                props.togFav(props.id);
+              }}
+            />
+          </div>
+          {/* 2ND ROW OWNER */}
           <div className={style.owner}>
             <img
               alt="owner icon"
@@ -36,20 +49,7 @@ export default function CarCard(props) {
             />
             {props.owner}
           </div>
-          <div className={style.voteCategories}>
-            <img
-              alt="votes icon"
-              src={votesIcon}
-              className={`${style.smIcon} ${style.white}`}
-            />
-            {props.voting.map((voteCat) => (
-              <img
-                alt="icon"
-                src={`${apiURL}/${voteCat.icon}`}
-                className={`${style.smIcon} ${style.white}`}
-              />
-            ))}
-          </div>
+          {/* 3RD ROW LOCATION + MAP*/}
           <div className={style.location}>
             <div className={style.location_data}>
               <img
@@ -59,31 +59,23 @@ export default function CarCard(props) {
               />
               <p>{props.location}</p>
             </div>
-            {/* <div className={style.location_map}>
+            <div className={style.location_map}>
+              <img alt="map icon" src={mapIcon} className={style.smIcon} />
               <Link to="#">
                 <p>map</p>
               </Link>
-              <img alt="map icon" src={mapIcon} className={style.smIcon} />
-            </div> */}
+            </div>
           </div>
-        </div>
-        <div className={style.buttons}>
-          <img
-            className={style.isFavorite}
-            alt={props.isFavorite ? "Favorite" : "Not favorite"}
-            src={props.isFavorite ? favYes : favNo}
-            onClick={(e) => {
-              e.stopPropagation();
-              props.togFav(props.id);
-            }}
-          />
-          <div className={style.location_map}>
-            <img alt="map icon" src={mapIcon} className={style.smIcon} />
-            <Link to="#">
-              <p>map</p>
-            </Link>
+          {/* 4TH ROW VOTING CATEGORIES*/}
+          <div className={style.voteCategories}>
+            {props.voting.map((voteCat) => (
+              <img
+                alt="icon"
+                src={`${apiURL}/${voteCat.icon}`}
+                className={`${style.smIcon} ${style.white}`}
+              />
+            ))}
           </div>
-          {/* <Button1 title="Vote" href="/voting" style={{ fontSize: "16px" }} /> */}
         </div>
       </div>
     </>
