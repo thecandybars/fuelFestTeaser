@@ -80,7 +80,7 @@ export default function Wallet() {
               <span style={{ marginRight: "25px" }}>{displayDrift.frozen}</span>
             </p>
             <p>
-              Drift dip
+              Drift drip
               <span>
                 120<small>/DAY</small>
               </span>
