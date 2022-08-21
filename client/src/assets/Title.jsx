@@ -5,13 +5,16 @@ import backIcon from "../icons/arrow_back_ios_new_FILL0_wght400_GRAD0_opsz48.svg
 
 export default function Title(props) {
   const StyledTitle = styled.h1`
-    font-family: "Oswald", sans - serif;
+    font-family: "Oswald";
   `;
   const StyledBackButton = styled.img`
     width: 35px;
     padding-right: 10px;
     filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
       brightness(118%) contrast(100%);
+  `;
+  const StyledImage = styled.img`
+    margin-left: 120px;
   `;
   const navigate = useNavigate();
 
@@ -25,6 +28,7 @@ export default function Title(props) {
         />
       )}
       {props.title}
+      {!!props.image && <StyledImage alt="An icon" src={props.image} />}
     </StyledTitle>
   );
 }

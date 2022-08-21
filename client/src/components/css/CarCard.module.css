@@ -35,9 +35,9 @@
 }
 .car_image {
   width: 140px;
-  border-radius: 10px;
   object-fit: cover;
   object-position: bottom;
+  border-radius: 10px;
 }
 .voteCategories {
   justify-content: flex-start;

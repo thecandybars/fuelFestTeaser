@@ -5,6 +5,9 @@ import style from "./css/Wallet.module.css";
 import driftCoin from "../img/driftCoin.png";
 import historyIcon from "../icons/history.svg";
 import { walletId } from "../common/getLoginData";
+import spendIcon from "../icons/north_FILL0_wght400_GRAD0_opsz48.svg";
+import redeemIcon from "../icons/star_FILL0_wght400_GRAD0_opsz48.svg";
+import manageIcon from "../icons/settings_FILL0_wght400_GRAD0_opsz48.svg";
 import voucherIcon from "../icons/sell_FILL1_wght400_GRAD0_opsz48.svg";
 import votingIcon from "../icons/military_tech_FILL1_wght400_GRAD0_opsz48.svg";
 import questIcon from "../icons/stars_FILL0_wght400_GRAD0_opsz48.svg";
@@ -54,34 +57,61 @@ export default function Wallet() {
   };
   return (
     <MainContainer>
-      <Title title="Wallet" backButton="true"></Title>
+      <div className={style.titleBaar}>
+        <Title title="YOUR WALLET" backButton="true" image={driftCoin}></Title>
+        {/* <img alt="drift coin" src={driftCoin} /> */}
+      </div>
       <div className={style.walletData}>
-        <p className={style.walletData_title}>BALANCE</p>
-        <p className={style.walletData_total}>
-          {parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)}
-        </p>
-        <p className={style.walletData_units}>DRIFT</p>
-        <div className={style.walletData_balance}>
-          <p>
-            Liquid <span>{displayDrift.liquid}</span>
-          </p>
-          <p>
-            Frozen <span>{displayDrift.frozen}</span>
-          </p>
-          <p>
-            Drift dip <span>120/day</span>
-          </p>
+        <div className={style.row1}>
+          <div className={style.walletData_balance}>
+            <p className={style.walletData_title}>BALANCE</p>
+            <p className={style.walletData_total}>
+              {parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)}
+            </p>
+            <p className={style.walletData_units}>DRIFT</p>
+          </div>
+          <div className={style.walletData_detail}>
+            <p>
+              Liquid{" "}
+              <span style={{ marginRight: "25px" }}>{displayDrift.liquid}</span>
+            </p>
+            <p>
+              Frozen{" "}
+              <span style={{ marginRight: "25px" }}>{displayDrift.frozen}</span>
+            </p>
+            <p>
+              Drift dip
+              <span>
+                120<small>/DAY</small>
+              </span>
+            </p>
+          </div>
         </div>
         <div className={style.walletData_history}>
           <img alt="history" src={historyIcon} />
           <p>Token history</p>
         </div>
+        <div className={style.wallet_buttons}>
+          <div className={style.buttonContainer}>
+            <div onClick={handleManageButton} className={style.wallet_button}>
+              <img alt="icon" src={spendIcon} />
+            </div>
+            <p className={style.wallet_button_label}>Spend tokens</p>
+          </div>
+          <div className={style.buttonContainer}>
+            <div onClick={handleManageButton} className={style.wallet_button}>
+              <img alt="icon" src={redeemIcon} />
+            </div>
+            <p className={style.wallet_button_label}>Redeem coupon</p>
+          </div>{" "}
+          <div className={style.buttonContainer}>
+            <div onClick={handleManageButton} className={style.wallet_button}>
+              <img alt="icon" src={manageIcon} />
+            </div>
+            <p className={style.wallet_button_label}>Manage wallet</p>
+          </div>
+        </div>
       </div>
-      <div className={style.wallet_manage}>
-        <button onClick={handleManageButton}>Spend</button>
-        <button onClick={handleManageButton}>Redeem</button>
-        <button onClick={handleManageButton}>Manage</button>
-      </div>{" "}
       {manage && (
         <>
           <input
@@ -97,7 +127,7 @@ export default function Wallet() {
           <button onClick={resetDisplayDrift}>Reset</button>
         </>
       )}
-      <div>
+      <div className={style.linksContainer}>
         <ul className={style.walletLinks}>
           <li className={style.walletLinks_btn}>
             <Link to="/wallet/vouchers">

@@ -70,6 +70,7 @@ export default function CarCard(props) {
           <div className={style.voteCategories}>
             {props.voting.map((voteCat) => (
               <img
+                key={voteCat.id}
                 alt="icon"
                 src={`${apiURL}/${voteCat.icon}`}
                 className={`${style.smIcon} ${style.white}`}
