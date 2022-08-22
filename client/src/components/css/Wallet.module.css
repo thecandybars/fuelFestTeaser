@@ -141,11 +141,34 @@
 
 /* LINKS  */
 .linksContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
   margin: 60px auto;
   border-top: 2px solid #d9d9d9;
   padding-top: 20px;
   width: 90%;
-  /* margin-top: 20px; */
+}
+.walletLinks_btn {
+  width: 33%;
+  /* height: 110px; */
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  /* background-color: #707070; */
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* border-radius: 15px; */
+}
+.walletLinks_icon {
+  filter: invert(83%) sepia(14%) saturate(5894%) hue-rotate(334deg)
+    brightness(103%) contrast(102%);
+}
+/* .linksContainer {
+  margin: 60px auto;
+  border-top: 2px solid #d9d9d9;
+  padding-top: 20px;
+  width: 90%;
 }
 .walletLinks {
   display: flex;
@@ -164,4 +187,4 @@
 .walletLinks_icon {
   filter: invert(83%) sepia(14%) saturate(5894%) hue-rotate(334deg)
     brightness(103%) contrast(102%);
-}
+} */

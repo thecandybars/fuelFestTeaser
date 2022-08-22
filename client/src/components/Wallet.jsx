@@ -14,6 +14,12 @@ import questIcon from "../icons/stars_FILL0_wght400_GRAD0_opsz48.svg";
 import marketplaceIcon from "../icons/storefront_FILL1_wght400_GRAD0_opsz48.svg";
 import inventoryIcon from "../icons/inventory_2_FILL1_wght400_GRAD0_opsz48.svg";
 import statisticsIcon from "../icons/auto_graph_FILL1_wght400_GRAD0_opsz48.svg";
+import walletVouchers from "../img/walletVouchers.png";
+import walletVoting from "../img/walletVoting.png";
+import walletPinQuest from "../img/walletPinQuest.png";
+import walletNFTMarketplace from "../img/walletNFTMarketplace.png";
+import walletNFTInventory from "../img/walletNFTInventory.png";
+import walletStatistics from "../img/walletStatistics.png";
 import Title from "../assets/Title.jsx";
 import MainContainer from "../assets/MainContainer";
 
@@ -128,68 +134,84 @@ export default function Wallet() {
         </>
       )}
       <div className={style.linksContainer}>
-        <ul className={style.walletLinks}>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/vouchers">
-              <img
-                alt="Discount vouchers"
-                src={voucherIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>Discount vouchers</p>
-            </Link>
-          </li>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/voting">
-              <img
-                alt="Voting"
-                src={votingIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>Voting</p>
-            </Link>
-          </li>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/quests">
-              <img
-                alt="Quest"
-                src={questIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>Quests / Pins</p>
-            </Link>
-          </li>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/marketplace">
-              <img
-                alt="Marketplace"
-                src={marketplaceIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>NFT Marketplace</p>
-            </Link>
-          </li>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/NFTGarage">
-              <img
-                alt="Inventory"
-                src={inventoryIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>NFT Garage</p>
-            </Link>
-          </li>
-          <li className={style.walletLinks_btn}>
-            <Link to="/wallet/stats">
-              <img
-                alt="Statistics"
-                src={statisticsIcon}
-                className={style.walletLinks_icon}
-              />
-              <p>Statistics</p>
-            </Link>
-          </li>
-        </ul>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletVouchers})` }}
+        >
+          <Link to="/wallet/vouchers">
+            <img
+              alt="Discount vouchers"
+              src={voucherIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>Discount vouchers</p>
+          </Link>
+        </div>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletVoting})` }}
+        >
+          <Link to="/wallet/voting">
+            <img
+              alt="Voting"
+              src={votingIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>Voting</p>
+          </Link>
+        </div>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletPinQuest})` }}
+        >
+          <Link to="/wallet/quests">
+            <img
+              alt="Quest"
+              src={questIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>Quests / Pins</p>
+          </Link>
+        </div>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletNFTMarketplace})` }}
+        >
+          <Link to="/wallet/marketplace">
+            <img
+              alt="Marketplace"
+              src={marketplaceIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>NFT Marketplace</p>
+          </Link>
+        </div>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletNFTInventory})` }}
+        >
+          <Link to="/wallet/NFTGarage">
+            <img
+              alt="Inventory"
+              src={inventoryIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>NFT Garage</p>
+          </Link>
+        </div>
+        <div
+          className={style.walletLinks_btn}
+          style={{ backgroundImage: `url(${walletStatistics})` }}
+        >
+          <Link to="/wallet/stats">
+            <img
+              alt="Statistics"
+              src={statisticsIcon}
+              className={style.walletLinks_icon}
+            />
+            <p>Statistics</p>
+          </Link>
+        </div>
       </div>
     </MainContainer>
   );
