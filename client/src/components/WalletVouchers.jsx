@@ -4,6 +4,10 @@ import Title from "../assets/Title";
 import { getVouchers } from "../services/assets";
 import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
+import vouchersBanner from "../img/vouchersBanner.jpg";
+import placeholder1 from "../img/vouchersPlaceholder1.jpg";
+import placeholder2 from "../img/vouchersPlaceholder2.jpg";
+import placeholder3 from "../img/vouchersPlaceholder3.jpg";
 
 export default function WalletVouchers() {
   const StyledContainer = styled.div`
@@ -49,9 +53,22 @@ export default function WalletVouchers() {
   const RenderVoucherCards = filteredVouchers.map((voucher) => (
     <VoucherCard data={{ ...voucher }} />
   ));
+
+  const images = [placeholder1, placeholder2, placeholder3];
+  const [counter, setCounter] = useState(0);
+  const [image, setImage] = useState(images[0]);
+  function handleImage() {
+    setCounter((prev) => (prev === 2 ? 0 : prev + 1));
+    setImage(images[counter]);
+  }
+
   return (
     <MainContainer>
-      {<Title title="Vouchers" backButton="true" />}
+      {<Title title="VOUCHERS" backButton="true" />}
+
+      <img alt="phd" src={image} onClick={handleImage} />
+
+      {/* <img alt="banner" src={vouchersBanner} style={{ width: "100%" }} />
       <div
         style={{
           display: "flex",
@@ -73,7 +90,7 @@ export default function WalletVouchers() {
         />
       </div>
       <hr />
-      <StyledContainer>{RenderVoucherCards}</StyledContainer>
+      <StyledContainer>{RenderVoucherCards}</StyledContainer> */}
     </MainContainer>
   );
 }

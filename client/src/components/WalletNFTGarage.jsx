@@ -14,7 +14,7 @@ export default function WalletNFTGarage() {
   }
   return (
     <MainContainer>
-      <Title title="NFT Garage" backButton="true" />
+      <Title title="NFT GARAGE" backButton="true" />
       <img alt="phd" src={image} onClick={handleImage} />
     </MainContainer>
   );

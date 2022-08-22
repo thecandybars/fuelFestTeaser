@@ -22,7 +22,7 @@ export default function VoucherCard(props) {
         }}
       >
         <div className={style.detailsButton}>Details</div>
-        <div className={style.buyButton}>Buy</div>
+        <div className={style.buyButton}>Redeem</div>
       </p>
     </div>
   );
