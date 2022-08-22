@@ -7,9 +7,9 @@ export default function NFTCardCard(props) {
   return (
     <div className={style.card}>
       <img alt="NFT Card of a car" src={`${apiURL}/${props.imgFront}`} />
-      <div className={style.collection}>{props.collection}</div>
+      {/* <div className={style.collection}>{props.collection}</div> */}
       <p>{props.title}</p>
-      <p style={{ color: "#feae2e" }}>{props.price} drift</p>
+      <p style={{ color: "#feae2e" }}>{props.price} DRIFT</p>
       <p
         style={{
           display: "flex",

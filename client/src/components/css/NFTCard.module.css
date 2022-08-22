@@ -1,11 +1,12 @@
 .card {
   width: 150px;
+  font-family: "Oswald";
   text-align: center;
   font-size: smaller;
   margin-top: 20px;
 }
 .card p {
-  margin-top: 5px;
+  margin-bottom: 2px;
 }
 .collection {
   border: 1px solid #d9d9d9;
@@ -17,7 +18,7 @@
 .buyButton {
   background-color: #00703d;
   width: fit-content;
-  padding: 6px 25px;
+  padding: 0px 25px;
   border: none;
   border-radius: 15px;
 }

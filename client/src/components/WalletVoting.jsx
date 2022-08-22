@@ -15,7 +15,7 @@ export default function WalletVoting() {
   }
   return (
     <MainContainer>
-      <Title title="Voting" backButton="true" />
+      <Title title="VOTING" backButton="true" />
       <img alt="phd" src={image} onClick={handleImage} />
     </MainContainer>
   );

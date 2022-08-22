@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import MainContainer from "../assets/MainContainer";
+import WalletContainer from "../assets/WalletContainer";
 import Title from "../assets/Title";
 import { getNFTCards } from "../services/assets";
 import NFTCardCard from "./NFTCardCard";
 import styled from "styled-components";
 import { Link } from "@mui/material";
+import { style } from "@mui/system";
 
 export default function WalletMarketplace() {
   const StyledContainer = styled.div`
@@ -12,6 +13,44 @@ export default function WalletMarketplace() {
     justify-content: space-around;
     flex-wrap: wrap;
   `;
+  const StyledAssetFilter = styled.select`
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    color: #d9d9d9;
+    width: 40%;
+    padding: 2px;
+    background-color: transparent;
+  `;
+  const StyledAssetSearch = styled.input`
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    color: #d9d9d9;
+    width: 60%;
+    margin-left: 5px;
+    padding: 2px;
+    background-color: transparent;
+  `;
+  const StyledPriceRow = styled.div`
+    display: flex;
+    width: 75%;
+    margin: 0 0 0 auto;
+    padding: 2px 0;
+    p {
+      font-family: "Oswald";
+      color: #feae2e;
+      width: 70px;
+    }
+    input {
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      color: #d9d9d9;
+      width: 60%;
+      margin-left: 5px;
+      padding: 2px;
+      background-color: transparent;
+    }
+  `;
+
   const [fetchedCards, setFetchedCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   useEffect(() => {
@@ -36,29 +75,31 @@ export default function WalletMarketplace() {
     );
   });
   return (
-    <MainContainer>
-      {<Title title="Marketplace" backButton="true" />}
-      <select name="assetsFilter" onChange={(e) => console.log(e)}>
-        <option value="all">All assets</option>
-        <option value="drifting">Cards</option>
-        <option value="guest">SuperCards</option>
-        <option value="music">UberCards</option>
-      </select>
-      <select name="coolectionFilter" onChange={(e) => console.log(e)}>
-        <option value="all">All collections</option>
-        <option value="drifting">Los Angeles 2019</option>
-        <option value="guest">Bogotá 2020</option>
-        <option value="music">Denver 2021</option>
-      </select>
-      <br />
-      <p>Price</p>
-      <input type="number" placeholder="min" />
-      <input type="number" placeholder="max" />
-      <p>Mint</p>
-      <input type="number" placeholder="min" />
-      <input type="number" placeholder="max" />
-      <hr />
+    <WalletContainer>
+      {<Title title="NFT MARKETPLACE" backButton="true" />}
+      <div style={{ display: "flex", padding: "5px 0" }}>
+        <StyledAssetFilter name="assetsFilter" onChange={(e) => console.log(e)}>
+          <option value="all">All </option>
+          <option value="drifting">NFT Cards</option>
+          {/* <option value="guest">Vouchers</option> */}
+          <option value="music">Others</option>
+        </StyledAssetFilter>
+        <StyledAssetSearch type="text" />
+      </div>
+      <div>
+        <StyledPriceRow>
+          <p>PRICE</p>
+          <input type="number" placeholder="min" />
+          <input type="number" placeholder="max" />
+        </StyledPriceRow>
+        <StyledPriceRow>
+          <p>MINT</p>
+          <input type="number" placeholder="min" />
+          <input type="number" placeholder="max" />
+        </StyledPriceRow>
+      </div>
+
       <StyledContainer>{RenderNFTCards}</StyledContainer>
-    </MainContainer>
+    </WalletContainer>
   );
 }
