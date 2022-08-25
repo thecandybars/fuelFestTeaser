@@ -9,3 +9,7 @@ export async function getVouchers() {
   const { data } = await axios.get(`/asset/voucher`);
   return data;
 }
+export async function getAsset(assetId) {
+  const { data } = await axios.get(`/asset/byId/${assetId}`);
+  return data;
+}

@@ -17,6 +17,8 @@ import WalletVoting from "./components/WalletVoting";
 import WalletQuests from "./components/WalletQuests";
 import WalletNFTGarage from "./components/WalletNFTGarage";
 import WalletStats from "./components/WalletStats";
+import NFTCar from "./components/NFTCar";
+import WalletVotingCategory from "./components/WalletVotingCategory";
 
 function App() {
   return (
@@ -33,8 +35,13 @@ function App() {
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/wallet/vouchers" element={<WalletVouchers />} />
           <Route path="/wallet/voting" element={<WalletVoting />} />
+          <Route
+            path="/wallet/voting/category/:voteCategory"
+            element={<WalletVotingCategory />}
+          />
           <Route path="/wallet/quests" element={<WalletQuests />} />
           <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
+          <Route path="/wallet/marketplace/:assetId" element={<NFTCar />} />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
           <Route path="/wallet/stats" element={<WalletStats />} />
           <Route path="/voting/:carId" element={<Voting />} />

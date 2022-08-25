@@ -12,6 +12,7 @@ const {
   createVoucher,
   buyAsset,
   getAssets,
+  getAsset,
   getAllAssetCategory,
   getNFTCards,
   getVouchers,
@@ -101,6 +102,13 @@ router.post("/category", async (req, res) => {
 // // Wallet buys available asset from marketplace
 router.post("/:assetId/buy/:walletId", async (req, res) => {
   const response = await buyAsset(req.params);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Get all assets for a wallet
+router.get("/byId/:assetId", async (req, res) => {
+  const response = await getAsset(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

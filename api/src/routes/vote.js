@@ -4,11 +4,22 @@
 */
 
 const router = require("express").Router();
-const { createVoteCategory, carVote } = require("../controllers/index.js");
+const {
+  createVoteCategory,
+  carVote,
+  getVoteCategoryByCat,
+} = require("../controllers/index.js");
 
 const handleStorage = require("../utils/handleStorage");
 const uploadVoteCategory = handleStorage("voteCategory");
 
+// Get ONE vote category
+router.get("/category/:voteCategory", async (req, res) => {
+  const response = await getVoteCategoryByCat(req);
+  !response.error
+    ? res.status(201).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
 // Create NEW vote category
 router.post(
   "/category",

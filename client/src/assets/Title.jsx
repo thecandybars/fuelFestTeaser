@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import backIcon from "../icons/arrow_back_ios_new_FILL0_wght400_GRAD0_opsz48.svg";
 
+const StyledTitle = styled.h1`
+  font-family: "Oswald";
+`;
+const StyledBackButton = styled.img`
+  width: 35px;
+  padding-right: 10px;
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%);
+`;
+const StyledImage = styled.img`
+  margin-left: 120px;
+`;
 export default function Title(props) {
-  const StyledTitle = styled.h1`
-    font-family: "Oswald";
-  `;
-  const StyledBackButton = styled.img`
-    width: 35px;
-    padding-right: 10px;
-    filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
-      brightness(118%) contrast(100%);
-  `;
-  const StyledImage = styled.img`
-    margin-left: 120px;
-  `;
   const navigate = useNavigate();
 
   return (
@@ -29,6 +29,7 @@ export default function Title(props) {
       )}
       {props.title}
       {!!props.image && <StyledImage alt="An icon" src={props.image} />}
+      {props.children}
     </StyledTitle>
   );
 }

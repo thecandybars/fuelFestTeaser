@@ -1,8 +1,38 @@
-const { Vote, VoteCategory, CarVoteCategory, Wallet } = require("../db.js");
+const {
+  Vote,
+  VoteCategory,
+  CarVoteCategory,
+  Wallet,
+  Car,
+  CarImage,
+  CarOwner,
+} = require("../db.js");
 const dbError = require("../utils/dbError");
 
 /////// Vote /////////////////
 
+async function getVoteCategoryByCat(data) {
+  try {
+    const voteCategoryCars = await VoteCategory.findOne({
+      where: { category: data.params.voteCategory },
+      include: Car,
+    });
+
+    const { cars, ...voteCategory } = voteCategoryCars;
+
+    const carsPromises = cars.map(async (car) => {
+      const carImages = await CarImage.findAll({
+        where: { carId: car.id },
+      });
+      const carOwner = await CarOwner.findByPk(car.carOwnerId);
+      return { car, carOwner, carImages };
+    });
+    const response = Promise.all(carsPromises).then((res) => res);
+    return !response ? dbError(`Vote Category has no cars`, 404) : response;
+  } catch (err) {
+    return err;
+  }
+}
 async function createVoteCategory(data) {
   try {
     const response = await VoteCategory.create({
@@ -19,7 +49,6 @@ async function createVoteCategory(data) {
 async function carVote(data) {
   try {
     const wallet = await Wallet.findByPk(data.params.walletId);
-    console.log("🚀 ~ file: vote.js ~ line 21 ~ carVote ~ wallet", wallet);
     if (!wallet)
       return dbError(`Wallet ${data.params.walletId} not found`, 404);
     if (wallet.frozen === 0)
@@ -59,4 +88,5 @@ async function carVote(data) {
 module.exports = {
   createVoteCategory,
   carVote,
+  getVoteCategoryByCat,
 };

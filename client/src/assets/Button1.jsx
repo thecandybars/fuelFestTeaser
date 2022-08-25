@@ -1,20 +1,22 @@
 import React from "react";
 
 export default function Button1(props) {
-  const { style } = props;
   return (
-    <a
-      href={props.href}
+    <div
+      onClick={() => props.onClick}
       style={{
-        color: "white",
-        padding: "5px 10px",
+        fontFamily: "Oswald",
+        width: "fit-content",
+        margin: "0 auto",
+        color: "#d9d9d9",
+        padding: "3px 25px",
         backgroundColor: "#DA1921",
         textDecoration: "none",
-        borderRadius: "12px",
-        ...style,
+        borderRadius: "15px",
+        ...props.style,
       }}
     >
       {props.title}
-    </a>
+    </div>
   );
 }

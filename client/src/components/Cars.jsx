@@ -34,7 +34,8 @@ export default function Cars() {
     await postFavCar(carId);
     fetchFavorites();
   }
-  async function handleShowDetails(carId) {
+  function handleShowDetails(carId) {
+    // This was an async func
     if (carId === "") {
       setCarDetails("");
     } else {
@@ -80,13 +81,17 @@ export default function Cars() {
     .map((car) => car.manufacturer)
     .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
     .map((manufacturer) => (
-      <option value={manufacturer}>{manufacturer}</option>
+      <option key={manufacturer} value={manufacturer}>
+        {manufacturer}
+      </option>
     ));
   const RenderInputTire = fetchedCars
     .map((car) => car.tireManufacturer)
     .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
     .map((tireManufacturer) => (
-      <option value={tireManufacturer}>{tireManufacturer}</option>
+      <option key={tireManufacturer} value={tireManufacturer}>
+        {tireManufacturer}
+      </option>
     ));
   //// FILTER STATE
   const [filterManufacturer, setFilterManufacturer] = useState("all");
