@@ -59,6 +59,7 @@ export default function NFTCar() {
 
   //   INIT
   const [data, setData] = useState({});
+  console.log("🚀 ~ file: NFTCar.jsx ~ line 62 ~ NFTCar ~ data", data);
   useEffect(() => {
     fetchNFTCar(assetId);
   }, []);

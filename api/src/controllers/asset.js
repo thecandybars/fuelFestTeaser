@@ -10,6 +10,9 @@ const {
   Voucher,
   Wallet,
   Template,
+  Car,
+  CarOwner,
+  Sponsor,
 } = require("../db.js");
 const {
   createTokenTransaction,
@@ -18,7 +21,20 @@ const {
 
 /////// ASSET /////////////////
 
-async function getAssets(walletId) {
+async function getAssets() {
+  try {
+    const assets = await Asset.findAll({
+      where: { isListed: true },
+      include: [TokenCoupon, AssetCategory, AstNFTCard, Voucher],
+    });
+    return !assets || assets.length === 0
+      ? dbError(`No assets found for wallet ${walletId}`, 404)
+      : assets;
+  } catch (err) {
+    return err;
+  }
+}
+async function getAssetsByWallet(walletId) {
   try {
     const assets = await Asset.findAll({
       where: { walletId },
@@ -68,9 +84,36 @@ async function getNFTCards() {
 async function getAsset(req) {
   try {
     const { assetId } = req.params;
-    const asset = await Asset.findByPk(assetId, { include: AstNFTCard });
+    const asset = await Asset.findByPk(assetId, { include: AssetCategory });
     return asset;
     return !response.length
+      ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
+async function getNFTCard(req) {
+  try {
+    const { nftCardId } = req.params;
+    const nftCard = await AstNFTCard.findOne({
+      where: { assetId: nftCardId },
+      // include: Car,
+    });
+    // // owner
+    // const ownerId = nftCard.car.carOwnerId;
+    // const owner = await CarOwner.findByPk(ownerId);
+    // nftCard.owner = owner;
+    const { carId } = nftCard;
+    const car = await Car.findOne({
+      where: { id: carId },
+      include: [CarOwner, Sponsor],
+    });
+
+    // nftCard.myCar = car;
+
+    const response = { nftCard, car };
+    return Object.keys(response).length === 0
       ? dbError(`No Assets Categories found. Create some.`, 404)
       : response;
   } catch (err) {
@@ -89,7 +132,6 @@ async function createAssetCategory(data) {
   }
 }
 async function getVouchers(req) {
-  console.log("🚀 ESTOY");
   try {
     const { id } = await AssetCategory.findOne({
       where: { table: "Voucher" },
@@ -354,5 +396,6 @@ module.exports = {
   getAllAssetCategory,
   createVoucher,
   getNFTCards,
+  getNFTCard,
   getVouchers,
 };

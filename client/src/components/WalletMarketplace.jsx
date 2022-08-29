@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Modal from "@mui/material/Modal";
 import WalletContainer from "../assets/WalletContainer";
 import Title from "../assets/Title";
-import { getNFTCards } from "../services/assets";
-import NFTCardCard from "./NFTCardCard";
+import { getAllAssets } from "../services/assets";
+import NFTCardCard from "./WalletMarketplace/NFTCardCard";
+import VoucherCard from "./WalletMarketplace/VoucherCard";
+import ModalBuyNFT from "./WalletMarketplace/ModalBuyNFT";
 import styled from "styled-components";
-import { Link } from "@mui/material";
-import { style } from "@mui/system";
+// import { Link } from "@mui/material";
+// import { style } from "@mui/system";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -50,34 +53,31 @@ const StyledPriceRow = styled.div`
   }
 `;
 export default function WalletMarketplace() {
-  const [fetchedCards, setFetchedCards] = useState([]);
-  console.log(
-    "🚀 ~ file: WalletMarketplace.jsx ~ line 54 ~ WalletMarketplace ~ fetchedCards",
-    fetchedCards
-  );
-  const [filteredCards, setFilteredCards] = useState([]);
+  const [fetchedAssets, setFetchedAssets] = useState([]);
+  const [filteredAssets, setFilteredAssets] = useState([]);
   useEffect(() => {
-    fetchCards();
+    fetchAssets();
   }, []);
-  async function fetchCards() {
-    const fetched = await getNFTCards();
-    setFetchedCards(fetched);
-    setFilteredCards(fetched);
+  async function fetchAssets() {
+    const fetched = await getAllAssets();
+    setFetchedAssets(fetched);
+    setFilteredAssets(fetched);
   }
   // CARDS
-  const RenderNFTCards = filteredCards.map((card) => {
-    return (
-      <>
-        <NFTCardCard
-          key={card.asset.id}
-          id={card.asset.id}
-          imgFront={card.asset.astNFTCard.imageFront}
-          collection={card.collection.short}
-          title={card.asset.astNFTCard.name}
-          price={card.asset.astNFTCard.price}
-        />
-      </>
+  const [selectedCard, setSelectedCard] = useState({});
+  function handleBuy(cardId) {
+    const selectAssetData = fetchedAssets.filter(
+      (card) => card.asset.id === cardId
     );
+    setSelectedCard(...selectAssetData);
+    setModalIsOpen(true);
+  }
+  // eslint-disable-next-line array-callback-return
+  const RenderNFTAssets = filteredAssets.map((asset) => {
+    if (asset.assetCategory.table === "AstNFTCard")
+      return <NFTCardCard key={asset.id} data={asset} buyAction={handleBuy} />;
+    if (asset.assetCategory.table === "Voucher")
+      return <VoucherCard key={asset.id} data={asset} buyAction={handleBuy} />;
   });
 
   // FILTERS
@@ -91,119 +91,137 @@ export default function WalletMarketplace() {
     min: "",
     max: "",
   });
-  // card:
-  // asset:
-  // astNFTCard:
-  // assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aea"
-  // burnable: true
-  // createdAt: "2022-08-23T16:04:49.503Z"
-  // id: "543691f2-9c20-4166-99bd-7bc906e35f0a"
-  // imageBack: "uploads/NFTCard/NFTCard-1660680037824.png"
-  // imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg"
-  // mintMax: 3
-  // mintNum: 1
-  // mintTotal: 3
-  // name: "Nissan GT-R 'Frank 6.0'"
-  // owner: "Oliver Atom"
-  // price: 200
-  // templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176"
-  // transferable: true
-  // updatedAt: "2022-08-23T16:04:49.503Z"
-  // [[Prototype]]: Object
-  // categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc"
-  // createdAt: "2022-08-23T16:04:49.492Z"
-  // id: "dbb148fa-9031-4393-9fc0-1d0974d24aea"
-  // isListed: true
-  // updatedAt: "2022-08-23T16:04:49.492Z"
-  // walletId: "147a9663-e722-4667-b54e-44b5817e0bd9"
-  // [[Prototype]]: Object
-  // collection:
-  // createdAt: "2022-08-23T16:04:49.306Z"
-  // dateEnd: "2022-12-31T05:00:00.000Z"
-  // dateStart: "2022-01-01T05:00:00.000Z"
-  // id: "40f41d79-21ae-4db8-8d1d-bb831eabc337"
-  // location: "Test City"
-  // short: "FuelFestTest22"
-  // title: "FuelFest Test edition"
-  // updatedAt: "2022-08-23T16:04:49.306Z"
+  // apply filters
   useEffect(() => {
-    setFilteredCards(
-      fetchedCards.filter(
+    const NFTCards = fetchedAssets
+      .filter((asset) => asset.assetCategory.title === "NFT Card")
+      .filter(
         (card) =>
+          (filterCategory !== "all"
+            ? card.assetCategory.title === filterCategory
+            : true) &&
           (filterSearch !== ""
-            ? card.asset.astNFTCard.name.toLowerCase().includes(filterSearch)
+            ? card.astNFTCard.name.toLowerCase().includes(filterSearch)
             : true) &&
           (filterPrice.min !== ""
-            ? card.asset.astNFTCard.price >= filterPrice.min
+            ? card.astNFTCard.price >= filterPrice.min
             : true) &&
           (filterPrice.max !== ""
-            ? card.asset.astNFTCard.price <= filterPrice.max
+            ? card.astNFTCard.price <= filterPrice.max
             : true) &&
           (filterMint.min !== ""
-            ? card.asset.astNFTCard.mintNum >= filterMint.min
+            ? card.astNFTCard.mintNum >= filterMint.min
             : true) &&
           (filterMint.max !== ""
-            ? card.asset.astNFTCard.mintNum <= filterMint.max
+            ? card.astNFTCard.mintNum <= filterMint.max
             : true)
-      )
-    );
-  }, [filterCategory, filterSearch, filterPrice, filterMint]);
+      );
+    const vouchers = fetchedAssets
+      .filter((asset) => asset.assetCategory.title === "Voucher")
+      .filter(
+        (voucher) =>
+          (filterCategory !== "all"
+            ? voucher.assetCategory.title === filterCategory
+            : true) &&
+          (filterSearch !== ""
+            ? voucher.voucher.title.toLowerCase().includes(filterSearch) ||
+              voucher.voucher.brand.toLowerCase().includes(filterSearch)
+            : true) &&
+          (filterPrice.min !== ""
+            ? voucher.voucher.price >= filterPrice.min
+            : true) &&
+          (filterPrice.max !== ""
+            ? voucher.voucher.price <= filterPrice.max
+            : true)
+      );
+    setFilteredAssets([...NFTCards, ...vouchers]);
+  }, [filterCategory, filterSearch, filterPrice, filterMint, fetchedAssets]);
+
+  // FILTER CATEGORY OPTIONS
+  const RenderCategoryFilterOptions = fetchedAssets
+    .map((asset) => asset.assetCategory.title)
+    .filter((category, index, arr) => arr.indexOf(category) === index)
+    .map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ));
+
+  // MODAL
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  function handleModalClose() {
+    setModalIsOpen(false);
+  }
 
   return (
-    <WalletContainer>
-      {<Title title="NFT MARKETPLACE" backButton="true" />}
-      <div style={{ display: "flex", padding: "5px 0" }}>
-        <StyledAssetFilter name="assetsFilter" onChange={(e) => console.log(e)}>
-          <option value="all">All </option>
-          <option value="drifting">NFT Cards</option>
-          {/* <option value="guest">Vouchers</option> */}
-          <option value="music">Others</option>
-        </StyledAssetFilter>
-        <StyledAssetSearch
-          type="text"
-          onChange={(e) => {
-            setFilterSearch(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <StyledPriceRow>
-          <p>PRICE</p>
-          <input
-            type="number"
-            placeholder="min"
-            onChange={(e) =>
-              setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
-            }
+    true && (
+      <WalletContainer>
+        {<Title title="NFT MARKETPLACE" backButton="true" />}
+        <div style={{ display: "flex", padding: "5px 0" }}>
+          {/* ASSET CATEGORY FILTER */}
+          <StyledAssetFilter
+            name="assetsFilter"
+            onChange={(e) => setFilterCategory(e.target.value)}
+          >
+            <option value="all">All </option>
+            {RenderCategoryFilterOptions}
+          </StyledAssetFilter>
+          {/* SEARCH TEXT STRING FILTER */}
+          <StyledAssetSearch
+            type="text"
+            onChange={(e) => {
+              setFilterSearch(e.target.value);
+            }}
           />
-          <input
-            type="number"
-            placeholder="max"
-            onChange={(e) =>
-              setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
-            }
-          />
-        </StyledPriceRow>
-        <StyledPriceRow>
-          <p>MINT</p>
-          <input
-            type="number"
-            placeholder="min"
-            onChange={(e) =>
-              setFilterMint((prev) => ({ ...prev, min: e.target.value }))
-            }
-          />
-          <input
-            type="number"
-            placeholder="max"
-            onChange={(e) =>
-              setFilterMint((prev) => ({ ...prev, max: e.target.value }))
-            }
-          />
-        </StyledPriceRow>
-      </div>
+        </div>
 
-      <StyledContainer>{RenderNFTCards}</StyledContainer>
-    </WalletContainer>
+        <div>
+          {/* PRICE FILTER */}
+          <StyledPriceRow>
+            <p>PRICE</p>
+            <input
+              type="number"
+              placeholder="min"
+              onChange={(e) =>
+                setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
+              }
+            />
+            <input
+              type="number"
+              placeholder="max"
+              onChange={(e) =>
+                setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
+              }
+            />
+          </StyledPriceRow>
+          {/* MINT FILTER */}
+          <StyledPriceRow>
+            <p>MINT</p>
+            <input
+              type="number"
+              placeholder="min"
+              onChange={(e) =>
+                setFilterMint((prev) => ({ ...prev, min: e.target.value }))
+              }
+            />
+            <input
+              type="number"
+              placeholder="max"
+              onChange={(e) =>
+                setFilterMint((prev) => ({ ...prev, max: e.target.value }))
+              }
+            />
+          </StyledPriceRow>
+        </div>
+
+        {/* CARDS RENDER */}
+        <StyledContainer>{RenderNFTAssets}</StyledContainer>
+
+        {/* MODAL WINDOW */}
+        {/* <Modal open={modalIsOpen} onClose={handleModalClose}>
+          <ModalBuyNFT data={selectedCard} />
+        </Modal> */}
+      </WalletContainer>
+    )
   );
 }

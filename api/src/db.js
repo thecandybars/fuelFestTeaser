@@ -119,6 +119,7 @@ CarOwner.hasMany(Car, { foreignKey: "carOwnerId" });
 Car.belongsTo(CarOwner, { foreignKey: "carOwnerId" });
 Car.belongsToMany(Sponsor, { through: "CarSponsor" });
 Sponsor.belongsToMany(Car, { through: "CarSponsor" });
+AstNFTCard.belongsTo(Car, { foreignKey: "carId" });
 
 // VOTING
 

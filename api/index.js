@@ -180,9 +180,9 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025318a",
-          title: "1997 eclipse f&f replica",
+          title: "Mitsubishi 1997 eclipse f&f replica",
           number: 1984,
-          manufacturer: "GM",
+          manufacturer: "Mitsubishi",
           tireManufacturer: "Yokohama",
           chasis: "EWQ-9",
           description:
@@ -194,9 +194,9 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319c",
-          title: "Mazda ARCH 65",
+          title: "Toyota Supra",
           number: 124,
-          manufacturer: "Mazda",
+          manufacturer: "Toyota",
           tireManufacturer: "Michelin",
           chasis: "Q29",
           description:
@@ -206,20 +206,20 @@ conn.sync({ force, alter }).then(() => {
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
         },
-        {
-          id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          title: "GM 34X",
-          number: 34,
-          manufacturer: "GM",
-          tireManufacturer: "Goodyear",
-          chasis: "27Ty",
-          description:
-            "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-          location: "E02",
-          geolocation: "174.2,65.93",
-          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-        },
+        // {
+        //   id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        //   title: "GM 34X",
+        //   number: 34,
+        //   manufacturer: "GM",
+        //   tireManufacturer: "Goodyear",
+        //   chasis: "27Ty",
+        //   description:
+        //     "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
+        //   location: "E02",
+        //   geolocation: "174.2,65.93",
+        //   festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        //   carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+        // },
       ],
       {
         ignoreDuplicates: true,
@@ -271,14 +271,14 @@ conn.sync({ force, alter }).then(() => {
           image: "uploads/car/GM2.png",
           carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
         },
-        {
-          image: "uploads/car/car-1659971663360.jpg",
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        },
-        {
-          image: "uploads/car/car-1659971663362.jpg",
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        },
+        // {
+        //   image: "uploads/car/car-1659971663360.jpg",
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        // },
+        // {
+        //   image: "uploads/car/car-1659971663362.jpg",
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        // },
       ],
       {
         ignoreDuplicates: true,
@@ -342,10 +342,10 @@ conn.sync({ force, alter }).then(() => {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
         },
-        {
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
-        },
+        // {
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        //   voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
+        // },
         // BEST LIGHTS
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
@@ -356,10 +356,10 @@ conn.sync({ force, alter }).then(() => {
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
         },
 
-        {
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
-        },
+        // {
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        //   voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
+        // },
         // BEST PAINT
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
@@ -370,10 +370,10 @@ conn.sync({ force, alter }).then(() => {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
         },
-        {
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
-        },
+        // {
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        //   voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
+        // },
         // BEST RIMS
         {
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
@@ -399,10 +399,10 @@ conn.sync({ force, alter }).then(() => {
           voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
         },
 
-        {
-          carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-          voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
-        },
+        // {
+        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
+        //   voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
+        // },
       ],
       {
         ignoreDuplicates: true,
@@ -550,79 +550,80 @@ conn.sync({ force, alter }).then(() => {
     );
     /// NFT CAR CARDS
     //NISSAN GTR
-    await Asset.bulkCreate(
-      [
-        {
-          id: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-      ],
-      { ignoreDuplicates: true }
-    );
-    await AstNFTCard.bulkCreate(
-      [
-        {
-          id: "543691f2-9c20-4166-99bd-7bc906e35f0a",
-          name: "Nissan GT-R 'Frank 6.0'",
-          mintNum: "1",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          owner: "Oliver Atom",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f2-9c20-4166-59bd-7bc906e35f0a",
-          name: "Nissan GT-R 'Frank 6.0'",
-          mintNum: "2",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f2-9c20-4166-99bd-7bc906e35f0a",
-          name: "Nissan GT-R 'Frank 6.0'",
-          mintNum: "3",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-      ],
-      {
-        ignoreDuplicates: true,
-      }
-    );
+    // await Asset.bulkCreate(
+    //   [
+    //     {
+    //       id: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //   ],
+    //   { ignoreDuplicates: true }
+    // );
+    // await AstNFTCard.bulkCreate(
+    //   [
+    //     {
+    //       id: "543691f2-9c20-4166-99bd-7bc906e35f0a",
+    //       name: "Nissan GT-R 'Frank 6.0'",
+    //       mintNum: "1",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       owner: "Oliver Atom",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //       carId:""
+    //     },
+    //     {
+    //       id: "593691f2-9c20-4166-59bd-7bc906e35f0a",
+    //       name: "Nissan GT-R 'Frank 6.0'",
+    //       mintNum: "2",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aeb",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //     {
+    //       id: "593691f2-9c20-4166-99bd-7bc906e35f0a",
+    //       name: "Nissan GT-R 'Frank 6.0'",
+    //       mintNum: "3",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/NFTCard-1660680119281.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "dbb148fa-9031-4393-9fc0-1d0974d24aec",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //   ],
+    //   {
+    //     ignoreDuplicates: true,
+    //   }
+    // );
     //MITSUBISHI 1997 Eclipse
     await Asset.bulkCreate(
       [
@@ -658,11 +659,12 @@ conn.sync({ force, alter }).then(() => {
           imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
           owner: "Benji Price",
-          price: 200,
+          price: 50,
           burnable: true,
           transferable: true,
           assetId: "0bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f2-9c20-4166-29bd-7bc906ed5f0a",
@@ -672,11 +674,12 @@ conn.sync({ force, alter }).then(() => {
           mintMax: "3",
           imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
+          price: 50,
           burnable: true,
           transferable: true,
           assetId: "1bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f1-9c23-4166-99bd-7bc906e35f0a",
@@ -686,11 +689,12 @@ conn.sync({ force, alter }).then(() => {
           mintMax: "3",
           imageFront: "uploads/NFTCard/NFTCard-1660679976626.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
+          price: 50,
           burnable: true,
           transferable: true,
           assetId: "2bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -732,11 +736,12 @@ conn.sync({ force, alter }).then(() => {
           imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
           owner: "Tom Jones",
-          price: 200,
+          price: 2000,
           burnable: true,
           transferable: true,
           assetId: "dbb148fa-9031-4390-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
         {
           id: "593691f2-9c20-4166-59bd-7bc936ed5f0a",
@@ -746,11 +751,12 @@ conn.sync({ force, alter }).then(() => {
           mintMax: "3",
           imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
+          price: 2000,
           burnable: true,
           transferable: true,
           assetId: "dbb148fa-9031-4391-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
         {
           id: "593691f1-9c20-4166-79bd-7bc906e35f0a",
@@ -760,11 +766,12 @@ conn.sync({ force, alter }).then(() => {
           mintMax: "3",
           imageFront: "uploads/NFTCard/NFTCard-1660680222373.jpeg",
           imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
+          price: 2000,
           burnable: true,
           transferable: true,
           assetId: "dbb148fa-9031-4392-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
       ],
       {
@@ -772,153 +779,153 @@ conn.sync({ force, alter }).then(() => {
       }
     );
     //PORSCHE 911
-    await Asset.bulkCreate(
-      [
-        {
-          id: "aab148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-      ],
-      { ignoreDuplicates: true }
-    );
-    await AstNFTCard.bulkCreate(
-      [
-        {
-          id: "543691f2-9c20-4466-99bd-7bc906e35f0a",
-          name: "Porsche 911",
-          mintNum: "1",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          owner: "Tom Riddle",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "aab148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f2-9c20-4166-22bd-7bc906ed5f0a",
-          name: "Porsche 911",
-          mintNum: "2",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f1-9c20-4521-99bd-7bc906e35f0a",
-          name: "Porsche 911",
-          mintNum: "3",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-      ],
-      {
-        ignoreDuplicates: true,
-      }
-    );
+    // await Asset.bulkCreate(
+    //   [
+    //     {
+    //       id: "aab148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //   ],
+    //   { ignoreDuplicates: true }
+    // );
+    // await AstNFTCard.bulkCreate(
+    //   [
+    //     {
+    //       id: "543691f2-9c20-4466-99bd-7bc906e35f0a",
+    //       name: "Porsche 911",
+    //       mintNum: "1",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       owner: "Tom Riddle",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "aab148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //     {
+    //       id: "593691f2-9c20-4166-22bd-7bc906ed5f0a",
+    //       name: "Porsche 911",
+    //       mintNum: "2",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "bbb148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //     {
+    //       id: "593691f1-9c20-4521-99bd-7bc906e35f0a",
+    //       name: "Porsche 911",
+    //       mintNum: "3",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.11.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "ccb148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //   ],
+    //   {
+    //     ignoreDuplicates: true,
+    //   }
+    // );
     //MCLAREN SENNA
-    await Asset.bulkCreate(
-      [
-        {
-          id: "00b148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "01b148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "02b148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-      ],
-      { ignoreDuplicates: true }
-    );
-    await AstNFTCard.bulkCreate(
-      [
-        {
-          id: "543691f2-9c20-2776-99bd-7bc906e35f0a",
-          name: "McLaren Senna",
-          mintNum: "1",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          owner: "Juan Raro",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "00b148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f2-9c20-4166-51ed-7bc906ed5f0a",
-          name: "McLaren Senna",
-          mintNum: "2",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "01b148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-        {
-          id: "593691f1-9c20-4166-9b3d-7bc906e35f0a",
-          name: "McLaren Senna",
-          mintNum: "3",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "02b148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-        },
-      ],
-      {
-        ignoreDuplicates: true,
-      }
-    );
+    // await Asset.bulkCreate(
+    //   [
+    //     {
+    //       id: "00b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "01b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //     {
+    //       id: "02b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+    //       walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+    //       isListed: true,
+    //     },
+    //   ],
+    //   { ignoreDuplicates: true }
+    // );
+    // await AstNFTCard.bulkCreate(
+    //   [
+    //     {
+    //       id: "543691f2-9c20-2776-99bd-7bc906e35f0a",
+    //       name: "McLaren Senna",
+    //       mintNum: "1",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       owner: "Juan Raro",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "00b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //     {
+    //       id: "593691f2-9c20-4166-51ed-7bc906ed5f0a",
+    //       name: "McLaren Senna",
+    //       mintNum: "2",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "01b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //     {
+    //       id: "593691f1-9c20-4166-9b3d-7bc906e35f0a",
+    //       name: "McLaren Senna",
+    //       mintNum: "3",
+    //       mintTotal: "3",
+    //       mintMax: "3",
+    //       imageFront: "uploads/NFTCard/photo_2022-08-16 14.35.09.jpeg",
+    //       imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+    //       price: 200,
+    //       burnable: true,
+    //       transferable: true,
+    //       assetId: "02b148fa-9031-4393-9fc1-1d0974d24aea",
+    //       templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+    //     },
+    //   ],
+    //   {
+    //     ignoreDuplicates: true,
+    //   }
+    // );
     //Mazda RX7
     await Asset.bulkCreate(
       [
@@ -959,6 +966,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a00",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
         },
         {
           id: "593691f2-9c20-4166-522d-7bc906ed5f0a",
@@ -973,6 +981,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a01",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
         },
         {
           id: "593691f1-9c20-4166-44bd-7bc906e35f0a",
@@ -987,6 +996,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a02",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
         },
       ],
       {
@@ -1033,6 +1043,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
         {
           id: "593691f2-9c20-4166-59bd-7bc906ed5f0a",
@@ -1047,6 +1058,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
         {
           id: "593691f1-9c20-4166-99bd-7bc906e35f0a",
@@ -1061,6 +1073,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
       ],
       {
