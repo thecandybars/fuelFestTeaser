@@ -5,6 +5,7 @@ import backIcon from "../icons/arrow_back_ios_new_FILL0_wght400_GRAD0_opsz48.svg
 
 const StyledBackButton = styled.img`
   /* width: 35px; */
+  /* background-color: pink; */
   height: 30px;
   padding-right: 10px;
   filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)

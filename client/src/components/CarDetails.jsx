@@ -220,3 +220,155 @@ export default function CarDetails(props) {
     )
   );
 }
+// return (
+//   Object.keys(carDetails).length !== 0 &&
+//   Object.keys(wallet).length !== 0 && (
+//     <div
+//       className={style.carDetail_wholeScreen}
+//       onClick={() => {
+//         props.showDetails("");
+//       }}
+//     >
+//       <div className={style.carDetail_container}>
+//         <button className={style.carDetail_close}>X</button>
+//         <div onClick={(e) => e.stopPropagation()}>
+//           <ImageGallery
+//             items={carImages}
+//             showBullets={false}
+//             showIndex={false}
+//             showThumbnails={false}
+//             lazyLoad={true}
+//             showPlayButton={false}
+//             showFullscreenButton={false}
+//             additionalClass={style.image}
+//           />
+//         </div>
+//         {carDetails && (
+//           <div className={style.carDetail_info}>
+//             {/* TITLE */}
+//             <h2>
+//               {carDetails.title}
+//               <img
+//                 className={style.isFavorite}
+//                 alt={props.isFavorite ? "Favorite" : "Not favorite"}
+//                 src={props.isFavorite ? favYes : favNo}
+//                 onClick={(e) => {
+//                   e.stopPropagation();
+//                   props.togFav(props.id);
+//                 }}
+//               />
+//             </h2>
+//             {/* OWNER */}
+//             <div className={style.owner}>
+//               <img
+//                 alt="owner icon"
+//                 src={ownerIcon}
+//                 className={`${style.smIcon} `}
+//               />
+//               {carDetails.carOwner.name}
+//             </div>
+//             <div className={style.carOwner_links}>
+//               {carDetails.carOwner.instagram && (
+//                 <img
+//                   alt="instagram icon"
+//                   src={socialInstagramIcon}
+//                   className={style.socialIcon}
+//                 />
+//               )}
+//               {carDetails.carOwner.facebook && (
+//                 <img
+//                   alt="facebook icon"
+//                   src={socialFacebookIcon}
+//                   className={style.socialIcon}
+//                 />
+//               )}
+//               {carDetails.carOwner.youtube && (
+//                 <img
+//                   alt="youtube icon"
+//                   src={socialYoutubeIcon}
+//                   className={style.socialIcon}
+//                 />
+//               )}
+//               {carDetails.carOwner.twitter && (
+//                 <img
+//                   alt="twitter icon"
+//                   src={socialTwitterIcon}
+//                   className={style.socialIcon}
+//                 />
+//               )}
+//             </div>
+//             {/* MAIN DATA WITH ICONS */}
+
+//             {/* CAR DESCRIPTION */}
+//             <div className={style.carDescription}>
+//               {/* <h3>Details</h3> */}
+//               <p>{carDetails.description}</p>
+//             </div>
+
+//             <div style={{ display: "flex", justifyContent: "space-between" }}>
+//               {/* CAR UPGRADES */}
+//               {!!carSponsors.length && (
+//                 <div className={style.carSponsors}>
+//                   <h3>Upgrades</h3>
+//                   <p>{carSponsors.toString()}</p>
+//                 </div>
+//               )}
+//               {/* CAR SPONSORS */}
+//               {!!carSponsors.length && (
+//                 <div className={style.carSponsors}>
+//                   <h3>Sponsors</h3>
+//                   <p>{carSponsors.toString()}</p>
+//                 </div>
+//               )}
+//             </div>
+
+//             {/* CAR VOTING */}
+//             <div>
+//               {<Button1 title="VOTE" style={{ marginTop: "20px" }} />}
+//             </div>
+//             {
+//               // <div className={style.carVote}>
+//               //   <h3>Voting</h3>
+//               //   <div className={style.carVoteCategories}>
+//               //     {carVoteCategories.map((category) => {
+//               //       const canVote = !wallet.votes.find(
+//               //         (vote) =>
+//               //           vote.carId === carDetails.id &&
+//               //           vote.categoryId === category.id
+//               //       );
+//               //       return (
+//               //         <div
+//               //           className={style.carVoteCategory}
+//               //           key={category.id}
+//               //         >
+//               //           <Button2
+//               //             title={category.title}
+//               //             onClick={(e) => {
+//               //               e.stopPropagation();
+//               //               handleVote(category.id);
+//               //             }}
+//               //             disabled={!canVote}
+//               //           />
+//               //           <p>
+//               //             {canVote
+//               //               ? ""
+//               //               : `Vote: ${
+//               //                   wallet.votes.find(
+//               //                     (vote) =>
+//               //                       vote.carId === carDetails.id &&
+//               //                       vote.categoryId === category.id
+//               //                   ).votingTokens
+//               //                 } drift`}
+//               //           </p>
+//               //         </div>
+//               //       );
+//               //     })}
+//               //   </div>
+//               // </div>
+//             }
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   )
+// );

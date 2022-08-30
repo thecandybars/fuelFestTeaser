@@ -1,4 +1,4 @@
-import { Modal } from "@mui/material";
+import { Dialog, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "../css/NFTCard.module.css";
@@ -8,17 +8,20 @@ export default function NFTCardCard(props) {
   const apiURL = process.env.REACT_APP_API;
   const { astNFTCard } = props.data;
 
-  // MODAL
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // DIALOG
+  const [dialogOpen, setDialogOpen] = useState(false);
   function handleModalClose() {
-    setModalIsOpen(false);
+    setDialogOpen(false);
   }
 
   return (
     <div className={style.card}>
-      {/* <Modal open={modalIsOpen} onClose={handleModalClose}>
-        <ModalBuyNFT data={props} />
-      </Modal> */}
+      {/* DIALOG WINDOW */}
+      {
+        <Dialog open={dialogOpen} onClose={handleModalClose}>
+          <ModalBuyNFT assetId={astNFTCard.assetId} />
+        </Dialog>
+      }
       <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>
         <img
           alt="NFT Card of a car"
@@ -42,8 +45,7 @@ export default function NFTCardCard(props) {
         <div
           className={style.buyButton}
           onClick={(e) => {
-            e.stopPropagation();
-            props.buyAction(astNFTCard.assetId);
+            setDialogOpen(true);
           }}
         >
           BUY

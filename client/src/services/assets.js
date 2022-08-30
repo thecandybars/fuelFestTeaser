@@ -9,11 +9,15 @@ export async function getVouchers() {
   const { data } = await axios.get(`/asset/voucher`);
   return data;
 }
-export async function getAsset(assetId) {
-  const { data } = await axios.get(`/asset/byId/${assetId}`);
+export async function getNFTCard(nftCardId) {
+  const { data } = await axios.get(`/asset/nftCard/${nftCardId}`);
   return data;
 }
 export async function getAllAssets() {
   const { data } = await axios.get(`/asset`);
+  return data;
+}
+export async function getAssetById(assetId) {
+  const { data } = await axios.get(`/asset/byId/${assetId}`);
   return data;
 }

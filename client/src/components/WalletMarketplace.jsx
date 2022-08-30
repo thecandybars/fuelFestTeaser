@@ -64,15 +64,15 @@ export default function WalletMarketplace() {
     setFilteredAssets(fetched);
   }
   // CARDS
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedDetailsCard, setSelectedDetailsCard] = useState({});
   function handleBuy(cardId) {
     const selectAssetData = fetchedAssets.filter(
       (card) => card.asset.id === cardId
     );
-    setSelectedCard(...selectAssetData);
-    setModalIsOpen(true);
+    setSelectedDetailsCard(...selectAssetData);
+    setModalOpen(true);
   }
-  // eslint-disable-next-line array-callback-return
+  // RENDER CARDS : nfts / vouchers
   const RenderNFTAssets = filteredAssets.map((asset) => {
     if (asset.assetCategory.table === "AstNFTCard")
       return <NFTCardCard key={asset.id} data={asset} buyAction={handleBuy} />;
@@ -148,9 +148,9 @@ export default function WalletMarketplace() {
     ));
 
   // MODAL
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   function handleModalClose() {
-    setModalIsOpen(false);
+    setModalOpen(false);
   }
 
   return (
@@ -218,9 +218,9 @@ export default function WalletMarketplace() {
         <StyledContainer>{RenderNFTAssets}</StyledContainer>
 
         {/* MODAL WINDOW */}
-        {/* <Modal open={modalIsOpen} onClose={handleModalClose}>
-          <ModalBuyNFT data={selectedCard} />
-        </Modal> */}
+        <Modal open={modalOpen} onClose={handleModalClose}>
+          <ModalBuyNFT data={selectedDetailsCard} />
+        </Modal>
       </WalletContainer>
     )
   );

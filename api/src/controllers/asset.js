@@ -13,6 +13,8 @@ const {
   Car,
   CarOwner,
   Sponsor,
+  VoteCategory,
+  User,
 } = require("../db.js");
 const {
   createTokenTransaction,
@@ -84,8 +86,19 @@ async function getNFTCards() {
 async function getAsset(req) {
   try {
     const { assetId } = req.params;
-    const asset = await Asset.findByPk(assetId, { include: AssetCategory });
-    return asset;
+    const asset = await Asset.findByPk(assetId);
+    const wallet = await Wallet.findByPk(asset.walletId, { include: User });
+    const { user: seller } = wallet;
+    const assetCategory = await AssetCategory.findByPk(asset.categoryId);
+    let assetData = {};
+    if (assetCategory.table === "AstNFTCard") {
+      assetData = await AstNFTCard.findOne({
+        where: { assetId: asset.id },
+      });
+    }
+    const template = await Template.findByPk(assetData.templateId);
+    const festival = await Festival.findByPk(template.festivalId);
+    return { assetData, assetCategory, seller, festival };
     return !response.length
       ? dbError(`No Assets Categories found. Create some.`, 404)
       : response;
@@ -107,7 +120,7 @@ async function getNFTCard(req) {
     const { carId } = nftCard;
     const car = await Car.findOne({
       where: { id: carId },
-      include: [CarOwner, Sponsor],
+      include: [CarOwner, Sponsor, VoteCategory],
     });
 
     // nftCard.myCar = car;
