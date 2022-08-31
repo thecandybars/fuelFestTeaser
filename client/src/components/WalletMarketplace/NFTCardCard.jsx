@@ -1,4 +1,4 @@
-import { Dialog, Modal } from "@mui/material";
+import { Dialog } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "../css/NFTCard.module.css";
@@ -19,7 +19,10 @@ export default function NFTCardCard(props) {
       {/* DIALOG WINDOW */}
       {
         <Dialog open={dialogOpen} onClose={handleModalClose}>
-          <ModalBuyNFT assetId={astNFTCard.assetId} />
+          <ModalBuyNFT
+            assetId={astNFTCard.assetId}
+            closeDialog={handleModalClose}
+          />
         </Dialog>
       }
       <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>

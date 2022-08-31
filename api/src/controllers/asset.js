@@ -200,6 +200,7 @@ async function buyAsset({ assetId, walletId }) {
       toWalletId: asset.walletId,
       amount: assetDetails.price,
     });
+    if (!!newTokenTransaction.error) return newTokenTransaction;
 
     // 2. SEND ASSET
     const newAssetTransaction = await createAssetTransaction({

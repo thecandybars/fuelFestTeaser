@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getAssetById } from "../../services/assets";
+import { getAssetById, buyAssetFromWallet } from "../../services/assets";
+import { walletId } from "../../common/getLoginData";
+import { Dialog } from "@mui/material";
+import successfulTransactionIcon from "../../img/successfulTransaction.svg";
 
 const ModalContainer = styled.div`
   /* margin: 20px; */
@@ -60,9 +63,45 @@ const StyledButton = styled.div`
   font-size: 18px;
   text-align: center;
 `;
+const StyledConfirmTransaction = styled.div`
+  padding: 20px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 70%;
+  }
+  h2 {
+    font-size: 2.7rem;
+    color: #feae2e;
+    text-align: center;
+    margin: 15px 0;
+  }
+  p {
+    color: #d9d9d9;
+    font-family: "Oswald";
+    font-size: 1.3rem;
+  }
+  p span {
+    color: #feae2e;
+  }
+  div {
+    width: 40%;
+    margin: 15px 0;
+    padding: 1px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-family: "Oswald";
+    font-size: 1.5rem;
+    text-align: center;
+  }
+`;
 
 export default function ModalBuyNFT(props) {
   const apiURL = process.env.REACT_APP_API;
+
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
   useEffect(() => {
@@ -70,6 +109,23 @@ export default function ModalBuyNFT(props) {
   }, []);
   async function fetchAssetData(assetId) {
     setFetchedAssetData(await getAssetById(assetId));
+  }
+
+  // BUY
+  const [confirmBuyOpen, setConfirmBuyOpen] = useState(false);
+  const handleConfirmBuyClose = () => {
+    setConfirmBuyOpen(false);
+    props.closeDialog();
+  };
+
+  async function handleBuy() {
+    const response = await buyAssetFromWallet(
+      fetchedAssetData.assetData.assetId,
+      walletId
+    );
+    if (response.status === 200) {
+      setConfirmBuyOpen(true);
+    }
   }
 
   //   const style = {
@@ -130,9 +186,21 @@ export default function ModalBuyNFT(props) {
           </div>
         </StyledSummary>
         <StyledBottomLine>
-          <StyledButton>{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
+          <StyledButton
+            onClick={handleBuy}
+          >{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
           <p>Make offer</p>
         </StyledBottomLine>
+        <Dialog open={confirmBuyOpen} onClose={handleConfirmBuyClose}>
+          <StyledConfirmTransaction>
+            <img alt="Transaction Successful" src={successfulTransactionIcon} />
+            <h2>Transaction Successful!</h2>
+            <p>
+              View Transaction: <span>87346587</span>
+            </p>
+            <div onClick={handleConfirmBuyClose}>Close</div>
+          </StyledConfirmTransaction>
+        </Dialog>
       </ModalContainer>
     )
   );

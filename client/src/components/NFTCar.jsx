@@ -188,8 +188,8 @@ export default function NFTCar() {
         {
           <Dialog open={modalOpen} onClose={handleModalClose}>
             <ModalBuyNFT
-              // key={nftCarFetched.nftCard.assetId}
               assetId={nftCarFetched.nftCard.assetId}
+              closeDialog={handleModalClose}
             />
           </Dialog>
         }

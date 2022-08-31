@@ -118,7 +118,7 @@ router.get("/byId/:assetId", async (req, res) => {
   const response = await getAsset(req);
   !response.error
     ? res.status(200).json(response)
-    : res.status(response.error.status).send(response.error.title);
+    : res.status(response.error.status).json(response.error.title);
 });
 // Get all assets for a wallet
 router.get("/:walletId", async (req, res) => {
