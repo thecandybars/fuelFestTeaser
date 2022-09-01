@@ -22,7 +22,7 @@ import stereo from "../icons/speaker_FILL1_wght400_GRAD0_opsz48.svg";
 import map from "../icons/map_FILL0_wght400_GRAD0_opsz48.svg";
 import location from "../icons/location_on_FILL0_wght400_GRAD0_opsz48.svg";
 //VOTING
-import bestLigth from "../icons/voting/best_light.svg";
+import bestLigths from "../icons/voting/best_light.svg";
 import bestInterior from "../icons/voting/best_interior.svg";
 import bestPaint from "../icons/voting/best_paint.svg";
 import bestRims from "../icons/voting/best_rims.svg";
@@ -35,5 +35,5 @@ export const icons = {
   social: { facebook, instagram, twitter, youtube },
   favorite: { on: favoriteOn, off: favoriteOff },
   upgrade: { body, wheels, brakes, engine, nitro, suspension, stereo },
-  voting: { bestLigth, bestInterior, bestPaint, bestRims, bestStereo },
+  voting: { bestLigths, bestInterior, bestPaint, bestRims, bestStereo },
 };

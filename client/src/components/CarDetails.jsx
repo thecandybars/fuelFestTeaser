@@ -328,9 +328,7 @@ export default function CarDetails(props) {
               )}
             </TwoColumns>
             {/* CAR VOTING */}
-            {!!renderCarVoteCategoriesBlock &&
-              false &&
-              renderCarVoteCategoriesBlock}
+            {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
             {/* CAR BUY */}
             {!!renderCarBuy && renderCarBuy}
           </div>
