@@ -10,8 +10,7 @@ import twitterIcon from "../icons/social/twitter.svg";
 import instagramIcon from "../icons/social/instagram.svg";
 import youtubeIcon from "../icons/social/youtube.svg";
 import OwnerIcon from "@mui/icons-material/Man";
-import Modal from "@mui/material/Modal";
-import ModalBuyNFT from "./WalletMarketplace/ModalBuyNFT";
+import DialogBuyNFT from "./WalletMarketplace/DialogBuyNFT";
 import { Dialog } from "@mui/material";
 
 // STYLED COMPONENTS
@@ -187,7 +186,7 @@ export default function NFTCar() {
         {/* DIALOG WINDOW */}
         {
           <Dialog open={modalOpen} onClose={handleModalClose}>
-            <ModalBuyNFT
+            <DialogBuyNFT
               assetId={nftCarFetched.nftCard.assetId}
               closeDialog={handleModalClose}
             />

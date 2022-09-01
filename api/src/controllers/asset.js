@@ -83,7 +83,7 @@ async function getNFTCards() {
     return err;
   }
 }
-async function getAsset(req) {
+async function getAssetById(req) {
   try {
     const { assetId } = req.params;
     const asset = await Asset.findByPk(assetId);
@@ -406,7 +406,8 @@ module.exports = {
   createNFTCard,
   buyAsset,
   getAssets,
-  getAsset,
+  getAssetById,
+  getAssetsByWallet,
   getAllAssetCategory,
   createVoucher,
   getNFTCards,

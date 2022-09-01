@@ -12,7 +12,8 @@ const {
   createVoucher,
   buyAsset,
   getAssets,
-  getAsset,
+  getAssetById,
+  getAssetsByWallet,
   getAllAssetCategory,
   getNFTCards,
   getNFTCard,
@@ -115,15 +116,15 @@ router.post("/:assetId/buy/:walletId", async (req, res) => {
 });
 // Get asset by Id
 router.get("/byId/:assetId", async (req, res) => {
-  const response = await getAsset(req);
+  const response = await getAssetById(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).json(response.error.title);
 });
 // Get all assets for a wallet
-router.get("/:walletId", async (req, res) => {
+router.get("/byWallet/:walletId", async (req, res) => {
   const { walletId } = req.params;
-  const response = await getAssetsById(walletId);
+  const response = await getAssetsByWallet(walletId);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

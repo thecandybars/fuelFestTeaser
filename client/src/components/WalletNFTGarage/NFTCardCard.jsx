@@ -21,8 +21,8 @@ const Collection = styled.div`
   margin: 0 auto;
   padding: 3px 0;
 `;
-const BuyButton = styled.div`
-  background-color: ${(props) => props.theme.green};
+const SellButton = styled.div`
+  background-color: ${(props) => props.theme.red};
   width: fit-content;
   padding: 0px 25px;
   border: none;
@@ -52,20 +52,21 @@ export default function NFTCardCard(props) {
   return (
     <Card>
       {/* DIALOG WINDOW */}
-      <Dialog open={dialogOpen} onClose={handleModalClose}>
-        <DialogBuyNFT
-          assetId={astNFTCard.assetId}
-          closeDialog={handleModalClose}
-        />
-      </Dialog>
-      {/* CARD IMAGE */}
+      {
+        <Dialog open={dialogOpen} onClose={handleModalClose}>
+          <DialogBuyNFT
+            assetId={astNFTCard.assetId}
+            closeDialog={handleModalClose}
+          />
+        </Dialog>
+      }
       <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>
         <img
           alt="NFT Card of a car"
           src={`${apiURL}/${astNFTCard.imageFront}`}
         />
       </Link>
-      {/* <Collection>{props.collection}</Collection> */}
+      {/* <div className={style.collection}>{props.collection}</div> */}
       <Name>{astNFTCard.name}</Name>
       <Price>{astNFTCard.price} DRIFT</Price>
       <div
@@ -79,13 +80,13 @@ export default function NFTCardCard(props) {
         <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>
           <DetailsButton>Details</DetailsButton>
         </Link>
-        <BuyButton
+        <SellButton
           onClick={(e) => {
             setDialogOpen(true);
           }}
         >
-          BUY
-        </BuyButton>
+          SELL
+        </SellButton>
       </div>
     </Card>
   );

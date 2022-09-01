@@ -6,16 +6,30 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import dotenv from "dotenv";
+import { ThemeProvider } from "styled-components";
+
 dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
+// THEME
+const theme = {
+  yellow: "#feae2e",
+  white: "#d9d9d9",
+  red: "#da1921",
+  green: "#00703d",
+  dialogBackground: "rgba(10, 10, 10, 0.97)",
+};
+
+// RENDER
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

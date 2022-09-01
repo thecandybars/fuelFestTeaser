@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Modal from "@mui/material/Modal";
 import WalletContainer from "../assets/WalletContainer";
 import Title from "../assets/Title";
 import { getAllAssets } from "../services/assets";
 import NFTCardCard from "./WalletMarketplace/NFTCardCard";
 import VoucherCard from "./WalletMarketplace/VoucherCard";
-import ModalBuyNFT from "./WalletMarketplace/ModalBuyNFT";
 import styled from "styled-components";
-// import { Link } from "@mui/material";
-// import { style } from "@mui/system";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -63,21 +59,14 @@ export default function WalletMarketplace() {
     setFetchedAssets(fetched);
     setFilteredAssets(fetched);
   }
-  // CARDS
-  const [selectedDetailsCard, setSelectedDetailsCard] = useState({});
-  function handleBuy(cardId) {
-    const selectAssetData = fetchedAssets.filter(
-      (card) => card.asset.id === cardId
-    );
-    setSelectedDetailsCard(...selectAssetData);
-    setModalOpen(true);
-  }
+
   // RENDER CARDS : nfts / vouchers
   const RenderNFTAssets = filteredAssets.map((asset) => {
     if (asset.assetCategory.table === "AstNFTCard")
-      return <NFTCardCard key={asset.id} data={asset} buyAction={handleBuy} />;
+      return <NFTCardCard key={asset.id} data={asset} />;
     if (asset.assetCategory.table === "Voucher")
-      return <VoucherCard key={asset.id} data={asset} buyAction={handleBuy} />;
+      return <VoucherCard key={asset.id} data={asset} />;
+    return {};
   });
 
   // FILTERS
@@ -147,12 +136,6 @@ export default function WalletMarketplace() {
       </option>
     ));
 
-  // MODAL
-  const [modalOpen, setModalOpen] = useState(false);
-  function handleModalClose() {
-    setModalOpen(false);
-  }
-
   return (
     true && (
       <WalletContainer>
@@ -172,9 +155,8 @@ export default function WalletMarketplace() {
             onChange={(e) => {
               setFilterSearch(e.target.value);
             }}
-          />
+          ></StyledAssetSearch>
         </div>
-
         <div>
           {/* PRICE FILTER */}
           <StyledPriceRow>
@@ -213,14 +195,8 @@ export default function WalletMarketplace() {
             />
           </StyledPriceRow>
         </div>
-
         {/* CARDS RENDER */}
         <StyledContainer>{RenderNFTAssets}</StyledContainer>
-
-        {/* MODAL WINDOW */}
-        <Modal open={modalOpen} onClose={handleModalClose}>
-          <ModalBuyNFT data={selectedDetailsCard} />
-        </Modal>
       </WalletContainer>
     )
   );

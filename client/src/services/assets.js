@@ -21,6 +21,10 @@ export async function getAssetById(assetId) {
   const { data } = await axios.get(`/asset/byId/${assetId}`);
   return data;
 }
+export async function getAssetByWallet(walletId) {
+  const { data } = await axios.get(`/asset/byWallet/${walletId}`);
+  return data;
+}
 export async function buyAssetFromWallet(assetId, walletId) {
   const response = await axios.post(`/asset/${assetId}/buy/${walletId}`);
   return response;

@@ -28,6 +28,7 @@ async function createAssetTransaction(data) {
     await Asset.update(
       {
         walletId: toWalletId,
+        isListed: false,
       },
       {
         where: { id: assetId },

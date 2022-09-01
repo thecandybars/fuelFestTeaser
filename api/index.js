@@ -707,8 +707,8 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "dbb148fa-9031-4390-9fc1-1d0974d24aea",
           categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
+          isListed: false,
         },
         {
           id: "dbb148fa-9031-4391-9fc1-1d0974d24aea",
@@ -932,8 +932,8 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "dbb148fa-9031-4393-9fc1-1d0974d24a00",
           categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
+          isListed: false,
         },
         {
           id: "dbb148fa-9031-4393-9fc1-1d0974d24a01",
