@@ -47,7 +47,8 @@ async function createSponsor(data) {
   try {
     const response = await Sponsor.create({
       ...data.body,
-      image: data.file.path,
+      image: data.files[0].path,
+      logo: data.files[1].path,
     });
     return !response ? dbError(`Sponsor not created`, 404) : response;
   } catch (err) {

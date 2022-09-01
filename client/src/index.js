@@ -19,6 +19,7 @@ const theme = {
   red: "#da1921",
   green: "#00703d",
   dialogBackground: "rgba(10, 10, 10, 0.97)",
+  black: "#000000",
 };
 
 // RENDER

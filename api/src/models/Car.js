@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      upgrades: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       otherSponsors: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -45,6 +49,10 @@ module.exports = (sequelize) => {
       },
       geolocation: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      price: {
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
     },

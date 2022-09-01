@@ -19,6 +19,7 @@ import WalletNFTGarage from "./components/WalletNFTGarage";
 import WalletStats from "./components/WalletStats";
 import NFTCar from "./components/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
+import CarDetails from "./components/CarDetails";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
+          <Route path="/car/:carId" element={<CarDetails />} />
           <Route path="/events" element={<Events />} />
           <Route path="/vendors" element={<Vendors />} />
           <Route path="/sponsors" element={<Sponsors />} />

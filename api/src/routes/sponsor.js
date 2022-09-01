@@ -40,7 +40,7 @@ router.put("/:id", async (req, res) => {
     : res.status(response.error.status).send(response.error.title);
 });
 // Create NEW Sponsor
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", upload.array("image"), async (req, res) => {
   const response = await createSponsor(req);
   !response.error
     ? res.status(201).json(response)

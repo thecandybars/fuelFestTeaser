@@ -102,12 +102,16 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
           title: "FritoLay",
+          image: "uploads/sponsor/sponsor-1662060233055.jpg",
+          logo: "uploads/sponsor/sponsor-1662060233056.jpg",
           description: "Volutpat odio facilisis mauris sit.",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
         },
         {
           id: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
           title: "Meguiars",
+          image: "uploads/sponsor/sponsor-1662059870636.jpg",
+          logo: "uploads/sponsor/sponsor-1662059870637.png",
           description: "Volutpat odio facilisis mauris sit.",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
         },
@@ -156,12 +160,15 @@ conn.sync({ force, alter }).then(() => {
           manufacturer: "GT",
           tireManufacturer: "Michelin",
           chasis: "AZ-76",
+          upgrades: "Wheels,Body,Brakes,Engine,Nitro,Suspension",
+          otherSponsors: "Mama's Dinner,Frutterie",
           description:
             "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           location: "H15",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
+          price: 1300,
         },
 
         {
@@ -171,12 +178,15 @@ conn.sync({ force, alter }).then(() => {
           manufacturer: "Mazda",
           tireManufacturer: "Yokohama",
           chasis: "EWZ-46",
+          upgrades: "Body,Engine,Brakes,Stereo",
+          otherSponsors: "Mama's Dinner,DaddyCool",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           location: "A72",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
+          price: 52200,
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025318a",
@@ -185,12 +195,15 @@ conn.sync({ force, alter }).then(() => {
           manufacturer: "Mitsubishi",
           tireManufacturer: "Yokohama",
           chasis: "EWQ-9",
+          upgrades: "Wheels,Stereo,Body,Brakes",
+          otherSponsors: "Windows98,Frutterie",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           location: "R35",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
+          price: 123400,
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319c",
@@ -199,27 +212,16 @@ conn.sync({ force, alter }).then(() => {
           manufacturer: "Toyota",
           tireManufacturer: "Michelin",
           chasis: "Q29",
+          upgrades: "Wheels,Suspension,Nitro",
+          otherSponsors: "Papp's,Frutterie",
           description:
             "Placerat in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
           location: "T25",
           geolocation: "174.2,65.93",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          price: 87600,
         },
-        // {
-        //   id: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        //   title: "GM 34X",
-        //   number: 34,
-        //   manufacturer: "GM",
-        //   tireManufacturer: "Goodyear",
-        //   chasis: "27Ty",
-        //   description:
-        //     "Blue in egestas erat imperdiet sed euismod. Ut tellus elementum sagittis vitae et. Morbi tristique senectus et netus et malesuada fames ac.",
-        //   location: "E02",
-        //   geolocation: "174.2,65.93",
-        //   festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-        //   carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-        // },
       ],
       {
         ignoreDuplicates: true,
@@ -234,6 +236,30 @@ conn.sync({ force, alter }).then(() => {
         {
           sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        {
+          sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
       ],
       {
