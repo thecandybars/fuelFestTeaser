@@ -28,7 +28,7 @@ export default function BottomNav() {
     console.log("🚀 ~ file: BottomNav.jsx ~ line 28 ~ handleChange ~ e", e);
   }
   return (
-    <Container>
+    <div className={style.bottomContainer}>
       <ul className={style.bottomNav}>
         <li className={style.bottomNav_item}>
           <NavLink to="/">
@@ -47,7 +47,7 @@ export default function BottomNav() {
           <span className="material-symbols-outlined">favorite</span>
         </li>
       </ul>
-    </Container>
+    </div>
   );
 }
 {

@@ -6,6 +6,7 @@ import NFTCardCard from "./WalletNFTGarage/NFTCardCard";
 import VoucherCard from "./WalletNFTGarage/VoucherCard";
 import styled from "styled-components";
 import { walletId } from "../common/getLoginData";
+import MainContainer from "../assets/MainContainer";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -141,7 +142,7 @@ export default function WalletMarketplace() {
 
   return (
     true && (
-      <WalletContainer>
+      <MainContainer>
         {<Title title="NFT GARAGE" backButton="true" />}
         <div style={{ display: "flex", padding: "5px 0" }}>
           {/* ASSET CATEGORY FILTER */}
@@ -200,7 +201,7 @@ export default function WalletMarketplace() {
         </div>
         {/* CARDS RENDER */}
         <StyledContainer>{RenderNFTAssets}</StyledContainer>
-      </WalletContainer>
+      </MainContainer>
     )
   );
 }

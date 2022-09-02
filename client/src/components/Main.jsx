@@ -1,13 +1,13 @@
 import React from "react";
+import MainContainer from "../assets/MainContainer";
 import MainFeatures from "./MainFeatures";
 import MainLinks from "./MainLinks";
-import style from "./css/Main.module.css";
 
 export default function Main() {
   return (
-    <div className={style.main}>
+    <MainContainer>
       <MainFeatures />
       <MainLinks />
-    </div>
+    </MainContainer>
   );
 }

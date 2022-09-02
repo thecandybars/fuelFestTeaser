@@ -6,8 +6,8 @@
 }
 
 .topNav {
-  margin: 15px 15px;
-  /* font-size: 30px; */
+  padding: 10px;
+  height: 55px;
 }
 
 .topNavLeft li {

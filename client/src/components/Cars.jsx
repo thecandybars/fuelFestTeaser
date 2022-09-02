@@ -6,6 +6,7 @@ import CarCard from "./CarCard";
 import style from "./css/Cars.module.css";
 import CarDetails from "./CarDetails";
 import Title from "../assets/Title";
+import MainContainer from "../assets/MainContainer";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
@@ -13,9 +14,9 @@ export default function Cars() {
   const [fetchedFavs, setFetchedFavs] = useState([]);
   const [carDetails, setCarDetails] = useState("");
 
-  const [carFilter, setCarFilter] = useState("");
-  const [voteFilter, setVoteFilter] = useState("");
-  const [searchFilter, setSearchFilter] = useState("");
+  // const [carFilter, setCarFilter] = useState("");
+  // const [voteFilter, setVoteFilter] = useState("");
+  // const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     fetchCars();
@@ -116,32 +117,34 @@ export default function Cars() {
   }, [filterManufacturer, filterTire, filterSearch]);
 
   return (
-    <div className={style.container}>
-      {carDetails && carDetails}
-      <Title title="Cars" backButton="true"></Title>
-      <nav className={style.cars_nav}>
-        <select
-          name="filterManufacturer"
-          onChange={(e) => setFilterManufacturer(e.target.value)}
-        >
-          <option value="all">All manufacturers</option>
-          {RenderInputManufacturer}
-        </select>
-        <select
-          name="filterTire"
-          onChange={(e) => setFilterTire(e.target.value)}
-        >
-          <option value="all">All tires</option>
-          {RenderInputTire}
-        </select>
-        <input
-          type="text"
-          size="15"
-          onChange={(e) => setFilterSearch(e.target.value)}
-          placeholder="search"
-        />
-      </nav>
-      <main>{RenderCarCards}</main>
-    </div>
+    <MainContainer>
+      <div className={style.container}>
+        {carDetails && carDetails}
+        <Title title="Cars" backButton="true"></Title>
+        <nav className={style.cars_nav}>
+          <select
+            name="filterManufacturer"
+            onChange={(e) => setFilterManufacturer(e.target.value)}
+          >
+            <option value="all">All manufacturers</option>
+            {RenderInputManufacturer}
+          </select>
+          <select
+            name="filterTire"
+            onChange={(e) => setFilterTire(e.target.value)}
+          >
+            <option value="all">All tires</option>
+            {RenderInputTire}
+          </select>
+          <input
+            type="text"
+            size="15"
+            onChange={(e) => setFilterSearch(e.target.value)}
+            placeholder="search"
+          />
+        </nav>
+        {RenderCarCards}
+      </div>
+    </MainContainer>
   );
 }

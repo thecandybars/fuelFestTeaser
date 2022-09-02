@@ -4,6 +4,7 @@ import EventCard from "./EventCard";
 import style from "./css/Events.module.css";
 import { getEvents, getFavEvent, toggleFavEvent } from "../services/event";
 import Title from "../assets/Title";
+import MainContainer from "../assets/MainContainer";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
@@ -86,7 +87,7 @@ export default function Events() {
   }, [search, category, date_time]);
 
   return (
-    <div className={style.container}>
+    <MainContainer>
       <Title title="Events" backButton="true"></Title>
       <nav className={style.events_nav}>
         <select name="category" onChange={(e) => setCategory(e.target.value)}>
@@ -108,6 +109,6 @@ export default function Events() {
         />
       </nav>
       <main>{eventCards}</main>
-    </div>
+    </MainContainer>
   );
 }

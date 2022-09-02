@@ -1,8 +1,52 @@
 import React from "react";
-import style from "./css/EventCard.module.css";
-import favYes from "../icons/favorite_FILL1_wght400_GRAD0_opsz48.svg";
-import favNo from "../icons/favorite_FILL0_wght400_GRAD0_opsz48.svg";
+import { icons } from "../common/icons";
 import { days, months } from "../common/dateNames";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  cursor: pointer;
+`;
+const EventData = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  p {
+    display: flex;
+    align-items: center;
+  }
+`;
+const EventTitle = styled.h3`
+  display: flex;
+  justify-content: space-between;
+`;
+const EventImage = styled.img`
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+`;
+const Icon = styled.img`
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%); /* Color=white */
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+`;
+const FavIcon = styled.img`
+  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+    brightness(118%) contrast(100%); /* Color=white */
+  width: 28px;
+  height: 28px;
+`;
+
+const EventDescription = styled.div`
+  padding: 3px;
+  color: ${(props) => props.theme.black};
+  background-color: ${(props) => props.theme.white};
+`;
 
 export default function EventCard(props) {
   const fullDate = new Date(props.date);
@@ -16,44 +60,37 @@ export default function EventCard(props) {
   const apiURL = process.env.REACT_APP_API;
   return (
     <>
-      <div
-        className={style.container}
+      <Container
         onClick={() => {
           props.showDesc(props.id);
         }}
       >
-        <img
-          alt="The band"
-          src={`${apiURL}/${props.image}`}
-          width="150px"
-          className={style.event_image}
-        />
-        <div className={style.eventData}>
-          <h3 className={style.eventTitle}>{props.title}</h3>
+        <EventImage alt="The band" src={`${apiURL}/${props.image}`} />
+        <EventData>
+          <EventTitle>{props.title}</EventTitle>
           <p>
-            <span className="material-symbols-outlined">calendar_month</span>
+            <Icon alt="" src={icons.event.calendar} />
             {`${dayName} ${fullDate.getDate()} ${monthName}`}
           </p>
           <p>
-            <span className="material-symbols-outlined">schedule</span>
+            <Icon alt="" src={icons.event.clock} />
             {`${fullDate.getHours()}:${dayNumber}`}
           </p>
           <p>
-            <span className="material-symbols-outlined">location_on</span>
+            <Icon alt="" src={icons.location} />
             {props.location}
           </p>
-        </div>
-        <img
-          className={style.isFavorite}
+        </EventData>
+        <FavIcon
           alt={props.isFavorite ? "Favorite" : "Not favorite"}
-          src={props.isFavorite ? favYes : favNo}
+          src={props.isFavorite ? icons.favorite.on : icons.favorite.off}
           onClick={(e) => {
             e.stopPropagation();
             props.togFav(props.id);
           }}
         />
-      </div>
-      {props.desc}
+      </Container>
+      {props.desc && <EventDescription>{props.desc}</EventDescription>}
     </>
   );
 }

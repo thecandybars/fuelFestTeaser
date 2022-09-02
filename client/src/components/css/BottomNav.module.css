@@ -1,3 +1,7 @@
+.bottomContainer {
+  height: 35px;
+}
+
 .bottomNav {
   display: flex;
   justify-content: space-around;

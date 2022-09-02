@@ -12,13 +12,14 @@ import Button1 from "../assets/Button1";
 import { icons } from "../common/icons";
 import { useParams } from "react-router-dom";
 import BackButton from "../assets/BackButton";
+import { screenSize } from "../common/screenSize";
+import MainContainer from "../assets/MainContainer";
+console.log("🚀 ~ file: CarDetails.jsx ~ line 16 ~ screenSize", screenSize);
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
   color: ${(props) => props.theme.black};
   background-color: ${(props) => props.theme.white};
-  height: 580px;
-  overflow-y: scroll;
 `;
 const Title = styled.div`
   display: flex;
@@ -154,10 +155,6 @@ const BuyButton = styled.div`
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
-  console.log(
-    "🚀 ~ file: CarDetails.jsx ~ line 89 ~ CarDetails ~ carDetails",
-    carDetails
-  );
   const [carImages, setCarImages] = useState([]);
   const [user, setUser] = useState({});
   const [wallet, setWallet] = useState({});
@@ -263,77 +260,79 @@ export default function CarDetails(props) {
   return (
     Object.keys(carDetails).length !== 0 &&
     Object.keys(wallet).length !== 0 && (
-      <CarDetailsContainer>
-        <button className={style.carDetail_close}>X</button>
-        <div onClick={(e) => e.stopPropagation()}>
-          <ImageGallery
-            items={carImages}
-            showBullets={false}
-            showIndex={false}
-            showThumbnails={false}
-            lazyLoad={true}
-            showPlayButton={false}
-            showFullscreenButton={false}
-            additionalClass={style.image}
-          />
-        </div>
-        {carDetails && (
-          <div className={style.carDetail_info}>
-            {/* TITLE */}
-
-            <Title>
-              {/* <BackButton style={{ filter: "invert(0%)" }} /> */}
-              <h2>{carDetails.title}</h2>
-            </Title>
-            {/* OWNER */}
-            <FlexLine>
-              <SmallIcon src={icons.owner} />
-              {carDetails.carOwner.name}
-            </FlexLine>
-            {/* SOCIAL */}
-            <FlexLine>
-              {carDetails.carOwner.instagram && (
-                <SmallIcon src={icons.social.instagram} />
-              )}
-              {carDetails.carOwner.facebook && (
-                <SmallIcon src={icons.social.facebook} />
-              )}
-              {carDetails.carOwner.youtube && (
-                <SmallIcon src={icons.social.youtube} />
-              )}
-              {carDetails.carOwner.twitter && (
-                <SmallIcon src={icons.social.twitter} />
-              )}
-            </FlexLine>
-            {/* CAR DESCRIPTION */}
-            <CarDescrption>{carDetails.description}</CarDescrption>
-
-            <TwoColumns>
-              {/* CAR UPGRADES */}
-              {!!renderCarUpgradeList && (
-                <div>
-                  <Subtitle>Upgrades</Subtitle>
-                  <FlexLine>{renderCarUpgradeList}</FlexLine>
-                </div>
-              )}
-              {/* CAR SPONSORS */}
-              {!!renderCarSponsorList && (
-                <div>
-                  <Subtitle>Sponsors</Subtitle>
-                  <FlexLine>
-                    {renderCarSponsorList}
-                    {renderCarOtherSponsorList}
-                  </FlexLine>
-                </div>
-              )}
-            </TwoColumns>
-            {/* CAR VOTING */}
-            {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
-            {/* CAR BUY */}
-            {!!renderCarBuy && renderCarBuy}
+      <MainContainer>
+        <CarDetailsContainer>
+          <button className={style.carDetail_close}>X</button>
+          <div onClick={(e) => e.stopPropagation()}>
+            <ImageGallery
+              items={carImages}
+              showBullets={false}
+              showIndex={false}
+              showThumbnails={false}
+              lazyLoad={true}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              additionalClass={style.image}
+            />
           </div>
-        )}
-      </CarDetailsContainer>
+          {carDetails && (
+            <div className={style.carDetail_info}>
+              {/* TITLE */}
+
+              <Title>
+                {/* <BackButton style={{ filter: "invert(0%)" }} /> */}
+                <h2>{carDetails.title}</h2>
+              </Title>
+              {/* OWNER */}
+              <FlexLine>
+                <SmallIcon src={icons.owner} />
+                {carDetails.carOwner.name}
+              </FlexLine>
+              {/* SOCIAL */}
+              <FlexLine>
+                {carDetails.carOwner.instagram && (
+                  <SmallIcon src={icons.social.instagram} />
+                )}
+                {carDetails.carOwner.facebook && (
+                  <SmallIcon src={icons.social.facebook} />
+                )}
+                {carDetails.carOwner.youtube && (
+                  <SmallIcon src={icons.social.youtube} />
+                )}
+                {carDetails.carOwner.twitter && (
+                  <SmallIcon src={icons.social.twitter} />
+                )}
+              </FlexLine>
+              {/* CAR DESCRIPTION */}
+              <CarDescrption>{carDetails.description}</CarDescrption>
+
+              <TwoColumns>
+                {/* CAR UPGRADES */}
+                {!!renderCarUpgradeList && (
+                  <div>
+                    <Subtitle>Upgrades</Subtitle>
+                    <FlexLine>{renderCarUpgradeList}</FlexLine>
+                  </div>
+                )}
+                {/* CAR SPONSORS */}
+                {!!renderCarSponsorList && (
+                  <div>
+                    <Subtitle>Sponsors</Subtitle>
+                    <FlexLine>
+                      {renderCarSponsorList}
+                      {renderCarOtherSponsorList}
+                    </FlexLine>
+                  </div>
+                )}
+              </TwoColumns>
+              {/* CAR VOTING */}
+              {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
+              {/* CAR BUY */}
+              {!!renderCarBuy && renderCarBuy}
+            </div>
+          )}
+        </CarDetailsContainer>
+      </MainContainer>
     )
   );
 }

@@ -27,6 +27,9 @@ import bestInterior from "../icons/voting/best_interior.svg";
 import bestPaint from "../icons/voting/best_paint.svg";
 import bestRims from "../icons/voting/best_rims.svg";
 import bestStereo from "../icons/voting/best_stereo.svg";
+//EVENTS
+import clock from "../icons/event/clock.svg";
+import calendar from "../icons/event/calendar.svg";
 
 export const icons = {
   owner,
@@ -36,4 +39,5 @@ export const icons = {
   favorite: { on: favoriteOn, off: favoriteOff },
   upgrade: { body, wheels, brakes, engine, nitro, suspension, stereo },
   voting: { bestLigths, bestInterior, bestPaint, bestRims, bestStereo },
+  event: { clock, calendar },
 };

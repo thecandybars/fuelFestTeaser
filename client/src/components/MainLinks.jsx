@@ -9,21 +9,9 @@ import walletImg from "../img/mainLinks_wallet.png";
 import style from "./css/MainLinks.module.css";
 // import styled from "styled-components";
 
-// const StyledContainer = styled.div`
-//   img {
-//     border-radius: 15px;
-//     margin: 4px;
-//   }
-// `;
-
 export default function MainLinks() {
   return (
     <div className={style.list_links}>
-      {/* <div className={style.row1_test}>
-        <Link to="/cars">
-          <img src={carsImg} alt="cars " width="95%" />
-        </Link>
-      </div> */}
       <div className={style.row1}>
         <Link to="/cars">
           <img src={carsImg} alt="cars" />

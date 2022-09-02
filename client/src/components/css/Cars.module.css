@@ -9,10 +9,10 @@
   justify-content: space-between;
 }
 main {
-  height: 500px;
+  /* height: 500px;
   overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  */
 }
 main::-webkit-scrollbar {
   display: none; /* Hide scrollbar for Chrome, Safari and Opera */
