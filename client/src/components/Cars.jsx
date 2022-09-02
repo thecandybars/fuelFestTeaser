@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import { getCars, postFavCar, getFavCar } from "../services/car";
-
 import CarCard from "./CarCard";
 import style from "./css/Cars.module.css";
 import CarDetails from "./CarDetails";
 import Title from "../assets/Title";
 import MainContainer from "../assets/MainContainer";
+import styled from "styled-components";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
@@ -35,42 +34,43 @@ export default function Cars() {
     await postFavCar(carId);
     fetchFavorites();
   }
-  function handleShowDetails(carId) {
-    // This was an async func
-    if (carId === "") {
-      setCarDetails("");
-    } else {
-      const selectedCar = filteredCars.find((car) => car.id === carId);
-      setCarDetails(
-        <CarDetails
-          id={carId}
-          isFavorite={
-            !!fetchedFavs.find((favCar) => selectedCar.id === favCar.id)
-          }
-          showDetails={handleShowDetails}
-          togFav={toggleFav}
-        />
-      );
-    }
-  }
+  // function handleShowDetails(carId) {
+  //   // This was an async func
+  //   if (carId === "") {
+  //     setCarDetails("");
+  //   } else {
+  //     const selectedCar = filteredCars.find((car) => car.id === carId);
+  //     setCarDetails(
+  //       <CarDetails
+  //         id={carId}
+  //         isFavorite={
+  //           !!fetchedFavs.find((favCar) => selectedCar.id === favCar.id)
+  //         }
+  //         // showDetails={handleShowDetails}
+  //         togFav={toggleFav}
+  //       />
+  //     );
+  //   }
+  // }
 
   const RenderCarCards =
     filteredCars.length > 0 ? (
       filteredCars.map((car) => (
         <CarCard
+          car={car}
           key={car.id}
-          id={car.id}
-          title={car.title}
-          image={!!car.carImages.length && car.carImages[0].image}
-          owner={car.carOwner.name}
-          voting={car.voteCategories}
-          manufacturer={car.manufacturer}
-          location={car.location}
-          tire={car.tireManufacturer}
-          chasis={car.chasis}
-          isFavorite={!!fetchedFavs.find((favCar) => car.id === favCar.id)}
+          // id={car.id}
+          // title={car.title}
+          // image={!!car.carImages.length && car.carImages[0].image}
+          // owner={car.carOwner.name}
+          // voting={car.voteCategories}
+          // manufacturer={car.manufacturer}
+          // location={car.location}
+          // tire={car.tireManufacturer}
+          // chasis={car.chasis}
+          // isFavorite={!!fetchedFavs.find((favCar) => car.id === favCar.id)}
           togFav={toggleFav}
-          showDetails={handleShowDetails}
+          // showDetails={handleShowDetails}
         />
       ))
     ) : (

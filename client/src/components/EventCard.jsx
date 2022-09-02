@@ -35,11 +35,13 @@ const Icon = styled.img`
   height: 25px;
   margin-right: 5px;
 `;
-const FavIcon = styled.img`
-  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
-    brightness(118%) contrast(100%); /* Color=white */
-  width: 28px;
-  height: 28px;
+const FavIcon = styled.div`
+  width: 50px;
+  height: 50px;
+  img {
+    filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
+      brightness(118%) contrast(100%); /* Color=white */
+  }
 `;
 
 const EventDescription = styled.div`
@@ -82,13 +84,16 @@ export default function EventCard(props) {
           </p>
         </EventData>
         <FavIcon
-          alt={props.isFavorite ? "Favorite" : "Not favorite"}
-          src={props.isFavorite ? icons.favorite.on : icons.favorite.off}
           onClick={(e) => {
             e.stopPropagation();
             props.togFav(props.id);
           }}
-        />
+        >
+          <img
+            alt={props.isFavorite ? "Favorite" : "Not favorite"}
+            src={props.isFavorite ? icons.favorite.on : icons.favorite.off}
+          />
+        </FavIcon>
       </Container>
       {props.desc && <EventDescription>{props.desc}</EventDescription>}
     </>

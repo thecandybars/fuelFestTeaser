@@ -1,87 +1,150 @@
 import React, { useState } from "react";
-import style from "./css/CarCard.module.css";
 import { Link } from "react-router-dom";
-import { Dialog } from "@mui/material";
 import styled from "styled-components";
 import { icons } from "../common/icons";
-import CarDetails from "./CarDetails";
-// import Button1 from "../assets/Button1";
+
+const Container = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 10px;
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #2d2d2d;
+`;
+const CarImage = styled.img`
+  width: 140px;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: 10px;
+`;
+const CarData = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+`;
+const OneColumn = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 2px;
+`;
+const TwoColumns = styled.div`
+  display: flex;
+  align-items: baseline;
+  padding-top: 2px;
+  justify-content: space-between;
+`;
+const CarTitle = styled.h3`
+  font-size: 1.3rem;
+  margin-bottom: 7px;
+`;
+const MapLink = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #da1921;
+  font-size: small;
+  img {
+    margin: 0 auto;
+    height: 25px;
+    filter: invert(82%) sepia(26%) saturate(3334%) hue-rotate(334deg)
+      brightness(102%) contrast(99%);
+  }
+  p {
+    color: ${(props) => props.theme.yellow};
+  }
+`;
+const MapIcon = styled.div`
+  min-width: 25px;
+  display: flex;
+  justify-content: center;
+  margin-right: 2px;
+`;
+const SmIcon = styled.div`
+  min-width: 25px;
+  display: flex;
+  justify-content: center;
+  margin-right: 2px;
+  img {
+    margin: 0 auto;
+    height: 25px;
+    /* padding-left: 5px; */
+    filter: invert(100%) sepia(4%) saturate(0%) hue-rotate(315deg)
+      brightness(88%) contrast(94%);
+  }
+`;
 
 export default function CarCard(props) {
   const apiURL = process.env.REACT_APP_API;
 
   // DIALOG
-  const [carDetailOpen, setCarDetailOpen] = useState(false);
-  const handleCarDetailOpen = () => setCarDetailOpen(true);
-  const handleCarDetailClose = () => setCarDetailOpen(false);
+  const [, setCarDetailOpen] = useState(false);
 
   return (
     <>
-      {/* DIALOG */}
-      {/* <Dialog open={carDetailOpen} onClose={handleCarDetailClose}>
-        <CarDetails carId={props.id} />
-      </Dialog> */}
-      <Link to={`/car/${props.id}`}>
-        <div className={style.container} onClick={handleCarDetailOpen}>
-          <img
+      <Link to={`/car/${props.car.id}`}>
+        <Container onClick={() => setCarDetailOpen(true)}>
+          <CarImage
             alt="A car"
-            src={`${apiURL}/${props.image}`}
-            width="150px"
-            className={style.car_image}
+            src={`${apiURL}/${
+              !!props.car.carImages.length && props.car.carImages[0].image
+            }`}
           />
-          <div className={style.carData}>
-            {/* 1ST ROW   TITLE + FAVORITE */}
-            <div className={style.carTitle}>
-              <h3>{props.title}</h3>
-              <img
-                className={`${style.smIcon} ${style.white}`}
-                alt={props.isFavorite ? "Favorite" : "Not favorite"}
-                src={props.isFavorite ? icons.favorite.on : icons.favorite.off}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  props.togFav(props.id);
-                }}
-              />
-            </div>
-            {/* 2ND ROW OWNER */}
-            <div className={style.owner}>
-              <img
-                alt="owner icon"
-                src={icons.owner}
-                className={`${style.smIcon} ${style.white}`}
-              />
-              {props.owner}
-            </div>
-            {/* 3RD ROW LOCATION + MAP*/}
-            <div className={style.location}>
-              <div className={style.location_data}>
+          <CarData>
+            {/* TITLE + FAVORITE */}
+            <TwoColumns>
+              <CarTitle>{props.car.title}</CarTitle>
+              <SmIcon>
                 <img
-                  alt="location icon"
-                  src={icons.location}
-                  className={`${style.smIcon} ${style.white}`}
+                  alt={props.car.isFavorite ? "Favorite" : "Not favorite"}
+                  src={
+                    props.car.isFavorite
+                      ? icons.favorite.on
+                      : icons.favorite.off
+                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    props.togFav(props.car.id);
+                  }}
                 />
-                <p>{props.location}</p>
-              </div>
-              <div className={style.location_map}>
-                <img alt="map icon" src={icons.map} className={style.smIcon} />
-                <Link to="#">
-                  <p>map</p>
-                </Link>
-              </div>
-            </div>
-            {/* 4TH ROW VOTING CATEGORIES*/}
-            <div className={style.voteCategories}>
-              {props.voting.map((voteCat) => (
-                <img
+              </SmIcon>
+            </TwoColumns>
+            {/* ROW OWNER */}
+            <OneColumn>
+              <SmIcon>
+                <img alt="owner icon" src={icons.owner} />
+              </SmIcon>
+              {props.car.carOwner.name}
+            </OneColumn>
+            {/* ROW LOCATION + MAP*/}
+            <TwoColumns>
+              <OneColumn>
+                <SmIcon>
+                  <img alt="location icon" src={icons.location} />
+                </SmIcon>
+                <p>{props.car.location}</p>
+              </OneColumn>
+              <MapLink>
+                <img alt="map icon" src={icons.map} />
+
+                {/* <Link to="#"> */}
+                <p>map</p>
+                {/* </Link> */}
+              </MapLink>
+            </TwoColumns>
+            {/* ROW VOTING CATEGORIES*/}
+            <OneColumn>
+              {props.car.voteCategories.map((voteCat) => (
+                <SmIcon
                   key={voteCat.id}
                   alt="icon"
                   src={`${apiURL}/${voteCat.icon}`}
-                  className={`${style.smIcon} ${style.white}`}
                 />
               ))}
-            </div>
-          </div>
-        </div>
+            </OneColumn>
+          </CarData>
+        </Container>
       </Link>
     </>
   );
