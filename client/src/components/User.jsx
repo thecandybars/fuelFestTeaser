@@ -19,7 +19,7 @@ export default function User() {
   const [counter, setCounter] = useState(0);
   const [image, setImage] = useState(images[0]);
   function handleImage() {
-    setCounter((prev) => (prev === 2 ? 0 : prev + 1));
+    setCounter((prev) => (prev === 5 ? 0 : prev + 1));
   }
   useEffect(() => {
     setImage(images[counter]);
