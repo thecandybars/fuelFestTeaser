@@ -7,20 +7,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import dotenv from "dotenv";
 import { ThemeProvider } from "styled-components";
+import { theme } from "./common/theme";
 
 dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
-
-// THEME
-const theme = {
-  yellow: "#feae2e",
-  white: "#d9d9d9",
-  red: "#da1921",
-  green: "#00703d",
-  dialogBackground: "rgba(10, 10, 10, 0.97)",
-  black: "#000000",
-};
 
 // RENDER
 const container = document.getElementById("root");

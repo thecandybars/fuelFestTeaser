@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import style from "./css/CarDetails.module.css";
 import styled from "styled-components";
 import { getCarById } from "../services/car";
 import { postCarVote } from "../services/vote";
@@ -8,26 +7,25 @@ import { getWallet } from "../services/wallet";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { walletId } from "../common/getLoginData";
-import Button1 from "../assets/Button1";
 import { icons } from "../common/icons";
 import { useParams } from "react-router-dom";
-import BackButton from "../assets/BackButton";
-import { screenSize } from "../common/screenSize";
 import MainContainer from "../assets/MainContainer";
-console.log("🚀 ~ file: CarDetails.jsx ~ line 16 ~ screenSize", screenSize);
+import CloseIcon from "@mui/icons-material/Close";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
+  position: relative;
   color: ${(props) => props.theme.black};
   background-color: ${(props) => props.theme.white};
 `;
-const Title = styled.div`
-  display: flex;
-  align-items: center;
-  h2 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-  }
+const CarInfoContainer = styled.div`
+  padding: 5px 10px;
+`;
+const Title = styled.h2`
+  font-size: 1.6rem;
+  margin-bottom: 10px;
 `;
 const Subtitle = styled.h3`
   margin: 0;
@@ -160,6 +158,7 @@ export default function CarDetails(props) {
   const [wallet, setWallet] = useState({});
   const apiURL = process.env.REACT_APP_API;
   const { carId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCarDetails();
@@ -199,7 +198,7 @@ export default function CarDetails(props) {
   const renderCarUpgradeList =
     carDetails.upgrades &&
     upgrades.map((upgrade) => (
-      <FlexWrap>
+      <FlexWrap key={upgrade}>
         <SmallIcon alt="" src={icons.upgrade[upgrade.toLowerCase()]} />
         <p>{upgrade}</p>
       </FlexWrap>
@@ -208,7 +207,7 @@ export default function CarDetails(props) {
   const renderCarSponsorList =
     carDetails.sponsors &&
     carDetails.sponsors.map((sponsor) => (
-      <FlexWrap>
+      <FlexWrap key={sponsor.id}>
         <SponsorLogo alt="" src={`${apiURL}/${sponsor.logo}`} />
         <SponsorTitle>{sponsor.title}</SponsorTitle>
       </FlexWrap>
@@ -218,7 +217,7 @@ export default function CarDetails(props) {
   const renderCarOtherSponsorList =
     carDetails.otherSponsors &&
     otherSponsors.map((sponsor) => (
-      <FlexColumn>
+      <FlexColumn key={sponsor}>
         <OtherSponsorAvatar>{sponsor[0].toUpperCase()}</OtherSponsorAvatar>
         <SponsorTitle>{sponsor}</SponsorTitle>
       </FlexColumn>
@@ -227,7 +226,7 @@ export default function CarDetails(props) {
   const renderCarVoteCategories =
     carDetails.voteCategories &&
     carDetails.voteCategories.map((category) => (
-      <VoteBlock>
+      <VoteBlock key={category.id}>
         <VoteIcon alt="" src={icons.voting[camelCase(category.title)]} />
         <VoteTitle>{category.title}</VoteTitle>
       </VoteBlock>
@@ -262,7 +261,19 @@ export default function CarDetails(props) {
     Object.keys(wallet).length !== 0 && (
       <MainContainer>
         <CarDetailsContainer>
-          <button className={style.carDetail_close}>X</button>
+          <Button
+            // color="#d9d9d9"
+            onClick={() => navigate(-1)}
+            variant="contained"
+            style={{
+              position: "absolute",
+              top: "0px",
+              right: "0px",
+              zIndex: "100",
+            }}
+          >
+            <CloseIcon />
+          </Button>
           <div onClick={(e) => e.stopPropagation()}>
             <ImageGallery
               items={carImages}
@@ -272,17 +283,13 @@ export default function CarDetails(props) {
               lazyLoad={true}
               showPlayButton={false}
               showFullscreenButton={false}
-              additionalClass={style.image}
             />
           </div>
           {carDetails && (
-            <div className={style.carDetail_info}>
+            <CarInfoContainer>
               {/* TITLE */}
 
-              <Title>
-                {/* <BackButton style={{ filter: "invert(0%)" }} /> */}
-                <h2>{carDetails.title}</h2>
-              </Title>
+              <Title>{carDetails.title}</Title>
               {/* OWNER */}
               <FlexLine>
                 <SmallIcon src={icons.owner} />
@@ -329,7 +336,7 @@ export default function CarDetails(props) {
               {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
               {/* CAR BUY */}
               {!!renderCarBuy && renderCarBuy}
-            </div>
+            </CarInfoContainer>
           )}
         </CarDetailsContainer>
       </MainContainer>

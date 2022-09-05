@@ -56,22 +56,7 @@ export default function Cars() {
   const RenderCarCards =
     filteredCars.length > 0 ? (
       filteredCars.map((car) => (
-        <CarCard
-          car={car}
-          key={car.id}
-          // id={car.id}
-          // title={car.title}
-          // image={!!car.carImages.length && car.carImages[0].image}
-          // owner={car.carOwner.name}
-          // voting={car.voteCategories}
-          // manufacturer={car.manufacturer}
-          // location={car.location}
-          // tire={car.tireManufacturer}
-          // chasis={car.chasis}
-          // isFavorite={!!fetchedFavs.find((favCar) => car.id === favCar.id)}
-          togFav={toggleFav}
-          // showDetails={handleShowDetails}
-        />
+        <CarCard car={car} key={car.id} togFav={toggleFav} />
       ))
     ) : (
       <p>No cars to show</p>
