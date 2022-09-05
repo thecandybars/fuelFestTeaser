@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { BoughtAssetContext } from "../WalletMarketplace.jsx";
 import styled from "styled-components";
 import { getAssetById, buyAssetFromWallet } from "../../services/assets";
 import { walletId } from "../../common/getLoginData";
@@ -102,6 +103,7 @@ const StyledConfirmTransaction = styled.div`
 
 export default function ModalBuyNFT(props) {
   const apiURL = process.env.REACT_APP_API;
+  const boughtAsset = useContext(BoughtAssetContext);
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
@@ -116,6 +118,7 @@ export default function ModalBuyNFT(props) {
   const [confirmBuyOpen, setConfirmBuyOpen] = useState(false);
   const handleConfirmBuyClose = () => {
     setConfirmBuyOpen(false);
+    boughtAsset(true);
     props.closeDialog();
   };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MainContainer from "../assets/MainContainer";
 import Title from "../assets/Title";
 import { getVotingCategory } from "../services/voting";
@@ -10,10 +10,7 @@ export default function WalletVotingCategory() {
   const apiURL = process.env.REACT_APP_API;
   //   INIT
   const [voteCategoryFetched, setVoteCategoryFetched] = useState({});
-  console.log(
-    "🚀 ~ file: WalletVotingCategory.jsx ~ line 10 ~ WalletVotingCategory ~ voteCategoryFetched",
-    voteCategoryFetched
-  );
+
   useEffect(() => {
     fetchVoteCategory(voteCategory);
   }, []);
@@ -24,8 +21,11 @@ export default function WalletVotingCategory() {
   // Car Cards Render
   const renderVotingCarCards =
     Object.keys(voteCategoryFetched).length !== 0 &&
-    // voteCategoryFetched.map((car) => <p>{car.car.title}</p>);
-    voteCategoryFetched.map((car) => <VoteCarCard data={car} />);
+    voteCategoryFetched.map((car) => (
+      <Link to={`/car/${car.car.id}`}>
+        <VoteCarCard data={car} />
+      </Link>
+    ));
 
   return (
     Object.keys(voteCategoryFetched).length !== 0 && (

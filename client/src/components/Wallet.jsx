@@ -64,7 +64,7 @@ export default function Wallet() {
   return (
     <MainContainer>
       <div className={style.titleBaar}>
-        <Title title="YOUR WALLET" backButton="true" image={driftCoin}></Title>
+        <Title title="YOUR WALLET" backButton="true"></Title>
         {/* <img alt="drift coin" src={driftCoin} /> */}
       </div>
       <div className={style.walletData}>
@@ -170,7 +170,7 @@ export default function Wallet() {
               src={questIcon}
               className={style.walletLinks_icon}
             />
-            <p>Quests / Pins</p>
+            <p>Pins / rallies</p>
           </Link>
         </div>
         <div

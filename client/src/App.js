@@ -20,6 +20,7 @@ import WalletStats from "./components/WalletStats";
 import NFTCar from "./components/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
+import User from "./components/User";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
           <Route path="/wallet/stats" element={<WalletStats />} />
           <Route path="/voting/:carId" element={<Voting />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </div>
       <BottomNav />

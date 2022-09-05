@@ -24,7 +24,9 @@ export default function TopNav() {
           <span className="material-symbols-outlined">notifications</span>
         </li>
         <li className={style.topNavRight_item}>
-          <span className="material-symbols-outlined">account_circle</span>
+          <Link to="/user">
+            <span className="material-symbols-outlined">account_circle</span>
+          </Link>
         </li>
       </ul>
     </div>

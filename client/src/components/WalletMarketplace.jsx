@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import WalletContainer from "../assets/WalletContainer";
 import Title from "../assets/Title";
 import { getAllAssets } from "../services/assets";
@@ -6,7 +6,9 @@ import NFTCardCard from "./WalletMarketplace/NFTCardCard";
 import VoucherCard from "./WalletMarketplace/VoucherCard";
 import styled from "styled-components";
 import MainContainer from "../assets/MainContainer";
+import { useSearchParams } from "react-router-dom";
 
+// STYLED COMPONENTS
 const StyledContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -49,9 +51,22 @@ const StyledPriceRow = styled.div`
     background-color: transparent;
   }
 `;
+
+// ASSET HAS BEEN BOUGHT TRACKING
+export const BoughtAssetContext = createContext();
+
 export default function WalletMarketplace() {
   const [fetchedAssets, setFetchedAssets] = useState([]);
   const [filteredAssets, setFilteredAssets] = useState([]);
+
+  // ASSET HAS BEEN BOUGHT TRACKING (TO  TRIGGER RENDER AFTER ASSET HAS BEEN BOUGHT)
+  const [boughtAsset, setBoughtAsset] = useState(false);
+  const handleBoughAsset = (wasBought) => setBoughtAsset(wasBought);
+  useEffect(() => {
+    fetchAssets();
+    setBoughtAsset(false);
+  }, [boughtAsset]);
+
   useEffect(() => {
     fetchAssets();
   }, []);
@@ -71,7 +86,17 @@ export default function WalletMarketplace() {
   });
 
   // FILTERS
-  const [filterCategory, setFilterCategory] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(
+    "🚀 ~ file: WalletMarketplace.jsx ~ line 90 ~ WalletMarketplace ~ searchParams",
+    searchParams.get("category")
+  );
+  const initFilterCategory =
+    searchParams.get("category") === null
+      ? "all"
+      : searchParams.get("category");
+
+  const [filterCategory, setFilterCategory] = useState(initFilterCategory);
   const [filterSearch, setFilterSearch] = useState("");
   const [filterPrice, setFilterPrice] = useState({
     min: "",
@@ -139,66 +164,69 @@ export default function WalletMarketplace() {
 
   return (
     true && (
-      <MainContainer>
-        {<Title title="NFT MARKETPLACE" backButton="true" />}
-        <div style={{ display: "flex", padding: "5px 0" }}>
-          {/* ASSET CATEGORY FILTER */}
-          <StyledAssetFilter
-            name="assetsFilter"
-            onChange={(e) => setFilterCategory(e.target.value)}
-          >
-            <option value="all">All </option>
-            {RenderCategoryFilterOptions}
-          </StyledAssetFilter>
-          {/* SEARCH TEXT STRING FILTER */}
-          <StyledAssetSearch
-            type="text"
-            onChange={(e) => {
-              setFilterSearch(e.target.value);
-            }}
-          ></StyledAssetSearch>
-        </div>
-        <div>
-          {/* PRICE FILTER */}
-          <StyledPriceRow>
-            <p>PRICE</p>
-            <input
-              type="number"
-              placeholder="min"
-              onChange={(e) =>
-                setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
-              }
-            />
-            <input
-              type="number"
-              placeholder="max"
-              onChange={(e) =>
-                setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
-              }
-            />
-          </StyledPriceRow>
-          {/* MINT FILTER */}
-          <StyledPriceRow>
-            <p>MINT</p>
-            <input
-              type="number"
-              placeholder="min"
-              onChange={(e) =>
-                setFilterMint((prev) => ({ ...prev, min: e.target.value }))
-              }
-            />
-            <input
-              type="number"
-              placeholder="max"
-              onChange={(e) =>
-                setFilterMint((prev) => ({ ...prev, max: e.target.value }))
-              }
-            />
-          </StyledPriceRow>
-        </div>
-        {/* CARDS RENDER */}
-        <StyledContainer>{RenderNFTAssets}</StyledContainer>
-      </MainContainer>
+      <BoughtAssetContext.Provider value={handleBoughAsset}>
+        <MainContainer>
+          {<Title title="NFT MARKETPLACE" backButton="true" />}
+          <div style={{ display: "flex", padding: "5px 0" }}>
+            {/* ASSET CATEGORY FILTER */}
+            <StyledAssetFilter
+              name="assetsFilter"
+              onChange={(e) => setFilterCategory(e.target.value)}
+              defaultValue="Voucher"
+            >
+              <option value="all">All </option>
+              {RenderCategoryFilterOptions}
+            </StyledAssetFilter>
+            {/* SEARCH TEXT STRING FILTER */}
+            <StyledAssetSearch
+              type="text"
+              onChange={(e) => {
+                setFilterSearch(e.target.value);
+              }}
+            ></StyledAssetSearch>
+          </div>
+          <div>
+            {/* PRICE FILTER */}
+            <StyledPriceRow>
+              <p>PRICE</p>
+              <input
+                type="number"
+                placeholder="min"
+                onChange={(e) =>
+                  setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
+                }
+              />
+              <input
+                type="number"
+                placeholder="max"
+                onChange={(e) =>
+                  setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
+                }
+              />
+            </StyledPriceRow>
+            {/* MINT FILTER */}
+            <StyledPriceRow>
+              <p>MINT</p>
+              <input
+                type="number"
+                placeholder="min"
+                onChange={(e) =>
+                  setFilterMint((prev) => ({ ...prev, min: e.target.value }))
+                }
+              />
+              <input
+                type="number"
+                placeholder="max"
+                onChange={(e) =>
+                  setFilterMint((prev) => ({ ...prev, max: e.target.value }))
+                }
+              />
+            </StyledPriceRow>
+          </div>
+          {/* CARDS RENDER */}
+          <StyledContainer>{RenderNFTAssets}</StyledContainer>
+        </MainContainer>
+      </BoughtAssetContext.Provider>
     )
   );
 }
