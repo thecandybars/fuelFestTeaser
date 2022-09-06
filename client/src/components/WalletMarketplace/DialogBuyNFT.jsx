@@ -118,7 +118,11 @@ export default function ModalBuyNFT(props) {
   const [confirmBuyOpen, setConfirmBuyOpen] = useState(false);
   const handleConfirmBuyClose = () => {
     setConfirmBuyOpen(false);
-    boughtAsset(true);
+    // I boughtAsset to tell WalletMarketplace an asset was bought and it needs to re-render.
+    // Its usefull when asset is bought directly from the Buy button on the card. If user instead clicks the card first
+    // it opens the details view, wich is a link outside de useContext reach, so boughAsset function is not present (and not needed)
+    // and throws and error. That´s why it needs to be checked before executing it.
+    boughtAsset && boughtAsset(true);
     props.closeDialog();
   };
 
