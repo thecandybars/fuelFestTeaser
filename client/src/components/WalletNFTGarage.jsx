@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import WalletContainer from "../assets/WalletContainer";
 import Title from "../assets/Title";
 import { getAssetByWallet } from "../services/assets";
 import NFTCardCard from "./WalletNFTGarage/NFTCardCard";

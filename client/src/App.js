@@ -24,9 +24,9 @@ import User from "./components/User";
 
 function App() {
   return (
-    <div className="App">
+    <div className="wrapper">
       <TopNav />
-      <div className="middleContent">
+      <main>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
@@ -50,7 +50,7 @@ function App() {
           <Route path="/voting/:carId" element={<Voting />} />
           <Route path="/user" element={<User />} />
         </Routes>
-      </div>
+      </main>
       <BottomNav />
     </div>
   );
