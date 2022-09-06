@@ -144,7 +144,7 @@ export default function Wallet() {
               src={voucherIcon}
               className={style.walletLinks_icon}
             />
-            <p>Discount vouchers</p>
+            <p>Discount Vouchers</p>
           </Link>
         </div>
         <div
@@ -170,7 +170,7 @@ export default function Wallet() {
               src={questIcon}
               className={style.walletLinks_icon}
             />
-            <p>Pins / rallies</p>
+            <p>Pins / Rallies</p>
           </Link>
         </div>
         <div
