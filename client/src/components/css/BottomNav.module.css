@@ -1,7 +1,7 @@
 .bottomContainer {
   height: 35px;
   background-color: black;
-  position: relative;
+  position: fixed;
   bottom: 0;
 }
 
