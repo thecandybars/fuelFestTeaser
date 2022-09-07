@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="wrapper" style={{ height: window.screen.availHeight }}>
       <TopNav />
-      <main style={{ height: screenSize }}>
+      <main>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
@@ -52,7 +52,9 @@ function App() {
           <Route path="/user" element={<User />} />
         </Routes>
       </main>
-      <BottomNav />
+      <div>
+        <BottomNav />
+      </div>
     </div>
   );
 }
