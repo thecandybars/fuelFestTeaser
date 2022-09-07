@@ -25,7 +25,7 @@ import { screenSize } from "./common/screenSize";
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="wrapper" style={{ height: window.screen.availHeight }}>
       <TopNav />
       <main style={{ height: screenSize }}>
         <Routes>
