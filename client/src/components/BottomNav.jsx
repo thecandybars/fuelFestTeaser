@@ -2,6 +2,8 @@ import React from "react";
 
 import style from "./css/BottomNav.module.css";
 import { NavLink } from "react-router-dom";
+import { icons } from "../common/icons.js";
+import homeIcon from "../icons/navigation/home-on.svg";
 
 export default function BottomNav() {
   return (
@@ -9,6 +11,7 @@ export default function BottomNav() {
       <ul className={style.bottomNav}>
         <li className={style.bottomNav_item}>
           <NavLink to="/">
+            {/* <img alt="" src={icons.navigation.home.on} /> */}
             <span className="material-symbols-outlined">home</span>
           </NavLink>
         </li>

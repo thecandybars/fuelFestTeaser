@@ -3,11 +3,12 @@
 .topNavRight {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .topNav {
   padding: 10px;
-  /* height: 55px; */
+  height: 55px;
 }
 
 .topNavLeft li {

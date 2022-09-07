@@ -30,6 +30,15 @@ import bestStereo from "../icons/voting/best_stereo.svg";
 //EVENTS
 import clock from "../icons/event/clock.svg";
 import calendar from "../icons/event/calendar.svg";
+//NAVIGATION
+import homeOn from "../icons/navigation/home-on.svg";
+import homeOff from "../icons/navigation/home-off.svg";
+import walletOn from "../icons/navigation/wallet-on.svg";
+import walletOff from "../icons/navigation/wallet-off.svg";
+import qrOn from "../icons/navigation/qr-on.svg";
+import qrOff from "../icons/navigation/qr-off.svg";
+import favoritesOn from "../icons/navigation/favorites-on.svg";
+import favoritesOff from "../icons/navigation/favorites-off.svg";
 
 export const icons = {
   owner,
@@ -40,4 +49,10 @@ export const icons = {
   upgrade: { body, wheels, brakes, engine, nitro, suspension, stereo },
   voting: { bestLigths, bestInterior, bestPaint, bestRims, bestStereo },
   event: { clock, calendar },
+  navigation: {
+    home: { on: homeOn, off: homeOff },
+    wallet: { on: walletOn, off: walletOff },
+    qr: { on: qrOn, off: qrOff },
+    favorite: { on: favoritesOn, off: favoritesOff },
+  },
 };
