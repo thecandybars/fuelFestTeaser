@@ -11,6 +11,6 @@
 }
 
 main {
-  height: calc(100%-55px);
+  /* height: calc(100%-55px); */
   overflow-y: auto;
 }
