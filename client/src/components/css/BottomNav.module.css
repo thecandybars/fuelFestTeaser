@@ -1,7 +1,8 @@
 .bottomContainer {
-  /* height: 35px; */
-  position: fixed;
-  bottom: 0;
+  height: 35px;
+  background-color: black;
+  /* position: fixed;
+  bottom: 0; */
 }
 
 .bottomNav {

@@ -21,12 +21,13 @@ import NFTCar from "./components/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
 import User from "./components/User";
+import { screenSize } from "./common/screenSize";
 
 function App() {
   return (
     <div className="wrapper">
       <TopNav />
-      <main>
+      <main style={{ height: screenSize }}>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
