@@ -13,13 +13,9 @@
 }
 .bottomNav_item {
   padding: 7px;
-  width: 42px;
+  width: 48px;
 }
 .icon {
-  filter: invert(84%) sepia(0%) saturate(173%) hue-rotate(184deg)
-    brightness(104%) contrast(93%);
-}
-.iconActive {
-  filter: invert(17%) sepia(100%) saturate(3383%) hue-rotate(348deg)
-    brightness(86%) contrast(98%);
+  fill: #d9d9d9;
+  width: 666px;
 }

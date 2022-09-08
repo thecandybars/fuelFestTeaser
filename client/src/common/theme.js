@@ -1,3 +1,16 @@
+import { createTheme } from "@mui/material";
+
+// MUI THEME
+export const themeMUI = createTheme({
+  palette: {
+    red: { main: "#da1921" },
+    yellow: { main: "#feae2e" },
+    white: { main: "#d9d9d9" },
+    green: { main: "#00703d" },
+    dialogBackground: { main: "rgba(10, 10, 10, 0.97)" },
+    black: { main: "#000000" },
+  },
+});
 // STYLED COMPONENTS THEME
 export const theme = {
   yellow: "#feae2e",

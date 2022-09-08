@@ -262,7 +262,7 @@ export default function CarDetails(props) {
       <MainContainer>
         <CarDetailsContainer>
           <Button
-            // color="#d9d9d9"
+            color="red"
             onClick={() => navigate(-1)}
             variant="contained"
             style={{

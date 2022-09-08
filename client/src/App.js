@@ -20,7 +20,6 @@ import NFTCar from "./components/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
 import User from "./components/User";
-import { screenSize } from "./common/screenSize";
 
 function App() {
   return (

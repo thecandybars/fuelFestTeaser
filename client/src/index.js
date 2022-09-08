@@ -6,8 +6,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import dotenv from "dotenv";
+import { ThemeProvider as ThemeProviderMUI } from "@mui/material/styles";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./common/theme";
+import { theme, themeMUI } from "./common/theme";
 
 dotenv.config();
 
@@ -19,9 +20,11 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <ThemeProviderMUI theme={themeMUI}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </ThemeProviderMUI>
     </BrowserRouter>
   </React.StrictMode>
 );

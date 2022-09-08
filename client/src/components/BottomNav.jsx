@@ -1,9 +1,14 @@
 import React from "react";
 import style from "./css/BottomNav.module.css";
 import { NavLink } from "react-router-dom";
-import { icons } from "../common/icons.js";
+import { Icons } from "../common/Ico";
+import { theme } from "../common/theme";
 
 export default function BottomNav() {
+  const activeStyle = {
+    fill: theme.red,
+  };
+
   return (
     <div className={style.bottomContainer}>
       <ul className={style.bottomNav}>
@@ -11,36 +16,36 @@ export default function BottomNav() {
           <NavLink
             to="/"
             className={style.icon}
-            activeClassName={style.iconActive}
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <img alt="" src={icons.tempNav.home} />
+            <Icons.Home />
           </NavLink>
         </li>
         <li className={style.bottomNav_item}>
           <NavLink
             to="/wallet"
             className={style.icon}
-            activeClassName={style.iconActive}
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <img alt="" src={icons.tempNav.wallet} />
+            <Icons.Wallet />
           </NavLink>
         </li>
         <li className={style.bottomNav_item}>
           <NavLink
             to="/"
             className={style.icon}
-            activeClassName={style.iconActive}
+            // style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <img alt="" src={icons.tempNav.qr} />
+            <Icons.Qr />
           </NavLink>
         </li>
         <li className={style.bottomNav_item}>
           <NavLink
             to="/"
             className={style.icon}
-            activeClassName={style.iconActive}
+            // style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <img alt="" src={icons.tempNav.favorite} />
+            <Icons.Favorite />
           </NavLink>
         </li>
       </ul>
