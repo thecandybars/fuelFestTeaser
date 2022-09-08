@@ -1,17 +1,25 @@
 .bottomContainer {
-  height: 35px;
-  background-color: black;
+  /* height: 35px; */
+  background-color: rgb(0, 0, 0);
   position: fixed;
   bottom: 0;
   width: 100%;
 }
-.bottomNav_item {
-  display: flex;
-  align-items: center;
-}
+
 .bottomNav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 5px;
+}
+.bottomNav_item {
+  padding: 7px;
+  width: 42px;
+}
+.icon {
+  filter: invert(84%) sepia(0%) saturate(173%) hue-rotate(184deg)
+    brightness(104%) contrast(93%);
+}
+.iconActive {
+  filter: invert(17%) sepia(100%) saturate(3383%) hue-rotate(348deg)
+    brightness(86%) contrast(98%);
 }

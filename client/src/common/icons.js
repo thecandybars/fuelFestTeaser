@@ -39,6 +39,11 @@ import qrOn from "../icons/navigation/qr-on.svg";
 import qrOff from "../icons/navigation/qr-off.svg";
 import favoritesOn from "../icons/navigation/favorites-on.svg";
 import favoritesOff from "../icons/navigation/favorites-off.svg";
+//TEMPNAV
+import home from "../icons/navigation/home_FILL0_wght400_GRAD0_opsz48.svg";
+import wallet from "../icons/navigation/wallet_FILL0_wght400_GRAD0_opsz48.svg";
+import qr_code_scanner from "../icons/navigation/qr_code_scanner_FILL0_wght400_GRAD0_opsz48.svg";
+import favorite from "../icons/navigation/favorite_FILL0_wght400_GRAD0_opsz48.svg";
 
 export const icons = {
   owner,
@@ -54,5 +59,11 @@ export const icons = {
     wallet: { on: walletOn, off: walletOff },
     qr: { on: qrOn, off: qrOff },
     favorite: { on: favoritesOn, off: favoritesOff },
+  },
+  tempNav: {
+    home,
+    wallet,
+    qr: qr_code_scanner,
+    favorite,
   },
 };

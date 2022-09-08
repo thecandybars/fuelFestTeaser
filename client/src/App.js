@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import "./App.css";
 import BottomNav from "./components/BottomNav.jsx";
 import Events from "./components/Events.jsx";
