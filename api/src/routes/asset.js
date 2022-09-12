@@ -18,6 +18,7 @@ const {
   getNFTCards,
   getNFTCard,
   getVouchers,
+  getVoucher,
 } = require("../controllers/index.js");
 
 // Image middleware
@@ -132,6 +133,13 @@ router.get("/byWallet/:walletId", async (req, res) => {
 // Get NFT Card
 router.get("/nftCard/:nftCardId", async (req, res) => {
   const response = await getNFTCard(req);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response.error.title);
+});
+// Get Discount Voucher
+router.get("/voucher/:voucherId", async (req, res) => {
+  const response = await getVoucher(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response.error.title);

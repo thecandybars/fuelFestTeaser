@@ -1139,6 +1139,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0000-9fc1-1d0974d24aea",
           title: "10% off Corbeau fixed back racing seat",
           brand: "Corbeau seats",
+          description:
+            "Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque. Ornare quam viverra orci sagittis.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660836172829.jpg",
           burnable: true,
@@ -1152,6 +1154,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0001-9fc1-1d0974d24aea",
           title: "10% off Corbeau fixed back racing seat",
           brand: "Corbeau seats",
+          description:
+            "Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque. Ornare quam viverra orci sagittis.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660836172829.jpg",
           burnable: true,
@@ -1165,6 +1169,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0002-9fc1-1d0974d24aea",
           title: "10% off Corbeau fixed back racing seat",
           brand: "Corbeau seats",
+          description:
+            "Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque. Ornare quam viverra orci sagittis.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660836172829.jpg",
           burnable: true,
@@ -1209,6 +1215,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0003-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
           brand: "Dafski",
+          description:
+            "Fermentum leo vel orci porta non pulvinar neque. Tincidunt id aliquet risus feugiat in ante.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1222,6 +1230,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0004-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
           brand: "Dafski",
+          description:
+            "Fermentum leo vel orci porta non pulvinar neque. Tincidunt id aliquet risus feugiat in ante.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1235,6 +1245,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0005-9fc1-1d0974d24aea",
           title: "1 free Air freshener",
           brand: "Dafski",
+          description:
+            "Fermentum leo vel orci porta non pulvinar neque. Tincidunt id aliquet risus feugiat in ante.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837031969.jpg",
           burnable: true,
@@ -1279,6 +1291,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0006-9fc1-1d0974d24aea",
           title: "15% off Ceramic wheels protection",
           brand: "Mr. Ceramic",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837229044.jpg",
           burnable: true,
@@ -1292,6 +1306,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0007-9fc1-1d0974d24aea",
           title: "15% off Ceramic wheels protection",
           brand: "Mr. Ceramic",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837229044.jpg",
           burnable: true,
@@ -1305,6 +1321,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-0008-9fc1-1d0974d24aea",
           title: "15% off Ceramic wheels protection",
           brand: "Mr. Ceramic",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660837229044.jpg",
           burnable: true,
@@ -1349,6 +1367,7 @@ conn.sync({ force, alter }).then(() => {
           assetId: "00b148fa-9031-0006-9fc1-1d0974d24aea",
           title: "1 Free drink",
           brand: "Coca Cola",
+          description: "Pharetra sit amet aliquam id diam maecenas ultricies.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917025865.jpg",
           burnable: true,
@@ -1362,6 +1381,7 @@ conn.sync({ force, alter }).then(() => {
           assetId: "01b148fa-9031-0007-9fc1-1d0974d24aea",
           title: "1 Free drink",
           brand: "Coca Cola",
+          description: "Pharetra sit amet aliquam id diam maecenas ultricies.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917025865.jpg",
           burnable: true,
@@ -1375,6 +1395,7 @@ conn.sync({ force, alter }).then(() => {
           assetId: "02b148fa-9031-0008-9fc1-1d0974d24aea",
           title: "1 Free drink",
           brand: "Coca Cola",
+          description: "Pharetra sit amet aliquam id diam maecenas ultricies.",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917025865.jpg",
           burnable: true,
@@ -1419,6 +1440,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "11b148fa-9031-0006-9fc1-1d0974d24aea",
           title: "1 Fuel Fest t-shirt",
           brand: "Fuel Fest",
+          description:
+            "Ornare quam viverra orci sagittis. Amet tellus cras adipiscing enim eu turpis. ",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917013096.jpg",
           burnable: true,
@@ -1432,6 +1455,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "12b148fa-9031-0007-9fc1-1d0974d24aea",
           title: "1 Fuel Fest t-shirt",
           brand: "Fuel Fest",
+          description:
+            "Ornare quam viverra orci sagittis. Amet tellus cras adipiscing enim eu turpis. ",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917013096.jpg",
           burnable: true,
@@ -1445,6 +1470,8 @@ conn.sync({ force, alter }).then(() => {
           assetId: "13b148fa-9031-0008-9fc1-1d0974d24aea",
           title: "1 Fuel Fest t-shirt",
           brand: "Fuel Fest",
+          description:
+            "Ornare quam viverra orci sagittis. Amet tellus cras adipiscing enim eu turpis. ",
           templateId: "90505905-3eda-4b8c-a300-64c3caaedcab",
           image: "uploads/voucher/voucher-1660917013096.jpg",
           burnable: true,

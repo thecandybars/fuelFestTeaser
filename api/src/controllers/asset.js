@@ -40,7 +40,7 @@ async function getAssetsByWallet(walletId) {
   try {
     const assets = await Asset.findAll({
       where: { walletId },
-      include: [TokenCoupon, AssetCategory, AstNFTCard],
+      include: [TokenCoupon, AssetCategory, AstNFTCard, Voucher],
     });
     return !assets || assets.length === 0
       ? dbError(`No assets found for wallet ${walletId}`, 404)
@@ -96,6 +96,11 @@ async function getAssetById(req) {
         where: { assetId: asset.id },
       });
     }
+    if (assetCategory.table === "Voucher") {
+      assetData = await Voucher.findOne({
+        where: { assetId: asset.id },
+      });
+    }
     const template = await Template.findByPk(assetData.templateId);
     const festival = await Festival.findByPk(template.festivalId);
     return { assetData, assetCategory, seller, festival };
@@ -128,6 +133,20 @@ async function getNFTCard(req) {
     const response = { nftCard, car };
     return Object.keys(response).length === 0
       ? dbError(`No Assets Categories found. Create some.`, 404)
+      : response;
+  } catch (err) {
+    return err;
+  }
+}
+async function getVoucher(req) {
+  try {
+    const { voucherId } = req.params;
+    const response = await Voucher.findOne({
+      where: { assetId: voucherId },
+    });
+
+    return Object.keys(response).length === 0
+      ? dbError(`No Voucher found.`, 404)
       : response;
   } catch (err) {
     return err;
@@ -413,4 +432,5 @@ module.exports = {
   getNFTCards,
   getNFTCard,
   getVouchers,
+  getVoucher,
 };
