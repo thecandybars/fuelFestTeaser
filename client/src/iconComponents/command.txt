@@ -1,0 +1,1 @@
+npx @svgr/cli src/icons --out-dir src/iconComponents --icon

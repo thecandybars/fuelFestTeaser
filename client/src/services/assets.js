@@ -9,6 +9,10 @@ export async function getVouchers() {
   const { data } = await axios.get(`/asset/voucher`);
   return data;
 }
+export async function getVoucher(voucherId) {
+  const { data } = await axios.get(`/asset/voucher/${voucherId}`);
+  return data;
+}
 export async function getNFTCard(nftCardId) {
   const { data } = await axios.get(`/asset/nftCard/${nftCardId}`);
   return data;

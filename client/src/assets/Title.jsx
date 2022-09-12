@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import backIcon from "../icons/arrow_back_ios_new_FILL0_wght400_GRAD0_opsz48.svg";
+import { ArrowBack } from "../iconComponents";
 
 const StyledTitle = styled.h1`
   font-family: "Oswald";
+  display: flex;
+  align-items: flex-start;
 `;
 const StyledBackButton = styled.img`
   width: 35px;
@@ -15,17 +17,18 @@ const StyledBackButton = styled.img`
 const StyledImage = styled.img`
   margin-left: 120px;
 `;
+const arrowBackStyle = {
+  fill: "white",
+  fontSize: "3rem",
+  marginRight: "10px",
+};
 export default function Title(props) {
   const navigate = useNavigate();
 
   return (
     <StyledTitle>
       {!!props.backButton && (
-        <StyledBackButton
-          alt="go back"
-          src={backIcon}
-          onClick={() => navigate(-1)}
-        />
+        <ArrowBack onClick={() => navigate(-1)} style={{ ...arrowBackStyle }} />
       )}
       {props.title}
       {!!props.image && <StyledImage alt="An icon" src={props.image} />}

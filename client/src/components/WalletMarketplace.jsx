@@ -162,70 +162,68 @@ export default function WalletMarketplace() {
     ));
 
   return (
-    true && (
-      <BoughtAssetContext.Provider value={handleBoughAsset}>
-        <MainContainer>
-          {<Title title="NFT MARKETPLACE" backButton="true" />}
-          <div style={{ display: "flex", padding: "5px 0" }}>
-            {/* ASSET CATEGORY FILTER */}
-            <StyledAssetFilter
-              name="assetsFilter"
-              onChange={(e) => setFilterCategory(e.target.value)}
-              defaultValue="Voucher"
-            >
-              <option value="all">All </option>
-              {RenderCategoryFilterOptions}
-            </StyledAssetFilter>
-            {/* SEARCH TEXT STRING FILTER */}
-            <StyledAssetSearch
-              type="text"
-              onChange={(e) => {
-                setFilterSearch(e.target.value);
-              }}
-            ></StyledAssetSearch>
-          </div>
-          <div>
-            {/* PRICE FILTER */}
-            <StyledPriceRow>
-              <p>PRICE</p>
-              <input
-                type="number"
-                placeholder="min"
-                onChange={(e) =>
-                  setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
-                }
-              />
-              <input
-                type="number"
-                placeholder="max"
-                onChange={(e) =>
-                  setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
-                }
-              />
-            </StyledPriceRow>
-            {/* MINT FILTER */}
-            <StyledPriceRow>
-              <p>MINT</p>
-              <input
-                type="number"
-                placeholder="min"
-                onChange={(e) =>
-                  setFilterMint((prev) => ({ ...prev, min: e.target.value }))
-                }
-              />
-              <input
-                type="number"
-                placeholder="max"
-                onChange={(e) =>
-                  setFilterMint((prev) => ({ ...prev, max: e.target.value }))
-                }
-              />
-            </StyledPriceRow>
-          </div>
-          {/* CARDS RENDER */}
-          <StyledContainer>{RenderNFTAssets}</StyledContainer>
-        </MainContainer>
-      </BoughtAssetContext.Provider>
-    )
+    <BoughtAssetContext.Provider value={handleBoughAsset}>
+      <MainContainer>
+        {<Title title="NFT MARKETPLACE" backButton="true" />}
+        <div style={{ display: "flex", padding: "5px 0" }}>
+          {/* ASSET CATEGORY FILTER */}
+          <StyledAssetFilter
+            name="assetsFilter"
+            onChange={(e) => setFilterCategory(e.target.value)}
+            defaultValue="Voucher"
+          >
+            <option value="all">All </option>
+            {RenderCategoryFilterOptions}
+          </StyledAssetFilter>
+          {/* SEARCH TEXT STRING FILTER */}
+          <StyledAssetSearch
+            type="text"
+            onChange={(e) => {
+              setFilterSearch(e.target.value);
+            }}
+          ></StyledAssetSearch>
+        </div>
+        <div>
+          {/* PRICE FILTER */}
+          <StyledPriceRow>
+            <p>PRICE</p>
+            <input
+              type="number"
+              placeholder="min"
+              onChange={(e) =>
+                setFilterPrice((prev) => ({ ...prev, min: e.target.value }))
+              }
+            />
+            <input
+              type="number"
+              placeholder="max"
+              onChange={(e) =>
+                setFilterPrice((prev) => ({ ...prev, max: e.target.value }))
+              }
+            />
+          </StyledPriceRow>
+          {/* MINT FILTER */}
+          <StyledPriceRow>
+            <p>MINT</p>
+            <input
+              type="number"
+              placeholder="min"
+              onChange={(e) =>
+                setFilterMint((prev) => ({ ...prev, min: e.target.value }))
+              }
+            />
+            <input
+              type="number"
+              placeholder="max"
+              onChange={(e) =>
+                setFilterMint((prev) => ({ ...prev, max: e.target.value }))
+              }
+            />
+          </StyledPriceRow>
+        </div>
+        {/* CARDS RENDER */}
+        <StyledContainer>{RenderNFTAssets}</StyledContainer>
+      </MainContainer>
+    </BoughtAssetContext.Provider>
   );
 }

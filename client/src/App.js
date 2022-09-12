@@ -20,6 +20,7 @@ import NFTCar from "./components/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
 import User from "./components/User";
+import VoucherDetail from "./components/WalletMarketplace/VoucherDetail";
 
 function App() {
   return (
@@ -43,7 +44,14 @@ function App() {
           />
           <Route path="/wallet/quests" element={<WalletQuests />} />
           <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
-          <Route path="/wallet/marketplace/:assetId" element={<NFTCar />} />
+          <Route
+            path="/wallet/marketplace/nftCarCard/:assetId"
+            element={<NFTCar />}
+          />
+          <Route
+            path="/wallet/marketplace/voucher/:voucherId"
+            element={<VoucherDetail />}
+          />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
           <Route path="/wallet/stats" element={<WalletStats />} />
           <Route path="/voting/:carId" element={<Voting />} />

@@ -1,8 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "../css/NFTCard.module.css";
+import styled from "styled-components";
 
+const SellButton = styled.div`
+  background-color: ${(props) => props.theme.red};
+  width: fit-content;
+  padding: 0px 25px;
+  border: none;
+  border-radius: 15px;
+`;
 export default function VoucherCard(props) {
+  console.log(
+    "🚀 ~ file: VoucherCard.jsx ~ line 6 ~ VoucherCard ~ props",
+    props
+  );
   const apiURL = process.env.REACT_APP_API;
   const { voucher } = props.data;
   return (
@@ -27,15 +39,15 @@ export default function VoucherCard(props) {
         <Link to={"/wallet/marketplace/" + voucher.id}>
           <div className={style.detailsButton}>Details</div>
         </Link>
-        <div
+        <SellButton
           className={style.buyButton}
           onClick={(e) => {
             e.stopPropagation();
             props.buyAction(voucher.assetId);
           }}
         >
-          BUY
-        </div>
+          SELL
+        </SellButton>
       </div>
     </div>
   );

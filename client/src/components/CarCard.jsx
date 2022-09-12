@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { icons } from "../common/icons";
+import camelCase from "../common/camelCase";
+import { Owner, Location, Map } from "../iconComponents";
 
 const Container = styled.div`
   display: flex;
@@ -43,36 +44,29 @@ const MapLink = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: #da1921;
-  font-size: small;
-  img {
-    margin: 0 auto;
-    height: 25px;
-    filter: invert(82%) sepia(26%) saturate(3334%) hue-rotate(334deg)
-      brightness(102%) contrast(99%);
-  }
+  font-size: 2rem;
+  fill: ${(props) => props.theme.yellow};
   p {
+    font-size: small;
     color: ${(props) => props.theme.yellow};
   }
 `;
-const MapIcon = styled.div`
-  min-width: 25px;
-  display: flex;
-  justify-content: center;
-  margin-right: 2px;
-`;
 const SmIcon = styled.div`
-  min-width: 25px;
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   margin-right: 2px;
-  img {
-    margin: 0 auto;
-    height: 25px;
-    /* padding-left: 5px; */
-    filter: invert(100%) sepia(4%) saturate(0%) hue-rotate(315deg)
-      brightness(88%) contrast(94%);
-  }
+  fill: white;
+`;
+const VoteIcon = styled.img`
+  width: 36px;
+  display: flex;
+  /* justify-content: center; */
+  margin-right: 2px;
+  filter: invert(90%) sepia(0%) saturate(988%) hue-rotate(240deg)
+    brightness(103%) contrast(71%); /* fill: white; */
+  /* stroke: white; */
+  /* filter: invert(100%); */
 `;
 
 export default function CarCard(props) {
@@ -95,8 +89,18 @@ export default function CarCard(props) {
             {/* TITLE + FAVORITE */}
             <TwoColumns>
               <CarTitle>{props.car.title}</CarTitle>
-              <SmIcon>
-                <img
+              <SmIcon
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.togFav(props.car.id);
+                }}
+              >
+                {/* {props.car.isFavorite ? (
+                  <Icons.FavoriteOn className="favOn" />
+                ) : (
+                  <Icons.FavoriteOff className="favOff" />
+                )} */}
+                {/* <img
                   alt={props.car.isFavorite ? "Favorite" : "Not favorite"}
                   src={
                     props.car.isFavorite
@@ -107,39 +111,40 @@ export default function CarCard(props) {
                     e.stopPropagation();
                     props.togFav(props.car.id);
                   }}
-                />
+                /> */}
               </SmIcon>
             </TwoColumns>
             {/* ROW OWNER */}
             <OneColumn>
               <SmIcon>
-                <img alt="owner icon" src={icons.owner} />
+                <Owner />
               </SmIcon>
-              {props.car.carOwner.name}
+              <p>{props.car.carOwner.name}</p>
             </OneColumn>
             {/* ROW LOCATION + MAP*/}
             <TwoColumns>
               <OneColumn>
                 <SmIcon>
-                  <img alt="location icon" src={icons.location} />
+                  <Location />
                 </SmIcon>
                 <p>{props.car.location}</p>
               </OneColumn>
               <MapLink>
-                <img alt="map icon" src={icons.map} />
-
-                {/* <Link to="#"> */}
+                {/* <SmIcon> */}
+                <Map />
+                {/* </SmIcon> */}
                 <p>map</p>
-                {/* </Link> */}
               </MapLink>
             </TwoColumns>
             {/* ROW VOTING CATEGORIES*/}
             <OneColumn>
               {props.car.voteCategories.map((voteCat) => (
-                <SmIcon
+                <VoteIcon
                   key={voteCat.id}
                   alt="icon"
                   src={`${apiURL}/${voteCat.icon}`}
+                  // src={`src/inUseIcons/${camelCase(voteCat.title)}.svg`}
+                  // src="/src/inUseIcons/bestPaint.svg"
                 />
               ))}
             </OneColumn>

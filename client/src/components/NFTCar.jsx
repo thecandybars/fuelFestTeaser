@@ -12,11 +12,9 @@ import youtubeIcon from "../icons/social/youtube.svg";
 import OwnerIcon from "@mui/icons-material/Man";
 import DialogBuyNFT from "./WalletMarketplace/DialogBuyNFT";
 import { Dialog } from "@mui/material";
+import MainContainer from "../assets/MainContainer";
 
 // STYLED COMPONENTS
-const StyledContainer = styled.div`
-  margin: 10px;
-`;
 const StyledLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,7 +90,7 @@ export default function NFTCar() {
   return (
     // false &&
     Object.keys(nftCarFetched).length !== 0 && (
-      <StyledContainer>
+      <MainContainer>
         <div
           style={{
             display: "flex",
@@ -192,7 +190,7 @@ export default function NFTCar() {
             />
           </Dialog>
         }
-      </StyledContainer>
+      </MainContainer>
     )
   );
 }

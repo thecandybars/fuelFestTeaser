@@ -52,6 +52,10 @@ const StyledPriceRow = styled.div`
 export default function WalletMarketplace() {
   const [fetchedAssets, setFetchedAssets] = useState([]);
   const [filteredAssets, setFilteredAssets] = useState([]);
+  console.log(
+    "🚀 ~ file: WalletNFTGarage.jsx ~ line 55 ~ WalletMarketplace ~ filteredAssets",
+    filteredAssets
+  );
   useEffect(() => {
     fetchAssets();
   }, []);

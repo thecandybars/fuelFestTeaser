@@ -13,6 +13,8 @@ import MainContainer from "../assets/MainContainer";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Instagram, Facebook, Youtube, Twitter } from "../iconComponents";
+import camelCase from "../common/camelCase";
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
@@ -150,6 +152,10 @@ const BuyButton = styled.div`
   font-size: 1.5rem;
   text-align: center;
 `;
+const socialIconStyle = {
+  fontSize: "2rem",
+  marginRight: "5px",
+};
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
@@ -248,14 +254,6 @@ export default function CarDetails(props) {
     </BuyBox>
   );
 
-  function camelCase(str) {
-    return str
-      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
-      })
-      .replace(/\s+/g, "");
-  }
-
   return (
     Object.keys(carDetails).length !== 0 &&
     Object.keys(wallet).length !== 0 && (
@@ -298,16 +296,16 @@ export default function CarDetails(props) {
               {/* SOCIAL */}
               <FlexLine>
                 {carDetails.carOwner.instagram && (
-                  <SmallIcon src={icons.social.instagram} />
+                  <Instagram style={{ ...socialIconStyle }} />
                 )}
                 {carDetails.carOwner.facebook && (
-                  <SmallIcon src={icons.social.facebook} />
+                  <Facebook style={{ ...socialIconStyle }} />
                 )}
                 {carDetails.carOwner.youtube && (
-                  <SmallIcon src={icons.social.youtube} />
+                  <Youtube style={{ ...socialIconStyle }} />
                 )}
                 {carDetails.carOwner.twitter && (
-                  <SmallIcon src={icons.social.twitter} />
+                  <Twitter style={{ ...socialIconStyle }} />
                 )}
               </FlexLine>
               {/* CAR DESCRIPTION */}

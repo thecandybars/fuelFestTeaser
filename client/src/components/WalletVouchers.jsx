@@ -5,9 +5,9 @@ import { getVouchers } from "../services/assets";
 import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
 import vouchersBanner from "../img/vouchersBanner.jpg";
-import placeholder1 from "../img/vouchersPlaceholder1.jpg";
-import placeholder2 from "../img/vouchersPlaceholder2.jpg";
-import placeholder3 from "../img/vouchersPlaceholder3.jpg";
+// import placeholder1 from "../img/vouchersPlaceholder1.jpg";
+// import placeholder2 from "../img/vouchersPlaceholder2.jpg";
+// import placeholder3 from "../img/vouchersPlaceholder3.jpg";
 import { Link } from "react-router-dom";
 
 const StyledContainer = styled.div`
@@ -55,27 +55,30 @@ export default function WalletVouchers() {
     <VoucherCard data={{ ...voucher }} />
   ));
 
-  const images = [placeholder1, placeholder2, placeholder3];
-  const [counter, setCounter] = useState(0);
-  const [image, setImage] = useState(images[0]);
+  // const images = [placeholder1, placeholder2, placeholder3];
+  // const [counter, setCounter] = useState(0);
+  // const [image, setImage] = useState(images[0]);
 
-  function handleImage() {
-    setCounter((prev) => (prev === 2 ? 0 : prev + 1));
-  }
-  useEffect(() => {
-    setImage(images[counter]);
-  }, [counter]);
+  // function handleImage() {
+  //   setCounter((prev) => (prev === 2 ? 0 : prev + 1));
+  // }
+  // useEffect(() => {
+  //   setImage(images[counter]);
+  // }, [counter]);
 
   return (
     <MainContainer>
-      {<Title title="VOUCHERS" backButton="true" />}
-      {image === images[0] && (
+      {<Title title="YOUR VOUCHERS" backButton="true" />}
+      {/* {image === images[0] && (
         <Link to="/wallet/marketplace?category=Voucher">
           <img alt="phd" src={vouchersBanner} />
         </Link>
       )}
-      <img alt="phd" src={image} onClick={handleImage} />
-      {/* <img alt="banner" src={vouchersBanner} style={{ width: "100%" }} />
+      <img alt="phd" src={image} onClick={handleImage} /> */}
+      <Link to="/wallet/marketplace?category=Voucher">
+        <img alt="banner" src={vouchersBanner} style={{ width: "100%" }} />
+      </Link>
+
       <div
         style={{
           display: "flex",
@@ -97,7 +100,7 @@ export default function WalletVouchers() {
         />
       </div>
       <hr />
-      <StyledContainer>{RenderVoucherCards}</StyledContainer> */}
+      <StyledContainer>{RenderVoucherCards}</StyledContainer>
     </MainContainer>
   );
 }
