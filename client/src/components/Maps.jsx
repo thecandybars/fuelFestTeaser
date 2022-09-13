@@ -6,7 +6,7 @@ import mapsPlaceholder from "../img/maps_placeholder.png";
 export default function Maps() {
   return (
     <MainContainer>
-      <Title title="Maps" backButton="true"></Title>
+      <Title backButton="true">MAPS</Title>
       <input type="text" placeholder="search" size="50" />
       <img alt="sponsors" src={mapsPlaceholder} />
     </MainContainer>

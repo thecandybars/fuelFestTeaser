@@ -88,7 +88,7 @@ export default function Events() {
 
   return (
     <MainContainer>
-      <Title title="Events" backButton="true"></Title>
+      <Title backButton="true">EVENTS</Title>
       <nav className={style.events_nav}>
         <select name="category" onChange={(e) => setCategory(e.target.value)}>
           <option value="all">All categories</option>

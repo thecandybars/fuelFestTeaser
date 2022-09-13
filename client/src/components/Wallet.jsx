@@ -64,7 +64,7 @@ export default function Wallet() {
   return (
     <MainContainer>
       <div className={style.titleBaar}>
-        <Title title="YOUR WALLET" backButton="true"></Title>
+        <Title backButton="true">YOUR WALLET</Title>
         {/* <img alt="drift coin" src={driftCoin} /> */}
       </div>
       <div className={style.walletData}>

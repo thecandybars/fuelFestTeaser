@@ -105,7 +105,7 @@ export default function Cars() {
     <MainContainer>
       <div className={style.container}>
         {carDetails && carDetails}
-        <Title title="Cars" backButton="true"></Title>
+        <Title backButton="true">CARS</Title>
         <nav className={style.cars_nav}>
           <select
             name="filterManufacturer"

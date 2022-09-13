@@ -14,18 +14,18 @@ const Flex = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  /* background-color: pink; */
-  height: 100%;
+  height: 80%;
 `;
 const BestImg = styled.img`
   width: 150px;
-  /* border-radius: 100px; */
+  border-radius: 100px;
+  border: 3px solid ${(props) => props.theme.yellow};
 `;
 
 export default function WalletVoting() {
   return (
     <MainContainer>
-      <Title title="VOTING" backButton="true" />
+      <Title backButton="true">VOTING</Title>
       <Flex>
         <Link to="/wallet/voting/category/interior">
           <BestImg alt="Best interior" src={bestInterior} />

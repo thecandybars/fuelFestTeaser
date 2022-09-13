@@ -159,7 +159,7 @@ export default function WalletMarketplace() {
   return (
     <BoughtAssetContext.Provider value={handleBoughAsset}>
       <MainContainer>
-        {<Title title="NFT MARKETPLACE" backButton="true" />}
+        {<Title backButton="true">NFT MARKETPLACE</Title>}
         <div style={{ display: "flex", padding: "5px 0" }}>
           {/* ASSET CATEGORY FILTER */}
           <StyledAssetFilter

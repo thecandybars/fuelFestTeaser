@@ -30,13 +30,7 @@ export default function WalletVotingCategory() {
   return (
     Object.keys(voteCategoryFetched).length !== 0 && (
       <MainContainer>
-        <Title
-          title={`Best ${voteCategory}`}
-          // image={apiURL + "/" + voteCategoryFetched.icon}
-          backButton="true"
-        >
-          {/* <img alt="an icon" src={`../icons/${voteCategory}.svg`} /> */}
-        </Title>
+        <Title backButton="true">{`Best ${voteCategory}`}</Title>
         {renderVotingCarCards}
       </MainContainer>
     )

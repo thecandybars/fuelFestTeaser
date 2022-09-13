@@ -6,7 +6,7 @@ import placeholder from "../img/stats_placeholder.jpg";
 export default function WalletStats() {
   return (
     <MainContainer>
-      {<Title title="STATISTICS" backButton="true" />}
+      {<Title backButton="true">STATISTICS</Title>}
       <img alt="phd" src={placeholder} />
     </MainContainer>
   );

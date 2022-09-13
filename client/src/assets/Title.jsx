@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ArrowBack } from "../iconComponents";
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled.div`
   font-family: "Oswald";
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
+  h1 {
+    font-size: 2.3rem;
+  }
 `;
 const StyledImage = styled.img`
   margin-left: 120px;
@@ -21,14 +25,13 @@ export default function Title(props) {
           onClick={() => navigate(-1)}
           style={{
             fill: props.color ? props.color : "white",
-            fontSize: "3rem",
-            marginRight: "5px",
+            fontSize: "2rem",
+            marginRight: "10px",
           }}
         />
       )}
-      {props.title}
+      <h1>{props.children}</h1>
       {!!props.image && <StyledImage alt="An icon" src={props.image} />}
-      {props.children}
     </StyledTitle>
   );
 }

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import MainContainer from "../assets/MainContainer";
 import Title from "../assets/Title";
-import { getVouchers } from "../services/assets";
+import { getAssetByWallet, getVouchers } from "../services/assets";
 import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
 import vouchersBanner from "../img/vouchersBanner.jpg";
-// import placeholder1 from "../img/vouchersPlaceholder1.jpg";
-// import placeholder2 from "../img/vouchersPlaceholder2.jpg";
-// import placeholder3 from "../img/vouchersPlaceholder3.jpg";
 import { Link } from "react-router-dom";
+import { walletId } from "../common/getLoginData";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -17,15 +15,21 @@ const StyledContainer = styled.div`
 `;
 export default function WalletVouchers() {
   const [fetchedVouchers, setFetchedVouchers] = useState([]);
+  console.log(
+    "🚀 ~ file: WalletVouchers.jsx ~ line 18 ~ WalletVouchers ~ fetchedVouchers",
+    fetchedVouchers
+  );
   const [filteredVouchers, setFilteredVouchers] = useState([]);
 
+  // INIT
   useEffect(() => {
     fetchVouchers();
   }, []);
   async function fetchVouchers() {
-    const fetched = await getVouchers();
-    setFetchedVouchers(fetched);
-    setFilteredVouchers(fetched);
+    const fetched = await getAssetByWallet(walletId);
+    const vouchers = fetched.filter((asset) => asset.voucher !== null);
+    setFetchedVouchers(vouchers);
+    setFilteredVouchers(vouchers);
   }
   //// FILTER INPUTS
   const RenderBrandsOptions = fetchedVouchers
@@ -36,7 +40,6 @@ export default function WalletVouchers() {
   const [filterBrand, setFilterBrand] = useState("all");
   const [filterSearch, setFilterSearch] = useState("");
   useEffect(() => {
-    console.log("holas");
     setFilteredVouchers(
       fetchedVouchers.filter(
         (voucher) =>
@@ -49,32 +52,16 @@ export default function WalletVouchers() {
             : true)
       )
     );
-  }, [filterBrand, filterSearch]);
+  }, [filterBrand, filterSearch, fetchedVouchers]);
 
   const RenderVoucherCards = filteredVouchers.map((voucher) => (
     <VoucherCard data={{ ...voucher }} />
   ));
 
-  // const images = [placeholder1, placeholder2, placeholder3];
-  // const [counter, setCounter] = useState(0);
-  // const [image, setImage] = useState(images[0]);
-
-  // function handleImage() {
-  //   setCounter((prev) => (prev === 2 ? 0 : prev + 1));
-  // }
-  // useEffect(() => {
-  //   setImage(images[counter]);
-  // }, [counter]);
-
   return (
     <MainContainer>
-      {<Title title="YOUR VOUCHERS" backButton="true" />}
-      {/* {image === images[0] && (
-        <Link to="/wallet/marketplace?category=Voucher">
-          <img alt="phd" src={vouchersBanner} />
-        </Link>
-      )}
-      <img alt="phd" src={image} onClick={handleImage} /> */}
+      {<Title backButton="true">YOUR VOUCHERS</Title>}
+
       <Link to="/wallet/marketplace?category=Voucher">
         <img alt="banner" src={vouchersBanner} style={{ width: "100%" }} />
       </Link>

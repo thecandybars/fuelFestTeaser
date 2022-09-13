@@ -146,7 +146,7 @@ export default function WalletMarketplace() {
   return (
     true && (
       <MainContainer>
-        {<Title title="NFT GARAGE" backButton="true" />}
+        {<Title backButton="true">NFT GARAGE</Title>}
         <div style={{ display: "flex", padding: "5px 0" }}>
           {/* ASSET CATEGORY FILTER */}
           <StyledAssetFilter
