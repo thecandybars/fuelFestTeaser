@@ -6,12 +6,14 @@ import styled from "styled-components";
 import { Dialog } from "@mui/material";
 import BackButton from "../../assets/BackButton";
 import DialogBuyVoucher from "./DialogBuyVoucher";
+import Title from "../../assets/Title";
 
-const StyledTitle = styled.h1`
-  font-size: 32px;
-  text-align: left;
+const StyledTitle = styled.div`
+  display: flex;
+  font-size: 1rem;
+  /* text-align: left; */
   color: #da1921;
-  margin-left: 0px;
+  /* margin-left: 0px; */
   margin-bottom: 20px;
 `;
 const StyledPrice = styled.p`
@@ -53,16 +55,9 @@ export default function VoucherDetail() {
   return (
     Object.keys(fetchedVoucher).length !== 0 && (
       <MainContainer>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            // justifyContent: "space-between",
-          }}
-        >
-          <BackButton style={{ fill: "red" }} caccola={"merda"} />
-          <StyledTitle>{fetchedVoucher.title}</StyledTitle>
-        </div>
+        <Title backButton={true} color={"red"}>
+          {fetchedVoucher.title}
+        </Title>
         <div>
           <img
             alt={fetchVoucher.title}

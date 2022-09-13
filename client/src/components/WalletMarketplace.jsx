@@ -61,14 +61,13 @@ export default function WalletMarketplace() {
   // ASSET HAS BEEN BOUGHT TRACKING (TO  TRIGGER RENDER AFTER ASSET HAS BEEN BOUGHT)
   const [boughtAsset, setBoughtAsset] = useState(false);
   const handleBoughAsset = (wasBought) => setBoughtAsset(wasBought);
+
+  // INIT
   useEffect(() => {
     fetchAssets();
     setBoughtAsset(false);
   }, [boughtAsset]);
 
-  useEffect(() => {
-    fetchAssets();
-  }, []);
   async function fetchAssets() {
     const fetched = await getAllAssets();
     setFetchedAssets(fetched);
@@ -85,17 +84,13 @@ export default function WalletMarketplace() {
   });
 
   // FILTERS
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(
-    "🚀 ~ file: WalletMarketplace.jsx ~ line 90 ~ WalletMarketplace ~ searchParams",
-    searchParams.get("category")
-  );
-  const initFilterCategory =
+  const [searchParams] = useSearchParams();
+  const initialFilterCategory =
     searchParams.get("category") === null
       ? "all"
       : searchParams.get("category");
 
-  const [filterCategory, setFilterCategory] = useState(initFilterCategory);
+  const [filterCategory, setFilterCategory] = useState(initialFilterCategory);
   const [filterSearch, setFilterSearch] = useState("");
   const [filterPrice, setFilterPrice] = useState({
     min: "",

@@ -8,27 +8,23 @@ const StyledTitle = styled.h1`
   display: flex;
   align-items: flex-start;
 `;
-const StyledBackButton = styled.img`
-  width: 35px;
-  padding-right: 10px;
-  filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
-    brightness(118%) contrast(100%);
-`;
 const StyledImage = styled.img`
   margin-left: 120px;
 `;
-const arrowBackStyle = {
-  fill: "white",
-  fontSize: "3rem",
-  marginRight: "10px",
-};
 export default function Title(props) {
   const navigate = useNavigate();
 
   return (
-    <StyledTitle>
+    <StyledTitle style={{ color: props.color ? props.color : "white" }}>
       {!!props.backButton && (
-        <ArrowBack onClick={() => navigate(-1)} style={{ ...arrowBackStyle }} />
+        <ArrowBack
+          onClick={() => navigate(-1)}
+          style={{
+            fill: props.color ? props.color : "white",
+            fontSize: "3rem",
+            marginRight: "5px",
+          }}
+        />
       )}
       {props.title}
       {!!props.image && <StyledImage alt="An icon" src={props.image} />}
