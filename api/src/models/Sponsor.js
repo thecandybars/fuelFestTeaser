@@ -30,5 +30,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 };

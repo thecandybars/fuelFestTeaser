@@ -101,19 +101,118 @@ conn.sync({ force, alter }).then(() => {
     await Sponsor.bulkCreate(
       [
         {
-          id: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-          title: "FritoLay",
-          image: "uploads/sponsor/sponsor-1662060233055.jpg",
-          logo: "uploads/sponsor/sponsor-1662060233056.jpg",
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0000",
+          title: "Alpine",
+          storeId: "",
           description: "Volutpat odio facilisis mauris sit.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275475329.svg",
+          website: "",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
         },
         {
-          id: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-          title: "Meguiars",
-          image: "uploads/sponsor/sponsor-1662059870636.jpg",
-          logo: "uploads/sponsor/sponsor-1662059870637.png",
-          description: "Volutpat odio facilisis mauris sit.",
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0001",
+          title: "CarPhysics",
+          storeId: "",
+          description:
+            "The Lifestyle we live, the dreams we make into a reality, the vision representing the creator, the soul behind an automobile, these are all things that define CarPhysics and what we stand for as a Brand, as a Culture, and as a Way of Life.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275542810.svg",
+          website: "https://www.instagram.com/carphysics/?hl=en",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0002",
+          title: "Enkie",
+          storeId: "",
+          description:
+            "Enkei has been racing in top competition championships of the world for three decades. As a result of continuous improvement and technological advances, Enkei continues its winning tradition and constantly challenges new horizons in wheel technology.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275549571.svg",
+          website: "https://enkei.com/",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0003",
+          title: "Fortune Auto",
+          storeId: "",
+          description:
+            "We develop race-winning, performance suspension systems for Japanese and European vehicles.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275555003.svg",
+          website: "https://fortune-auto.com/",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0004",
+          title: "Nardi Torino",
+          storeId: "",
+          description:
+            "Nardi-Personal S.p.A. with its masterpieces worldwide appreciated coniugates the past to the future.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275564914.svg",
+          website: "https://nardi-personal.com/",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0005",
+          title: "NOS",
+          storeId: "",
+          description: "",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275571419.svg",
+          website: "",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0006",
+          title: "Ovrdue",
+          storeId: "",
+          description:
+            "We are an automotive lifestyle brand made for car enthusiasts, by car enthusiasts.",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275577021.svg",
+          website: "https://ovrdue.com/",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0007",
+          title: "Team Scoundrels",
+          storeId: "",
+          description: "",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275582730.svg",
+          website: "https://www.youtube.com/c/TeamScoundrels",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
+          title: "Sparco",
+          storeId: "",
+          description: "",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275587510.svg",
+          website: "https://www.youtube.com/c/TeamScoundrels",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0009",
+          title: "Voltex",
+          storeId: "",
+          description: "",
+          image: "",
+          logo: "uploads/sponsor/sponsor-1663275593094.svg",
+          website: "https://www.instagram.com/voltexracing/?hl=en",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        },
+        {
+          id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0010",
+          title: "Iceboxx",
+          storeId: "",
+          description: "",
+          image: "",
+          logo: "",
+          website: "https://www.instagram.com/iceboxxcustoms/?hl=en",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
         },
       ],
@@ -227,7 +326,7 @@ conn.sync({ force, alter }).then(() => {
           tireManufacturer: "Yokohama",
           chasis: "EWQ-9",
           upgrades: "Wheels,Stereo,Body,Brakes",
-          otherSponsors: "Toyo Tires,Robocar,Sparco",
+          otherSponsors: "",
           description:
             "Full Replica of the 1995 Eclipse driven by Brian O'Conner in The Fast and the Furious movie. Autographed by Cody Walker",
           location: "R35",
@@ -254,7 +353,7 @@ conn.sync({ force, alter }).then(() => {
           tireManufacturer: "Michelin",
           chasis: "Q29",
           upgrades: "Wheels,Suspension,Nitro",
-          otherSponsors: "Iceboxx Customs,Ovrdue,CarPhysics",
+          otherSponsors: "",
           description:
             "I'll miss my exit to keep on racing with the guy that I just met on the freeway a little longer...",
           location: "T25",
@@ -281,7 +380,7 @@ conn.sync({ force, alter }).then(() => {
           tireManufacturer: "Yokohama",
           chasis: "EWZ-46",
           upgrades: "Body,Engine,Brakes,Stereo",
-          otherSponsors: "Team Scoundrels,FortuneAuto,Sparco",
+          otherSponsors: "",
           description: "Full LSX Engine Swap Madness!",
           location: "A72",
           geolocation: "174.2,65.93",
@@ -307,7 +406,7 @@ conn.sync({ force, alter }).then(() => {
           tireManufacturer: "Michelin",
           chasis: "AZ-76",
           upgrades: "Wheels,Body,Brakes,Engine,Nitro,Suspension",
-          otherSponsors: "Voltex Racing,Nardi Torino,Enkie Wheels",
+          otherSponsors: "",
           description: "#M3GATRN Skyline GT-R w/ Widebody (R34 Facelift)",
           location: "H15",
           geolocation: "174.2,65.93",
@@ -330,45 +429,65 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    // await CarSponsor.bulkCreate(
-    //   [
-    //     {
-    //       sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-    //     },
-    //     {
-    //       sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-    //     },
-    //     {
-    //       sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-    //     },
-    //     {
-    //       sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-    //     },
-    //     {
-    //       sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-    //     },
-    //     {
-    //       sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
-    //     },
-    //     {
-    //       sponsorId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-    //     },
-    //     {
-    //       sponsorId: "22dcd2f1-3e86-4fb9-bc07-4f90c314808b",
-    //       carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
-    //     },
-    //   ],
-    //   {
-    //     ignoreDuplicates: true,
-    //   }
-    // );
+    await CarSponsor.bulkCreate(
+      [
+        // ECLIPSE
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0000",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0005",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        // SUPRA
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0001",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0006",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0010",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        // RX7
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0003",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0007",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        // SKYLINE
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0002",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0004",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0009",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
     await CarImage.bulkCreate(
       [
         {

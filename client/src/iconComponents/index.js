@@ -37,6 +37,6 @@ export { default as UpStereo } from "./UpStereo";
 export { default as UpLights } from "./UpLights";
 export { default as UpSuspension } from "./UpSuspension";
 export { default as UpTires } from "./UpTires";
-export { default as UpOther } from "./UpOther";
+export { default as UpOthers } from "./UpOthers";
 export { default as Wallet } from "./Wallet";
 export { default as Youtube } from "./Youtube";

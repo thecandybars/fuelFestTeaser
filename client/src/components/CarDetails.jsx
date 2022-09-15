@@ -9,11 +9,17 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { walletId } from "../common/getLoginData";
 import { icons } from "../common/icons";
 import { useParams } from "react-router-dom";
-import MainContainer from "../assets/MainContainer";
+import MainContainerWhole from "../assets/MainContainerWhole";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button, Collapse } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Twitter } from "../iconComponents";
+import {
+  Owner,
+  Instagram,
+  Facebook,
+  Youtube,
+  Twitter,
+} from "../iconComponents";
 import {
   UpEngine,
   UpBody,
@@ -23,7 +29,7 @@ import {
   UpTires,
   UpLights,
   UpStereo,
-  UpOther,
+  UpOthers,
 } from "../iconComponents";
 import camelCase from "../common/camelCase";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -33,6 +39,8 @@ const CarDetailsContainer = styled.div`
   position: relative;
   color: ${(props) => props.theme.black};
   background-color: ${(props) => props.theme.white};
+  font-family: "Nunito", sans-serif;
+  font-weight: light;
 `;
 const CarInfoContainer = styled.div`
   padding: 5px 10px;
@@ -40,50 +48,45 @@ const CarInfoContainer = styled.div`
 const Title = styled.h2`
   font-size: 1.6rem;
   margin-bottom: 10px;
+  font-family: "Oswald", sans-serif;
 `;
 const Subtitle = styled.h3`
   margin: 0;
   margin-bottom: 10px;
   font-size: 1.3rem;
-  font-family: "Oswald";
+  font-family: "Oswald", sans-serif;
 `;
 const FlexLine = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  /* font-family: "Roboto"; */
 `;
-const FlexColumn = styled.div`
-  margin-left: 4px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: first baseline;
-  align-items: center;
+const DetailsCategory = styled.div`
+  margin-top: 15px;
 `;
-const TwoColumns = styled.div`
-  display: flex;
-  justify-content: space-between;
+const UpgradeDetails = styled.div`
+  margin-top: 10px;
   div {
-    margin: 5px;
+    display: flex;
+    align-items: stretch;
+  }
+  h2 {
+    font-family: "Roboto";
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+  p {
+    margin-left: 10px;
   }
 `;
-const FlexWrap = styled.div`
-  background-color: pink;
-  margin: 3px;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: flex-start;
-  font-size: 0.8rem;
-`;
+
 const SmallIcon = styled.img`
   height: 25px;
   padding-right: 5px;
 `;
-const SponsorTitle = styled.p`
-  width: 50px;
-  font-size: 0.7rem;
-`;
+
 const VoteBox = styled.div`
   display: flex;
   height: 80px;
@@ -117,8 +120,8 @@ const UpLabel = styled.p`
   font-size: 1rem;
 `;
 const UpIcon = styled.div`
-  font-size: 1.5rem;
-  margin-right: 8px;
+  font-size: 1.8rem;
+  margin-right: 10px;
 `;
 const CollapseButton = styled.div`
   font-size: 1rem;
@@ -131,14 +134,35 @@ const VoteTitle = styled.div`
   font-size: 0.75rem;
   color: ${(props) => props.theme.white};
 `;
+// LINE
+const Line = styled.hr`
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 1px;
+  color: ${(props) => props.theme.darkWhite};
+`;
+//SPONSORS
+const Sponsor = styled.div`
+  margin-right: 8px;
+  max-width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: first baseline;
+  align-items: center;
+  overflow-wrap: break-word;
+`;
 const SponsorLogo = styled.img`
-  height: 25px;
-  padding-right: 5px;
+  height: 35px;
+  padding-right: 10px;
   background-blend-mode: multiply;
 `;
 const OtherSponsorAvatar = styled.div`
   text-align: center;
-  margin: 0;
+  margin-bottom: 5px;
   padding: 2px;
   height: 25px;
   width: 25px;
@@ -148,9 +172,12 @@ const OtherSponsorAvatar = styled.div`
   font-weight: bolder;
   border-radius: 100px;
 `;
-const CarDescrption = styled.p`
-  margin: 15px 0 0;
+const SponsorTitle = styled.p`
+  max-width: 70px;
+  font-size: 0.8rem;
+  text-align: center;
 `;
+///
 const BuyBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -265,8 +292,8 @@ export default function CarDetails(props) {
       icon: <UpStereo />,
     },
     {
-      field: "other",
-      icon: <UpOther />,
+      field: "others",
+      icon: <UpOthers />,
     },
   ];
   const renderCarUpgradeList = upgrades.map(
@@ -278,52 +305,66 @@ export default function CarDetails(props) {
   const renderCarUpgradeDetails = upgrades.map(
     (upgrade) =>
       carDetails[upgrade.field] !== "" && (
-        <div style={{ marginTop: "10px" }}>
-          <FlexLine>
+        <UpgradeDetails>
+          <div>
             <UpIcon key={upgrade.field}>{upgrade.icon}</UpIcon>
             <h2>
               {upgrade.field[0].toUpperCase()}
               {upgrade.field.slice(1)}
             </h2>
-          </FlexLine>
-          <p style={{ marginLeft: "10px" }}>{carDetails[upgrade.field]}</p>
-        </div>
+          </div>
+          <p>{carDetails[upgrade.field]}</p>
+        </UpgradeDetails>
       )
   );
   const renderCarUpgrade = (
     <>
-      <Subtitle>Upgrades</Subtitle>
-
-      <FlexLine>
-        {renderCarUpgradeList}
-        <CollapseButton onClick={handleDisplayUpgrades}>Details</CollapseButton>
+      <FlexLine onClick={handleDisplayUpgrades}>
+        <Subtitle>Upgrades</Subtitle>
+        <CollapseButton>
+          <ExpandMoreIcon
+            style={{
+              transform: !displayUpgrades ? "rotate(0deg)" : "rotate(180deg)",
+            }}
+          />
+        </CollapseButton>
       </FlexLine>
+      <Collapse in={!displayUpgrades} timeout="auto" unmountOnExit>
+        <FlexLine>{renderCarUpgradeList}</FlexLine>
+      </Collapse>
       <Collapse in={displayUpgrades} timeout="auto" unmountOnExit>
-        <div style={{ marginLeft: "10px" }}>{renderCarUpgradeDetails}</div>
+        <div style={{ margin: "0 10px" }}>{renderCarUpgradeDetails}</div>
       </Collapse>
     </>
   );
 
   // RENDER CARS SPONSORS LIST
-  const renderCarSponsorList = [];
-  // const renderCarSponsorList =
-  //   carDetails.sponsors &&
-  //   carDetails.sponsors.map((sponsor) => (
-  //     <FlexWrap key={sponsor.id}>
-  //       <SponsorLogo alt="" src={`${apiURL}/${sponsor.logo}`} />
-  //       <SponsorTitle>{sponsor.title}</SponsorTitle>
-  //     </FlexWrap>
-  //   ));
+  const renderCarSponsorList =
+    carDetails.sponsors &&
+    carDetails.sponsors.map((sponsor) =>
+      !!sponsor.logo ? (
+        <Sponsor key={sponsor.id}>
+          <SponsorLogo alt={sponsor.title} src={`${apiURL}/${sponsor.logo}`} />
+          <SponsorTitle>{sponsor.title}</SponsorTitle>
+        </Sponsor>
+      ) : (
+        <Sponsor key={sponsor.id}>
+          <OtherSponsorAvatar>
+            {sponsor.title[0].toUpperCase()}
+          </OtherSponsorAvatar>
+          <SponsorTitle>{sponsor.title}</SponsorTitle>
+        </Sponsor>
+      )
+    );
   const otherSponsors =
     carDetails.otherSponsors && carDetails.otherSponsors.split(",");
   const renderCarOtherSponsorList =
     carDetails.otherSponsors &&
     otherSponsors.map((sponsor) => (
-      // console.log(sponsor)
-      <FlexColumn key={sponsor}>
+      <Sponsor key={sponsor}>
         <OtherSponsorAvatar>{sponsor[0].toUpperCase()}</OtherSponsorAvatar>
         <SponsorTitle>{sponsor}</SponsorTitle>
-      </FlexColumn>
+      </Sponsor>
     ));
   //RENDER CAR VOTE CATEGORIES LIST
   const renderCarVoteCategories =
@@ -341,10 +382,15 @@ export default function CarDetails(props) {
     </VoteBox>
   );
   //RENDER CAR PRICE AND BUY
+  const currency = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  });
   const renderCarBuy = carDetails && (
     <BuyBox>
       <CarPrice>
-        <h3>Sell Price: ${carDetails.price}</h3>
+        <h3>Sell Price: {currency.format(carDetails.price)}</h3>
         <p>Make an offer</p>
       </CarPrice>
       <BuyButton>BUY</BuyButton>
@@ -354,7 +400,7 @@ export default function CarDetails(props) {
   return (
     Object.keys(carDetails).length !== 0 &&
     Object.keys(wallet).length !== 0 && (
-      <MainContainer>
+      <MainContainerWhole>
         <CarDetailsContainer>
           <Button
             color="red"
@@ -384,42 +430,53 @@ export default function CarDetails(props) {
             <CarInfoContainer>
               {/* TITLE */}
 
-              <Title>{carDetails.title}</Title>
+              <Title>
+                {carDetails.year && carDetails.year + " "}
+                {carDetails.title}
+              </Title>
               {/* OWNER */}
-              <FlexLine>
-                <SmallIcon src={icons.owner} />
-                {carDetails.carOwner.name}
-              </FlexLine>
-              {/* SOCIAL */}
-              <FlexLine>
-                {carDetails.carOwner.instagram && (
-                  <Instagram style={{ ...socialIconStyle }} />
-                )}
-                {carDetails.carOwner.facebook && (
-                  <Facebook style={{ ...socialIconStyle }} />
-                )}
-                {carDetails.carOwner.youtube && (
-                  <Youtube style={{ ...socialIconStyle }} />
-                )}
-                {carDetails.carOwner.twitter && (
-                  <Twitter style={{ ...socialIconStyle }} />
-                )}
-              </FlexLine>
+              <DetailsCategory>
+                <FlexLine style={{ alignItems: "baseline" }}>
+                  <Owner style={{ fontSize: "1.5rem" }} />
+                  <p>{carDetails.carOwner.name}</p>
+                </FlexLine>
+                {/* SOCIAL */}
+                <FlexLine>
+                  {carDetails.carOwner.instagram && (
+                    <Instagram style={{ ...socialIconStyle }} />
+                  )}
+                  {carDetails.carOwner.facebook && (
+                    <Facebook style={{ ...socialIconStyle }} />
+                  )}
+                  {carDetails.carOwner.youtube && (
+                    <Youtube style={{ ...socialIconStyle }} />
+                  )}
+                  {carDetails.carOwner.twitter && (
+                    <Twitter style={{ ...socialIconStyle }} />
+                  )}
+                </FlexLine>
+              </DetailsCategory>
               {/* CAR DESCRIPTION */}
-              <CarDescrption>{carDetails.description}</CarDescrption>
+              <DetailsCategory>
+                <p>{carDetails.description}</p>
+              </DetailsCategory>
 
               {/* CAR UPGRADES */}
-              {!!renderCarUpgradeList && <>{renderCarUpgrade}</>}
+              {!!renderCarUpgradeList && (
+                <DetailsCategory>{renderCarUpgrade}</DetailsCategory>
+              )}
+
+              <Line />
 
               {/* CAR SPONSORS */}
               {!!renderCarSponsorList && (
-                <div>
+                <DetailsCategory>
                   <Subtitle>Sponsors</Subtitle>
-                  <FlexLine>
+                  <FlexLine style={{ alignItems: "flex-start" }}>
                     {renderCarSponsorList}
                     {renderCarOtherSponsorList}
                   </FlexLine>
-                </div>
+                </DetailsCategory>
               )}
 
               {/* CAR VOTING */}
@@ -429,7 +486,7 @@ export default function CarDetails(props) {
             </CarInfoContainer>
           )}
         </CarDetailsContainer>
-      </MainContainer>
+      </MainContainerWhole>
     )
   );
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const SvgUpOther = (props) => (
+const SvgUpOthers = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 80 80"
@@ -15,4 +15,4 @@ const SvgUpOther = (props) => (
   </svg>
 );
 
-export default SvgUpOther;
+export default SvgUpOthers;
