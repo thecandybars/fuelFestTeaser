@@ -51,6 +51,47 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      ////////
+      year: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      engine: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      body: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      suspension: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      nitro: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      brakes: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      tires: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      lights: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      stereo: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      others: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     { timestamps: false }
   );

@@ -73,8 +73,8 @@ const {
   Car,
   CarImage,
   CarOwner,
-  CarUpgrade,
-  Upgrade,
+  // CarUpgrade,
+  // Upgrade,
   Sponsor,
   Vendor,
   Vote,
@@ -124,10 +124,10 @@ Car.belongsToMany(Sponsor, { through: "CarSponsor" });
 Sponsor.belongsToMany(Car, { through: "CarSponsor" });
 AstNFTCard.belongsTo(Car, { foreignKey: "carId" });
 
-CarUpgrade.belongsTo(Car, { foreignKey: "carId" });
-CarUpgrade.belongsTo(Upgrade, { foreignKey: "upgradeId" });
-Car.belongsToMany(Upgrade, { through: "carUpgrades" });
-Upgrade.belongsToMany(Car, { through: "carUpgrades" });
+// CarUpgrade.belongsTo(Car, { foreignKey: "carId" });
+// CarUpgrade.belongsTo(Upgrade, { foreignKey: "upgradeId" });
+// Car.belongsToMany(Upgrade, { through: "carUpgrades" });
+// Upgrade.belongsToMany(Car, { through: "carUpgrades" });
 
 // VOTING
 

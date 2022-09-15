@@ -11,10 +11,22 @@ import { icons } from "../common/icons";
 import { useParams } from "react-router-dom";
 import MainContainer from "../assets/MainContainer";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button } from "@mui/material";
+import { Button, Collapse } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Twitter } from "../iconComponents";
+import {
+  UpEngine,
+  UpBody,
+  UpSuspension,
+  UpNitro,
+  UpBrakes,
+  UpTires,
+  UpLights,
+  UpStereo,
+  UpOther,
+} from "../iconComponents";
 import camelCase from "../common/camelCase";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
@@ -37,6 +49,7 @@ const Subtitle = styled.h3`
 `;
 const FlexLine = styled.div`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 `;
@@ -56,10 +69,11 @@ const TwoColumns = styled.div`
   }
 `;
 const FlexWrap = styled.div`
+  background-color: pink;
   margin: 3px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: flex-start;
   font-size: 0.8rem;
 `;
 const SmallIcon = styled.img`
@@ -98,6 +112,17 @@ const VoteIcon = styled.img`
   height: 35px;
   padding-right: 5px;
   filter: invert(100%);
+`;
+const UpLabel = styled.p`
+  font-size: 1rem;
+`;
+const UpIcon = styled.div`
+  font-size: 1.5rem;
+  margin-right: 8px;
+`;
+const CollapseButton = styled.div`
+  font-size: 1rem;
+  margin-left: 20px;
 `;
 const VoteTitle = styled.div`
   text-align: center;
@@ -159,6 +184,10 @@ const socialIconStyle = {
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
+  console.log(
+    "🚀 ~ file: CarDetails.jsx ~ line 162 ~ CarDetails ~ carDetails",
+    carDetails
+  );
   const [carImages, setCarImages] = useState([]);
   const [user, setUser] = useState({});
   const [wallet, setWallet] = useState({});
@@ -199,30 +228,98 @@ export default function CarDetails(props) {
     fetchWallet();
   }
 
-  // RENDER CAR UPGRADES LIST
-  const upgrades = carDetails.upgrades && carDetails.upgrades.split(",");
-  const renderCarUpgradeList =
-    carDetails.upgrades &&
-    upgrades.map((upgrade) => (
-      <FlexWrap key={upgrade}>
-        <SmallIcon alt="" src={icons.upgrade[upgrade.toLowerCase()]} />
-        <p>{upgrade}</p>
-      </FlexWrap>
-    ));
+  // DISPLAY UPGRADES DETAILS
+  const [displayUpgrades, setDisplayUpgrades] = useState(false);
+  const handleDisplayUpgrades = () => setDisplayUpgrades((prev) => !prev);
+  const upgrades = [
+    {
+      field: "engine",
+      icon: <UpEngine />,
+    },
+    {
+      field: "body",
+      icon: <UpBody />,
+    },
+    {
+      field: "suspension",
+      icon: <UpSuspension />,
+    },
+    {
+      field: "nitro",
+      icon: <UpNitro />,
+    },
+    {
+      field: "brakes",
+      icon: <UpBrakes />,
+    },
+    {
+      field: "tires",
+      icon: <UpTires />,
+    },
+    {
+      field: "lights",
+      icon: <UpLights />,
+    },
+    {
+      field: "stereo",
+      icon: <UpStereo />,
+    },
+    {
+      field: "other",
+      icon: <UpOther />,
+    },
+  ];
+  const renderCarUpgradeList = upgrades.map(
+    (upgrade) =>
+      carDetails[upgrade.field] !== "" && (
+        <UpIcon key={upgrade.field}>{upgrade.icon}</UpIcon>
+      )
+  );
+  const renderCarUpgradeDetails = upgrades.map(
+    (upgrade) =>
+      carDetails[upgrade.field] !== "" && (
+        <div style={{ marginTop: "10px" }}>
+          <FlexLine>
+            <UpIcon key={upgrade.field}>{upgrade.icon}</UpIcon>
+            <h2>
+              {upgrade.field[0].toUpperCase()}
+              {upgrade.field.slice(1)}
+            </h2>
+          </FlexLine>
+          <p style={{ marginLeft: "10px" }}>{carDetails[upgrade.field]}</p>
+        </div>
+      )
+  );
+  const renderCarUpgrade = (
+    <>
+      <Subtitle>Upgrades</Subtitle>
+
+      <FlexLine>
+        {renderCarUpgradeList}
+        <CollapseButton onClick={handleDisplayUpgrades}>Details</CollapseButton>
+      </FlexLine>
+      <Collapse in={displayUpgrades} timeout="auto" unmountOnExit>
+        <div style={{ marginLeft: "10px" }}>{renderCarUpgradeDetails}</div>
+      </Collapse>
+    </>
+  );
+
   // RENDER CARS SPONSORS LIST
-  const renderCarSponsorList =
-    carDetails.sponsors &&
-    carDetails.sponsors.map((sponsor) => (
-      <FlexWrap key={sponsor.id}>
-        <SponsorLogo alt="" src={`${apiURL}/${sponsor.logo}`} />
-        <SponsorTitle>{sponsor.title}</SponsorTitle>
-      </FlexWrap>
-    ));
+  const renderCarSponsorList = [];
+  // const renderCarSponsorList =
+  //   carDetails.sponsors &&
+  //   carDetails.sponsors.map((sponsor) => (
+  //     <FlexWrap key={sponsor.id}>
+  //       <SponsorLogo alt="" src={`${apiURL}/${sponsor.logo}`} />
+  //       <SponsorTitle>{sponsor.title}</SponsorTitle>
+  //     </FlexWrap>
+  //   ));
   const otherSponsors =
     carDetails.otherSponsors && carDetails.otherSponsors.split(",");
   const renderCarOtherSponsorList =
     carDetails.otherSponsors &&
     otherSponsors.map((sponsor) => (
+      // console.log(sponsor)
       <FlexColumn key={sponsor}>
         <OtherSponsorAvatar>{sponsor[0].toUpperCase()}</OtherSponsorAvatar>
         <SponsorTitle>{sponsor}</SponsorTitle>
@@ -311,25 +408,20 @@ export default function CarDetails(props) {
               {/* CAR DESCRIPTION */}
               <CarDescrption>{carDetails.description}</CarDescrption>
 
-              <TwoColumns>
-                {/* CAR UPGRADES */}
-                {!!renderCarUpgradeList && (
-                  <div>
-                    <Subtitle>Upgrades</Subtitle>
-                    <FlexLine>{renderCarUpgradeList}</FlexLine>
-                  </div>
-                )}
-                {/* CAR SPONSORS */}
-                {!!renderCarSponsorList && (
-                  <div>
-                    <Subtitle>Sponsors</Subtitle>
-                    <FlexLine>
-                      {renderCarSponsorList}
-                      {renderCarOtherSponsorList}
-                    </FlexLine>
-                  </div>
-                )}
-              </TwoColumns>
+              {/* CAR UPGRADES */}
+              {!!renderCarUpgradeList && <>{renderCarUpgrade}</>}
+
+              {/* CAR SPONSORS */}
+              {!!renderCarSponsorList && (
+                <div>
+                  <Subtitle>Sponsors</Subtitle>
+                  <FlexLine>
+                    {renderCarSponsorList}
+                    {renderCarOtherSponsorList}
+                  </FlexLine>
+                </div>
+              )}
+
               {/* CAR VOTING */}
               {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
               {/* CAR BUY */}
