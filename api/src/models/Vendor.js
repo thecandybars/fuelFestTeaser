@@ -26,6 +26,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    logo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tent: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     geolocation: {
       type: DataTypes.STRING,
       allowNull: false,

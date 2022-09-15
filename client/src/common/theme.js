@@ -5,7 +5,8 @@ export const themeMUI = createTheme({
   palette: {
     red: { main: "#da1921" },
     yellow: { main: "#feae2e" },
-    white: { main: "#d9d9d9" },
+    white: { main: "#fff" },
+    darkWhite: { main: "#c7c7c7" },
     green: { main: "#00703d" },
     dialogBackground: { main: "rgba(10, 10, 10, 0.97)" },
     black: { main: "#000000" },
@@ -14,7 +15,8 @@ export const themeMUI = createTheme({
 // STYLED COMPONENTS THEME
 export const theme = {
   yellow: "#feae2e",
-  white: "#d9d9d9",
+  white: "#fff",
+  darkWhite: "#c7c7c7",
   red: "#da1921",
   green: "#00703d",
   dialogBackground: "rgba(10, 10, 10, 0.97)",

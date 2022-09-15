@@ -35,10 +35,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      upgrades: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       otherSponsors: {
         type: DataTypes.STRING,
         allowNull: true,

@@ -15,6 +15,7 @@ const {
   Sponsor,
   VoteCategory,
   User,
+  Vendor,
 } = require("../db.js");
 const {
   createTokenTransaction,
@@ -143,6 +144,7 @@ async function getVoucher(req) {
     const { voucherId } = req.params;
     const response = await Voucher.findOne({
       where: { assetId: voucherId },
+      include: Vendor,
     });
 
     return Object.keys(response).length === 0

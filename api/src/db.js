@@ -73,6 +73,8 @@ const {
   Car,
   CarImage,
   CarOwner,
+  CarUpgrade,
+  Upgrade,
   Sponsor,
   Vendor,
   Vote,
@@ -114,12 +116,18 @@ Vendor.belongsToMany(User, { through: "FavVendor" });
 User.belongsToMany(Sponsor, { through: "FavSponsor" });
 Sponsor.belongsToMany(User, { through: "FavSponsor" });
 
+// CAR
 Car.hasMany(CarImage, { foreignKey: "carId" });
 CarOwner.hasMany(Car, { foreignKey: "carOwnerId" });
 Car.belongsTo(CarOwner, { foreignKey: "carOwnerId" });
 Car.belongsToMany(Sponsor, { through: "CarSponsor" });
 Sponsor.belongsToMany(Car, { through: "CarSponsor" });
 AstNFTCard.belongsTo(Car, { foreignKey: "carId" });
+
+CarUpgrade.belongsTo(Car, { foreignKey: "carId" });
+CarUpgrade.belongsTo(Upgrade, { foreignKey: "upgradeId" });
+Car.belongsToMany(Upgrade, { through: "carUpgrades" });
+Upgrade.belongsToMany(Car, { through: "carUpgrades" });
 
 // VOTING
 
@@ -167,6 +175,10 @@ Template.hasMany(Voucher, { foreignKey: "templateId" });
 Template.hasMany(TokenCoupon, { foreignKey: "templateId" });
 Template.hasMany(VoucherCoupon, { foreignKey: "templateId" });
 Template.hasMany(Badge, { foreignKey: "templateId" });
+
+// VOUCHER
+Voucher.belongsTo(Vendor, { foreignKey: "vendorId" });
+Vendor.hasMany(Voucher);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

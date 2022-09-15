@@ -16,7 +16,7 @@ import WalletVoting from "./components/WalletVoting";
 import WalletQuests from "./components/WalletQuests";
 import WalletNFTGarage from "./components/WalletNFTGarage";
 import WalletStats from "./components/WalletStats";
-import NFTCar from "./components/NFTCar";
+import NFTCar from "./components/WalletMarketplace/NFTCar";
 import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
 import User from "./components/User";

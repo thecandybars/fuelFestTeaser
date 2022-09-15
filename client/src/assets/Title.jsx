@@ -6,7 +6,7 @@ import { ArrowBack } from "../iconComponents";
 const StyledTitle = styled.div`
   font-family: "Oswald";
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 5px;
   h1 {
     font-size: 2.3rem;

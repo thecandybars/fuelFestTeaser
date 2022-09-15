@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getNFTCard } from "../services/assets";
+import { getNFTCard } from "../../services/assets";
 import styled from "styled-components";
-import BackButton from "../assets/BackButton";
-import burnableIcon from "../icons/local_fire_department_FILL0_wght400_GRAD0_opsz48.svg";
-import transferableIcon from "../icons/swap_horiz_FILL0_wght400_GRAD0_opsz48.svg";
-import facebookIcon from "../icons/social/facebook.svg";
-import twitterIcon from "../icons/social/twitter.svg";
-import instagramIcon from "../icons/social/instagram.svg";
-import youtubeIcon from "../icons/social/youtube.svg";
+import burnableIcon from "../../icons/local_fire_department_FILL0_wght400_GRAD0_opsz48.svg";
+import transferableIcon from "../../icons/swap_horiz_FILL0_wght400_GRAD0_opsz48.svg";
+import facebookIcon from "../../icons/social/facebook.svg";
+import twitterIcon from "../../icons/social/twitter.svg";
+import instagramIcon from "../../icons/social/instagram.svg";
+import youtubeIcon from "../../icons/social/youtube.svg";
 import OwnerIcon from "@mui/icons-material/Man";
-import DialogBuyNFT from "./WalletMarketplace/DialogBuyNFT";
+import DialogBuyNFT from "./DialogBuyNFT";
 import { Dialog } from "@mui/material";
-import MainContainer from "../assets/MainContainer";
+import MainContainer from "../../assets/MainContainer";
+import Title from "../../assets/Title";
+import { theme } from "../../common/theme";
 
 // STYLED COMPONENTS
 const StyledLeft = styled.div`
@@ -32,7 +33,7 @@ const StyledTitle = styled.h1`
 `;
 const StyledSubtitle = styled.p`
   font-family: "Oswald";
-  color: #a1a1a1;
+  color: ${(props) => props.theme.white};
 `;
 const StyledInfo = styled.p`
   font-family: "Oswald";
@@ -88,19 +89,11 @@ export default function NFTCar() {
   }
 
   return (
-    // false &&
     Object.keys(nftCarFetched).length !== 0 && (
       <MainContainer>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            // justifyContent: "space-between",
-          }}
-        >
-          <BackButton />
-          <StyledTitle>{nftCarFetched.nftCard.name}</StyledTitle>
-        </div>
+        <Title backButton="true" color={theme.red}>
+          {nftCarFetched.nftCard.name}
+        </Title>
         <div style={{ display: "flex" }}>
           <StyledLeft>
             <StyledSubtitle>Mint number</StyledSubtitle>
