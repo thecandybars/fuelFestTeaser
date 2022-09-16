@@ -18,7 +18,7 @@ export default function VoucherCard(props) {
       {/* <Modal open={modalIsOpen} onClose={handleModalClose}>
     <ModalBuyNFT data={props} />
   </Modal> */}
-      <Link to={"/wallet/marketplace/" + voucher.assetId}>
+      <Link to={"/wallet/marketplace/voucher/" + voucher.assetId}>
         <img alt="NFT Card of a car" src={`${apiURL}/${voucher.image}`} />
       </Link>
       {/* <div className={style.collection}>{props.collection}</div> */}
@@ -32,7 +32,7 @@ export default function VoucherCard(props) {
           margin: "",
         }}
       >
-        <Link to={"/wallet/marketplace/" + voucher.id}>
+        <Link to={"/wallet/marketplace/voucher/" + voucher.id}>
           <div className={style.detailsButton}>Details</div>
         </Link>
         <SellButton

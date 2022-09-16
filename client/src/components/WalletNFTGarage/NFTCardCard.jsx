@@ -60,7 +60,7 @@ export default function NFTCardCard(props) {
           />
         </Dialog>
       }
-      <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>
+      <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
         <img
           alt="NFT Card of a car"
           src={`${apiURL}/${astNFTCard.imageFront}`}
@@ -77,7 +77,7 @@ export default function NFTCardCard(props) {
           margin: "",
         }}
       >
-        <Link to={"/wallet/marketplace/" + astNFTCard.assetId}>
+        <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
           <DetailsButton>Details</DetailsButton>
         </Link>
         <SellButton
