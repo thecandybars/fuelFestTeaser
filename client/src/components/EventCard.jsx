@@ -2,6 +2,10 @@ import React from "react";
 import { icons } from "../common/icons";
 import { days, months } from "../common/dateNames";
 import styled from "styled-components";
+import { Collapse } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Favorites } from "../iconComponents";
+import { theme } from "../common/theme";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +47,11 @@ const FavIcon = styled.div`
       brightness(118%) contrast(100%); /* Color=white */
   }
 `;
+// COLLAPSABLE EVENT DESCRIPTION
+const CollapseButton = styled.div`
+  font-size: 1rem;
+  margin-left: 20px;
+`;
 
 const EventDescription = styled.div`
   padding: 3px;
@@ -51,15 +60,24 @@ const EventDescription = styled.div`
 `;
 
 export default function EventCard(props) {
-  const fullDate = new Date(props.date);
-  const dayName = days[fullDate.getDay()];
-  const dayNumber =
-    fullDate.getMinutes().toString().length === 2
-      ? fullDate.getMinutes()
-      : "0" + fullDate.getMinutes();
-  const monthName = months[fullDate.getMonth()].toLowerCase();
+  const { data } = props;
+  const fullDateStart = new Date(data.dateStart);
+  const dayNameStart = days[fullDateStart.getDay()];
+  const dayNumberStart =
+    fullDateStart.getMinutes().toString().length === 2
+      ? fullDateStart.getMinutes()
+      : "0" + fullDateStart.getMinutes();
+  const monthName = months[fullDateStart.getMonth()].toLowerCase();
 
   const apiURL = process.env.REACT_APP_API;
+
+  const favIconStyle = {
+    fill: props.isFavorite ? theme.white : "transparent",
+    stroke: props.isFavorite ? "transparent" : theme.lightGray,
+    strokeWidth: "12px",
+    fontSize: "2rem",
+  };
+
   return (
     <>
       <Container
@@ -69,14 +87,23 @@ export default function EventCard(props) {
       >
         <EventImage alt="The band" src={`${apiURL}/${props.image}`} />
         <EventData>
-          <EventTitle>{props.title}</EventTitle>
+          <div style={{ display: "flex" }}>
+            <EventTitle>{props.title}</EventTitle>
+            <CollapseButton>
+              <ExpandMoreIcon
+                style={{
+                  transform: !props.desc ? "rotate(0deg)" : "rotate(180deg)",
+                }}
+              />
+            </CollapseButton>
+          </div>
           <p>
             <Icon alt="" src={icons.event.calendar} />
-            {`${dayName} ${fullDate.getDate()} ${monthName}`}
+            {`${dayNameStart} ${fullDateStart.getDate()} ${monthName}`}
           </p>
           <p>
             <Icon alt="" src={icons.event.clock} />
-            {`${fullDate.getHours()}:${dayNumber}`}
+            {`${fullDateStart.getHours()}:${dayNumberStart}`}
           </p>
           <p>
             <Icon alt="" src={icons.location} />
@@ -89,13 +116,14 @@ export default function EventCard(props) {
             props.togFav(props.id);
           }}
         >
-          <img
-            alt={props.isFavorite ? "Favorite" : "Not favorite"}
-            src={props.isFavorite ? icons.favorite.on : icons.favorite.off}
-          />
+          <Favorites style={favIconStyle} />
         </FavIcon>
       </Container>
-      {props.desc && <EventDescription>{props.desc}</EventDescription>}
+      {props.desc && (
+        <Collapse in={!!props.desc} timeout="auto" unmountOnExit>
+          <EventDescription>{props.desc}</EventDescription>
+        </Collapse>
+      )}
     </>
   );
 }

@@ -29,6 +29,7 @@ export default function Events() {
     filteredEvents.length > 0 ? (
       filteredEvents.map((event) => (
         <EventCard
+          data={event}
           key={event.id}
           id={event.id}
           title={event.title}
