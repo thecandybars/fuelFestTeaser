@@ -87,7 +87,11 @@ export default function CarCard(props) {
           <CarData>
             {/* TITLE + FAVORITE */}
             <TwoColumns>
-              <CarTitle>{props.car.title}</CarTitle>
+              <CarTitle>
+                {props.car.year && props.car.year + " "}
+                {props.car.title}
+              </CarTitle>
+
               <SmIcon
                 onClick={(e) => {
                   e.stopPropagation();

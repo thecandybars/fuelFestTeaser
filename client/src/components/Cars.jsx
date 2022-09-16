@@ -2,20 +2,14 @@ import React, { useEffect, useState } from "react";
 import { getCars, postFavCar, getFavCar } from "../services/car";
 import CarCard from "./CarCard";
 import style from "./css/Cars.module.css";
-// import CarDetails from "./CarDetails";
 import Title from "../assets/Title";
 import MainContainer from "../assets/MainContainer";
-// import styled from "styled-components";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [, setFetchedFavs] = useState([]);
   const [carDetails] = useState("");
-
-  // const [carFilter, setCarFilter] = useState("");
-  // const [voteFilter, setVoteFilter] = useState("");
-  // const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     fetchCars();
@@ -34,25 +28,32 @@ export default function Cars() {
     await postFavCar(carId);
     fetchFavorites();
   }
-  // function handleShowDetails(carId) {
-  //   // This was an async func
-  //   if (carId === "") {
-  //     setCarDetails("");
-  //   } else {
-  //     const selectedCar = filteredCars.find((car) => car.id === carId);
-  //     setCarDetails(
-  //       <CarDetails
-  //         id={carId}
-  //         isFavorite={
-  //           !!fetchedFavs.find((favCar) => selectedCar.id === favCar.id)
-  //         }
-  //         // showDetails={handleShowDetails}
-  //         togFav={toggleFav}
-  //       />
-  //     );
-  //   }
-  // }
 
+  ///FILTER SEARCH FIELD
+  const [filterSearch, setFilterSearch] = useState("");
+  useEffect(() => {
+    const searchString = filterSearch.toLowerCase();
+    setFilteredCars(
+      fetchedCars.filter((car) =>
+        filterSearch !== ""
+          ? car.title.toLowerCase().includes(searchString) ||
+            car.description.toLowerCase().includes(searchString) ||
+            car.year.toString().includes(searchString) ||
+            car.engine.toLowerCase().includes(searchString) ||
+            car.body.toLowerCase().includes(searchString) ||
+            car.suspension.toLowerCase().includes(searchString) ||
+            car.nitro.toLowerCase().includes(searchString) ||
+            car.brakes.toLowerCase().includes(searchString) ||
+            car.tires.toLowerCase().includes(searchString) ||
+            car.lights.toLowerCase().includes(searchString) ||
+            car.stereo.toLowerCase().includes(searchString) ||
+            car.others.toLowerCase().includes(searchString)
+          : true
+      )
+    );
+  }, [filterSearch, fetchedCars]);
+
+  // RENDER CAR CARDS
   const RenderCarCards =
     filteredCars.length > 0 ? (
       filteredCars.map((car) => (
@@ -62,68 +63,15 @@ export default function Cars() {
       <p>No cars to show</p>
     );
 
-  //// FILTER INPUTS
-  const RenderInputManufacturer = fetchedCars
-    .map((car) => car.manufacturer)
-    .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
-    .map((manufacturer) => (
-      <option key={manufacturer} value={manufacturer}>
-        {manufacturer}
-      </option>
-    ));
-  const RenderInputTire = fetchedCars
-    .map((car) => car.tireManufacturer)
-    .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
-    .map((tireManufacturer) => (
-      <option key={tireManufacturer} value={tireManufacturer}>
-        {tireManufacturer}
-      </option>
-    ));
-  //// FILTER STATE
-  const [filterManufacturer, setFilterManufacturer] = useState("all");
-  const [filterTire, setFilterTire] = useState("all");
-  const [filterSearch, setFilterSearch] = useState("");
-  ///FILTER ACTION
-  useEffect(() => {
-    // .filter((car) => car.tireManufacturer === filterTire);
-    setFilteredCars(
-      fetchedCars.filter(
-        (car) =>
-          (filterManufacturer !== "all"
-            ? car.manufacturer === filterManufacturer
-            : true) &&
-          (filterTire !== "all" ? car.tireManufacturer === filterTire : true) &&
-          (filterSearch !== ""
-            ? car.title.toLowerCase().includes(filterSearch.toLowerCase()) ||
-              car.description.toLowerCase().includes(filterSearch.toLowerCase())
-            : true)
-      )
-    );
-  }, [filterManufacturer, filterTire, filterSearch, fetchedCars]);
-
   return (
     <MainContainer>
       <div className={style.container}>
         {carDetails && carDetails}
         <Title backButton="true">CARS</Title>
         <nav className={style.cars_nav}>
-          <select
-            name="filterManufacturer"
-            onChange={(e) => setFilterManufacturer(e.target.value)}
-          >
-            <option value="all">All manufacturers</option>
-            {RenderInputManufacturer}
-          </select>
-          <select
-            name="filterTire"
-            onChange={(e) => setFilterTire(e.target.value)}
-          >
-            <option value="all">All tires</option>
-            {RenderInputTire}
-          </select>
           <input
             type="text"
-            size="15"
+            size="45"
             onChange={(e) => setFilterSearch(e.target.value)}
             placeholder="search"
           />
