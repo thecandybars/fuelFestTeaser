@@ -7,13 +7,13 @@ import VoteCarCard from "./VoteCarCard";
 
 export default function WalletVotingCategory() {
   const { voteCategory } = useParams();
-  const apiURL = process.env.REACT_APP_API;
+  // const apiURL = process.env.REACT_APP_API;
   //   INIT
   const [voteCategoryFetched, setVoteCategoryFetched] = useState({});
 
   useEffect(() => {
     fetchVoteCategory(voteCategory);
-  }, []);
+  }, [voteCategory]);
   async function fetchVoteCategory(voteCategory) {
     setVoteCategoryFetched(await getVotingCategory(voteCategory));
   }
@@ -22,7 +22,7 @@ export default function WalletVotingCategory() {
   const renderVotingCarCards =
     Object.keys(voteCategoryFetched).length !== 0 &&
     voteCategoryFetched.map((car) => (
-      <Link to={`/car/${car.car.id}`}>
+      <Link to={`/car/${car.car.id}`} key={car.car.id}>
         <VoteCarCard data={car} />
       </Link>
     ));

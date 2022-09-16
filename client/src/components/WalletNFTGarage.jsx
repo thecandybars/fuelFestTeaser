@@ -29,33 +29,29 @@ const StyledAssetSearch = styled.input`
   padding: 2px;
   background-color: transparent;
 `;
-const StyledPriceRow = styled.div`
-  display: flex;
-  width: 75%;
-  margin: 0 0 0 auto;
-  padding: 2px 0;
-  p {
-    font-family: "Oswald";
-    color: #feae2e;
-    width: 70px;
-  }
-  input {
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-    color: #d9d9d9;
-    width: 60%;
-    margin-left: 5px;
-    padding: 2px;
-    background-color: transparent;
-  }
-`;
+// const StyledPriceRow = styled.div`
+//   display: flex;
+//   width: 75%;
+//   margin: 0 0 0 auto;
+//   padding: 2px 0;
+//   p {
+//     font-family: "Oswald";
+//     color: #feae2e;
+//     width: 70px;
+//   }
+//   input {
+//     border: 1px solid #d9d9d9;
+//     border-radius: 5px;
+//     color: #d9d9d9;
+//     width: 60%;
+//     margin-left: 5px;
+//     padding: 2px;
+//     background-color: transparent;
+//   }
+// `;
 export default function WalletMarketplace() {
   const [fetchedAssets, setFetchedAssets] = useState([]);
   const [filteredAssets, setFilteredAssets] = useState([]);
-  console.log(
-    "🚀 ~ file: WalletNFTGarage.jsx ~ line 55 ~ WalletMarketplace ~ filteredAssets",
-    filteredAssets
-  );
   useEffect(() => {
     fetchAssets();
   }, []);
@@ -77,11 +73,11 @@ export default function WalletMarketplace() {
   // FILTERS
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterSearch, setFilterSearch] = useState("");
-  const [filterPrice, setFilterPrice] = useState({
+  const [filterPrice] = useState({
     min: "",
     max: "",
   });
-  const [filterMint, setFilterMint] = useState({
+  const [filterMint] = useState({
     min: "",
     max: "",
   });

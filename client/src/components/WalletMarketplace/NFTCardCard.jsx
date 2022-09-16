@@ -14,13 +14,13 @@ const Card = styled.div`
     margin-bottom: 2px;
   }
 `;
-const Collection = styled.div`
-  border: 1px solid ${(props) => props.theme.white};
-  border-radius: 10px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 3px 0;
-`;
+// const Collection = styled.div`
+//   border: 1px solid ${(props) => props.theme.white};
+//   border-radius: 10px;
+//   width: 90%;
+//   margin: 0 auto;
+//   padding: 3px 0;
+// `;
 const BuyButton = styled.div`
   background-color: ${(props) => props.theme.green};
   width: fit-content;

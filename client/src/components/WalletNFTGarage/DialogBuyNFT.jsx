@@ -106,7 +106,7 @@ export default function ModalBuyNFT(props) {
   const [fetchedAssetData, setFetchedAssetData] = useState({});
   useEffect(() => {
     fetchAssetData(props.assetId);
-  }, []);
+  }, [props.assetId]);
   async function fetchAssetData(assetId) {
     setFetchedAssetData(await getAssetById(assetId));
   }

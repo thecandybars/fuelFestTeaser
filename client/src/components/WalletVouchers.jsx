@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainContainer from "../assets/MainContainer";
 import Title from "../assets/Title";
-import { getAssetByWallet, getVouchers } from "../services/assets";
+import { getAssetByWallet } from "../services/assets";
 import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
 import vouchersBanner from "../img/vouchersBanner.jpg";
@@ -15,10 +15,6 @@ const StyledContainer = styled.div`
 `;
 export default function WalletVouchers() {
   const [fetchedVouchers, setFetchedVouchers] = useState([]);
-  console.log(
-    "🚀 ~ file: WalletVouchers.jsx ~ line 18 ~ WalletVouchers ~ fetchedVouchers",
-    fetchedVouchers
-  );
   const [filteredVouchers, setFilteredVouchers] = useState([]);
 
   // INIT
@@ -35,7 +31,11 @@ export default function WalletVouchers() {
   const RenderBrandsOptions = fetchedVouchers
     .map((voucher) => voucher.voucher.brand)
     .filter((item, index, arr) => arr.indexOf(item) === index) // filtra repeticiones);
-    .map((brand) => <option value={brand}>{brand}</option>);
+    .map((brand) => (
+      <option value={brand} key={brand}>
+        {brand}
+      </option>
+    ));
   /// FILTER
   const [filterBrand, setFilterBrand] = useState("all");
   const [filterSearch, setFilterSearch] = useState("");
@@ -55,7 +55,7 @@ export default function WalletVouchers() {
   }, [filterBrand, filterSearch, fetchedVouchers]);
 
   const RenderVoucherCards = filteredVouchers.map((voucher) => (
-    <VoucherCard data={{ ...voucher }} />
+    <VoucherCard key={voucher.id} data={{ ...voucher }} />
   ));
 
   return (

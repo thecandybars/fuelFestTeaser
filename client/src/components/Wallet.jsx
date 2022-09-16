@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getWallet, manageTokens } from "../services/wallet";
 import style from "./css/Wallet.module.css";
-import driftCoin from "../img/driftCoin.png";
+// import driftCoin from "../img/driftCoin.png";
 import historyIcon from "../icons/history.svg";
 import { walletId } from "../common/getLoginData";
 import spendIcon from "../icons/north_FILL0_wght400_GRAD0_opsz48.svg";
@@ -72,17 +72,19 @@ export default function Wallet() {
           <div className={style.walletData_balance}>
             <p className={style.walletData_title}>BALANCE</p>
             <p className={style.walletData_total}>
-              {parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)}
+              {(
+                parseInt(displayDrift.liquid) + parseInt(displayDrift.frozen)
+              ).toString()}
             </p>
             <p className={style.walletData_units}>DRIFT</p>
           </div>
           <div className={style.walletData_detail}>
             <p>
-              Liquid{" "}
+              Liquid
               <span style={{ marginRight: "25px" }}>{displayDrift.liquid}</span>
             </p>
             <p>
-              Frozen{" "}
+              Frozen
               <span style={{ marginRight: "25px" }}>{displayDrift.frozen}</span>
             </p>
             <p>

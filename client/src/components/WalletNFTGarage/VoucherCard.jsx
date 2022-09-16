@@ -11,10 +11,6 @@ const SellButton = styled.div`
   border-radius: 15px;
 `;
 export default function VoucherCard(props) {
-  console.log(
-    "🚀 ~ file: VoucherCard.jsx ~ line 6 ~ VoucherCard ~ props",
-    props
-  );
   const apiURL = process.env.REACT_APP_API;
   const { voucher } = props.data;
   return (

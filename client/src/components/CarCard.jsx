@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import camelCase from "../common/camelCase";
 import { Owner, Location, Map } from "../iconComponents";
 
 const Container = styled.div`

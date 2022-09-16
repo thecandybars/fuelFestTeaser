@@ -84,7 +84,8 @@ export default function Events() {
             : true)
       )
     );
-  }, [search, category, date_time]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, category, date_time, fetchedEvents, fetchedFavs]);
 
   return (
     <MainContainer>

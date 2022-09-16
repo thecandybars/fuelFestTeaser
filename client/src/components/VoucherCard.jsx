@@ -13,7 +13,7 @@ export default function VoucherCard(props) {
       />
       <p>{props.data.voucher.title}</p>
       <p style={{ color: "#feae2e" }}>{props.data.voucher.price} drift</p>
-      <p
+      <div
         style={{
           display: "flex",
           justifyContent: "space-around",
@@ -23,7 +23,7 @@ export default function VoucherCard(props) {
       >
         <div className={style.detailsButton}>Details</div>
         <div className={style.buyButton}>Redeem</div>
-      </p>
+      </div>
     </div>
   );
 }

@@ -120,13 +120,10 @@ export default function DialogBuyVoucher(props) {
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
-  console.log(
-    "🚀 ~ file: DialogBuyVoucher.jsx ~ line 11 ~ DialogBuyVoucher ~ fetchedAssetData",
-    fetchedAssetData
-  );
+
   useEffect(() => {
     fetchAssetData(props.assetId);
-  }, []);
+  }, [props.assetId]);
   async function fetchAssetData(assetId) {
     setFetchedAssetData(await getAssetById(assetId));
   }

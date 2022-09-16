@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getCars, postFavCar, getFavCar } from "../services/car";
 import CarCard from "./CarCard";
 import style from "./css/Cars.module.css";
-import CarDetails from "./CarDetails";
+// import CarDetails from "./CarDetails";
 import Title from "../assets/Title";
 import MainContainer from "../assets/MainContainer";
-import styled from "styled-components";
+// import styled from "styled-components";
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
-  const [fetchedFavs, setFetchedFavs] = useState([]);
-  const [carDetails, setCarDetails] = useState("");
+  const [, setFetchedFavs] = useState([]);
+  const [carDetails] = useState("");
 
   // const [carFilter, setCarFilter] = useState("");
   // const [voteFilter, setVoteFilter] = useState("");
@@ -99,7 +99,7 @@ export default function Cars() {
             : true)
       )
     );
-  }, [filterManufacturer, filterTire, filterSearch]);
+  }, [filterManufacturer, filterTire, filterSearch, fetchedCars]);
 
   return (
     <MainContainer>

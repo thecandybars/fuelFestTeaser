@@ -76,10 +76,6 @@ export default function VoucherDetail() {
 
   // INIT
   const [fetchedVoucher, setFetchedVoucher] = useState({});
-  console.log(
-    "🚀 ~ file: VoucherDetail.jsx ~ line 42 ~ VoucherDetail ~ fetchedVoucher",
-    fetchedVoucher
-  );
   const fetchVoucher = async (voucherId) => {
     setFetchedVoucher(await getVoucher(voucherId));
   };

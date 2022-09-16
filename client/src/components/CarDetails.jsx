@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getCarById } from "../services/car";
-import { postCarVote } from "../services/vote";
+// import { postCarVote } from "../services/vote";
 import { getUser } from "../services/user";
 import { getWallet } from "../services/wallet";
 import ImageGallery from "react-image-gallery";
@@ -82,11 +82,6 @@ const UpgradeDetails = styled.div`
   }
 `;
 
-const SmallIcon = styled.img`
-  height: 25px;
-  padding-right: 5px;
-`;
-
 const VoteBox = styled.div`
   display: flex;
   height: 80px;
@@ -97,7 +92,7 @@ const VoteBox = styled.div`
   background-color: ${(props) => props.theme.black};
   color: ${(props) => props.theme.white};
   p {
-    font-family: "Oswald";
+    font-family: "Oswald", sans-serif;
     font-size: 1.7rem;
   }
   div {
@@ -116,9 +111,6 @@ const VoteIcon = styled.img`
   padding-right: 5px;
   filter: invert(100%);
 `;
-const UpLabel = styled.p`
-  font-size: 1rem;
-`;
 const UpIcon = styled.div`
   font-size: 1.8rem;
   margin-right: 10px;
@@ -130,7 +122,7 @@ const CollapseButton = styled.div`
 const VoteTitle = styled.div`
   text-align: center;
   /* max-width: 80px; */
-  font-family: "Oswald";
+  font-family: "Oswald", sans-serif;
   font-size: 0.75rem;
   color: ${(props) => props.theme.white};
 `;
@@ -186,7 +178,7 @@ const BuyBox = styled.div`
 const CarPrice = styled.div`
   h3 {
     color: ${(props) => props.theme.green};
-    font-family: "Oswald";
+    font-family: "Oswald", sans-serif;
     font-size: 1.8rem;
   }
   p {
@@ -200,7 +192,7 @@ const BuyButton = styled.div`
   background-color: ${(props) => props.theme.green};
   color: white;
   border-radius: 60px;
-  font-family: "Oswald";
+  font-family: "Oswald", sans-serif;
   font-size: 1.5rem;
   text-align: center;
 `;
@@ -211,12 +203,8 @@ const socialIconStyle = {
 
 export default function CarDetails(props) {
   const [carDetails, setCarDetails] = useState({});
-  console.log(
-    "🚀 ~ file: CarDetails.jsx ~ line 162 ~ CarDetails ~ carDetails",
-    carDetails
-  );
   const [carImages, setCarImages] = useState([]);
-  const [user, setUser] = useState({});
+  const [, setUser] = useState({});
   const [wallet, setWallet] = useState({});
   const apiURL = process.env.REACT_APP_API;
   const { carId } = useParams();
@@ -245,15 +233,15 @@ export default function CarDetails(props) {
     const wallet = await getWallet(walletId);
     setWallet(wallet);
   };
-  async function handleVote(categoryId) {
-    await postCarVote({
-      walletId: user.walletId,
-      carId: carDetails.id,
-      categoryId,
-      votingTokens: user.wallet.frozen,
-    });
-    fetchWallet();
-  }
+  // async function handleVote(categoryId) {
+  //   await postCarVote({
+  //     walletId: user.walletId,
+  //     carId: carDetails.id,
+  //     categoryId,
+  //     votingTokens: user.wallet.frozen,
+  //   });
+  //   fetchWallet();
+  // }
 
   // DISPLAY UPGRADES DETAILS
   const [displayUpgrades, setDisplayUpgrades] = useState(false);
@@ -305,9 +293,9 @@ export default function CarDetails(props) {
   const renderCarUpgradeDetails = upgrades.map(
     (upgrade) =>
       carDetails[upgrade.field] !== "" && (
-        <UpgradeDetails>
+        <UpgradeDetails key={upgrade.field}>
           <div>
-            <UpIcon key={upgrade.field}>{upgrade.icon}</UpIcon>
+            <UpIcon>{upgrade.icon}</UpIcon>
             <h2>
               {upgrade.field[0].toUpperCase()}
               {upgrade.field.slice(1)}
@@ -429,17 +417,18 @@ export default function CarDetails(props) {
           {carDetails && (
             <CarInfoContainer>
               {/* TITLE */}
-
               <Title>
                 {carDetails.year && carDetails.year + " "}
                 {carDetails.title}
               </Title>
+
               {/* OWNER */}
               <DetailsCategory>
                 <FlexLine style={{ alignItems: "baseline" }}>
                   <Owner style={{ fontSize: "1.5rem" }} />
                   <p>{carDetails.carOwner.name}</p>
                 </FlexLine>
+
                 {/* SOCIAL */}
                 <FlexLine>
                   {carDetails.carOwner.instagram && (
@@ -456,6 +445,7 @@ export default function CarDetails(props) {
                   )}
                 </FlexLine>
               </DetailsCategory>
+
               {/* CAR DESCRIPTION */}
               <DetailsCategory>
                 <p>{carDetails.description}</p>
@@ -469,7 +459,7 @@ export default function CarDetails(props) {
               <Line />
 
               {/* CAR SPONSORS */}
-              {!!renderCarSponsorList && (
+              {(!!renderCarSponsorList || !!renderCarOtherSponsorList) && (
                 <DetailsCategory>
                   <Subtitle>Sponsors</Subtitle>
                   <FlexLine style={{ alignItems: "flex-start" }}>
@@ -481,6 +471,7 @@ export default function CarDetails(props) {
 
               {/* CAR VOTING */}
               {!!renderCarVoteCategoriesBlock && renderCarVoteCategoriesBlock}
+
               {/* CAR BUY */}
               {!!renderCarBuy && renderCarBuy}
             </CarInfoContainer>

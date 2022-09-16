@@ -24,13 +24,6 @@ const StyledLeft = styled.div`
 const StyledRight = styled.div`
   width: 60%;
 `;
-const StyledTitle = styled.h1`
-  font-size: 32px;
-  text-align: left;
-  color: #da1921;
-  margin-left: 0px;
-  margin-bottom: 20px;
-`;
 const StyledSubtitle = styled.p`
   font-family: "Oswald";
   color: ${(props) => props.theme.white};

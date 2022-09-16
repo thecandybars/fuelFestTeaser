@@ -23,6 +23,7 @@ export default function User() {
   }
   useEffect(() => {
     setImage(images[counter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter]);
   return (
     <MainContainer style={{ padding: "0px" }}>
