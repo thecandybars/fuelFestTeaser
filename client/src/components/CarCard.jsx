@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Owner, Location, Map } from "../iconComponents";
+import { icons } from "../common/icons";
+import camelCase from "../common/camelCase";
 
 const Container = styled.div`
   display: flex;
@@ -59,11 +61,12 @@ const SmIcon = styled.div`
 `;
 const VoteIcon = styled.img`
   width: 36px;
+  /* background-color: pink; */
   display: flex;
   /* justify-content: center; */
   margin-right: 2px;
   filter: invert(90%) sepia(0%) saturate(988%) hue-rotate(240deg)
-    brightness(103%) contrast(71%); /* fill: white; */
+    brightness(103%) contrast(71%);
   /* stroke: white; */
   /* filter: invert(100%); */
 `;
@@ -142,13 +145,7 @@ export default function CarCard(props) {
             {/* ROW VOTING CATEGORIES*/}
             <OneColumn>
               {props.car.voteCategories.map((voteCat) => (
-                <VoteIcon
-                  key={voteCat.id}
-                  alt="icon"
-                  src={`${apiURL}/${voteCat.icon}`}
-                  // src={`src/inUseIcons/${camelCase(voteCat.title)}.svg`}
-                  // src="/src/inUseIcons/bestPaint.svg"
-                />
+                <VoteIcon alt="" src={icons.voting[camelCase(voteCat.title)]} />
               ))}
             </OneColumn>
           </CarData>
