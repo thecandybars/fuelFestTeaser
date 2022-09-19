@@ -9,9 +9,11 @@ export default function Maps() {
   // ZOOM
   const [zoom, setZoom] = useState(300);
   console.log("🚀 ~ file: Maps.jsx ~ line 20 ~ Maps ~ zoom", zoom);
-  const step = 1.3;
-  const handleZoomIn = () => setZoom((prev) => parseInt(prev * step));
-  const handleZoomOut = () => setZoom((prev) => parseInt(prev / step));
+  const step = 1.2;
+  const handleZoomIn = () =>
+    setZoom((prev) => (prev >= 700 ? 700 : parseInt(prev * step)));
+  const handleZoomOut = () =>
+    setZoom((prev) => (prev <= 100 ? 100 : parseInt(prev / step)));
 
   // LABEL
   const [labelState, setLabelState] = useState(false);
