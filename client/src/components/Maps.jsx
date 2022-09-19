@@ -1,32 +1,68 @@
+import { Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MainContainer from "../assets/MainContainer";
 import Title from "../assets/Title";
-import placeholder1 from "../img/maps/map1.jpeg";
-import placeholder2 from "../img/maps/map2.jpeg";
+import map from "../img/maps/map1.jpeg";
+import label from "../img/maps/map2.png";
 
 export default function Maps() {
-  const images = [placeholder1, placeholder2];
-  const [counter, setCounter] = useState(0);
-  const [image, setImage] = useState(images[0]);
+  // ZOOM
+  const [zoom, setZoom] = useState(300);
+  console.log("🚀 ~ file: Maps.jsx ~ line 20 ~ Maps ~ zoom", zoom);
+  const step = 1.3;
+  const handleZoomIn = () => setZoom((prev) => parseInt(prev * step));
+  const handleZoomOut = () => setZoom((prev) => parseInt(prev / step));
 
-  useEffect(() => {
-    setImage(images[counter]);
-  }, [counter]);
+  // LABEL
+  const [labelState, setLabelState] = useState(false);
+
+  // STYLES
+  const imgScroll = {
+    width: "100vw",
+    height: "100vh",
+    overflow: "scroll",
+  };
   const imgStyle = {
-    width: counter === 0 ? "500%" : "100%",
-    height: counter === 0 ? "500%" : "100%",
+    width: `${zoom}%`,
+    height: `${zoom}%`,
+    transition: " 250ms cubic-bezier(0.5, 0, 0.5, 1)",
   };
   return (
     <MainContainer>
       <Title backButton="true">MAPS</Title>
-      <input type="text" placeholder="search" size="50" />
-      <div style={imgStyle}>
-        <img
-          alt="sponsors"
-          src={image}
-          onClick={() => setCounter((prev) => (prev === 1 ? 0 : prev + 1))}
-        />
+      <div
+        style={{
+          marginBottom: "20px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <input type="text" placeholder="search" size="40" />
+        <div>
+          <button onClick={handleZoomOut} style={{ fontSize: "1.3rem" }}>
+            -
+          </button>
+          <button onClick={handleZoomIn} style={{ fontSize: "1.3rem" }}>
+            +
+          </button>
+        </div>
       </div>
+      <div style={imgScroll}>
+        <div style={imgStyle}>
+          <img
+            alt="sponsors"
+            src={map}
+            onClick={() => setLabelState((prev) => !prev)}
+          />
+        </div>
+      </div>
+      <Drawer
+        anchor={"bottom"}
+        open={labelState}
+        onClose={() => setLabelState(false)}
+      >
+        <img alt="label" src={label} />
+      </Drawer>
     </MainContainer>
   );
 }

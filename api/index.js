@@ -490,43 +490,90 @@ conn.sync({ force, alter }).then(() => {
     );
     await CarImage.bulkCreate(
       [
+        // MITSUBISHI ECPLIPSE
         {
-          image: "uploads/car/car-1660054875610.jpg",
+          image: "uploads/car/car-1663597280935.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          image: "uploads/car/car-1663597280938.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          image: "uploads/car/car-1663597280949.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          image: "uploads/car/car-1663597280952.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        {
+          image: "uploads/car/car-1663597280956.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+        },
+        // TOYOTA SUPRA
+        {
+          image: "uploads/car/car-1663597390410.jpg",
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
         {
-          image: "uploads/car/car-1660054875616.jpg",
+          image: "uploads/car/car-1663597390413.jpg",
           carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
         },
         {
-          image: "uploads/car/GT03.png",
+          image: "uploads/car/car-1663597390414.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        {
+          image: "uploads/car/car-1663597390418.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        {
+          image: "uploads/car/car-1663597390421.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+        },
+        // MAZDA RX7
+        {
+          image: "uploads/car/car-1663597491251.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          image: "uploads/car/car-1663597491255.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          image: "uploads/car/car-1663597491268.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          image: "uploads/car/car-1663597491276.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        {
+          image: "uploads/car/car-1663597491280.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+        },
+        // NISSAN SKYLINE
+        {
+          image: "uploads/car/car-1663597573540.jpg",
           carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
         {
-          image: "uploads/car/RX71.png",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-        },
-
-        {
-          image: "uploads/car/RX72.png",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          image: "uploads/car/car-1663597573543.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
         {
-          image: "uploads/car/GM1.png",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          image: "uploads/car/car-1663597573548.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
         {
-          image: "uploads/car/GM2.png",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          image: "uploads/car/car-1663597573550.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
-        // {
-        //   image: "uploads/car/car-1659971663360.jpg",
-        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        // },
-        // {
-        //   image: "uploads/car/car-1659971663362.jpg",
-        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        // },
+        {
+          image: "uploads/car/car-1663597573552.jpg",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
       ],
       {
         ignoreDuplicates: true,
