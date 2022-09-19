@@ -8,7 +8,6 @@ import label from "../img/maps/map2.png";
 export default function Maps() {
   // ZOOM
   const [zoom, setZoom] = useState(300);
-  console.log("🚀 ~ file: Maps.jsx ~ line 20 ~ Maps ~ zoom", zoom);
   const step = 1.2;
   const handleZoomIn = () =>
     setZoom((prev) => (prev >= 700 ? 700 : parseInt(prev * step)));
@@ -41,10 +40,16 @@ export default function Maps() {
       >
         <input type="text" placeholder="search" size="40" />
         <div>
-          <button onClick={handleZoomOut} style={{ fontSize: "1.3rem" }}>
+          <button
+            onClick={handleZoomOut}
+            style={{ fontSize: "1.3rem", width: "30px" }}
+          >
             -
           </button>
-          <button onClick={handleZoomIn} style={{ fontSize: "1.3rem" }}>
+          <button
+            onClick={handleZoomIn}
+            style={{ fontSize: "1.3rem", width: "30px" }}
+          >
             +
           </button>
         </div>
