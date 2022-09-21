@@ -133,7 +133,9 @@ async function createCouponTransaction(data) {
 // Create new VOUCHER transaction = SPEND (Owner sends voucher, the recepient burns coupon)
 async function createVoucherTransaction(data) {
   try {
-    const { toWalletId, assetId } = data;
+    // const { toWalletId, assetId } = data;
+    const { assetId } = data;
+    const toWalletId = "147a9663-e722-4667-b54e-44b5817e0bd9";
 
     const asset = await Asset.findByPk(assetId, {
       include: AssetCategory,

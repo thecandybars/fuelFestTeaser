@@ -25,6 +25,7 @@ const sponsor = require("./sponsor.js");
 const wallet = require("./wallet.js");
 const transaction = require("./transaction.js");
 const asset = require("./asset.js");
+const voucher = require("./voucher.js");
 
 module.exports = {
   ...festival,
@@ -40,4 +41,5 @@ module.exports = {
   ...wallet,
   ...transaction,
   ...asset,
+  ...voucher,
 };

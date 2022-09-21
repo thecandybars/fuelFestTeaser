@@ -967,7 +967,7 @@ conn.sync({ force, alter }).then(() => {
           id: "0bb148fa-9031-4393-9fc1-1d0974d24aea",
           categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
+          isListed: false,
         },
         {
           id: "1bb148fa-9031-4393-9fc1-1d0974d24aea",
@@ -1423,7 +1423,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "dbb148fa-9031-0000-9fc1-1d0974d24aea",
           categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           isListed: true,
         },
         {
@@ -1499,7 +1499,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "dbb148fa-9031-0003-9fc1-1d0974d24aea",
           categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           isListed: true,
         },
         {
@@ -1575,7 +1575,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "dbb148fa-9031-0006-9fc1-1d0974d24aea",
           categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           isListed: true,
         },
         {
@@ -1651,7 +1651,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "00b148fa-9031-0006-9fc1-1d0974d24aea",
           categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           isListed: true,
         },
         {
@@ -1727,8 +1727,8 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "11b148fa-9031-0006-9fc1-1d0974d24aea",
           categoryId: "4664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
+          isListed: false,
         },
         {
           id: "12b148fa-9031-0007-9fc1-1d0974d24aea",

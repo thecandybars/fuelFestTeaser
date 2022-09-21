@@ -7,7 +7,7 @@ import Main from "./components/Main.jsx";
 import TopNav from "./components/TopNav.jsx";
 import Voting from "./components/Voting";
 import Wallet from "./components/Wallet";
-import WalletVouchers from "./components/WalletVouchers";
+import WalletVouchers from "./components/WalletVoucher/WalletVouchers";
 import WalletMarketplace from "./components/WalletMarketplace";
 import Vendors from "./components/Vendors";
 import Sponsors from "./components/Sponsors";
@@ -21,6 +21,7 @@ import WalletVotingCategory from "./components/WalletVotingCategory";
 import CarDetails from "./components/CarDetails";
 import User from "./components/User";
 import VoucherDetail from "./components/WalletMarketplace/VoucherDetail";
+import RedeemVoucher from "./components/WalletVoucher/RedeemVoucher";
 
 function App() {
   return (
@@ -56,6 +57,10 @@ function App() {
           <Route path="/wallet/stats" element={<WalletStats />} />
           <Route path="/voting/:carId" element={<Voting />} />
           <Route path="/user" element={<User />} />
+          <Route
+            path="/voucher/redeem/:voucherId"
+            element={<RedeemVoucher />}
+          />
         </Routes>
       </main>
       <div>

@@ -12,7 +12,7 @@ const ModalContainer = styled.div`
   padding: 15px;
   background-color: ${(props) => props.theme.dialogBackground};
   border: 0;
-  color: #d9d9d9;
+  color: ${(props) => props.theme.white};
   /* border: 1px solid red; */
 `;
 const StyledFirstLine = styled.div`
