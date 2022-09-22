@@ -46,17 +46,19 @@ export default function SideMenu() {
             ))}
             <Divider />
             {[
-              "Wallet",
-              "Your vouchers",
-              "Marketplace",
-              "Garage",
-              "Voting",
-              "Pins & Rallies",
-              "Statistics",
-            ].map((text, index) => (
-              <ListItem key={text} disablePadding>
+              { label: "Wallet", link: "/wallet" },
+              { label: "Your Vouchers", link: "/wallet/vouchers" },
+              { label: "Marketplace", link: "/wallet/marketplace" },
+              { label: "Garage", link: "/wallet/NFTGarage" },
+              { label: "Voting", link: "/wallet/voting" },
+              { label: "Pins & Rallies", link: "/wallet/quests" },
+              { label: "Statistics", link: "/wallet/stats" },
+            ].map((item) => (
+              <ListItem key={item.label} disablePadding>
                 <ListItemButton>
-                  <ListItemText primary={text} />
+                  <Link to={item.link}>
+                    <ListItemText primary={item.label} />
+                  </Link>
                 </ListItemButton>
               </ListItem>
             ))}
