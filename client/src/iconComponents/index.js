@@ -40,3 +40,4 @@ export { default as UpTires } from "./UpTires";
 export { default as UpOthers } from "./UpOthers";
 export { default as Wallet } from "./Wallet";
 export { default as Youtube } from "./Youtube";
+export { default as Hamburger } from "./Hamburger";

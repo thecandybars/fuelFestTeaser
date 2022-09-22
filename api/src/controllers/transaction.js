@@ -19,13 +19,15 @@ async function createAssetTransaction(data) {
     const newTransaction = await Transaction.create({
       title: "asset transaction",
     });
+
     const newAssetLedger = await AssetLedger.create({
       fromWalletId,
       toWalletId,
       assetId,
       transactionId: newTransaction.id,
     });
-    await Asset.update(
+
+    const update = await Asset.update(
       {
         walletId: toWalletId,
         isListed: false,
@@ -134,18 +136,21 @@ async function createCouponTransaction(data) {
 async function createVoucherTransaction(data) {
   try {
     // const { toWalletId, assetId } = data;
-    const { assetId } = data;
+    const { voucherId } = data.params;
+    // HARDCODED!!!!
     const toWalletId = "147a9663-e722-4667-b54e-44b5817e0bd9";
 
-    const asset = await Asset.findByPk(assetId, {
+    const asset = await Asset.findByPk(voucherId, {
       include: AssetCategory,
     });
-    if (!asset) return dbError(`Asset ${assetId} not found`, 404);
+    if (!asset) return dbError(`Asset ${voucherId} not found`, 404);
     if (asset.assetCategory.table !== "Voucher")
-      return dbError(`Asset ${assetId} is not a Voucher`, 404);
+      return dbError(`Asset ${voucherId} is not a Voucher`, 404);
 
-    const voucher = await Voucher.findOne({ where: { assetId } });
-    if (voucher.isBurnt) return dbError(`Voucher ${assetId} was already burnt`);
+    const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+
+    if (voucher.isBurnt)
+      return dbError(`Voucher ${voucherId} was already burnt`);
 
     const fromWallet = await Wallet.findByPk(asset.walletId);
     const toWallet = await Wallet.findByPk(toWalletId);
@@ -159,7 +164,7 @@ async function createVoucherTransaction(data) {
     // Recipient burns voucher
     const newVoucher = await Voucher.update(
       { isBurnt: true },
-      { where: { assetId } }
+      { where: { assetId: voucherId } }
     );
 
     return newVoucher;

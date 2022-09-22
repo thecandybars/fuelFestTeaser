@@ -32,11 +32,11 @@ router.post("/tokenCoupon", async (req, res) => {
     ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
-// Create new VOUCHER transaction (Owner sends token coupon, the recepient burns coupon)
-router.post("/voucher", async (req, res) => {
-  const response = await createVoucherTransaction(req.body);
+// Create new VOUCHER transaction = SPEND (Owner sends voucher, the recepient burns coupon)
+router.post("/voucher/:voucherId", async (req, res) => {
+  const response = await createVoucherTransaction(req);
   !response.error
-    ? res.status(201).json(response)
+    ? res.status(201).json("Voucher redeemed!")
     : res.status(response.error.status).send(response.error.title);
 });
 

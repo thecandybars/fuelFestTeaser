@@ -106,7 +106,7 @@ conn.sync({ force, alter }).then(() => {
           storeId: "",
           description: "Volutpat odio facilisis mauris sit.",
           image: "",
-          logo: "uploads/sponsor/sponsor-1663275475329.svg",
+          logo: "uploads/sponsor/sponsor-1663275475329.png",
           website: "",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
         },

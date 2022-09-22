@@ -1,27 +1,27 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import BottomNav from "./components/BottomNav.jsx";
-import Events from "./components/Events.jsx";
-import Cars from "./components/Cars.jsx";
-import Main from "./components/Main.jsx";
-import TopNav from "./components/TopNav.jsx";
-import Voting from "./components/Voting";
-import Wallet from "./components/Wallet";
-import WalletVouchers from "./components/WalletVoucher/WalletVouchers";
-import WalletMarketplace from "./components/WalletMarketplace";
-import Vendors from "./components/Vendors";
-import Sponsors from "./components/Sponsors";
-import Maps from "./components/Maps";
-import WalletVoting from "./components/WalletVoting";
-import WalletQuests from "./components/WalletQuests";
-import WalletNFTGarage from "./components/WalletNFTGarage";
-import WalletStats from "./components/WalletStats";
-import NFTCar from "./components/WalletMarketplace/NFTCar";
-import WalletVotingCategory from "./components/WalletVotingCategory";
-import CarDetails from "./components/CarDetails";
-import User from "./components/User";
-import VoucherDetail from "./components/WalletMarketplace/VoucherDetail";
-import RedeemVoucher from "./components/WalletVoucher/RedeemVoucher";
+import BottomNav from "./components/bottomNav/BottomNav.jsx";
+import Events from "./components/events/Events.jsx";
+import Cars from "./components/cars/Cars.jsx";
+import Main from "./components/main/Main.jsx";
+import TopNav from "./components/topNav/TopNav.jsx";
+import Voting from "./components/wallet/voting/Voting";
+import Wallet from "./components/wallet/Wallet";
+import WalletVouchers from "./components/wallet/voucher";
+import WalletMarketplace from "./components/wallet/marketplace/WalletMarketplace";
+import Vendors from "./components/vendors/Vendors";
+import Sponsors from "./components/sponsors/Sponsors";
+import Maps from "./components/maps/Maps";
+import WalletVoting from "./components/wallet/voting/WalletVoting";
+import WalletPinsRallies from "./components/wallet/pinsRallies/WalletPinsRallies";
+import WalletNFTGarage from "./components/wallet/nftGarage/WalletNFTGarage";
+import WalletStatistics from "./components/wallet/statistics/WalletStatistics";
+import NFTCar from "./components/wallet/marketplace/NFTCar";
+import WalletVotingCategory from "./components/wallet/voting/WalletVotingCategory";
+import CarDetails from "./components/cars/CarDetails";
+import User from "./components/profile/User";
+import VoucherDetail from "./components/wallet/marketplace/VoucherDetail";
+import RedeemVoucher from "./components/wallet/voucher/RedeemVoucher";
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
             path="/wallet/voting/category/:voteCategory"
             element={<WalletVotingCategory />}
           />
-          <Route path="/wallet/quests" element={<WalletQuests />} />
+          <Route path="/wallet/quests" element={<WalletPinsRallies />} />
           <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
           <Route
             path="/wallet/marketplace/nftCarCard/:assetId"
@@ -54,7 +54,7 @@ function App() {
             element={<VoucherDetail />}
           />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
-          <Route path="/wallet/stats" element={<WalletStats />} />
+          <Route path="/wallet/stats" element={<WalletStatistics />} />
           <Route path="/voting/:carId" element={<Voting />} />
           <Route path="/user" element={<User />} />
           <Route
@@ -63,9 +63,7 @@ function App() {
           />
         </Routes>
       </main>
-      <div>
-        <BottomNav />
-      </div>
+      <BottomNav />
     </div>
   );
 }
