@@ -10,10 +10,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    // walletId: {
-    //   type: DataTypes.UUID,
-    //   allowNull: true,
-    // },
     firstName: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -23,6 +19,10 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: true,
     },

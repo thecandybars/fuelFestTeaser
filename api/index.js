@@ -81,8 +81,10 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "ddf40198-fc6c-4595-95cc-bda6d77fffaa",
-          firstName: "Test",
-          lastName: "User",
+          firstName: "Walter",
+          lastName: "White",
+          email: "walter.white@heisenbergmail.com",
+          image: "uploads/user/user-1659715484627.jpg",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd8",
           userCategoryId: "5f40db04-7e21-4e88-acaa-87d5928f7ebb",
         },
@@ -90,6 +92,8 @@ conn.sync({ force, alter }).then(() => {
           id: "ddf40198-fc6c-4595-95cc-bda6d77fffab",
           firstName: "Fuel",
           lastName: "Fest",
+          email: "fuel.fest@gmail.com",
+          image: "uploads/user/user-1660679600259.png",
           walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
           userCategoryId: "5f40db04-7e21-4e88-acaa-87d5928f7ebc",
         },
