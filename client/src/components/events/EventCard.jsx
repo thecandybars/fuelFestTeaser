@@ -39,14 +39,6 @@ const Icon = styled.img`
   height: 25px;
   margin-right: 5px;
 `;
-const FavIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  img {
-    filter: invert(95%) sepia(5%) saturate(169%) hue-rotate(244deg)
-      brightness(118%) contrast(100%); /* Color=white */
-  }
-`;
 // COLLAPSABLE EVENT DESCRIPTION
 const CollapseButton = styled.div`
   font-size: 1rem;
@@ -71,11 +63,12 @@ export default function EventCard(props) {
 
   const apiURL = process.env.REACT_APP_API;
 
+  // STYLES
   const favIconStyle = {
     fill: props.isFavorite ? theme.white : "transparent",
     stroke: props.isFavorite ? "transparent" : theme.lightGray,
     strokeWidth: "12px",
-    fontSize: "2rem",
+    fontSize: "3rem",
   };
 
   return (
@@ -110,14 +103,14 @@ export default function EventCard(props) {
             {props.location}
           </p>
         </EventData>
-        <FavIcon
+
+        <Favorites
+          style={favIconStyle}
           onClick={(e) => {
             e.stopPropagation();
             props.togFav(props.id);
           }}
-        >
-          <Favorites style={favIconStyle} />
-        </FavIcon>
+        />
       </Container>
       {props.desc && (
         <Collapse in={!!props.desc} timeout="auto" unmountOnExit>

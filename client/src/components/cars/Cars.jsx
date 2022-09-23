@@ -8,7 +8,11 @@ import MainContainer from "../_shared/MainContainer";
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
-  const [, setFetchedFavs] = useState([]);
+  const [fetchedFavs, setFetchedFavs] = useState([]);
+  console.log(
+    "🚀 ~ file: Cars.jsx ~ line 12 ~ Cars ~ fetchedFavs",
+    fetchedFavs
+  );
   const [carDetails] = useState("");
 
   useEffect(() => {
@@ -57,7 +61,12 @@ export default function Cars() {
   const RenderCarCards =
     filteredCars.length > 0 ? (
       filteredCars.map((car) => (
-        <CarCard car={car} key={car.id} togFav={toggleFav} />
+        <CarCard
+          car={car}
+          key={car.id}
+          togFav={toggleFav}
+          isFavorite={!!fetchedFavs.find((favCar) => car.id === favCar.id)}
+        />
       ))
     ) : (
       <p>No cars to show</p>

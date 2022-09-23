@@ -33,6 +33,7 @@ import {
 } from "../../iconComponents";
 import camelCase from "../../common/camelCase";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Cancel } from "@mui/icons-material";
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
@@ -428,13 +429,7 @@ export default function CarDetails(props) {
                   {carDetails.year && carDetails.year + " "}
                   {carDetails.title}
                 </Title>
-                <Button
-                  onClick={() => navigate(-1)}
-                  variant="outlined"
-                  color="darkGray"
-                >
-                  <CloseIcon />
-                </Button>
+                <Cancel onClick={() => navigate(-1)} color="darkGray" />
               </div>
               {/* OWNER */}
               <DetailsCategory>

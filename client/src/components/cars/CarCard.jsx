@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Owner, Location, Map } from "../../iconComponents";
 import { icons } from "../../common/icons";
+import { Favorites } from "../../iconComponents";
 import camelCase from "../../common/camelCase";
+import { theme } from "../../common/theme";
 
 const Container = styled.div`
   display: flex;
@@ -33,9 +35,10 @@ const OneColumn = styled.div`
 `;
 const TwoColumns = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   padding-top: 2px;
   justify-content: space-between;
+  width: 100%;
 `;
 const CarTitle = styled.h3`
   font-size: 1.3rem;
@@ -73,14 +76,20 @@ const VoteIcon = styled.img`
 
 export default function CarCard(props) {
   const apiURL = process.env.REACT_APP_API;
+  const navigate = useNavigate();
 
-  // DIALOG
-  const [, setCarDetailOpen] = useState(false);
-
+  // STYLES
+  const favIconStyle = {
+    fill: props.isFavorite ? theme.white : "transparent",
+    stroke: props.isFavorite ? "transparent" : theme.lightGray,
+    strokeWidth: "12px",
+    fontSize: "2rem",
+  };
   return (
     <>
-      <Link to={`/car/${props.car.id}`}>
-        <Container onClick={() => setCarDetailOpen(true)}>
+      <Container onClick={() => navigate(`/car/${props.car.id}`)}>
+        {/* Delete TwoColumns element to force image to be square */}
+        <TwoColumns style={{ alignItems: "flex-start" }}>
           <CarImage
             alt="A car"
             src={`${apiURL}/${
@@ -94,31 +103,13 @@ export default function CarCard(props) {
                 {props.car.year && props.car.year + " "}
                 {props.car.title}
               </CarTitle>
-
-              <SmIcon
+              <Favorites
+                style={favIconStyle}
                 onClick={(e) => {
                   e.stopPropagation();
                   props.togFav(props.car.id);
                 }}
-              >
-                {/* {props.car.isFavorite ? (
-                  <Icons.FavoriteOn className="favOn" />
-                ) : (
-                  <Icons.FavoriteOff className="favOff" />
-                )} */}
-                {/* <img
-                  alt={props.car.isFavorite ? "Favorite" : "Not favorite"}
-                  src={
-                    props.car.isFavorite
-                      ? icons.favorite.on
-                      : icons.favorite.off
-                  }
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    props.togFav(props.car.id);
-                  }}
-                /> */}
-              </SmIcon>
+              />
             </TwoColumns>
             {/* ROW OWNER */}
             <OneColumn>
@@ -153,8 +144,8 @@ export default function CarCard(props) {
               ))}
             </OneColumn>
           </CarData>
-        </Container>
-      </Link>
+        </TwoColumns>
+      </Container>
     </>
   );
 }
