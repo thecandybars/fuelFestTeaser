@@ -58,6 +58,11 @@ export default function DialogQrRedeemVoucher(props) {
         <StyledNote>
           Go to vendors tent and scan this QR to redeem it
         </StyledNote>
+        <a href={`${clientUrl}/voucher/redeem/${props.id}`} target="blank">
+          <p
+            style={{ fontSize: "10px" }}
+          >{`${clientUrl}/voucher/redeem/${props.id}`}</p>
+        </a>
       </DialogContainer>
     </Dialog>
   );

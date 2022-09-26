@@ -23,7 +23,7 @@ export default function RedeemVoucher() {
     <MainContainer>
       <Title>Vendor Redeem Voucher</Title>
       {voucherId}
-      <Button onClick={() => vendorRedeemVoucher(voucherId)}>Yes?</Button>
+      <Button onClick={() => vendorRedeemVoucher(voucherId)}>Confirm?</Button>
     </MainContainer>
   );
 }
