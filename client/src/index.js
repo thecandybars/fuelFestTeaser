@@ -11,7 +11,6 @@ import { ThemeProvider } from "styled-components";
 import { theme, themeMUI } from "./common/theme";
 
 dotenv.config();
-
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
 // RENDER
