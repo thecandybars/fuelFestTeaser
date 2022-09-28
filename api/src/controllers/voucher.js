@@ -1,6 +1,7 @@
 const { getCurrentFestival } = require("./festival");
 
 const dbError = require("../utils/dbError");
+const dbSuccess = require("../utils/dbSuccess");
 const { Asset, AssetCategory, Voucher, Vendor } = require("../db.js");
 const { getAllVendors } = require("./vendor");
 
@@ -35,6 +36,105 @@ async function getVouchersByWallet(req) {
   }
 }
 
+async function burnVoucher(req) {
+  const { voucherId } = req.params;
+  const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+
+  if (!voucher) return dbError(`Voucher ${voucherId} not found`, 404);
+  if (voucher.isBurnt)
+    return dbError(`Voucher ${voucherId} was already burnt`, 404);
+
+  // Recipient burns voucher
+  const newVoucher = await Voucher.update(
+    { isBurnt: true },
+    { where: { assetId: voucherId } }
+  );
+
+  return dbSuccess(`Voucher ${voucherId} was burned successfully`);
+}
+async function ownerConfirmRedeem(req) {
+  const { voucherId, confirm } = req.body;
+
+  const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+  if (!voucher) return dbError(`Voucher ${voucherId} not found`, 404);
+  if (voucher.isBurnt)
+    return dbError(`Voucher ${voucherId} was already burnt`, 404);
+  if (voucher.redeemedByOwner !== null)
+    return dbError(
+      `Voucher ${voucherId} was already confirmed ${voucher.redeemedByOwner}`,
+      404
+    );
+  if (confirm) {
+    // Owner confirms redeem voucher
+    const now = new Date();
+    const newVoucher = await Voucher.update(
+      { redeemedByOwner: now },
+      { where: { assetId: voucherId } }
+    );
+    return dbSuccess(
+      `Voucher ${voucherId} redeem was confirmed by owner`,
+      { confirm: true },
+      200
+    );
+  } else {
+    // Owner cancels redeem voucher
+    const newVoucher = await Voucher.update(
+      { redeemedByVendor: null },
+      { where: { assetId: voucherId } }
+    );
+    return dbSuccess(
+      `Voucher ${voucherId} redeem was cancelled by owner`,
+      { confirm: false },
+      200
+    );
+  }
+}
+
+async function vendorConfirmRedeem(req) {
+  const { voucherId, userId } = req.body;
+  const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+  if (!voucher) return dbError(`Voucher ${voucherId} not found`, 404);
+  if (voucher.isBurnt)
+    return dbError(`Voucher ${voucherId} was already burnt`, 404);
+  if (voucher.redeemedByVendor !== null)
+    return dbError(
+      `Voucher ${voucherId} was already confirmed ${voucher.redeemedByVendor}`,
+      404
+    );
+  // Vendor confirms redeem voucher
+  const now = new Date();
+  const newVoucher = await Voucher.update(
+    { redeemedByVendor: now },
+    { where: { assetId: voucherId } }
+  );
+  return dbSuccess(
+    `Voucher ${voucherId} redeem was confirmed by vendor`,
+    true,
+    200
+  );
+}
+
+async function vendorConfirmedRedeem(req) {
+  const { voucherId } = req.params;
+  const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+  if (!voucher) return dbError(`Voucher ${voucherId} not found`, 404);
+  if (voucher.isBurnt)
+    return dbError(`Voucher ${voucherId} was already burnt`, 404);
+
+  const voucherConfirmedByVendor =
+    voucher.redeemedByVendor !== null ? true : false;
+
+  return dbSuccess(
+    `Voucher redeemed by vendor confirmation`,
+    voucherConfirmedByVendor,
+    200
+  );
+}
+
 module.exports = {
   getVouchersByWallet,
+  burnVoucher,
+  ownerConfirmRedeem,
+  vendorConfirmRedeem,
+  vendorConfirmedRedeem,
 };

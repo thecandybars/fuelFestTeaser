@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext } from "react";
-import Title from "../../../components/_shared/Title";
+import Title from "../../_shared/Title";
 import { getAllAssets } from "../../../services/assets";
 import NFTCardCard from "./NFTCardCard";
 import VoucherCard from "./VoucherCard";

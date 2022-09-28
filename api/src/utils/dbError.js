@@ -1,8 +1,8 @@
-function dbError(title, status) {
+function dbError(title, status = 400) {
   return {
     error: {
       title,
-      status: status ? status : 418,
+      status,
     },
   };
 }

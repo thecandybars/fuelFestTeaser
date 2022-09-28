@@ -11,6 +11,7 @@ const {
   TokenCoupon,
 } = require("../db.js");
 const dbError = require("../utils/dbError");
+const dbSuccess = require("../utils/dbSuccess.js");
 
 async function createAssetTransaction(data) {
   try {
@@ -135,7 +136,7 @@ async function createCouponTransaction(data) {
 // Create new VOUCHER transaction = SPEND (Owner sends voucher, the recepient burns coupon)
 async function createVoucherTransaction(data) {
   try {
-    // const { toWalletId, assetId } = data;
+    // const { toWalletId, voucherId } = data;
     const { voucherId } = data.params;
     // HARDCODED!!!!
     const toWalletId = "147a9663-e722-4667-b54e-44b5817e0bd9";
@@ -162,12 +163,16 @@ async function createVoucherTransaction(data) {
       assetId: asset.id,
     });
     // Recipient burns voucher
+    const now = new Date();
     const newVoucher = await Voucher.update(
       { isBurnt: true },
       { where: { assetId: voucherId } }
     );
 
-    return newVoucher;
+    return dbSuccess(`Voucher ${voucherId} redeemed by vendor`, {
+      vendor: toWallet,
+      transaction: newAssetTransaction,
+    });
   } catch (err) {
     return err;
   }

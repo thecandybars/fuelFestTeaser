@@ -118,7 +118,6 @@ async function unFreezeTokens(data) {
   }
 }
 async function manageTokens(data) {
-  console.log("🚀 ~ file: wallet.js ~ line 121 ~ manageTokens ~ data", data);
   try {
     // const wallet = await Wallet.findByPk(data.body.walletId);
 
@@ -128,10 +127,7 @@ async function manageTokens(data) {
         where: { id: data.params.walletId },
       }
     );
-    console.log(
-      "🚀 ~ file: wallet.js ~ line 130 ~ manageTokens ~ updated",
-      updated
-    );
+
     return updated[0] === 1
       ? { wallet }
       : dbError(`ERROR: Wallet was not updated`, 404);

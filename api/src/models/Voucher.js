@@ -46,5 +46,13 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: false,
     },
+    redeemedByOwner: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    redeemedByVendor: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   });
 };

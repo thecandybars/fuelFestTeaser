@@ -49,14 +49,15 @@ const StyledContainer = styled.div`
   flex-wrap: wrap;
 `;
 export default function WalletVouchers() {
-  const [fetchedVouchers, setFetchedVouchers] = useState([]);
-  const [filteredVouchers, setFilteredVouchers] = useState([]);
   const apiURL = process.env.REACT_APP_API;
 
   // INIT
+  const [fetchedVouchers, setFetchedVouchers] = useState([]);
+  const [filteredVouchers, setFilteredVouchers] = useState([]);
+  const [reload, setReaload] = useState(false);
   useEffect(() => {
     fetchVouchers();
-  }, []);
+  }, [reload]);
   async function fetchVouchers() {
     const fetched = await getVouchersByWallet(walletId);
     const vouchers = fetched.filter((asset) => asset.voucher !== null);
@@ -125,11 +126,13 @@ export default function WalletVouchers() {
   const renderRedeemDialog = Object.keys(dialogData).length !== 0 && (
     <DialogQrRedeemVoucher
       open={openQrDialog}
-      handleClose={setOpenQrDialog}
       vendor={dialogData.voucher.vendor.title}
       title={dialogData.voucher.title}
       image={dialogData.voucher.image}
       id={dialogData.asset.id}
+      handleClose={setOpenQrDialog}
+      clearDialog={setNftCardPrimaryButtonId}
+      setReload={setReaload}
     />
   );
 

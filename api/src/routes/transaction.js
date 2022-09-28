@@ -36,7 +36,7 @@ router.post("/tokenCoupon", async (req, res) => {
 router.post("/voucher/:voucherId", async (req, res) => {
   const response = await createVoucherTransaction(req);
   !response.error
-    ? res.status(201).json("Voucher redeemed!")
+    ? res.status(201).json(response)
     : res.status(response.error.status).send(response.error.title);
 });
 

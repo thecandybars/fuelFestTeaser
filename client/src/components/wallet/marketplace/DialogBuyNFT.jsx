@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { BoughtAssetContext } from "./WalletMarketplace.jsx";
+import { BoughtAssetContext } from "./index.jsx";
 import styled from "styled-components";
 import { getAssetById, buyAssetFromWallet } from "../../../services/assets";
 import { walletId } from "../../../common/getLoginData";

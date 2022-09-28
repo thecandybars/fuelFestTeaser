@@ -8,7 +8,7 @@ import TopNav from "./components/topNav/TopNav.jsx";
 import Voting from "./components/wallet/voting/Voting";
 import Wallet from "./components/wallet/Wallet";
 import WalletVouchers from "./components/wallet/voucher";
-import WalletMarketplace from "./components/wallet/marketplace/WalletMarketplace";
+import WalletMarketplace from "./components/wallet/marketplace/";
 import Vendors from "./components/vendors/Vendors";
 import Sponsors from "./components/sponsors/Sponsors";
 import Maps from "./components/maps/Maps";
@@ -21,7 +21,7 @@ import WalletVotingCategory from "./components/wallet/voting/WalletVotingCategor
 import CarDetails from "./components/cars/CarDetails";
 import User from "./components/profile/User";
 import VoucherDetail from "./components/wallet/marketplace/VoucherDetail";
-import RedeemVoucher from "./components/wallet/voucher/RedeemVoucher";
+import VendorRedeemVoucher from "./components/wallet/voucher/VendorRedeemVoucher";
 
 function App() {
   return (
@@ -58,8 +58,8 @@ function App() {
           <Route path="/voting/:carId" element={<Voting />} />
           <Route path="/user" element={<User />} />
           <Route
-            path="/voucher/redeem/:voucherId"
-            element={<RedeemVoucher />}
+            path="/voucher/vendorRedeem/:voucherId"
+            element={<VendorRedeemVoucher />}
           />
         </Routes>
       </main>

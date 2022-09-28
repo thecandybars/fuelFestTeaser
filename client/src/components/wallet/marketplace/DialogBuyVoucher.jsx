@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { buyAssetFromWallet, getAssetById } from "../../../services/assets";
 import { walletId } from "../../../common/getLoginData";
-import { BoughtAssetContext } from "./WalletMarketplace.jsx";
+import { BoughtAssetContext } from "./index.jsx";
 import styled from "styled-components";
 import { Dialog } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
