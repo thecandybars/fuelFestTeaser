@@ -10,14 +10,8 @@ const {
   ownerConfirmRedeem,
   vendorConfirmRedeem,
   vendorConfirmedRedeem,
+  ownerAcceptedRedeem,
 } = require("../controllers/index.js");
-
-// Image middleware
-const handleStorage = require("../utils/handleStorage");
-const uploadVoucher = handleStorage("voucher");
-const uploadTokenCoupon = handleStorage("tokenCoupon");
-const uploadVoucherCoupon = handleStorage("voucherCoupon");
-const uploadNFTCard = handleStorage("NFTCard");
 
 // Get all Vouchers for a wallet
 router.get("/wallet/:walletId", async (req, res) => {
@@ -51,6 +45,13 @@ router.post("/redeem/vendor", async (req, res) => {
 // Get if vendor confirms redeem
 router.get("/redeem/vendor/:voucherId", async (req, res) => {
   const response = await vendorConfirmedRedeem(req);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).send(response);
+});
+// Get if owner accepts redeem transaction
+router.get("/redeem/owner/:voucherId", async (req, res) => {
+  const response = await ownerAcceptedRedeem(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).send(response);

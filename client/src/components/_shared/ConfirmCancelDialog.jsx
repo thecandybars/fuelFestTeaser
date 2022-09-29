@@ -13,6 +13,7 @@ const StyledConfirmTransaction = styled.div`
     width: 70%;
   }
   h2 {
+    font-family: "Oswald";
     font-size: 2.7rem;
     color: ${(props) => props.theme.yellow};
     text-align: center;
@@ -43,6 +44,7 @@ ConfirmCancelDialog.defaultProps = {
   subtitle: "",
   linkPath: "#",
   linkText: "",
+  image: "",
   successful: true,
 };
 
@@ -50,8 +52,14 @@ export default function ConfirmCancelDialog(props) {
   return (
     <StyledConfirmTransaction>
       <img
-        alt="Transaction Successful"
-        src={props.successful ? dialogSuccessful : dialogDenied}
+        alt={props.successful ? "Successful" : "Denied"}
+        src={
+          props.image !== ""
+            ? props.image
+            : props.successful
+            ? dialogSuccessful
+            : dialogDenied
+        }
       />
       <h2>{props.title}</h2>
       <p>{props.subtitle}</p>

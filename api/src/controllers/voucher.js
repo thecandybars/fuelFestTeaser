@@ -67,24 +67,26 @@ async function ownerConfirmRedeem(req) {
   if (confirm) {
     // Owner confirms redeem voucher
     const now = new Date();
-    const newVoucher = await Voucher.update(
+    const updateVoucher = await Voucher.update(
       { redeemedByOwner: now },
       { where: { assetId: voucherId } }
     );
+    const newVoucher = await Voucher.findOne({ where: { assetId: voucherId } });
     return dbSuccess(
       `Voucher ${voucherId} redeem was confirmed by owner`,
-      { confirm: true },
+      { confirm: true, data: newVoucher },
       200
     );
   } else {
     // Owner cancels redeem voucher
-    const newVoucher = await Voucher.update(
+    const updateVoucher = await Voucher.update(
       { redeemedByVendor: null },
       { where: { assetId: voucherId } }
     );
+    const newVoucher = await Voucher.findOne({ where: { assetId: voucherId } });
     return dbSuccess(
       `Voucher ${voucherId} redeem was cancelled by owner`,
-      { confirm: false },
+      { confirm: false, data: newVoucher },
       200
     );
   }
@@ -130,6 +132,22 @@ async function vendorConfirmedRedeem(req) {
     200
   );
 }
+async function ownerAcceptedRedeem(req) {
+  const { voucherId } = req.params;
+  const voucher = await Voucher.findOne({ where: { assetId: voucherId } });
+  if (!voucher) return dbError(`Voucher ${voucherId} not found`, 404);
+  // if (voucher.isBurnt)
+  //   return dbError(`Voucher ${voucherId} was already burnt`, 404);
+
+  const voucherConfirmedByOwner =
+    voucher.redeemedByOwner !== null ? true : false;
+
+  return dbSuccess(
+    `Voucher redeemed by owner confirmation`,
+    { confirm: voucherConfirmedByOwner, voucher },
+    200
+  );
+}
 
 module.exports = {
   getVouchersByWallet,
@@ -137,4 +155,5 @@ module.exports = {
   ownerConfirmRedeem,
   vendorConfirmRedeem,
   vendorConfirmedRedeem,
+  ownerAcceptedRedeem,
 };

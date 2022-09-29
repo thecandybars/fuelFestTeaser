@@ -2,7 +2,7 @@ import { Dialog } from "@mui/material";
 import { QRCodeSVG } from "qrcode.react";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { clientConfirmsRedeemVoucher } from "../../../services/transaction";
+import { postVoucherRedeemTransaction } from "../../../services/transaction";
 import {
   getOwnerRedeemConfirm,
   getVendorRedeemConfirm,
@@ -82,19 +82,17 @@ export default function DialogQrRedeemVoucher(props) {
   }, []);
 
   // ONCE VENDOR CONFIRMED, ASK OWNER TO ACCEPT AND DO TRANSACTION
-  const [voucherRedeemed, setVoucherRedeemed] = useState({});
-  const [voucherConfirmed, setVoucherConfirmed] = useState({});
-  Object.keys(voucherConfirmed).length > 0 &&
-    console.log(
-      "🚀 ~ file: DialogQrRedeemVoucher.jsx ~ line 87 ~ DialogQrRedeemVoucher ~ voucherConfirmed",
-      typeof voucherConfirmed.data.confirm
-    );
+  const [voucherRedeemTransaction, setVoucherRedeemTransaction] = useState({});
+  const [voucherAcceptedByOwner, setVoucherAcceptedByOwner] = useState({});
+
   const confirmRedeemVoucher = async () => {
-    setVoucherConfirmed(await getOwnerRedeemConfirm(props.id, true));
-    setVoucherRedeemed(await clientConfirmsRedeemVoucher(props.id, userId));
+    setVoucherAcceptedByOwner(await getOwnerRedeemConfirm(props.id, true));
+    setVoucherRedeemTransaction(
+      await postVoucherRedeemTransaction(props.id, userId)
+    );
   };
   const cancelRedeemVoucher = async () =>
-    setVoucherConfirmed(await getOwnerRedeemConfirm(props.id, false));
+    setVoucherAcceptedByOwner(await getOwnerRedeemConfirm(props.id, false));
 
   // CLOSE DIALOG
   const handleDialogClose = () => {
@@ -125,7 +123,7 @@ export default function DialogQrRedeemVoucher(props) {
       </a>
     </>
   );
-  const renderVendorConfirm = (
+  const renderVendorAccepted = (
     <>
       <StyledSubtitle>Vendor accepted your voucher.</StyledSubtitle>
       <StyledSubtitle>Confirm transaction?</StyledSubtitle>
@@ -137,32 +135,28 @@ export default function DialogQrRedeemVoucher(props) {
   return (
     <Dialog open={props.open} onClose={handleDialogClose}>
       <DialogContainer>
-        {Object.keys(voucherConfirmed).length === 0 ? (
+        {Object.keys(voucherAcceptedByOwner).length === 0 ? (
           <>
             {/* Transactions hasn´t been confirmed yet */}
             <StyledTitle>{props.vendor}</StyledTitle>
             <StyledSubtitle>{props.title}</StyledSubtitle>
             <StyledImage alt="" src={`${apiURL}/${props.image}`} />
             {/* Display QR Code OR ask user to confirm transaction ? */}
-            {!vendorRedeemConfirm ? renderQrCode : renderVendorConfirm}
-            {/* Force check vendor confirm, just for testing */}
-            {/* <button onClick={checkVendorConfirm}>Check vendor confirm</button> */}
+            {!vendorRedeemConfirm ? renderQrCode : renderVendorAccepted}
           </>
         ) : (
           <>
-            {/* Transaction confirmed! */}
-            {
-              <ConfirmCancelDialog
-                title="Voucher Redeemed"
-                subtitle="Transaction ID: "
-                linkText={
-                  Object.keys(voucherRedeemed).length > 0 &&
-                  voucherRedeemed.data.transaction.id
-                }
-                handleClose={handleDialogClose}
-                successful={voucherConfirmed.data.confirm}
-              />
-            }
+            {/* Transaction completed! */}
+            <ConfirmCancelDialog
+              title="Voucher Redeemed"
+              subtitle="Transaction ID: "
+              linkText={
+                Object.keys(voucherRedeemTransaction).length > 0 &&
+                voucherRedeemTransaction.data.transaction.id
+              }
+              handleClose={handleDialogClose}
+              successful={voucherAcceptedByOwner.data.confirm}
+            />
           </>
         )}
       </DialogContainer>

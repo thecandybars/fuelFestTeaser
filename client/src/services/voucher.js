@@ -13,14 +13,19 @@ export async function getOwnerRedeemConfirm(voucherId, confirm) {
   });
   return data;
 }
-export async function getVendorRedeemConfirm(voucherId) {
-  const { data } = await axios.get(`voucher/redeem/vendor/${voucherId}`);
-  return data;
-}
 export async function vendorRedeemVoucher(voucherId, userId) {
   const { data } = await axios.post(`voucher/redeem/vendor`, {
     voucherId,
     userId,
   });
+  return data;
+}
+
+export async function getVendorRedeemConfirm(voucherId) {
+  const { data } = await axios.get(`voucher/redeem/vendor/${voucherId}`);
+  return data;
+}
+export async function getOwnerTransactionConfirm(voucherId) {
+  const { data } = await axios.get(`voucher/redeem/owner/${voucherId}`);
   return data;
 }
