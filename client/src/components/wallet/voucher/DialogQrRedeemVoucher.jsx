@@ -148,8 +148,14 @@ export default function DialogQrRedeemVoucher(props) {
           <>
             {/* Transaction completed! */}
             <ConfirmCancelDialog
-              title="Voucher Redeemed"
-              subtitle="Transaction ID: "
+              title={
+                voucherAcceptedByOwner.data.confirm
+                  ? "Voucher Redeemed"
+                  : "Transaction cancelled"
+              }
+              subtitle={
+                voucherAcceptedByOwner.data.confirm ? "Transaction ID: " : ""
+              }
               linkText={
                 Object.keys(voucherRedeemTransaction).length > 0 &&
                 voucherRedeemTransaction.data.transaction.id

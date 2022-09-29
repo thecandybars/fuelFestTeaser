@@ -178,7 +178,7 @@ export default function VendorRedeemVoucher() {
             action: acceptVoucher,
           }}
           secondaryButton={{
-            label: "BACK",
+            label: "CANCEL",
             action: cancelVoucher,
           }}
         />
