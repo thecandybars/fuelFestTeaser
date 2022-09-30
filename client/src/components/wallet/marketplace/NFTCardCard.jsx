@@ -1,8 +1,10 @@
 import { Dialog } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DialogBuyNFT from "./DialogBuyNFT";
 import styled from "styled-components";
+import NftCard from "../../_shared/NftCard";
+import { theme } from "../../../common/theme";
 
 const Card = styled.div`
   width: 150px;
@@ -42,6 +44,7 @@ const Price = styled.p`
 export default function NFTCardCard(props) {
   const apiURL = process.env.REACT_APP_API;
   const { astNFTCard } = props.data;
+  const navigate = useNavigate();
 
   // DIALOG
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -50,43 +53,64 @@ export default function NFTCardCard(props) {
   }
 
   return (
-    <Card>
-      {/* DIALOG WINDOW */}
+    <>
+      {/* BUY CARD DIALOG */}
       <Dialog open={dialogOpen} onClose={handleModalClose}>
         <DialogBuyNFT
           assetId={astNFTCard.assetId}
           closeDialog={handleModalClose}
         />
       </Dialog>
-      {/* CARD IMAGE */}
-      <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
-        <img
-          alt="NFT Card of a car"
-          src={`${apiURL}/${astNFTCard.imageFront}`}
-        />
-      </Link>
-      {/* <Collection>{props.collection}</Collection> */}
-      <Name>{astNFTCard.name}</Name>
-      <Price>{astNFTCard.price} DRIFT</Price>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          margin: "",
+      <NftCard
+        key={astNFTCard.assetId}
+        id={astNFTCard.assetId}
+        title={astNFTCard.name}
+        image={`${apiURL}/${astNFTCard.imageFront}`}
+        price={astNFTCard.price}
+        primaryActionTitle="BUY"
+        primaryActionColor={theme.green}
+        primaryAction={() => {
+          setDialogOpen(true);
         }}
-      >
-        <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
-          <DetailsButton>Details</DetailsButton>
-        </Link>
-        <BuyButton
-          onClick={(e) => {
-            setDialogOpen(true);
-          }}
-        >
-          BUY
-        </BuyButton>
-      </div>
-    </Card>
+        secondaryActionTitle="Details"
+        secondaryActionColor={theme.yellow}
+        secondaryAction={() => {
+          navigate("/wallet/marketplace/nftCarCard/" + astNFTCard.assetId);
+        }}
+      />
+    </>
   );
 }
+
+// {/* CARD */}
+// <Card>
+//   {/* CARD IMAGE */}
+//   <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
+//     <img
+//       alt="NFT Card of a car"
+//       src={`${apiURL}/${astNFTCard.imageFront}`}
+//     />
+//   </Link>
+//   {/* <Collection>{props.collection}</Collection> */}
+//   <Name>{astNFTCard.name}</Name>
+//   <Price>{astNFTCard.price} DRIFT</Price>
+//   <div
+//     style={{
+//       display: "flex",
+//       justifyContent: "space-around",
+//       alignItems: "center",
+//       margin: "",
+//     }}
+//   >
+//     <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
+//       <DetailsButton>Details</DetailsButton>
+//     </Link>
+//     <BuyButton
+//       onClick={(e) => {
+//         setDialogOpen(true);
+//       }}
+//     >
+//       BUY
+//     </BuyButton>
+//   </div>
+// </Card>

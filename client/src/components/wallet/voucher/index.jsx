@@ -1,3 +1,4 @@
+// DEMO PLACEHOLDERS VERSION
 // import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 // import MainContainer from "../assets/MainContainer";

@@ -1402,7 +1402,7 @@ conn.sync({ force, alter }).then(() => {
           burnable: true,
           transferable: true,
           expires: true,
-          price: 150,
+          price: 15,
           vendorId: "00000002-21ae-4db8-8d1d-bb831eabc337",
         },
         {
@@ -1417,7 +1417,7 @@ conn.sync({ force, alter }).then(() => {
           burnable: true,
           transferable: true,
           expires: true,
-          price: 150,
+          price: 15000,
           vendorId: "00000002-21ae-4db8-8d1d-bb831eabc337",
         },
       ],
@@ -1478,7 +1478,7 @@ conn.sync({ force, alter }).then(() => {
           burnable: true,
           transferable: true,
           expires: true,
-          price: 150,
+          price: 15000000,
           vendorId: "00000003-21ae-4db8-8d1d-bb831eabc337",
         },
         {

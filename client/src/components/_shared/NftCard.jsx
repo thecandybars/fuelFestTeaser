@@ -13,6 +13,7 @@ const PrimaryButton = styled.div`
   padding: 0px 25px;
   border: none;
   border-radius: 15px;
+  margin: 0 auto;
 `;
 const SecondaryButton = styled.div`
   color: ${(props) => props.theme.yellow};
@@ -29,10 +30,13 @@ const Title = styled.div`
   }
 `;
 const Price = styled.p`
+  font-size: 0.9rem;
   color: ${(props) => props.theme.yellow};
 `;
+
 const NftImage = styled.img`
   width: 200px;
+  /* height: 232px; */
   /* border: 2px solid ${(props) => props.theme.yellow}; */
   border-radius: 2%;
 `;
@@ -41,6 +45,13 @@ const ButtonsRow = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-top: 5px;
+`;
+const TwoColumns = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 2px;
+  width: 100%;
 `;
 
 /// DEFAULT
@@ -67,18 +78,22 @@ export default function NftCard(props) {
         <Title>
           <h2>{props.title}</h2>
         </Title>
-        <Price>{props.price} DRIFT</Price>
-        <ButtonsRow>
+
+        {/* <Price>{props.price} DRIFT</Price> */}
+        <TwoColumns>
           <SecondaryButton onClick={() => props.secondaryAction(props.id)}>
             {props.secondaryActionTitle}
           </SecondaryButton>
-          <PrimaryButton
-            onClick={() => props.primaryAction(props.id)}
-            style={{ backgroundColor: props.primaryActionColor }}
-          >
-            {props.primaryActionTitle}
-          </PrimaryButton>
-        </ButtonsRow>
+          <div>
+            <PrimaryButton
+              onClick={() => props.primaryAction(props.id)}
+              style={{ backgroundColor: props.primaryActionColor }}
+            >
+              {props.primaryActionTitle}
+            </PrimaryButton>
+            <Price>{props.price} DRIFT</Price>
+          </div>
+        </TwoColumns>
       </Card>
     </>
   );

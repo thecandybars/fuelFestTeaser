@@ -6,6 +6,7 @@ import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
 import MainContainer from "../../_shared/MainContainer";
 import { useSearchParams } from "react-router-dom";
+import videoCard from "../../../img/videoCard.mp4";
 
 // STYLED COMPONENTS
 const StyledContainer = styled.div`
@@ -217,7 +218,17 @@ export default function WalletMarketplace() {
           </StyledPriceRow>
         </div>
         {/* CARDS RENDER */}
-        <StyledContainer>{RenderNFTAssets}</StyledContainer>
+        <StyledContainer>
+          <>
+            <div>
+              <br />
+              <video height="232" autoPlay loop>
+                <source src={videoCard} type="video/mp4" />
+              </video>
+            </div>
+            {RenderNFTAssets}
+          </>
+        </StyledContainer>
       </MainContainer>
     </BoughtAssetContext.Provider>
   );
