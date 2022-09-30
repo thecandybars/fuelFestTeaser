@@ -220,12 +220,12 @@ export default function WalletMarketplace() {
         {/* CARDS RENDER */}
         <StyledContainer>
           <>
-            <div>
+            {/* <div>
               <br />
               <video height="232" autoPlay loop>
                 <source src={videoCard} type="video/mp4" />
               </video>
-            </div>
+            </div> */}
             {RenderNFTAssets}
           </>
         </StyledContainer>

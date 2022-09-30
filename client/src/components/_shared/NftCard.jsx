@@ -25,7 +25,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   h2 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: ${(props) => props.theme.white};
   }
 `;
@@ -60,6 +60,7 @@ NftCard.defaultProps = {
   title: "myTitle",
   price: 666,
   image: "",
+  imageType: "image",
   primaryActionTitle: "BUY",
   primaryAction: (e) => console.log("Primary action! " + e),
   primaryActionColor: "purple",
@@ -70,11 +71,24 @@ export default function NftCard(props) {
   return (
     <>
       <Card>
-        <NftImage
-          alt={props.title}
-          src={props.image}
-          onClick={() => props.primaryAction(props.id)}
-        />
+        {props.imageType === "image" && (
+          <NftImage
+            alt={props.title}
+            src={props.image}
+            onClick={() => props.primaryAction(props.id)}
+          />
+        )}
+        {props.imageType === "video" && (
+          <video
+            height="232"
+            autoPlay
+            loop
+            onClick={() => props.primaryAction(props.id)}
+          >
+            <source src={props.image} type="video/mp4" />
+          </video>
+        )}
+
         <Title>
           <h2>{props.title}</h2>
         </Title>

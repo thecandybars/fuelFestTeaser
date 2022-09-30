@@ -33,6 +33,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageFrontType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageBackType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     owner: {
       type: DataTypes.STRING,
       allowNull: true,
