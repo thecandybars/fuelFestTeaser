@@ -57,6 +57,7 @@ const TwoColumns = styled.div`
 /// DEFAULT
 NftCard.defaultProps = {
   id: "",
+  type: "carCard",
   title: "myTitle",
   price: 666,
   image: "",

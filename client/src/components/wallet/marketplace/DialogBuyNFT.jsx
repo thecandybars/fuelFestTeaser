@@ -101,7 +101,7 @@ const StyledConfirmTransaction = styled.div`
   }
 `;
 
-export default function ModalBuyNFT(props) {
+export default function DialogBuyNFT(props) {
   const apiURL = process.env.REACT_APP_API;
   const boughtAsset = useContext(BoughtAssetContext);
 

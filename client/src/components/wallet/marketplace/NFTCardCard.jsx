@@ -44,10 +44,6 @@ const Price = styled.p`
 export default function NFTCardCard(props) {
   const apiURL = process.env.REACT_APP_API;
   const { astNFTCard } = props.data;
-  console.log(
-    "🚀 ~ file: NFTCardCard.jsx ~ line 47 ~ NFTCardCard ~ astNFTCard",
-    astNFTCard
-  );
   const navigate = useNavigate();
 
   // DIALOG

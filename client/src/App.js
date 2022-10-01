@@ -47,10 +47,12 @@ function App() {
           <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
           <Route
             path="/wallet/marketplace/nftCarCard/:assetId"
+            // Name it NftCarDetail
             element={<NFTCar />}
           />
           <Route
             path="/wallet/marketplace/voucher/:voucherId"
+            // Name it NftVoucherDetail
             element={<VoucherDetail />}
           />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
