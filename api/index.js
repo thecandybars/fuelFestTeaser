@@ -889,6 +889,108 @@ conn.sync({ force, alter }).then(() => {
       { ignoreDuplicates: true }
     );
     /// NFT CAR CARDS
+    // NISSAN Z Tuned
+    await Asset.bulkCreate(
+      [
+        {
+          id: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+        {
+          id: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
+          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
+          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
+          isListed: true,
+        },
+      ],
+      { ignoreDuplicates: true }
+    );
+    await AstNFTCard.bulkCreate(
+      [
+        {
+          id: "540001f2-9c20-2166-99bd-7bc906e35f0a",
+          name: "Nissan Z Tuned Skyline Drift",
+          mintNum: "1",
+          mintTotal: "1",
+          mintMax: "1",
+          imageFront: "uploads/NFTCard/NFTCard-1664552895959.mp4",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          imageFrontType: "video",
+          imageBackType: "image",
+          owner: "Gustavo Petro",
+          price: 2000,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          id: "543691f2-9c20-2166-99bd-7bc906e35f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "1",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          imageFrontType: "image",
+          imageBackType: "image",
+          owner: "Gustavo Petro",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          id: "593691f2-9c20-4166-59bd-7bc906ed5f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "2",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          imageFrontType: "image",
+          imageBackType: "image",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+        {
+          id: "593691f1-9c20-4166-99bd-7bc906e35f0a",
+          name: "Nissan Z Tuned Skyline",
+          mintNum: "3",
+          mintTotal: "3",
+          mintMax: "3",
+          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
+          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
+          imageFrontType: "image",
+          imageBackType: "image",
+          price: 200,
+          burnable: true,
+          transferable: true,
+          assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
+          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
+          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+        },
+      ],
+      {
+        ignoreDuplicates: true,
+      }
+    );
+    // MITSUBISHI 1997
     await Asset.bulkCreate(
       [
         {
@@ -971,7 +1073,7 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    //Toyota Supra
+    // TOYOTA SUPRA
     await Asset.bulkCreate(
       [
         {
@@ -1054,7 +1156,7 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
-    //Mazda RX7
+    // MAZDA RX7
     await Asset.bulkCreate(
       [
         {
@@ -1131,107 +1233,6 @@ conn.sync({ force, alter }).then(() => {
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a02",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
           carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
-        },
-      ],
-      {
-        ignoreDuplicates: true,
-      }
-    );
-    //NISSAN Z Tuned
-    await Asset.bulkCreate(
-      [
-        {
-          id: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-        {
-          id: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
-          categoryId: "8664b015-7972-408a-bf8d-1ef55b0da2fc",
-          walletId: "147a9663-e722-4667-b54e-44b5817e0bd9",
-          isListed: true,
-        },
-      ],
-      { ignoreDuplicates: true }
-    );
-    await AstNFTCard.bulkCreate(
-      [
-        {
-          id: "540001f2-9c20-2166-99bd-7bc906e35f0a",
-          name: "Nissan Z Tuned Skyline Drift",
-          mintNum: "1",
-          mintTotal: "1",
-          mintMax: "1",
-          imageFront: "uploads/NFTCard/NFTCard-1664552895959.mp4",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          imageFrontType: "video",
-          imageBackType: "image",
-          owner: "Gustavo Petro",
-          price: 20000,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-        },
-        {
-          id: "543691f2-9c20-2166-99bd-7bc906e35f0a",
-          name: "Nissan Z Tuned Skyline",
-          mintNum: "1",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          imageFrontType: "image",
-          imageBackType: "image",
-          owner: "Gustavo Petro",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-        },
-        {
-          id: "593691f2-9c20-4166-59bd-7bc906ed5f0a",
-          name: "Nissan Z Tuned Skyline",
-          mintNum: "2",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          imageFrontType: "image",
-          imageBackType: "image",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
-        },
-        {
-          id: "593691f1-9c20-4166-99bd-7bc906e35f0a",
-          name: "Nissan Z Tuned Skyline",
-          mintNum: "3",
-          mintTotal: "3",
-          mintMax: "3",
-          imageFront: "uploads/NFTCard/NFTCard-1660679847808.jpeg",
-          imageBack: "uploads/NFTCard/NFTCard-1660680037824.png",
-          imageFrontType: "image",
-          imageBackType: "image",
-          price: 200,
-          burnable: true,
-          transferable: true,
-          assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
-          templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
         },
       ],
       {

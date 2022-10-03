@@ -13,6 +13,7 @@ const {
   buyAsset,
   getAssets,
   getAssetById,
+  editAssetById,
   getAssetsByWallet,
   getAllAssetCategory,
   getNFTCards,
@@ -118,6 +119,13 @@ router.post("/:assetId/buy/:walletId", async (req, res) => {
 // Get asset by Id
 router.get("/byId/:assetId", async (req, res) => {
   const response = await getAssetById(req);
+  !response.error
+    ? res.status(200).json(response)
+    : res.status(response.error.status).json(response.error.title);
+});
+// Modify asset by Id
+router.put("/byId/:assetId", async (req, res) => {
+  const response = await editAssetById(req);
   !response.error
     ? res.status(200).json(response)
     : res.status(response.error.status).json(response.error.title);

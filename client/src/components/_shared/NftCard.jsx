@@ -1,3 +1,4 @@
+import { Badge } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
@@ -18,6 +19,7 @@ const PrimaryButton = styled.div`
 const SecondaryButton = styled.div`
   color: ${(props) => props.theme.yellow};
   width: fit-content;
+  text-decoration: underline;
 `;
 const Title = styled.div`
   height: 54px;
@@ -48,6 +50,7 @@ const ButtonsRow = styled.div`
 `;
 const TwoColumns = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
   padding-top: 2px;
@@ -62,6 +65,7 @@ NftCard.defaultProps = {
   price: 666,
   image: "",
   imageType: "image",
+  badge: 0,
   primaryActionTitle: "BUY",
   primaryAction: (e) => console.log("Primary action! " + e),
   primaryActionColor: "purple",
@@ -72,23 +76,41 @@ export default function NftCard(props) {
   return (
     <>
       <Card>
-        {props.imageType === "image" && (
+        {/* {props.imageType === "image" && props.badge === "" && (
           <NftImage
             alt={props.title}
             src={props.image}
             onClick={() => props.primaryAction(props.id)}
           />
-        )}
-        {props.imageType === "video" && (
-          <video
-            height="232"
-            autoPlay
-            loop
-            onClick={() => props.primaryAction(props.id)}
-          >
-            <source src={props.image} type="video/mp4" />
-          </video>
-        )}
+        )} */}
+
+        <Badge
+          badgeContent={props.badge}
+          color="red"
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          overlap="rectangular"
+        >
+          {props.imageType === "image" && (
+            <NftImage
+              alt={props.title}
+              src={props.image}
+              onClick={() => props.primaryAction(props.id)}
+            />
+          )}
+          {props.imageType === "video" && (
+            <video
+              height="232"
+              autoPlay
+              loop
+              onClick={() => props.primaryAction(props.id)}
+            >
+              <source src={props.image} type="video/mp4" />
+            </video>
+          )}
+        </Badge>
 
         <Title>
           <h2>{props.title}</h2>

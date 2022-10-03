@@ -6,6 +6,7 @@ export const themeMUI = createTheme({
     red: { main: "#da1921" },
     yellow: { main: "#feae2e" },
     white: { main: "#fff" },
+    orange: { main: "#f15a24" },
     darkWhite: { main: "#c7c7c7" },
     lightGray: { main: "#ffffff3b" },
     darkGray: { main: "#919191" },
@@ -19,6 +20,7 @@ export const themeMUI = createTheme({
 export const theme = {
   yellow: "#feae2e",
   white: "#fff",
+  orange: "#f15a24",
   darkWhite: "#c7c7c7",
   lightGray: "#ffffff3b",
   darkGray: "#919191",

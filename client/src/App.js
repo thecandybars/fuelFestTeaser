@@ -16,11 +16,11 @@ import WalletVoting from "./components/wallet/voting/WalletVoting";
 import WalletPinsRallies from "./components/wallet/pinsRallies/WalletPinsRallies";
 import WalletNFTGarage from "./components/wallet/nftGarage/WalletNFTGarage";
 import WalletStatistics from "./components/wallet/statistics/WalletStatistics";
-import NFTCar from "./components/wallet/marketplace/NFTCar";
+import NFTCarDetail from "./components/wallet/marketplace/NFTCarDetail";
 import WalletVotingCategory from "./components/wallet/voting/WalletVotingCategory";
 import CarDetails from "./components/cars/CarDetails";
 import User from "./components/profile/User";
-import VoucherDetail from "./components/wallet/marketplace/VoucherDetail";
+import NftVoucherDetail from "./components/wallet/marketplace/NftVoucherDetail";
 import VendorRedeemVoucher from "./components/wallet/voucher/VendorRedeemVoucher";
 
 function App() {
@@ -47,13 +47,11 @@ function App() {
           <Route path="/wallet/marketplace" element={<WalletMarketplace />} />
           <Route
             path="/wallet/marketplace/nftCarCard/:assetId"
-            // Name it NftCarDetail
-            element={<NFTCar />}
+            element={<NFTCarDetail />}
           />
           <Route
             path="/wallet/marketplace/voucher/:voucherId"
-            // Name it NftVoucherDetail
-            element={<VoucherDetail />}
+            element={<NftVoucherDetail />}
           />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
           <Route path="/wallet/stats" element={<WalletStatistics />} />

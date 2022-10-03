@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Title from "../../../components/_shared/Title";
 import { getAssetByWallet } from "../../../services/assets";
-import NFTCardCard from "./NFTCardCard";
+import NFTCardCard from "./NFTCarCard";
 import VoucherCard from "./VoucherCard";
 import styled from "styled-components";
 import { walletId } from "../../../common/getLoginData";
 import MainContainer from "../../_shared/MainContainer";
+import NftVoucherCard from "./NftVoucherCard";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -65,8 +66,10 @@ export default function WalletMarketplace() {
   const RenderNFTAssets = filteredAssets.map((asset) => {
     if (asset.assetCategory.table === "AstNFTCard")
       return <NFTCardCard key={asset.id} data={asset} />;
+    // return <NFTCardCard key={asset.id} data={asset} />;
     if (asset.assetCategory.table === "Voucher")
-      return <VoucherCard key={asset.id} data={asset} />;
+      return <NftVoucherCard key={asset.id} data={asset} />;
+    // return <VoucherCard key={asset.id} data={asset} />;
     return {};
   });
 

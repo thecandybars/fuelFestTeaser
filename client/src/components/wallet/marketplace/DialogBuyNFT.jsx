@@ -25,6 +25,9 @@ const StyledFirstLine = styled.div`
   img {
     width: 100px;
   }
+  video {
+    width: 100px;
+  }
 `;
 const StyledSummary = styled.div`
   h2 {
@@ -107,6 +110,10 @@ export default function DialogBuyNFT(props) {
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
+  console.log(
+    "🚀 ~ file: DialogBuyNFT.jsx ~ line 110 ~ DialogBuyNFT ~ fetchedAssetData",
+    fetchedAssetData
+  );
   useEffect(() => {
     fetchAssetData(props.assetId);
   }, [props.assetId]);
@@ -152,10 +159,21 @@ export default function DialogBuyNFT(props) {
       <ModalContainer>
         <StyledFirstLine>
           <h1>Buy Listing</h1>
-          <img
-            alt="Preview NFT"
-            src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
-          />
+
+          {fetchedAssetData.assetData.imageFrontType === "image" && (
+            <img
+              alt={props.title}
+              src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+            />
+          )}
+          {fetchedAssetData.assetData.imageFrontType === "video" && (
+            <video autoPlay loop>
+              <source
+                src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+                type="video/mp4"
+              />
+            </video>
+          )}
         </StyledFirstLine>
         <StyledSummary>
           <h2>Summary</h2>

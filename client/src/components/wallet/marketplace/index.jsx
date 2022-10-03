@@ -1,8 +1,8 @@
 import React, { useEffect, useState, createContext } from "react";
 import Title from "../../_shared/Title";
 import { getAllAssets } from "../../../services/assets";
-import NFTCardCard from "./NFTCardCard";
-import VoucherCard from "./VoucherCard";
+import NFTCardCard from "./NFTCarCard";
+import NftVoucherCard from "./NftVoucherCard";
 import styled from "styled-components";
 import MainContainer from "../../_shared/MainContainer";
 import { useSearchParams } from "react-router-dom";
@@ -80,7 +80,7 @@ export default function WalletMarketplace() {
     if (asset.assetCategory.table === "AstNFTCard")
       return <NFTCardCard key={asset.id} data={asset} />;
     if (asset.assetCategory.table === "Voucher")
-      return <VoucherCard key={asset.id} data={asset} />;
+      return <NftVoucherCard key={asset.id} data={asset} />;
     return {};
   });
 

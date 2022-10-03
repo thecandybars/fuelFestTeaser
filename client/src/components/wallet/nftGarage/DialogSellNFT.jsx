@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getAssetById, buyAssetFromWallet } from "../../../services/assets";
+import { getAssetById, editAssetById } from "../../../services/assets";
 import { walletId } from "../../../common/getLoginData";
-import { Dialog } from "@mui/material";
+import { Dialog, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
 
 const ModalContainer = styled.div`
@@ -47,16 +47,28 @@ const StyledBottomLine = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
   p {
     font-family: "Oswald";
     font-size: 1.1rem;
   }
 `;
-const StyledButton = styled.div`
+const StyledButtonYes = styled.div`
   width: 70%;
-  margin: 15px 0;
+  margin: 5px 0;
   padding: 1px 10px;
-  background-color: #00703d;
+  background-color: ${(props) => props.theme.green};
+  color: white;
+  border-radius: 20px;
+  font-family: "Oswald";
+  font-size: 18px;
+  text-align: center;
+`;
+const StyledButtonNo = styled.div`
+  width: 70%;
+  margin: 5px 0;
+  padding: 1px 10px;
+  background-color: ${(props) => props.theme.red};
   color: white;
   border-radius: 20px;
   font-family: "Oswald";
@@ -99,11 +111,15 @@ const StyledConfirmTransaction = styled.div`
   }
 `;
 
-export default function ModalBuyNFT(props) {
+export default function DialogSellNFT(props) {
   const apiURL = process.env.REACT_APP_API;
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
+  console.log(
+    "🚀 ~ file: DialogSellNFT.jsx ~ line 107 ~ DialogSellNFT ~ fetchedAssetData",
+    fetchedAssetData
+  );
   useEffect(() => {
     fetchAssetData(props.assetId);
   }, [props.assetId]);
@@ -111,39 +127,41 @@ export default function ModalBuyNFT(props) {
     setFetchedAssetData(await getAssetById(assetId));
   }
 
-  // BUY
+  // EDIT
   const [confirmBuyOpen, setConfirmBuyOpen] = useState(false);
   const handleConfirmBuyClose = () => {
     setConfirmBuyOpen(false);
     props.closeDialog();
   };
 
-  async function handleBuy() {
-    const response = await buyAssetFromWallet(
+  async function handleEdit() {
+    const response = await editAssetById(
       fetchedAssetData.assetData.assetId,
-      walletId
+      isListed,
+      price
     );
     if (response.status === 200) {
       setConfirmBuyOpen(true);
     }
   }
 
-  //   const style = {
-  //     position: "absolute",
-  //     top: "50%",
-  //     left: "50%",
-  //     transform: "translate(-50%, -50%)",
-  //     width: "400px",
-  //     bgcolor: "background.paper",
-  //     border: "2px solid #000",
-  //     // boxShadow: 24,
-  //     // p: 4,
-  //   };
+  // EDIATBLE DATA
+  const [isListed, setIsListed] = useState(false);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    if (Object.keys(fetchedAssetData).length > 0) {
+      setIsListed(fetchedAssetData.asset.isListed);
+      setPrice(fetchedAssetData.assetData.price);
+    }
+  }, [fetchedAssetData]);
+
+  // SELL TOGGLE BUTTON
   return (
     Object.keys(fetchedAssetData).length !== 0 && (
       <ModalContainer>
         <StyledFirstLine>
-          <h1>Buy Listing</h1>
+          <h1>Sell Listing</h1>
           <img
             alt="Preview NFT"
             src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
@@ -151,10 +169,7 @@ export default function ModalBuyNFT(props) {
         </StyledFirstLine>
         <StyledSummary>
           <h2>Summary</h2>
-          <div>
-            <h3>Sale ID</h3>
-            <p>¿¿¿???</p>
-          </div>
+          <br />
           <div>
             <h3>Collection</h3>
             <p>{fetchedAssetData.festival.short}</p>
@@ -171,25 +186,25 @@ export default function ModalBuyNFT(props) {
             <h3>Mint number</h3>
             <p>{`${fetchedAssetData.assetData.mintNum} of ${fetchedAssetData.assetData.mintTotal} (max. ${fetchedAssetData.assetData.mintMax})`}</p>
           </div>
-          <div>
-            <h3>Backed Tokens</h3>
-            <p>¿¿¿???</p>
-          </div>
           <br />
           <div>
             <h3>Seller</h3>
             <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
           </div>
-          <div>
-            <h3>Price</h3>
-            <p>{`${fetchedAssetData.assetData.price} DRIFT`}</p>
-          </div>
         </StyledSummary>
+        <div>
+          <p>Price</p>
+          <input value={price} onChange={(e) => setPrice(e.target.value)} />
+          <p>Listed</p>
+          <input
+            checked={isListed}
+            type="checkbox"
+            onChange={(e) => setIsListed(e.target.value)}
+          />
+        </div>
         <StyledBottomLine>
-          <StyledButton
-            onClick={handleBuy}
-          >{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
-          <p>Make offer</p>
+          <StyledButtonYes onClick={handleEdit}>{`CONFIRM`}</StyledButtonYes>
+          <StyledButtonNo onClick={handleEdit}>{`CANCEL`}</StyledButtonNo>
         </StyledBottomLine>
         <Dialog open={confirmBuyOpen} onClose={handleConfirmBuyClose}>
           <StyledConfirmTransaction>

@@ -21,6 +21,7 @@ const {
   createTokenTransaction,
   createAssetTransaction,
 } = require("./transaction.js");
+const dbSuccess = require("../utils/dbSuccess");
 
 /////// ASSET /////////////////
 
@@ -104,10 +105,48 @@ async function getAssetById(req) {
     }
     const template = await Template.findByPk(assetData.templateId);
     const festival = await Festival.findByPk(template.festivalId);
-    return { assetData, assetCategory, seller, festival };
+    return { asset, assetData, assetCategory, seller, festival };
     return !response.length
       ? dbError(`No Assets Categories found. Create some.`, 404)
       : response;
+  } catch (err) {
+    return err;
+  }
+}
+async function editAssetById(req) {
+  try {
+    const { assetId } = req.params;
+    // body= {isListed, price}
+    await Asset.update(
+      {
+        isListed: req.body.isListed,
+      },
+      { where: { id: assetId } }
+    );
+    const asset = await Asset.findByPk(assetId);
+    const assetCategory = await AssetCategory.findByPk(asset.categoryId);
+
+    if (assetCategory.table === "AstNFTCard") {
+      await AstNFTCard.update(
+        {
+          price: req.body.price,
+        },
+        { where: { assetId: assetId } }
+      );
+    }
+    if (assetCategory.table === "Voucher") {
+      await Voucher.update(
+        {
+          price: req.body.price,
+        },
+        { where: { assetId: assetId } }
+      );
+    }
+    return dbSuccess(
+      `Asset ${assetId} was updated successfully`,
+      { confirm: true },
+      200
+    );
   } catch (err) {
     return err;
   }
@@ -428,6 +467,7 @@ module.exports = {
   buyAsset,
   getAssets,
   getAssetById,
+  editAssetById,
   getAssetsByWallet,
   getAllAssetCategory,
   createVoucher,

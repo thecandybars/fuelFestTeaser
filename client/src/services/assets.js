@@ -25,6 +25,13 @@ export async function getAssetById(assetId) {
   const { data } = await axios.get(`/asset/byId/${assetId}`);
   return data;
 }
+export async function editAssetById(assetId, isListed, price) {
+  const { data } = await axios.put(`/asset/byId/${assetId}`, {
+    isListed,
+    price,
+  });
+  return data;
+}
 export async function getAssetByWallet(walletId) {
   const { data } = await axios.get(`/asset/byWallet/${walletId}`);
   return data;
