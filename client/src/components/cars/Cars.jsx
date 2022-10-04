@@ -9,10 +9,6 @@ export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [fetchedFavs, setFetchedFavs] = useState([]);
-  console.log(
-    "🚀 ~ file: Cars.jsx ~ line 12 ~ Cars ~ fetchedFavs",
-    fetchedFavs
-  );
   const [carDetails] = useState("");
 
   useEffect(() => {
