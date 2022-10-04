@@ -32,7 +32,7 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
-          title: "FuelFest Test edition",
+          title: "FuelFest 2022 Test edition",
           short: "FuelFestTest22",
           dateStart: "2022-01-01 00:00:00.000 -0500",
           dateEnd: "2022-12-31 00:00:00.000 -0500",
