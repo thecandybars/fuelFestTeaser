@@ -25,10 +25,6 @@ export default function VendorRedeemVoucher() {
 
   // VENDOR CONFIRMATION
   const [vendorConfirm, setVendorConfirm] = useState({});
-  console.log(
-    "🚀 ~ file: VendorRedeemVoucher.jsx ~ line 27 ~ VendorRedeemVoucher ~ vendorConfirm",
-    vendorConfirm
-  );
   const acceptVoucher = async () => {
     const data = await vendorRedeemVoucher(voucherId, userId).catch((err) =>
       console.log(err)
@@ -69,10 +65,6 @@ export default function VendorRedeemVoucher() {
 
   // CHECK FOR OWNER ACCEPTS TRANSACTION
   const [ownerAcceptedTransaction, setOwnerAcceptedTransaction] = useState({});
-  console.log(
-    "🚀 ~ file: VendorRedeemVoucher.jsx ~ line 76 ~ VendorRedeemVoucher ~ ownerAcceptedTransaction",
-    ownerAcceptedTransaction
-  );
   const checkOwnerAccepted = async () => {
     const response = await getOwnerTransactionConfirm(voucherId);
     setOwnerAcceptedTransaction(response);

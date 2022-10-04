@@ -110,10 +110,6 @@ export default function DialogBuyNFT(props) {
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
-  console.log(
-    "🚀 ~ file: DialogBuyNFT.jsx ~ line 110 ~ DialogBuyNFT ~ fetchedAssetData",
-    fetchedAssetData
-  );
   useEffect(() => {
     fetchAssetData(props.assetId);
   }, [props.assetId]);
