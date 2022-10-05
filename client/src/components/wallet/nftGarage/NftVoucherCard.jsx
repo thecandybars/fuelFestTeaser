@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // import DialogBuyVoucher from "./DialogBuyVoucher";
 import NftCard from "../../_shared/NftCard";
 import { theme } from "../../../common/theme";
+import DialogSellNFT from "./DialogSellNFT";
 
 export default function NftVoucherCard(props) {
   const apiURL = process.env.REACT_APP_API;
@@ -14,25 +15,28 @@ export default function NftVoucherCard(props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogClose = () => {
     setDialogOpen(false);
+    props.handleReload(true);
   };
 
   return (
     <>
       {/* DIALOG WINDOW */}
-      {/* <Dialog open={dialogOpen} onClose={handleDialogClose}>
-        <DialogBuyVoucher
+      <Dialog open={dialogOpen} onClose={handleDialogClose}>
+        <DialogSellNFT
           assetId={voucher.assetId}
           closeDialog={handleDialogClose}
         />
-      </Dialog> */}
+      </Dialog>
       <NftCard
         key={voucher.assetId}
         id={voucher.assetId}
         title={voucher.title}
         image={`${apiURL}/${voucher.image}`}
+        imageType={voucher.imageType}
         price={voucher.price}
-        primaryActionTitle="SELL"
-        primaryActionColor={theme.red}
+        badge={props.data.isListed ? "For sale" : 0}
+        primaryActionTitle={props.data.isListed ? "EDIT" : "SELL"}
+        primaryActionColor={props.data.isListed ? theme.red : theme.orange}
         primaryAction={() => {
           setDialogOpen(true);
         }}

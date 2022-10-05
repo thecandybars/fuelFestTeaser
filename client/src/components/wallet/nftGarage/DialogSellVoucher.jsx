@@ -24,7 +24,7 @@ const StyledFirstLine = styled.div`
   }
   h1 {
     color: ${(props) => props.theme.yellow};
-    /* margin-left: -15px; */
+    margin-left: -15px;
   }
   img {
     width: 100px;
@@ -177,64 +177,6 @@ export default function DialogSellNFT(props) {
     // }
   }
 
-  // SUMMARY DATA (DIFFERENT FOR CARDS & VOUCHERS)
-  let summaryData = "";
-  if (
-    Object.keys(fetchedAssetData).length > 0 &&
-    fetchedAssetData.assetCategory.table === "AstNFTCard"
-  )
-    summaryData = (
-      <>
-        <div>
-          <h3>Collection</h3>
-          <p>{fetchedAssetData.festival.short}</p>
-        </div>
-        <div>
-          <h3>NFT Name</h3>
-          <p>{fetchedAssetData.assetData.name}</p>
-        </div>
-        <div>
-          <h3>NFT ID</h3>
-          <p>{fetchedAssetData.assetData.id.slice(20)}</p>
-        </div>
-        <div>
-          <h3>Mint number</h3>
-          <p>{`${fetchedAssetData.assetData.mintNum} of ${fetchedAssetData.assetData.mintTotal} (max. ${fetchedAssetData.assetData.mintMax})`}</p>
-        </div>
-        <div>
-          <h3>Seller</h3>
-          <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
-        </div>
-      </>
-    );
-  if (
-    Object.keys(fetchedAssetData).length > 0 &&
-    fetchedAssetData.assetCategory.table === "Voucher"
-  )
-    summaryData = (
-      <>
-        <div>
-          <h2>{fetchedAssetData.assetData.title}</h2>
-        </div>
-        <div>
-          {/* <h3>Description</h3> */}
-          <p>{fetchedAssetData.assetData.description}</p>
-        </div>
-        <div>
-          <h3>Vendor</h3>
-          <p>{fetchedAssetData.assetData.vendor.title}</p>
-        </div>
-        <div>
-          <h3>Tent</h3>
-          <p>{fetchedAssetData.assetData.vendor.tent}</p>
-        </div>
-        <div>
-          <h3>Seller</h3>
-          <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
-        </div>
-      </>
-    );
-
   // EDIATBLE FIELDS
   const [isListed, setIsListed] = useState(false);
   const [price, setPrice] = useState(0);
@@ -256,24 +198,37 @@ export default function DialogSellNFT(props) {
       <ModalContainer>
         <StyledFirstLine>
           <div>
-            <h1>Sell Listing</h1>
-            <div>
-              <h3>
-                {fetchedAssetData.assetData.transferable && "Transferable"}
-              </h3>
-              <h3>{fetchedAssetData.assetData.burnable && "Burnable"}</h3>
-            </div>
+            <h1>Sell Listingg</h1>
+
             <h2>Summary</h2>
           </div>
           <img
             alt="Preview NFT"
-            src={`${apiURL}/${
-              fetchedAssetData.assetData.imageFront ||
-              fetchedAssetData.assetData.image
-            }`}
+            src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
           />
         </StyledFirstLine>
-        <StyledSummary>{summaryData}</StyledSummary>
+        <StyledSummary>
+          <div>
+            <h3>Collection</h3>
+            <p>{fetchedAssetData.festival.short}</p>
+          </div>
+          <div>
+            <h3>NFT Name</h3>
+            <p>{fetchedAssetData.assetData.name}</p>
+          </div>
+          <div>
+            <h3>NFT ID</h3>
+            <p>{fetchedAssetData.assetData.id.slice(20)}</p>
+          </div>
+          <div>
+            <h3>Mint number</h3>
+            <p>{`${fetchedAssetData.assetData.mintNum} of ${fetchedAssetData.assetData.mintTotal} (max. ${fetchedAssetData.assetData.mintMax})`}</p>
+          </div>
+          <div>
+            <h3>Seller</h3>
+            <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
+          </div>
+        </StyledSummary>
         <StyledPrice>
           <p>PRICE</p>
           <input

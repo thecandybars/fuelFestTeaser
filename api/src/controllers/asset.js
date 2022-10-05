@@ -101,6 +101,7 @@ async function getAssetById(req) {
     if (assetCategory.table === "Voucher") {
       assetData = await Voucher.findOne({
         where: { assetId: asset.id },
+        include: Vendor,
       });
     }
     const template = await Template.findByPk(assetData.templateId);

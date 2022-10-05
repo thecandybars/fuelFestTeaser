@@ -6,7 +6,6 @@ const Card = styled.div`
   width: 150px;
   font-family: "Oswald";
   text-align: center;
-  /* font-size: smaller; */
   margin-top: 20px;
 `;
 const PrimaryButton = styled.div`
@@ -38,15 +37,11 @@ const Price = styled.p`
 
 const NftImage = styled.img`
   width: 200px;
-  /* height: 232px; */
-  /* border: 2px solid ${(props) => props.theme.yellow}; */
   border-radius: 2%;
 `;
-const ButtonsRow = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 5px;
+const NftVideo = styled.video`
+  height: 232px;
+  border-radius: 2%;
 `;
 const TwoColumns = styled.div`
   display: flex;
@@ -76,14 +71,6 @@ export default function NftCard(props) {
   return (
     <>
       <Card>
-        {/* {props.imageType === "image" && props.badge === "" && (
-          <NftImage
-            alt={props.title}
-            src={props.image}
-            onClick={() => props.primaryAction(props.id)}
-          />
-        )} */}
-
         <Badge
           badgeContent={props.badge}
           color="red"
@@ -92,6 +79,12 @@ export default function NftCard(props) {
             horizontal: "right",
           }}
           overlap="rectangular"
+          style={{
+            "&.MuiBadgeBadge": {
+              color: "yellow",
+              backgroundColor: "#686868",
+            },
+          }}
         >
           {props.imageType === "image" && (
             <NftImage
@@ -101,14 +94,13 @@ export default function NftCard(props) {
             />
           )}
           {props.imageType === "video" && (
-            <video
-              height="232"
+            <NftVideo
               autoPlay
               loop
               onClick={() => props.primaryAction(props.id)}
             >
               <source src={props.image} type="video/mp4" />
-            </video>
+            </NftVideo>
           )}
         </Badge>
 

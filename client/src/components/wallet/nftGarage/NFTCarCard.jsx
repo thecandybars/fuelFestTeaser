@@ -14,6 +14,7 @@ export default function NFTCardCard(props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   function handleDialogClose() {
     setDialogOpen(false);
+    props.handleReload(true);
   }
 
   return (
@@ -32,7 +33,7 @@ export default function NFTCardCard(props) {
         image={`${apiURL}/${astNFTCard.imageFront}`}
         imageType={astNFTCard.imageFrontType}
         price={astNFTCard.price}
-        badge={props.data.isListed ? "Listed for sale" : 0}
+        badge={props.data.isListed ? "For sale" : 0}
         primaryActionTitle={props.data.isListed ? "EDIT" : "SELL"}
         primaryActionColor={props.data.isListed ? theme.red : theme.orange}
         primaryAction={() => {

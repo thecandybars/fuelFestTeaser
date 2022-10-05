@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Title from "../../../components/_shared/Title";
+import Title from "../../_shared/Title";
 import { getAssetByWallet } from "../../../services/assets";
 import NFTCardCard from "./NFTCarCard";
 import VoucherCard from "./VoucherCard";
@@ -53,9 +53,13 @@ const StyledAssetSearch = styled.input`
 export default function WalletMarketplace() {
   const [fetchedAssets, setFetchedAssets] = useState([]);
   const [filteredAssets, setFilteredAssets] = useState([]);
+
+  const [reload, setReload] = useState(false);
+  const handleReload = (reload) => setReload(reload);
   useEffect(() => {
     fetchAssets();
-  }, []);
+    setReload(false);
+  }, [reload]);
   async function fetchAssets() {
     const fetched = await getAssetByWallet(walletId);
     setFetchedAssets(fetched);
@@ -65,11 +69,17 @@ export default function WalletMarketplace() {
   // RENDER CARDS : nfts / vouchers
   const RenderNFTAssets = filteredAssets.map((asset) => {
     if (asset.assetCategory.table === "AstNFTCard")
-      return <NFTCardCard key={asset.id} data={asset} />;
-    // return <NFTCardCard key={asset.id} data={asset} />;
+      return (
+        <NFTCardCard key={asset.id} data={asset} handleReload={handleReload} />
+      );
     if (asset.assetCategory.table === "Voucher")
-      return <NftVoucherCard key={asset.id} data={asset} />;
-    // return <VoucherCard key={asset.id} data={asset} />;
+      return (
+        <NftVoucherCard
+          key={asset.id}
+          data={asset}
+          handleReload={handleReload}
+        />
+      );
     return {};
   });
 
@@ -143,29 +153,28 @@ export default function WalletMarketplace() {
     ));
 
   return (
-    true && (
-      <MainContainer>
-        {<Title backButton="true">NFT GARAGE</Title>}
-        <div style={{ display: "flex", padding: "5px 0" }}>
-          {/* ASSET CATEGORY FILTER */}
-          <StyledAssetFilter
-            name="assetsFilter"
-            onChange={(e) => setFilterCategory(e.target.value)}
-          >
-            <option value="all">All </option>
-            {RenderCategoryFilterOptions}
-          </StyledAssetFilter>
-          {/* SEARCH TEXT STRING FILTER */}
-          <StyledAssetSearch
-            type="text"
-            onChange={(e) => {
-              setFilterSearch(e.target.value);
-            }}
-          ></StyledAssetSearch>
-        </div>
-        <div>
-          {/* PRICE FILTER */}
-          {/* <StyledPriceRow>
+    <MainContainer>
+      {<Title backButton="true">NFT GARAGE</Title>}
+      <div style={{ display: "flex", padding: "5px 0" }}>
+        {/* ASSET CATEGORY FILTER */}
+        <StyledAssetFilter
+          name="assetsFilter"
+          onChange={(e) => setFilterCategory(e.target.value)}
+        >
+          <option value="all">All </option>
+          {RenderCategoryFilterOptions}
+        </StyledAssetFilter>
+        {/* SEARCH TEXT STRING FILTER */}
+        <StyledAssetSearch
+          type="text"
+          onChange={(e) => {
+            setFilterSearch(e.target.value);
+          }}
+        ></StyledAssetSearch>
+      </div>
+      <div>
+        {/* PRICE FILTER */}
+        {/* <StyledPriceRow>
             <p>PRICE</p>
             <input
               type="number"
@@ -182,8 +191,8 @@ export default function WalletMarketplace() {
               }
             />
           </StyledPriceRow> */}
-          {/* MINT FILTER */}
-          {/* <StyledPriceRow>
+        {/* MINT FILTER */}
+        {/* <StyledPriceRow>
             <p>MINT</p>
             <input
               type="number"
@@ -200,10 +209,9 @@ export default function WalletMarketplace() {
               }
             />
           </StyledPriceRow> */}
-        </div>
-        {/* CARDS RENDER */}
-        <StyledContainer>{RenderNFTAssets}</StyledContainer>
-      </MainContainer>
-    )
+      </div>
+      {/* CARDS RENDER */}
+      <StyledContainer>{RenderNFTAssets}</StyledContainer>
+    </MainContainer>
   );
 }

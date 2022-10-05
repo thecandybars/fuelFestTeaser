@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import EventCard from "./EventCard";
-import style from "./Events.module.css";
 import { getEvents, getFavEvent, toggleFavEvent } from "../../services/event";
 import Title from "../../components/_shared/Title";
 import MainContainer from "../_shared/MainContainer";
@@ -91,7 +89,7 @@ export default function Events() {
   return (
     <MainContainer>
       <Title backButton="true">EVENTS</Title>
-      <nav className={style.events_nav}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <select name="category" onChange={(e) => setCategory(e.target.value)}>
           <option value="all">All categories</option>
           <option value="drifting">Drifting</option>
@@ -109,7 +107,7 @@ export default function Events() {
           size="15"
           onChange={(e) => setSearch(e.target.value)}
         />
-      </nav>
+      </div>
       <main>{eventCards}</main>
     </MainContainer>
   );

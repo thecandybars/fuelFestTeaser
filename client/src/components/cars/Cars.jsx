@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCars, postFavCar, getFavCar } from "../../services/car";
 import CarCard from "./CarCard";
-import style from "./Cars.module.css";
 import Title from "../../components/_shared/Title";
 import MainContainer from "../_shared/MainContainer";
 
@@ -70,19 +69,17 @@ export default function Cars() {
 
   return (
     <MainContainer>
-      <div className={style.container}>
-        {carDetails && carDetails}
-        <Title backButton="true">CARS</Title>
-        <nav className={style.cars_nav}>
-          <input
-            type="text"
-            size="45"
-            onChange={(e) => setFilterSearch(e.target.value)}
-            placeholder="search"
-          />
-        </nav>
-        {RenderCarCards}
+      {carDetails && carDetails}
+      <Title backButton="true">CARS</Title>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <input
+          type="text"
+          size="45"
+          onChange={(e) => setFilterSearch(e.target.value)}
+          placeholder="search"
+        />
       </div>
+      {RenderCarCards}
     </MainContainer>
   );
 }

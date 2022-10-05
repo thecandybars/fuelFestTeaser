@@ -14,7 +14,7 @@ import Sponsors from "./components/sponsors/Sponsors";
 import Maps from "./components/maps/Maps";
 import WalletVoting from "./components/wallet/voting/WalletVoting";
 import WalletPinsRallies from "./components/wallet/pinsRallies/WalletPinsRallies";
-import WalletNFTGarage from "./components/wallet/nftGarage/WalletNFTGarage";
+import WalletNFTGarage from "./components/wallet/nftGarage/index";
 import WalletStatistics from "./components/wallet/statistics/WalletStatistics";
 import NFTCarDetail from "./components/wallet/marketplace/NFTCarDetail";
 import WalletVotingCategory from "./components/wallet/voting/WalletVotingCategory";
