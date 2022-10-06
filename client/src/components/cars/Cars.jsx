@@ -3,6 +3,13 @@ import { getCars, postFavCar, getFavCar } from "../../services/car";
 import CarCard from "./CarCard";
 import Title from "../../components/_shared/Title";
 import MainContainer from "../_shared/MainContainer";
+import CardsContainerColumn from "../_shared/CardsContainerColumn";
+import styled from "styled-components";
+
+const StyledContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default function Cars() {
   const [fetchedCars, setFetchedCars] = useState([]);
@@ -69,7 +76,6 @@ export default function Cars() {
 
   return (
     <MainContainer>
-      {carDetails && carDetails}
       <Title backButton="true">CARS</Title>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <input
@@ -79,7 +85,7 @@ export default function Cars() {
           placeholder="search"
         />
       </div>
-      {RenderCarCards}
+      <CardsContainerColumn>{RenderCarCards}</CardsContainerColumn>
     </MainContainer>
   );
 }

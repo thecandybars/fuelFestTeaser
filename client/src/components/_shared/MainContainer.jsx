@@ -1,20 +1,17 @@
 import React from "react";
-import { screenSize } from "../../common/screenSize";
 import styled from "styled-components";
 
 const StyledMain = styled.main`
   padding: 10px;
+  /*=150px?? The height of BottomBar */
+  padding-bottom: 100px;
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme.black};
-  /*=50px The height of BottomBar */
-  padding-bottom: 150px;
-
   overflow-y: scroll;
   /* IE and Edge */
-  /* -ms-overflow-style: none;  */
+  -ms-overflow-style: none;
   /* Firefox */
-  /* scrollbar-width: none;  */
-  /* background-color: pink; */
+  scrollbar-width: none;
 `;
 
 export default function MainContainer({ children }) {

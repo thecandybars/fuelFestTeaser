@@ -46,36 +46,3 @@ export default function NFTCardCard(props) {
     </>
   );
 }
-
-// {/* CARD */}
-// <Card>
-//   {/* CARD IMAGE */}
-//   <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
-//     <img
-//       alt="NFT Card of a car"
-//       src={`${apiURL}/${astNFTCard.imageFront}`}
-//     />
-//   </Link>
-//   {/* <Collection>{props.collection}</Collection> */}
-//   <Name>{astNFTCard.name}</Name>
-//   <Price>{astNFTCard.price} DRIFT</Price>
-//   <div
-//     style={{
-//       display: "flex",
-//       justifyContent: "space-around",
-//       alignItems: "center",
-//       margin: "",
-//     }}
-//   >
-//     <Link to={"/wallet/marketplace/nftCarCard/" + astNFTCard.assetId}>
-//       <DetailsButton>Details</DetailsButton>
-//     </Link>
-//     <BuyButton
-//       onClick={(e) => {
-//         setDialogOpen(true);
-//       }}
-//     >
-//       BUY
-//     </BuyButton>
-//   </div>
-// </Card>

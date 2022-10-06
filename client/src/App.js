@@ -10,7 +10,7 @@ import Wallet from "./components/wallet/Wallet";
 import WalletVouchers from "./components/wallet/voucher";
 import WalletMarketplace from "./components/wallet/marketplace/";
 import Vendors from "./components/vendors/Vendors";
-import Sponsors from "./components/sponsors/Sponsors";
+import Sponsors from "./components/sponsors/index";
 import Maps from "./components/maps/Maps";
 import WalletVoting from "./components/wallet/voting/WalletVoting";
 import WalletPinsRallies from "./components/wallet/pinsRallies/WalletPinsRallies";

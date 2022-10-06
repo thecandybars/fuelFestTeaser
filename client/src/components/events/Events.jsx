@@ -3,6 +3,7 @@ import EventCard from "./EventCard";
 import { getEvents, getFavEvent, toggleFavEvent } from "../../services/event";
 import Title from "../../components/_shared/Title";
 import MainContainer from "../_shared/MainContainer";
+import CardsContainerColumn from "../_shared/CardsContainerColumn";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
@@ -22,8 +23,8 @@ export default function Events() {
       ? setEventShowingDesc(eventId)
       : setEventShowingDesc("");
   }
-
-  const eventCards =
+  // RENDER EVENT CARDS
+  const RenderEventCards =
     filteredEvents.length > 0 ? (
       filteredEvents.map((event) => (
         <EventCard
@@ -108,7 +109,7 @@ export default function Events() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <main>{eventCards}</main>
+      <CardsContainerColumn>{RenderEventCards}</CardsContainerColumn>
     </MainContainer>
   );
 }

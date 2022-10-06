@@ -1,14 +1,11 @@
 import axios from "axios";
+import { userId } from "../common/getLoginData";
 
 export async function toggleFavEvent(eventId) {
-  await axios.post(
-    `/user/ddf40198-fc6c-4595-95cc-bda6d77fffaa/favEvent/${eventId}`
-  );
+  await axios.post(`/user/${userId}/favEvent/${eventId}`);
 }
 export async function getFavEvent() {
-  const { data } = await axios.get(
-    `/favorite/ddf40198-fc6c-4595-95cc-bda6d77fffaa/event`
-  );
+  const { data } = await axios.get(`/favorite/${userId}/event`);
   return data;
 }
 export async function getEvents() {

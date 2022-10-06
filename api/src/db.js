@@ -180,6 +180,9 @@ Template.hasMany(Badge, { foreignKey: "templateId" });
 Voucher.belongsTo(Vendor, { foreignKey: "vendorId" });
 Vendor.hasMany(Voucher);
 
+// SPONSORS AND VENDORS
+Sponsor.hasOne(Vendor, { foreignKey: "sponsorId" });
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

@@ -164,7 +164,7 @@ export default function WalletMarketplace() {
   return (
     <BoughtAssetContext.Provider value={handleBoughAsset}>
       <MainContainer>
-        {<Title backButton="true">NFT MARKETPLACE</Title>}
+        <Title backButton="true">NFT MARKETPLACE</Title>
         <div style={{ display: "flex", padding: "5px 0" }}>
           {/* ASSET CATEGORY FILTER */}
           <StyledAssetFilter
@@ -223,15 +223,7 @@ export default function WalletMarketplace() {
         </div>
         {/* CARDS RENDER */}
         <StyledContainer>
-          <>
-            {/* <div>
-              <br />
-              <video height="232" autoPlay loop>
-                <source src={videoCard} type="video/mp4" />
-              </video>
-            </div> */}
-            {RenderNFTAssets}
-          </>
+          <>{RenderNFTAssets}</>
         </StyledContainer>
       </MainContainer>
     </BoughtAssetContext.Provider>

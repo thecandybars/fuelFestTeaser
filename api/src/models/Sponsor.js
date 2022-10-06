@@ -14,12 +14,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    storeId: {
+    descriptionShort: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    description: {
-      type: DataTypes.STRING,
+    descriptionLong: {
+      type: DataTypes.STRING(700),
       allowNull: true,
     },
     image: {

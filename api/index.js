@@ -107,8 +107,9 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0000",
           title: "Alpine",
-          storeId: "",
-          description: "Volutpat odio facilisis mauris sit.",
+          descriptionShort: "Volutpat odio facilisis mauris sit.",
+          descriptionLong:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium. Sit amet consectetur adipiscing elit duis tristique.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275475329.png",
           website: "",
@@ -117,8 +118,9 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0001",
           title: "CarPhysics",
-          storeId: "",
-          description:
+          descriptionShort:
+            "The Lifestyle we live, the dreams we make into a reality.",
+          descriptionLong:
             "The Lifestyle we live, the dreams we make into a reality, the vision representing the creator, the soul behind an automobile, these are all things that define CarPhysics and what we stand for as a Brand, as a Culture, and as a Way of Life.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275542810.svg",
@@ -128,8 +130,9 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0002",
           title: "Enkie",
-          storeId: "",
-          description:
+          descriptionShort:
+            "Enkei has been racing in top competition championships of the world for three decades. ",
+          descriptionLong:
             "Enkei has been racing in top competition championships of the world for three decades. As a result of continuous improvement and technological advances, Enkei continues its winning tradition and constantly challenges new horizons in wheel technology.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275549571.svg",
@@ -139,9 +142,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0003",
           title: "Fortune Auto",
-          storeId: "",
-          description:
+          descriptionShort:
             "We develop race-winning, performance suspension systems for Japanese and European vehicles.",
+          descriptionLong:
+            "We develop race-winning, performance suspension systems for Japanese and European vehicles. The advanced suspension technology found in our dampers is derived from successes in World Challenge, Redline Time Attack, Formula Drift, One Lap of America, NASA Racing Series, along with being the official suspension supplier of Global Time Attack. Research and development on the racetrack allows us to deliver the best suspension system on the market which optimizes comfort, reliability, and performance.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275555003.svg",
           website: "https://fortune-auto.com/",
@@ -150,9 +154,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0004",
           title: "Nardi Torino",
-          storeId: "",
-          description:
+          descriptionShort:
             "Nardi-Personal S.p.A. with its masterpieces worldwide appreciated coniugates the past to the future.",
+          descriptionLong:
+            "Since 2001, Vivid Racing has become one of the most recognized online automotive performance parts distributors. Starting from a $500 investment and a $1500 loan, Vivid Racing is a multi-million dollar company based in Gilbert, Arizona USA. With a strong, passionate team that is extremely customer centric, our focus on technology and logistics keep us at the forefront of the industry. Vivid Racing became well known in the automotive world for our project cars, magazine articles, participation in exclusive road rally events, and appearances in videos.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275564914.svg",
           website: "https://nardi-personal.com/",
@@ -161,8 +166,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0005",
           title: "NOS",
-          storeId: "",
-          description: "",
+          descriptionShort:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          descriptionLong:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium. Sit amet consectetur adipiscing elit duis tristique. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Orci porta non pulvinar neque laoreet suspendisse interdum.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275571419.svg",
           website: "",
@@ -171,9 +178,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0006",
           title: "Ovrdue",
-          storeId: "",
-          description:
+          descriptionShort:
             "We are an automotive lifestyle brand made for car enthusiasts, by car enthusiasts.",
+          descriptionLong:
+            "We are an automotive lifestyle brand made for car enthusiasts, by car enthusiasts. Ovrdue was started in 2013 in Oceanside, California by a small group of friends. We were working on our cars in our garage and realized that every time we were scheduled to get together, there was always someone who was always late. And not just by a few minutes, sometimes a few hours. We wanted to come up with a name for ourselves, design a logo, and make shirts and hoodies for ourselves. Our friends started asking for shirts and stickers of their own and we quickly started selling in batches in person. We eventually moved online when the demand became too high.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275577021.svg",
           website: "https://ovrdue.com/",
@@ -182,8 +190,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0007",
           title: "Team Scoundrels",
-          storeId: "",
-          description: "",
+          descriptionShort:
+            "Quis vel eros donec ac odio tempor orci dapibus ultrices.",
+          descriptionLong:
+            "Quis vel eros donec ac odio tempor orci dapibus ultrices. Lacus sed viverra tellus in hac habitasse platea dictumst. Blandit volutpat maecenas volutpat blandit aliquam etiam erat velit. Orci eu lobortis elementum nibh tellus molestie nunc.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275582730.svg",
           website: "https://www.youtube.com/c/TeamScoundrels",
@@ -192,8 +202,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
           title: "Sparco",
-          storeId: "",
-          description: "",
+          descriptionShort:
+            "In 1977, the dream of two young drivers to give motorsport more safety and more style was born Sparco.",
+          descriptionLong:
+            "Sparco S.p.A. is an Italian auto part and accessory company headquartered in Volpiano near Turin that specializes in producing items such as seats, steering wheels, harnesses, racewear and helmets. Sparco branded alloy wheels are produced under licence by OZ Group. They also sponsor many types of auto races including rallies, single-seaters.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275587510.svg",
           website: "https://www.youtube.com/c/TeamScoundrels",
@@ -202,8 +214,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0009",
           title: "Voltex",
-          storeId: "",
-          description: "",
+          descriptionShort:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+          descriptionLong:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu non diam phasellus vestibulum lorem. Aliquam sem fringilla ut morbi tincidunt. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Vitae nunc sed velit dignissim sodales ut.",
           image: "",
           logo: "uploads/sponsor/sponsor-1663275593094.svg",
           website: "https://www.instagram.com/voltexracing/?hl=en",
@@ -212,8 +226,10 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0010",
           title: "Iceboxx",
-          storeId: "",
-          description: "",
+          descriptionShort:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          descriptionLong:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu non diam phasellus vestibulum lorem. Aliquam sem fringilla ut morbi tincidunt. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Vitae nunc sed velit dignissim sodales ut.",
           image: "",
           logo: "",
           website: "https://www.instagram.com/iceboxxcustoms/?hl=en",
@@ -279,6 +295,18 @@ conn.sync({ force, alter }).then(() => {
         tent: "A93",
         geolocation: "A93",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+      },
+      {
+        id: "00000005-21ae-4db8-8d1d-bb831eabc337",
+        title: "Alpine",
+        category: "none",
+        description: "Turpis massa sed elementum tempus.",
+        logo: "",
+        image: "",
+        tent: "B512",
+        geolocation: "B512",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+        sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0000",
       },
     ]);
     await CarOwner.bulkCreate(
@@ -404,6 +432,113 @@ conn.sync({ force, alter }).then(() => {
         },
         {
           id: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          title: "Nissan Skyline GT-R",
+          number: 23,
+          manufacturer: "GT",
+          tireManufacturer: "Michelin",
+          chasis: "AZ-76",
+          upgrades: "Wheels,Body,Brakes,Engine,Nitro,Suspension",
+          otherSponsors: "",
+          description: "#M3GATRN Skyline GT-R w/ Widebody (R34 Facelift)",
+          location: "H15",
+          geolocation: "174.2,65.93",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f9099948082",
+          price: 45999,
+          year: "1991",
+          engine: "Garret Turbo",
+          body: "JDM, R34 Front-End Conversion, Wide-body",
+          suspension: "",
+          nitro: "",
+          brakes: "",
+          tires: "Enkie",
+          lights: "",
+          stereo: "",
+          others: "Nardi Steering Wheels",
+        },
+        //
+        {
+          id: "00ac1b58-3926-45f8-8b73-2a199025318a",
+          title: "Mitsubishi Eclipse",
+          number: 1984,
+          manufacturer: "Mitsubishi",
+          tireManufacturer: "Yokohama",
+          chasis: "EWQ-9",
+          upgrades: "Wheels,Stereo,Body,Brakes",
+          otherSponsors: "",
+          description:
+            "Full Replica of the 1995 Eclipse driven by Brian O'Conner in The Fast and the Furious movie. Autographed by Cody Walker",
+          location: "R35",
+          geolocation: "174.2,65.93",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
+          price: 34999,
+          year: "1997",
+          engine: "HotShot header, Injen intake",
+          body: "Robo Car Aero Armor Kit, APR GT 2 Wing",
+          suspension: "Tanabe SS springs, Energy bushings",
+          nitro: "75hp NOS",
+          brakes: "AEM Cross-drilled rotors",
+          tires: "18'' Axis SE7EN",
+          lights: "Underglow-X Green",
+          stereo: "Alpine CVA 1005 TV/DVD, 2x Sony 8''",
+          others: "Full Replica of F&F Eclipse",
+        },
+        {
+          id: "01ac1b58-3926-45f8-8b73-2a199025319c",
+          title: "Toyota Supra",
+          number: 124,
+          manufacturer: "Toyota",
+          tireManufacturer: "Michelin",
+          chasis: "Q29",
+          upgrades: "Wheels,Suspension,Nitro",
+          otherSponsors: "",
+          description:
+            "I'll miss my exit to keep on racing with the guy that I just met on the freeway a little longer...",
+          location: "T25",
+          geolocation: "174.2,65.93",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
+          price: 79499,
+          year: "2021",
+          engine: "Injen Power Package, Husky Exhaust",
+          body: "Southbay Autoworkz CF, Streethunter Wing",
+          suspension: "Iceboxx Customs Air Bags",
+          nitro: "",
+          brakes: "",
+          tires: "20'' Work VS-XX",
+          lights: "Underglow-X Green",
+          stereo: "",
+          others: "",
+        },
+        {
+          id: "02ac1b58-3926-45f8-8b73-2a199025318d",
+          title: "Mazda RX7",
+          number: 73,
+          manufacturer: "Mazda",
+          tireManufacturer: "Yokohama",
+          chasis: "EWZ-46",
+          upgrades: "Body,Engine,Brakes,Stereo",
+          otherSponsors: "",
+          description: "Full LSX Engine Swap Madness!",
+          location: "A72",
+          geolocation: "174.2,65.93",
+          festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+          carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
+          price: 89999,
+          year: "1998",
+          engine: "LSX Engine Swap, TorqStorm Supercharger",
+          body: "Custom rear window spoiler & wing",
+          suspension: "FortuneAuto Coilovers, Custom Angle kit",
+          nitro: "",
+          brakes: "PowerStop z28 Street Warrior kit",
+          tires: "Kenda Tires",
+          lights: "HID Swap front, removed rear difussers",
+          stereo: "",
+          others: "",
+        },
+        {
+          id: "03ac1b58-3926-45f8-8b73-2a199025319d",
           title: "Nissan Skyline GT-R",
           number: 23,
           manufacturer: "GT",
