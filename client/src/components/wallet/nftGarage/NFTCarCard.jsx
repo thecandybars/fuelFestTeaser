@@ -26,6 +26,8 @@ export default function NFTCardCard(props) {
           closeDialog={handleDialogClose}
         />
       </Dialog>
+
+      {/* CARD */}
       <NftCard
         key={astNFTCard.assetId}
         id={astNFTCard.assetId}

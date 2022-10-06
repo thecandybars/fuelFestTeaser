@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { getAssetById, editAssetById } from "../../../services/assets";
 import { Dialog } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
+import { Transferable, Burnable } from "../../../iconComponents";
+import { theme } from "../../../common/theme";
 
 const ModalContainer = styled.div`
   height: fit-content;
-  padding: 25px 45px;
-  background-color: rgba(10, 10, 10, 0.97);
+  padding: 15px;
+  background-color: ${(props) => props.theme.dialogBackground};
   border: 0;
   color: ${(props) => props.theme.white};
   font-family: "Oswald";
@@ -15,7 +17,7 @@ const ModalContainer = styled.div`
 const StyledFirstLine = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  align-items: flex-start;
   div {
     display: flex;
     align-items: stretch;
@@ -24,26 +26,43 @@ const StyledFirstLine = styled.div`
   }
   h1 {
     color: ${(props) => props.theme.yellow};
-    /* margin-left: -15px; */
+    margin-bottom: 15px;
   }
   img {
     width: 100px;
+    margin-left: 30px;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  span {
+    margin-left: 10px;
+  }
+  .on {
+    fill: ${(props) => props.theme.red};
+    color: ${(props) => props.theme.white};
+  }
+  .off {
+    fill: ${(props) => props.theme.lightGray};
+    color: ${(props) => props.theme.lightGray};
   }
 `;
 const StyledSummary = styled.div`
   margin-bottom: 25px;
   h2 {
-    font-size: 24px;
+    font-size: 1.7rem;
+    margin-bottom: 10px;
   }
   div {
     display: flex;
     margin-bottom: 5px;
   }
   h3 {
-    width: 130px;
+    width: 40%;
     font-size: 1.1rem;
   }
   p {
+    width: 60%;
     font-family: "Oswald";
     font-size: 1.1rem;
     color: ${(props) => props.theme.yellow};
@@ -56,7 +75,7 @@ const StyledPrice = styled.div`
     color: ${(props) => props.theme.red};
   }
   input {
-    margin: 0 5px;
+    margin: 0 10px;
     width: 90px;
   }
   span {
@@ -69,7 +88,7 @@ const StyledListing = styled.div`
   font-size: 1.3rem;
   input {
     margin: 0;
-    margin-right: 5px;
+    margin-right: 10px;
     width: 25px;
     background-color: ${(props) => props.theme.green};
   }
@@ -157,24 +176,22 @@ export default function DialogSellNFT(props) {
     setFetchedAssetData(await getAssetById(assetId));
   }
 
-  // EDIT
   const [confirmBuyOpen, setConfirmBuyOpen] = useState(false);
   const handleConfirmBuyClose = () => {
     setConfirmBuyOpen(false);
     props.closeDialog();
   };
 
-  async function handleEdit() {
-    const response = await editAssetById(
-      fetchedAssetData.assetData.assetId,
-      isListed,
-      price
-    );
+  // HANDLE CONFRIM/CANCEL
+  async function handleConfirm() {
+    await editAssetById(fetchedAssetData.assetData.assetId, isListed, price);
     props.closeDialog();
-
     // if (response.status === 200) {
     //   setConfirmBuyOpen(true);
     // }
+  }
+  async function handleCancel() {
+    props.closeDialog();
   }
 
   // SUMMARY DATA (DIFFERENT FOR CARDS & VOUCHERS)
@@ -185,6 +202,7 @@ export default function DialogSellNFT(props) {
   )
     summaryData = (
       <>
+        <h2>Summary</h2>
         <div>
           <h3>Collection</h3>
           <p>{fetchedAssetData.festival.short}</p>
@@ -213,24 +231,26 @@ export default function DialogSellNFT(props) {
   )
     summaryData = (
       <>
+        <h2>Summary</h2>
         <div>
-          <h2>{fetchedAssetData.assetData.title}</h2>
+          <h3>Brand</h3>
+          <p>{fetchedAssetData.assetData.vendor.title}</p>
         </div>
         <div>
-          {/* <h3>Description</h3> */}
+          <h3>ID</h3>
+          <p>{fetchedAssetData.assetData.assetId}</p>
+        </div>
+        <div>
+          <h3>Name</h3>
+          <p>{fetchedAssetData.assetData.title}</p>
+        </div>
+        <div>
+          <h3>Description</h3>
           <p>{fetchedAssetData.assetData.description}</p>
         </div>
         <div>
           <h3>Vendor</h3>
-          <p>{fetchedAssetData.assetData.vendor.title}</p>
-        </div>
-        <div>
-          <h3>Tent</h3>
-          <p>{fetchedAssetData.assetData.vendor.tent}</p>
-        </div>
-        <div>
-          <h3>Seller</h3>
-          <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
+          <p style={{ textDecoration: "underline" }}>See in the map</p>
         </div>
       </>
     );
@@ -257,13 +277,16 @@ export default function DialogSellNFT(props) {
         <StyledFirstLine>
           <div>
             <h1>Sell Listing</h1>
-            <div>
-              <h3>
-                {fetchedAssetData.assetData.transferable && "Transferable"}
-              </h3>
-              <h3>{fetchedAssetData.assetData.burnable && "Burnable"}</h3>
-            </div>
-            <h2>Summary</h2>
+            <p
+              className={fetchedAssetData.assetData.transferable ? "on" : "off"}
+            >
+              <Transferable />
+              <span>Transferable</span>
+            </p>
+            <p className={fetchedAssetData.assetData.burnable ? "on" : "off"}>
+              <Burnable />
+              <span>Burnable</span>
+            </p>
           </div>
           <img
             alt="Preview NFT"
@@ -293,10 +316,10 @@ export default function DialogSellNFT(props) {
         </StyledListing>
 
         <StyledBottomLine>
-          <StyledButtonYes onClick={handleEdit}>
+          <StyledButtonYes onClick={handleConfirm}>
             {isListed ? `Sell for ${price} DRIFT` : "CONFIRM"}
           </StyledButtonYes>
-          <StyledButtonNo onClick={handleEdit}>{`CANCEL`}</StyledButtonNo>
+          <StyledButtonNo onClick={handleCancel}>{`CANCEL`}</StyledButtonNo>
         </StyledBottomLine>
 
         {/* DO WE NEED A CONFIRMATION OR CANCEL DIALOG ?? */}

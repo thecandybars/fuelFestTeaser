@@ -7,13 +7,11 @@ import { Dialog } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
 
 const ModalContainer = styled.div`
-  /* margin: 20px; */
   height: fit-content;
   padding: 15px;
   background-color: ${(props) => props.theme.dialogBackground};
   border: 0;
   color: ${(props) => props.theme.white};
-  /* border: 1px solid red; */
 `;
 const StyledFirstLine = styled.div`
   display: flex;
