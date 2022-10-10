@@ -32,7 +32,7 @@ export default function Maps() {
   const [clicked, setClicked] = useState("");
   console.log("🚀 ~ file: Maps.jsx ~ line 33 ~ Maps ~ clicked", clicked);
   return (
-    <>
+    <MainContainer>
       <input
         value={width}
         type="range"
@@ -86,7 +86,7 @@ export default function Maps() {
         </svg>
       </div>
       <p>{clicked}</p>
-    </>
+    </MainContainer>
 
     // <MainContainer>
     //   <Title backButton="true">MAPS</Title>
