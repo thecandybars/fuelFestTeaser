@@ -39,7 +39,8 @@ export default function Maps() {
         min="50"
         max="2000"
         onChange={(e) => setWidth(e.target.value)}
-      />
+      />{" "}
+      <p>{clicked}</p>
       <div
         style={{
           overflowX: "visible",
@@ -85,7 +86,6 @@ export default function Maps() {
           </g>
         </svg>
       </div>
-      <p>{clicked}</p>
     </MainContainer>
 
     // <MainContainer>
