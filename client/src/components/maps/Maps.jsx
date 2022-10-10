@@ -28,48 +28,107 @@ export default function Maps() {
     height: `${zoom}%`,
     transition: " 250ms cubic-bezier(0.5, 0, 0.5, 1)",
   };
+  const [width, setWidth] = useState(400);
+  const [clicked, setClicked] = useState("");
+  console.log("🚀 ~ file: Maps.jsx ~ line 33 ~ Maps ~ clicked", clicked);
   return (
-    <MainContainer>
-      <Title backButton="true">MAPS</Title>
+    <>
+      <input
+        value={width}
+        type="range"
+        min="50"
+        max="2000"
+        onChange={(e) => setWidth(e.target.value)}
+      />
       <div
         style={{
-          marginBottom: "20px",
-          display: "flex",
-          justifyContent: "space-between",
+          overflowX: "visible",
+          overflowY: "scroll",
+          height: "600px",
+          width: "400px",
+          backgroundColor: "cyan",
         }}
       >
-        <input type="text" placeholder="search" size="40" />
-        <div>
-          <button
-            onClick={handleZoomOut}
-            style={{ fontSize: "1.3rem", width: "30px" }}
-          >
-            -
-          </button>
-          <button
-            onClick={handleZoomIn}
-            style={{ fontSize: "1.3rem", width: "30px" }}
-          >
-            +
-          </button>
-        </div>
+        <svg
+          width={width}
+          version="1.1"
+          // viewBox="0 0 400 600"
+          viewBox="0 0 210 297"
+        >
+          <g stroke="#fff" stroke-miterlimit=".7" stroke-width=".3175">
+            <rect
+              x="51.074"
+              y="53.873"
+              width="129.43"
+              height="191"
+              ry="64.717"
+              fill="#feae2e"
+            />
+            <ellipse
+              id="someGreenCircle"
+              cx="92.178"
+              cy="111.77"
+              rx="20.465"
+              ry="20.115"
+              fill="#0f0"
+              onClick={(e) => setClicked(e.target.id)}
+            />
+            <ellipse
+              id="someRedCircle"
+              cx="129.08"
+              cy="194.85"
+              rx="21.339"
+              ry="20.29"
+              fill="#f00"
+              onClick={(e) => setClicked(e.target.id)}
+            />
+          </g>
+        </svg>
       </div>
-      <div style={imgScroll}>
-        <div style={imgStyle}>
-          <img
-            alt="sponsors"
-            src={map}
-            onClick={() => setLabelState((prev) => !prev)}
-          />
-        </div>
-      </div>
-      <Drawer
-        anchor={"bottom"}
-        open={labelState}
-        onClose={() => setLabelState(false)}
-      >
-        <img alt="label" src={label} />
-      </Drawer>
-    </MainContainer>
+      <p>{clicked}</p>
+    </>
+
+    // <MainContainer>
+    //   <Title backButton="true">MAPS</Title>
+    //   <div
+    //     style={{
+    //       marginBottom: "20px",
+    //       display: "flex",
+    //       justifyContent: "space-between",
+    //     }}
+    //   >
+    //     <input type="text" placeholder="search" size="40" />
+    //     <div>
+    //       <button
+    //         onClick={handleZoomOut}
+    //         style={{ fontSize: "1.3rem", width: "30px" }}
+    //       >
+    //         -
+    //       </button>
+    //       <button
+    //         onClick={handleZoomIn}
+    //         style={{ fontSize: "1.3rem", width: "30px" }}
+    //       >
+    //         +
+    //       </button>
+    //     </div>
+    //   </div>
+    //   <div style={imgScroll}>
+    //     <div style={imgStyle}>
+    //       <img
+    //         alt="sponsors"
+    //         src={map}
+    //         onClick={() => setLabelState((prev) => !prev)}
+    //       />
+    //     </div>
+    //   </div>
+    //   <Drawer
+    //     anchor={"bottom"}
+    //     open={labelState}
+    //     onClose={() => setLabelState(false)}
+    //   >
+    //     <img alt="label" src={label} />
+    //   </Drawer>
+    // </MainContainer>
   );
 }
