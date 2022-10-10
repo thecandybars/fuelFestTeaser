@@ -202,10 +202,24 @@ export default function DialogSellNFT(props) {
 
             <h2>Summary</h2>
           </div>
-          <img
+          {fetchedAssetData.assetData.imageFrontType === "image" && (
+            <img
+              alt={props.title}
+              src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+            />
+          )}
+          {fetchedAssetData.assetData.imageFrontType === "video" && (
+            <video autoPlay loop>
+              <source
+                src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+                type="video/mp4"
+              />
+            </video>
+          )}
+          {/* <img
             alt="Preview NFT"
             src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
-          />
+          /> */}
         </StyledFirstLine>
         <StyledSummary>
           <div>

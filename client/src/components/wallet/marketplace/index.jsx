@@ -6,7 +6,6 @@ import NftVoucherCard from "./NftVoucherCard";
 import styled from "styled-components";
 import MainContainer from "../../_shared/MainContainer";
 import { useSearchParams } from "react-router-dom";
-import videoCard from "../../../img/videoCard.mp4";
 
 // STYLED COMPONENTS
 const StyledContainer = styled.div`
@@ -57,10 +56,6 @@ export const BoughtAssetContext = createContext();
 
 export default function WalletMarketplace() {
   const [fetchedAssets, setFetchedAssets] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 60 ~ WalletMarketplace ~ fetchedAssets",
-    fetchedAssets
-  );
   const [filteredAssets, setFilteredAssets] = useState([]);
 
   // ASSET HAS BEEN BOUGHT TRACKING (TO  TRIGGER RENDER AFTER ASSET HAS BEEN BOUGHT)

@@ -239,7 +239,7 @@ export default function NftCardDetail(props) {
           >
             {props.actionButton.label}
           </StyledButton>
-          <StyledPrice>{props.price} DRIFT</StyledPrice>
+          {props.price !== "" && <StyledPrice>{props.price} DRIFT</StyledPrice>}
         </StyledRight>
       </StyledDataRow>
     </MainContainer>

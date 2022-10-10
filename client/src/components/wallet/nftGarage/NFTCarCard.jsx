@@ -44,7 +44,9 @@ export default function NFTCardCard(props) {
         secondaryActionTitle="Details"
         secondaryActionColor={theme.yellow}
         secondaryAction={() => {
-          navigate("/wallet/marketplace/nftCarCard/" + astNFTCard.assetId);
+          navigate("/wallet/nftGarage/nftCarCard/" + astNFTCard.assetId, {
+            test: true,
+          });
         }}
       />
     </>

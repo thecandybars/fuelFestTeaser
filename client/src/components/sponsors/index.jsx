@@ -11,17 +11,8 @@ import CardsContainerColumn from "../_shared/CardsContainerColumn";
 
 export default function Sponsors() {
   const [fetchedSponsors, setFetchedSponsors] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 14 ~ Sponsors ~ fetchedSponsors",
-    fetchedSponsors
-  );
   const [filteredSponsors, setFilteredSponsors] = useState([]);
-  const [fetchedFavs, setFetchedFavs] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 20 ~ Sponsors ~ fetchedFavs",
-    fetchedFavs
-  );
-
+  //INIT
   useEffect(() => {
     fetchSponsors();
     fetchFavorites();
@@ -31,25 +22,27 @@ export default function Sponsors() {
     setFetchedSponsors(sponsors);
     setFilteredSponsors(sponsors);
   };
+  // FAVORITES
+  const [fetchedFavs, setFetchedFavs] = useState([]);
   const fetchFavorites = async () => {
     const favs = await getFavSponsor();
     setFetchedFavs(favs);
   };
-
-  const [sponsorShowingDesc, setSponsorShowingDesc] = useState("");
-  const today = Date.now();
-
   async function toggleFav(sponsorId) {
+    console.log(
+      "🚀 ~ file: index.jsx ~ line 32 ~ toggleFav ~ sponsorId",
+      sponsorId
+    );
     await toggleFavSponsor(sponsorId);
     fetchFavorites();
   }
+  const [sponsorShowingDesc, setSponsorShowingDesc] = useState("");
   async function handleShowDesc(sponsorId) {
     sponsorShowingDesc !== sponsorId
       ? setSponsorShowingDesc(sponsorId)
       : setSponsorShowingDesc("");
   }
-  // RENDER EVENT CARDS
-  //   const RenderSponsorCards = [];
+  // RENDER SPONSOR CARDS
   const RenderSponsorCards =
     filteredSponsors.length > 0 ? (
       filteredSponsors.map((sponsor) => (
@@ -59,7 +52,7 @@ export default function Sponsors() {
           isFavorite={
             !!fetchedFavs.find((favSponsor) => sponsor.id === favSponsor.id)
           }
-          togFav={toggleFav}
+          toggleFav={toggleFav}
           showDesc={handleShowDesc}
         />
       ))

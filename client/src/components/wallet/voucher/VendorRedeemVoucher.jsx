@@ -161,7 +161,7 @@ export default function VendorRedeemVoucher() {
     <MainContainer>
       {Object.keys(fetchedVoucher).length > 0 && (
         <NftDetailsDialogConfirm
-          title="Details"
+          title="Voucher Redeem Requested"
           details={nftDetailsDialogData}
           image={fetchedVoucher.image}
           description={fetchedVoucher.description}

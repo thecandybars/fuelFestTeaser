@@ -8,6 +8,9 @@ const StyledMain = styled.main`
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme.black};
   overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   /* IE and Edge */
   -ms-overflow-style: none;
   /* Firefox */

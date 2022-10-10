@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getVoucher } from "../../../services/assets";
-import { Dialog } from "@mui/material";
 import { theme } from "../../../common/theme";
-import DialogBuyVoucher from "./DialogBuyVoucher";
+// import { Dialog } from "@mui/material";
+// import DialogQrRedeemVoucher from "./DialogQrRedeemVoucher";
 import NftCardDetail from "../../_shared/NftCardDetail";
 
-export default function NftVoucherDetail() {
+export default function RedeemVoucherDetail() {
   const { voucherId } = useParams();
+  const navigate = useNavigate();
 
   // INIT
   const [fetchedVoucher, setFetchedVoucher] = useState({});
-  console.log(
-    "🚀 ~ file: NftVoucherDetail.jsx ~ line 14 ~ NftVoucherDetail ~ fetchedVoucher",
-    fetchedVoucher
-  );
   const fetchVoucher = async (voucherId) => {
     setFetchedVoucher(await getVoucher(voucherId));
   };
@@ -26,18 +23,26 @@ export default function NftVoucherDetail() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogClose = () => {
     setDialogOpen(false);
+    navigate(-1);
   };
 
   return (
     Object.keys(fetchedVoucher).length !== 0 && (
       <>
         {/* DIALOG */}
-        <Dialog open={dialogOpen} onClose={handleDialogClose}>
-          <DialogBuyVoucher
-            assetId={fetchedVoucher.voucher.assetId}
-            closeDialog={handleDialogClose}
+        {/* Don´t know how to open the QR Dialog from here! */}
+        {/* <Dialog open={dialogOpen} onClose={handleDialogClose}>
+          <DialogQrRedeemVoucher
+            open={openQrDialog}
+            vendor={fetchedVoucher.vendor.title}
+            title={fetchedVoucher.voucher.title}
+            image={fetchedVoucher.voucher.image}
+            id={fetchedVoucher.asset.id}
+            handleClose={setOpenQrDialog}
+            clearDialog={setNftCardPrimaryButtonId}
+            setReload={setReaload}
           />
-        </Dialog>
+        </Dialog> */}
 
         <NftCardDetail
           id={voucherId}
@@ -45,18 +50,18 @@ export default function NftVoucherDetail() {
           title={fetchedVoucher.voucher.title}
           data={{
             id: voucherId,
-            description: fetchedVoucher.description,
+            description: fetchedVoucher.voucher.description,
             vendorLogo: fetchedVoucher.voucher.vendor.logo,
             vendorTitle: fetchedVoucher.voucher.vendor.title,
             vendorTent: fetchedVoucher.voucher.vendor.tent,
           }}
           image={fetchedVoucher.voucher.image}
           imageType={fetchedVoucher.voucher.imageType}
-          price={fetchedVoucher.voucher.price}
+          price={""}
           actionButton={{
-            action: () => setDialogOpen(true),
-            label: "Buy",
-            color: theme.green,
+            action: () => navigate(-1),
+            label: "GO BACK",
+            color: theme.red,
           }}
         />
       </>

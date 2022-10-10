@@ -6,7 +6,7 @@ import { walletId } from "../../../common/getLoginData";
 import { Dialog } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
 
-const ModalContainer = styled.div`
+const DialogContainer = styled.div`
   height: fit-content;
   padding: 15px;
   background-color: ${(props) => props.theme.dialogBackground};
@@ -18,7 +18,7 @@ const StyledFirstLine = styled.div`
   justify-content: space-between;
   align-items: center;
   h1 {
-    color: ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.green};
   }
   img {
     width: 100px;
@@ -40,6 +40,7 @@ const StyledSummary = styled.div`
     font-size: 1.1rem;
     color: ${(props) => props.theme.white};
   }
+
   p {
     font-family: "Oswald";
     font-size: 1.1rem;
@@ -150,7 +151,7 @@ export default function DialogBuyNFT(props) {
   //   };
   return (
     Object.keys(fetchedAssetData).length !== 0 && (
-      <ModalContainer>
+      <DialogContainer>
         <StyledFirstLine>
           <h1>Buy Listing</h1>
 
@@ -221,7 +222,7 @@ export default function DialogBuyNFT(props) {
             <div onClick={handleConfirmBuyClose}>Close</div>
           </StyledConfirmTransaction>
         </Dialog>
-      </ModalContainer>
+      </DialogContainer>
     )
   );
 }

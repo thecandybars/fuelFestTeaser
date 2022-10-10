@@ -17,11 +17,14 @@ import WalletPinsRallies from "./components/wallet/pinsRallies/WalletPinsRallies
 import WalletNFTGarage from "./components/wallet/nftGarage/index";
 import WalletStatistics from "./components/wallet/statistics/WalletStatistics";
 import NFTCarDetail from "./components/wallet/marketplace/NFTCarDetail";
+import NftCarDetail from "./components/wallet/nftGarage/NftCarDetail";
 import WalletVotingCategory from "./components/wallet/voting/WalletVotingCategory";
 import CarDetails from "./components/cars/CarDetails";
 import User from "./components/profile/User";
 import NftVoucherDetail from "./components/wallet/marketplace/NftVoucherDetail";
 import VendorRedeemVoucher from "./components/wallet/voucher/VendorRedeemVoucher";
+import NftGarageVoucherDetail from "./components/wallet/nftGarage/NftGarageVoucherDetail";
+import RedeemVoucherDetail from "./components/wallet/voucher/RedeemVoucherDetail";
 
 function App() {
   return (
@@ -38,6 +41,10 @@ function App() {
           <Route path="/maps" element={<Maps />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/wallet/vouchers" element={<WalletVouchers />} />
+          <Route
+            path="/wallet/voucherRedeem/:voucherId"
+            element={<RedeemVoucherDetail />}
+          />
           <Route path="/wallet/voting" element={<WalletVoting />} />
           <Route
             path="/wallet/voting/category/:voteCategory"
@@ -50,8 +57,16 @@ function App() {
             element={<NFTCarDetail />}
           />
           <Route
+            path="/wallet/nftGarage/nftCarCard/:assetId"
+            element={<NftCarDetail />}
+          />
+          <Route
             path="/wallet/marketplace/voucher/:voucherId"
             element={<NftVoucherDetail />}
+          />
+          <Route
+            path="/wallet/nftGarage/voucher/:voucherId"
+            element={<NftGarageVoucherDetail />}
           />
           <Route path="/wallet/NFTGarage" element={<WalletNFTGarage />} />
           <Route path="/wallet/stats" element={<WalletStatistics />} />

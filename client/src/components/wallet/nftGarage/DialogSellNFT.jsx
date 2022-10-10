@@ -46,6 +46,12 @@ const StyledFirstLine = styled.div`
     fill: ${(props) => props.theme.lightGray};
     color: ${(props) => props.theme.lightGray};
   }
+  img {
+    width: 100px;
+  }
+  video {
+    width: 100px;
+  }
 `;
 const StyledSummary = styled.div`
   margin-bottom: 25px;
@@ -248,10 +254,10 @@ export default function DialogSellNFT(props) {
           <h3>Description</h3>
           <p>{fetchedAssetData.assetData.description}</p>
         </div>
-        <div>
+        {/* <div>
           <h3>Vendor</h3>
           <p style={{ textDecoration: "underline" }}>See in the map</p>
-        </div>
+        </div> */}
       </>
     );
 
@@ -288,13 +294,27 @@ export default function DialogSellNFT(props) {
               <span>Burnable</span>
             </p>
           </div>
-          <img
+          {fetchedAssetData.assetData.imageFrontType === "image" && (
+            <img
+              alt={props.title}
+              src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+            />
+          )}
+          {fetchedAssetData.assetData.imageFrontType === "video" && (
+            <video autoPlay loop>
+              <source
+                src={`${apiURL}/${fetchedAssetData.assetData.imageFront}`}
+                type="video/mp4"
+              />
+            </video>
+          )}
+          {/* <img
             alt="Preview NFT"
             src={`${apiURL}/${
               fetchedAssetData.assetData.imageFront ||
               fetchedAssetData.assetData.image
             }`}
-          />
+          /> */}
         </StyledFirstLine>
         <StyledSummary>{summaryData}</StyledSummary>
         <StyledPrice>

@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getVoucher } from "../../../services/assets";
 import { Dialog } from "@mui/material";
 import { theme } from "../../../common/theme";
-import DialogBuyVoucher from "./DialogBuyVoucher";
+import DialogSellVoucher from "./DialogSellVoucher";
 import NftCardDetail from "../../_shared/NftCardDetail";
 
-export default function NftVoucherDetail() {
+export default function NftGarageVoucherDetail() {
   const { voucherId } = useParams();
+  const navigate = useNavigate();
 
   // INIT
   const [fetchedVoucher, setFetchedVoucher] = useState({});
-  console.log(
-    "🚀 ~ file: NftVoucherDetail.jsx ~ line 14 ~ NftVoucherDetail ~ fetchedVoucher",
-    fetchedVoucher
-  );
   const fetchVoucher = async (voucherId) => {
     setFetchedVoucher(await getVoucher(voucherId));
   };
@@ -26,6 +23,7 @@ export default function NftVoucherDetail() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogClose = () => {
     setDialogOpen(false);
+    navigate(-1);
   };
 
   return (
@@ -33,7 +31,7 @@ export default function NftVoucherDetail() {
       <>
         {/* DIALOG */}
         <Dialog open={dialogOpen} onClose={handleDialogClose}>
-          <DialogBuyVoucher
+          <DialogSellVoucher
             assetId={fetchedVoucher.voucher.assetId}
             closeDialog={handleDialogClose}
           />
@@ -45,7 +43,7 @@ export default function NftVoucherDetail() {
           title={fetchedVoucher.voucher.title}
           data={{
             id: voucherId,
-            description: fetchedVoucher.description,
+            description: fetchedVoucher.voucher.description,
             vendorLogo: fetchedVoucher.voucher.vendor.logo,
             vendorTitle: fetchedVoucher.voucher.vendor.title,
             vendorTent: fetchedVoucher.voucher.vendor.tent,
@@ -55,8 +53,8 @@ export default function NftVoucherDetail() {
           price={fetchedVoucher.voucher.price}
           actionButton={{
             action: () => setDialogOpen(true),
-            label: "Buy",
-            color: theme.green,
+            label: fetchedVoucher.asset.isListed ? "EDIT" : "SELL",
+            color: fetchedVoucher.asset.isListed ? theme.red : theme.orange,
           }}
         />
       </>

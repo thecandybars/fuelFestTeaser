@@ -13,6 +13,7 @@ export const themeMUI = createTheme({
     green: { main: "#3ab54a" },
     darkGreen: { main: "#00703d" },
     dialogBackground: { main: "rgba(10, 10, 10, 0.97)" },
+    grayLine: { main: "#2d2d2d" },
     black: { main: "#000000" },
   },
 });
@@ -28,5 +29,6 @@ export const theme = {
   green: "#3ab54a",
   darkGreen: "#00703d",
   dialogBackground: "rgba(10, 10, 10, 0.97)",
+  grayLine: "#2d2d2d",
   black: "#000000",
 };

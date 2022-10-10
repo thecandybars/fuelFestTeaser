@@ -3,15 +3,32 @@ import { walletId } from "../../common/getLoginData";
 import styled from "styled-components";
 
 const DialogContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: fit-content;
-  padding: 15px;
-  background-color: ${(props) => props.theme.dialogBackground};
+  padding: 25px 45px;
+  background-color: rgba(10, 10, 10, 0.97);
   border: 0;
-  color: #d9d9d9;
+  color: ${(props) => props.theme.white};
+  font-family: "Oswald";
 `;
+const StyledFirstLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  div {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  h1 {
+    color: ${(props) => props.theme.green};
+    font-size: 2.3rem;
+  }
+  img {
+    width: 100px;
+  }
+`;
+
 const StyledHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,27 +48,52 @@ const StyledImage = styled.img`
   margin: 15px auto;
 `;
 const StyledSummary = styled.div`
+  margin-bottom: 25px;
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
   div {
     display: flex;
     margin-bottom: 5px;
   }
-  h2 {
-    font-size: 24px;
-  }
   h3 {
     width: 130px;
     font-size: 1.1rem;
-    color: ${(props) => props.theme.white};
-  }
-  h5 {
-    font-size: 1.1rem;
-    color: ${(props) => props.theme.green};
   }
   p {
     font-family: "Oswald";
     font-size: 1.1rem;
     color: ${(props) => props.theme.yellow};
   }
+`;
+const StyledBottomLine = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  font-size: 1.3rem;
+`;
+const StyledButtonYes = styled.div`
+  width: 80%;
+  margin: 5px 0;
+  padding: 1px 10px;
+  background-color: ${(props) => props.theme.green};
+  color: white;
+  border-radius: 20px;
+  font-family: "Oswald";
+  text-align: center;
+`;
+const StyledButtonNo = styled.div`
+  width: 70%;
+  margin: 5px 0;
+  padding: 1px 10px;
+  text-decoration: underline;
+  /* background-color: ${(props) => props.theme.red}; */
+  color: white;
+  border-radius: 20px;
+  font-family: "Oswald";
+  text-align: center;
 `;
 const StyledDescription = styled.p`
   font-size: 1rem;
@@ -132,11 +174,16 @@ export default function NftDetailsDialogConfirm(props) {
 
   return (
     <DialogContainer>
-      <StyledHeader>
-        <h1>{props.title}</h1>
+      <StyledFirstLine>
+        <div>
+          <h1>{props.title}</h1>
+        </div>
+        <img alt="Preview asset" src={`${apiURL}/${props.image}`} />
         <h2>{props.subtitle}</h2>
-      </StyledHeader>
+      </StyledFirstLine>
+
       <StyledSummary>
+        <h2>Summary</h2>
         {props.details.map((detail) => (
           <div key={detail.label}>
             <h3>{detail.label}</h3>
@@ -144,14 +191,22 @@ export default function NftDetailsDialogConfirm(props) {
           </div>
         ))}
       </StyledSummary>
-      <StyledImage alt="Preview asset" src={`${apiURL}/${props.image}`} />
-      <StyledDescription>{props.description}</StyledDescription>
+      {/* <StyledDescription>{props.description}</StyledDescription>
       <StyledButton onClick={props.primaryButton.action}>
         {props.primaryButton.label}
       </StyledButton>
       <StyledBack onClick={props.secondaryButton.action}>
         {props.secondaryButton.label}
-      </StyledBack>
+      </StyledBack> */}
+
+      <StyledBottomLine>
+        <StyledButtonYes onClick={props.primaryButton.action}>
+          {props.primaryButton.label}
+        </StyledButtonYes>
+        <StyledButtonNo
+          onClick={props.secondaryButton.action}
+        >{`CANCEL`}</StyledButtonNo>
+      </StyledBottomLine>
     </DialogContainer>
   );
 }

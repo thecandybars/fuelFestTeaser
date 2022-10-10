@@ -6,21 +6,18 @@ import { icons } from "../../common/icons";
 import { Favorites } from "../../iconComponents";
 import camelCase from "../../common/camelCase";
 import { theme } from "../../common/theme";
-
+import HorizontalCardContainer from "../_shared/HorizontalCardContainer";
 const Container = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
   margin-top: 10px;
+  margin-bottom: 3px;
   cursor: pointer;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #2d2d2d;
 `;
 const CarImage = styled.img`
   width: 140px;
   object-fit: cover;
   object-position: bottom;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 const CarData = styled.div`
   width: 100%;
@@ -87,65 +84,66 @@ export default function CarCard(props) {
   };
   return (
     <>
-      <Container onClick={() => navigate(`/car/${props.car.id}`)}>
-        {/* Delete TwoColumns element to force image to be square */}
-        <TwoColumns style={{ alignItems: "flex-start" }}>
-          <CarImage
-            alt="A car"
-            src={`${apiURL}/${
-              !!props.car.carImages.length && props.car.carImages[0].image
-            }`}
-          />
-          <CarData>
-            {/* TITLE + FAVORITE */}
-            <TwoColumns>
-              <CarTitle>
-                {props.car.year && props.car.year + " "}
-                {props.car.title}
-              </CarTitle>
-              <Favorites
-                style={favIconStyle}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  props.togFav(props.car.id);
-                }}
-              />
-            </TwoColumns>
-            {/* ROW OWNER */}
-            <OneColumn>
-              <SmIcon>
-                <Owner />
-              </SmIcon>
-              <p>{props.car.carOwner.name}</p>
-            </OneColumn>
-            {/* ROW LOCATION + MAP*/}
-            <TwoColumns>
+      <div onClick={() => navigate(`/car/${props.car.id}`)}>
+        <HorizontalCardContainer>
+          {/* Delete TwoColumns element to force image to be square */}
+          <TwoColumns style={{ alignItems: "flex-start" }}>
+            <CarImage
+              alt="A car"
+              src={`${apiURL}/${
+                !!props.car.carImages.length && props.car.carImages[0].image
+              }`}
+            />
+            <CarData>
+              {/* TITLE + FAVORITE */}
+              <TwoColumns>
+                <CarTitle>
+                  {props.car.year && props.car.year + " "}
+                  {props.car.title}
+                </CarTitle>
+                <Favorites
+                  style={favIconStyle}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    props.togFav(props.car.id);
+                  }}
+                />
+              </TwoColumns>
+              {/* ROW OWNER */}
               <OneColumn>
                 <SmIcon>
-                  <Location />
+                  <Owner />
                 </SmIcon>
-                <p>{props.car.location}</p>
+                <p>{props.car.carOwner.name}</p>
               </OneColumn>
-              <MapLink>
-                {/* <SmIcon> */}
-                <Map />
-                {/* </SmIcon> */}
-                <p>map</p>
-              </MapLink>
-            </TwoColumns>
-            {/* ROW VOTING CATEGORIES*/}
-            <OneColumn>
-              {props.car.voteCategories.map((voteCat) => (
-                <VoteIcon
-                  alt={voteCat.title}
-                  src={icons.voting[camelCase(voteCat.title)]}
-                  key={voteCat.id}
-                />
-              ))}
-            </OneColumn>
-          </CarData>
-        </TwoColumns>
-      </Container>
+              {/* ROW LOCATION + MAP*/}
+              <TwoColumns>
+                <OneColumn>
+                  <SmIcon>
+                    <Location />
+                  </SmIcon>
+                  <p>{props.car.location}</p>
+                </OneColumn>
+                <MapLink>
+                  <Map />
+                  {/* <p>open in</p> */}
+                  <p>map</p>
+                </MapLink>
+              </TwoColumns>
+              {/* ROW VOTING CATEGORIES*/}
+              <OneColumn>
+                {props.car.voteCategories.map((voteCat) => (
+                  <VoteIcon
+                    alt={voteCat.title}
+                    src={icons.voting[camelCase(voteCat.title)]}
+                    key={voteCat.id}
+                  />
+                ))}
+              </OneColumn>
+            </CarData>
+          </TwoColumns>
+        </HorizontalCardContainer>
+      </div>
     </>
   );
 }

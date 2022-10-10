@@ -11,7 +11,7 @@ import { icons } from "../../common/icons";
 import { useParams } from "react-router-dom";
 import MainContainerWhole from "../_shared/MainContainerWhole";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button, Collapse } from "@mui/material";
+import { Avatar, Button, Collapse } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
   Owner,
@@ -34,6 +34,7 @@ import {
 import camelCase from "../../common/camelCase";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Cancel } from "@mui/icons-material";
+import FirstLetterAvatar from "../_shared/FirstLetterAvatar";
 
 // STYLED COMPONENTS
 const CarDetailsContainer = styled.div`
@@ -330,28 +331,45 @@ export default function CarDetails(props) {
   // RENDER CARS SPONSORS LIST
   const renderCarSponsorList =
     carDetails.sponsors &&
-    carDetails.sponsors.map((sponsor) =>
-      !!sponsor.logo ? (
-        <Sponsor key={sponsor.id}>
+    carDetails.sponsors.map((sponsor) => (
+      <Sponsor key={sponsor.id}>
+        {!!sponsor.logo ? (
           <SponsorLogo alt={sponsor.title} src={`${apiURL}/${sponsor.logo}`} />
-          <SponsorTitle>{sponsor.title}</SponsorTitle>
-        </Sponsor>
-      ) : (
-        <Sponsor key={sponsor.id}>
-          <OtherSponsorAvatar>
+        ) : (
+          <Avatar sx={{ width: 25, height: 25, bgcolor: "black" }}>
             {sponsor.title[0].toUpperCase()}
-          </OtherSponsorAvatar>
-          <SponsorTitle>{sponsor.title}</SponsorTitle>
-        </Sponsor>
-      )
-    );
+          </Avatar>
+        )}
+        <SponsorTitle>{sponsor.title}</SponsorTitle>
+      </Sponsor>
+    ));
+
+  // const renderCarSponsorList =
+  //   carDetails.sponsors &&
+  //   carDetails.sponsors.map((sponsor) =>
+  //     !!sponsor.logo ? (
+  //       <Sponsor key={sponsor.id}>
+  //         <SponsorLogo alt={sponsor.title} src={`${apiURL}/${sponsor.logo}`} />
+  //         <SponsorTitle>{sponsor.title}</SponsorTitle>
+  //       </Sponsor>
+  //     ) : (
+  //       <Sponsor key={sponsor.id}>
+  //         <Avatar sx={{ width: 25, height: 25 }}>
+  //           {sponsor.title[0].toUpperCase()}
+  //         </Avatar>
+  //         <SponsorTitle>{sponsor.title}</SponsorTitle>
+  //       </Sponsor>
+  //     )
+  //   );
   const otherSponsors =
     carDetails.otherSponsors && carDetails.otherSponsors.split(",");
   const renderCarOtherSponsorList =
     carDetails.otherSponsors &&
     otherSponsors.map((sponsor) => (
       <Sponsor key={sponsor}>
-        <OtherSponsorAvatar>{sponsor[0].toUpperCase()}</OtherSponsorAvatar>
+        <OtherSponsorAvatar>
+          {sponsor.title[0].toUpperCase()}
+        </OtherSponsorAvatar>
         <SponsorTitle>{sponsor}</SponsorTitle>
       </Sponsor>
     ));

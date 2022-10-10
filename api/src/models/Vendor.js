@@ -10,6 +10,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
+    isSponsor: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,9 +23,21 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    descriptionShort: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    descriptionLong: {
+      type: DataTypes.STRING(700),
+      allowNull: true,
+    },
+    timeOpen: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    timeClose: {
+      type: DataTypes.TIME,
+      allowNull: true,
     },
     image: {
       type: DataTypes.STRING,

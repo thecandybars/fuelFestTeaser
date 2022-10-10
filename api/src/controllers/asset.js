@@ -169,9 +169,9 @@ async function getNFTCard(req) {
       include: [CarOwner, Sponsor, VoteCategory],
     });
 
-    // nftCard.myCar = car;
+    const asset = await Asset.findByPk(nftCardId);
 
-    const response = { nftCard, car };
+    const response = { asset, nftCard, car };
     return Object.keys(response).length === 0
       ? dbError(`No Assets Categories found. Create some.`, 404)
       : response;
@@ -182,10 +182,12 @@ async function getNFTCard(req) {
 async function getVoucher(req) {
   try {
     const { voucherId } = req.params;
-    const response = await Voucher.findOne({
+    const asset = await Asset.findByPk(voucherId);
+    const voucher = await Voucher.findOne({
       where: { assetId: voucherId },
       include: Vendor,
     });
+    const response = { asset, voucher };
 
     return Object.keys(response).length === 0
       ? dbError(`No Voucher found.`, 404)

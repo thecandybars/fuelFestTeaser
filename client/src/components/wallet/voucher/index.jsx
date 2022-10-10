@@ -33,6 +33,7 @@
 // }
 
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainContainer from "../../_shared/MainContainer";
 import Title from "../../_shared/Title";
 import styled from "styled-components";
@@ -51,6 +52,7 @@ const StyledContainer = styled.div`
 `;
 export default function WalletVouchers() {
   const apiURL = process.env.REACT_APP_API;
+  const navigate = useNavigate();
 
   // INIT
   const [fetchedVouchers, setFetchedVouchers] = useState([]);
@@ -105,6 +107,11 @@ export default function WalletVouchers() {
       primaryActionTitle="REDEEM"
       primaryActionColor={theme.red}
       primaryAction={setNftCardPrimaryButtonId}
+      secondaryActionTitle="Details"
+      secondaryActionColor={theme.yellow}
+      secondaryAction={() => {
+        navigate("/wallet/voucherRedeem/" + voucher.asset.id);
+      }}
     />
   ));
 

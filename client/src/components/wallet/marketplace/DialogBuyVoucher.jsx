@@ -7,65 +7,61 @@ import { Dialog } from "@mui/material";
 import successfulTransactionIcon from "../../../img/successfulTransaction.svg";
 
 const DialogContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: fit-content;
   padding: 15px;
   background-color: ${(props) => props.theme.dialogBackground};
   border: 0;
-  color: #d9d9d9;
+  color: ${(props) => props.theme.white};
 `;
-const StyledHeader = styled.div`
+const StyledFirstLine = styled.div`
   display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  color: ${(props) => props.theme.yellow};
-  margin-left: 25px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
   h1 {
-    font-size: 2.5rem;
+    color: ${(props) => props.theme.green};
   }
-  h2 {
-    font-size: 1.5rem;
+  img {
+    width: 100px;
   }
-`;
-const StyledImage = styled.img`
-  width: 150px;
-  margin: 15px auto;
+  video {
+    width: 100px;
+  }
 `;
 const StyledSummary = styled.div`
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
   div {
     display: flex;
     margin-bottom: 5px;
   }
-  h2 {
-    font-size: 24px;
-  }
   h3 {
-    width: 130px;
+    width: 40%;
     font-size: 1.1rem;
     color: ${(props) => props.theme.white};
   }
-  h5 {
-    font-size: 1.1rem;
-    color: ${(props) => props.theme.green};
-  }
   p {
+    width: 60%;
     font-family: "Oswald";
     font-size: 1.1rem;
     color: ${(props) => props.theme.yellow};
   }
+  h5 {
+    width: 130px;
+    width: 60%;
+    font-size: 1.1rem;
+    color: ${(props) => props.theme.green};
+  }
 `;
-const StyledDescription = styled.p`
-  font-size: 1rem;
-  margin: 0 15px;
-`;
-const StyledBack = styled.p`
-  font-size: 1.4rem;
-  text-decoration: underline;
-  font-family: "Oswald";
-  margin: 0 15px;
+const StyledBottomLine = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    font-family: "Oswald";
+    font-size: 1.1rem;
+  }
 `;
 const StyledButton = styled.div`
   width: 70%;
@@ -75,7 +71,7 @@ const StyledButton = styled.div`
   color: white;
   border-radius: 20px;
   font-family: "Oswald";
-  font-size: 1.4rem;
+  font-size: 18px;
   text-align: center;
 `;
 const StyledConfirmTransaction = styled.div`
@@ -152,38 +148,40 @@ export default function DialogBuyVoucher(props) {
   return (
     Object.keys(fetchedAssetData).length !== 0 && (
       <DialogContainer>
-        <StyledHeader>
-          <h1>Details</h1>
-          <h2>{`${fetchedAssetData.assetData.title}`}</h2>
-        </StyledHeader>
+        <StyledFirstLine>
+          <h1>Buy Listing</h1>
+          <img
+            alt={props.title}
+            src={`${apiURL}/${fetchedAssetData.assetData.image}`}
+          />
+        </StyledFirstLine>
         <StyledSummary>
+          <h2>Summary</h2>
           <div>
-            <h3>SaleID</h3>
-            <p>¿¿¿???</p>
-          </div>
-          <div>
-            <h3>Vendor</h3>
+            <h3>Brand</h3>
             <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
           </div>
           <div>
-            <h3>Location</h3>
-            <p>See location on map</p>
+            <h3>ID</h3>
+            <p>{`${fetchedAssetData.assetData.assetId}`}</p>
           </div>
-
+          <div>
+            <h3>Description</h3>
+            <p>{`${fetchedAssetData.assetData.description}`}</p>
+          </div>
+          <br />
           <div>
             <h3>Price</h3>
             <h5>{`${fetchedAssetData.assetData.price} DRIFT`}</h5>
           </div>
         </StyledSummary>
-        <StyledImage
-          alt="Preview voucher"
-          src={`${apiURL}/${fetchedAssetData.assetData.image}`}
-        />
-        <StyledDescription>{`${fetchedAssetData.assetData.description}`}</StyledDescription>
-        <StyledButton
-          onClick={handleBuy}
-        >{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
-        <StyledBack>BACK</StyledBack>
+
+        <StyledBottomLine>
+          <StyledButton
+            onClick={handleBuy}
+          >{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
+          <p>Make offer</p>
+        </StyledBottomLine>
         {/* CONFIRM BUY */}
         <Dialog open={confirmBuyOpen} onClose={handleConfirmBuyClose}>
           <StyledConfirmTransaction>
@@ -196,6 +194,52 @@ export default function DialogBuyVoucher(props) {
           </StyledConfirmTransaction>
         </Dialog>
       </DialogContainer>
+
+      // <DialogContainer>
+      //   <StyledHeader>
+      //     <h1>Details</h1>
+      //     <h2>{`${fetchedAssetData.assetData.title}`}</h2>
+      //   </StyledHeader>
+      //   <StyledSummary>
+      //     <div>
+      //       <h3>SaleID</h3>
+      //       <p>¿¿¿???</p>
+      //     </div>
+      //     <div>
+      //       <h3>Vendor</h3>
+      //       <p>{`${fetchedAssetData.seller.firstName} ${fetchedAssetData.seller.lastName}`}</p>
+      //     </div>
+      //     <div>
+      //       <h3>Location</h3>
+      //       <p>See location on map</p>
+      //     </div>
+
+      //     <div>
+      //       <h3>Price</h3>
+      //       <h5>{`${fetchedAssetData.assetData.price} DRIFT`}</h5>
+      //     </div>
+      //   </StyledSummary>
+      //   <StyledImage
+      //     alt="Preview voucher"
+      //     src={`${apiURL}/${fetchedAssetData.assetData.image}`}
+      //   />
+      //   <StyledDescription>{`${fetchedAssetData.assetData.description}`}</StyledDescription>
+      //   <StyledButton
+      //     onClick={handleBuy}
+      //   >{`Buy for ${fetchedAssetData.assetData.price} DRIFT`}</StyledButton>
+      //   <StyledBack>BACK</StyledBack>
+      //   {/* CONFIRM BUY */}
+      //   <Dialog open={confirmBuyOpen} onClose={handleConfirmBuyClose}>
+      //     <StyledConfirmTransaction>
+      //       <img alt="Transaction Successful" src={successfulTransactionIcon} />
+      //       <h2>Transaction Successful!</h2>
+      //       <p>
+      //         View Transaction: <span>87346587</span>
+      //       </p>
+      //       <div onClick={handleConfirmBuyClose}>Close</div>
+      //     </StyledConfirmTransaction>
+      //   </Dialog>
+      // </DialogContainer>
     )
   );
 }

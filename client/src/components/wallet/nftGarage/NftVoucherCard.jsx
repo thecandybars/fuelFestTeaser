@@ -43,7 +43,7 @@ export default function NftVoucherCard(props) {
         secondaryActionTitle="Details"
         secondaryActionColor={theme.yellow}
         secondaryAction={() => {
-          navigate("/wallet/marketplace/voucher/" + voucher.assetId);
+          navigate("/wallet/nftGarage/voucher/" + voucher.assetId);
         }}
       />
     </>
