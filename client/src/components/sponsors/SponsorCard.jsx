@@ -56,10 +56,6 @@ const SponsorDescription = styled.div`
 `;
 
 export default function SponsorCard(props) {
-  console.log(
-    "🚀 ~ file: SponsorCard.jsx ~ line 59 ~ SponsorCard ~ props",
-    props
-  );
   const apiURL = process.env.REACT_APP_API;
 
   // STYLES

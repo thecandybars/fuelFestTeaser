@@ -11,10 +11,7 @@ import CardsContainerColumn from "../_shared/CardsContainerColumn";
 
 export default function Vendors() {
   const [fetchedVendors, setFetchedVendors] = useState([]);
-  console.log(
-    "🚀 ~ file: Vendors.jsx ~ line 14 ~ Vendors ~ fetchedVendors",
-    fetchedVendors
-  );
+
   const [filteredVendors, setFilteredVendors] = useState([]);
   //INIT
   useEffect(() => {
@@ -40,10 +37,6 @@ export default function Vendors() {
     setFetchedFavs(favs);
   };
   async function toggleFav(vendorId) {
-    console.log(
-      "🚀 ~ file: index.jsx ~ line 32 ~ toggleFav ~ vendorId",
-      vendorId
-    );
     await toggleFavVendor(vendorId);
     fetchFavorites();
   }

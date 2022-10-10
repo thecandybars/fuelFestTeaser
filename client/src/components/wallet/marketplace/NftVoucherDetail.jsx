@@ -11,10 +11,7 @@ export default function NftVoucherDetail() {
 
   // INIT
   const [fetchedVoucher, setFetchedVoucher] = useState({});
-  console.log(
-    "🚀 ~ file: NftVoucherDetail.jsx ~ line 14 ~ NftVoucherDetail ~ fetchedVoucher",
-    fetchedVoucher
-  );
+
   const fetchVoucher = async (voucherId) => {
     setFetchedVoucher(await getVoucher(voucherId));
   };

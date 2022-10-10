@@ -29,10 +29,6 @@ export default function Sponsors() {
     setFetchedFavs(favs);
   };
   async function toggleFav(sponsorId) {
-    console.log(
-      "🚀 ~ file: index.jsx ~ line 32 ~ toggleFav ~ sponsorId",
-      sponsorId
-    );
     await toggleFavSponsor(sponsorId);
     fetchFavorites();
   }

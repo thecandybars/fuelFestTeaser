@@ -171,10 +171,7 @@ export default function DialogSellNFT(props) {
 
   // INIT
   const [fetchedAssetData, setFetchedAssetData] = useState({});
-  console.log(
-    "🚀 ~ file: DialogSellNFT.jsx ~ line 107 ~ DialogSellNFT ~ fetchedAssetData",
-    fetchedAssetData
-  );
+
   useEffect(() => {
     fetchAssetData(props.assetId);
   }, [props.assetId]);
