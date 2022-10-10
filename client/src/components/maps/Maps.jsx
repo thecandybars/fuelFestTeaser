@@ -39,7 +39,7 @@ export default function Maps() {
         min="50"
         max="2000"
         onChange={(e) => setWidth(e.target.value)}
-      />{" "}
+      />
       <p>{clicked}</p>
       <div
         style={{
