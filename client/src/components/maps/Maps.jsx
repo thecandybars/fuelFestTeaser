@@ -4,6 +4,9 @@ import MainContainer from "../_shared/MainContainer";
 import Title from "../../components/_shared/Title";
 import map from "../../img/maps/map1.jpeg";
 import label from "../../img/maps/map2.png";
+import originalMap from "./originalMap";
+import { Location } from "../../iconComponents";
+import SvgMapaFf from "./MapaFF";
 
 export default function Maps() {
   // ZOOM
@@ -30,61 +33,49 @@ export default function Maps() {
   };
   const [width, setWidth] = useState(400);
   const [clicked, setClicked] = useState("");
-  console.log("🚀 ~ file: Maps.jsx ~ line 33 ~ Maps ~ clicked", clicked);
+  const [yPos, setYpos] = useState(0);
+  const [xPos, setXpos] = useState(0);
+
+  const handleOnClick = (e) => {
+    setClicked(e.target.id);
+  };
+
   return (
     <MainContainer>
+      <Title backButton="true">MAPS</Title>
+
       <input
         value={width}
         type="range"
-        min="50"
+        min="377"
         max="2000"
         onChange={(e) => setWidth(e.target.value)}
       />
-      <p>{clicked}</p>
+      {/* <input
+        value={xPos}
+        type="range"
+        min="0"
+        max="200"
+        onChange={(e) => setXpos(e.target.value)}
+      />
+      <input
+        value={yPos}
+        type="range"
+        min="-200"
+        max="200"
+        onChange={(e) => setYpos(e.target.value)}
+      /> */}
+      <span>{clicked}</span>
       <div
         style={{
-          overflowX: "visible",
+          overflowX: "scroll",
           overflowY: "scroll",
           height: "600px",
           width: "400px",
-          backgroundColor: "cyan",
+          // backgroundColor: "cyan",
         }}
       >
-        <svg
-          width={width}
-          version="1.1"
-          // viewBox="0 0 400 600"
-          viewBox="0 0 210 297"
-        >
-          <g stroke="#fff" stroke-miterlimit=".7" stroke-width=".3175">
-            <rect
-              x="51.074"
-              y="53.873"
-              width="129.43"
-              height="191"
-              ry="64.717"
-              fill="#feae2e"
-            />
-            <ellipse
-              id="someGreenCircle"
-              cx="92.178"
-              cy="111.77"
-              rx="20.465"
-              ry="20.115"
-              fill="#0f0"
-              onClick={(e) => setClicked(e.target.id)}
-            />
-            <ellipse
-              id="someRedCircle"
-              cx="129.08"
-              cy="194.85"
-              rx="21.339"
-              ry="20.29"
-              fill="#f00"
-              onClick={(e) => setClicked(e.target.id)}
-            />
-          </g>
-        </svg>
+        {<SvgMapaFf width={width} handleOnClick={handleOnClick} />}
       </div>
     </MainContainer>
 
