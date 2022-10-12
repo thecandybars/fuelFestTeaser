@@ -7,6 +7,10 @@ import label from "../../img/maps/map2.png";
 import originalMap from "./originalMap";
 import { Location } from "../../iconComponents";
 import SvgMapaFf from "./MapaFF";
+import {
+  TransformComponent,
+  TransformWrapper,
+} from "@pronestor/react-zoom-pan-pinch";
 
 export default function Maps() {
   // ZOOM
@@ -31,7 +35,6 @@ export default function Maps() {
     height: `${zoom}%`,
     transition: " 250ms cubic-bezier(0.5, 0, 0.5, 1)",
   };
-  const [width, setWidth] = useState(400);
   const [clicked, setClicked] = useState("");
   const [yPos, setYpos] = useState(0);
   const [xPos, setXpos] = useState(0);
@@ -44,13 +47,6 @@ export default function Maps() {
     <MainContainer>
       <Title backButton="true">MAPS</Title>
 
-      <input
-        value={width}
-        type="range"
-        min="377"
-        max="2000"
-        onChange={(e) => setWidth(e.target.value)}
-      />
       {/* <input
         value={xPos}
         type="range"
@@ -65,7 +61,7 @@ export default function Maps() {
         max="200"
         onChange={(e) => setYpos(e.target.value)}
       /> */}
-      <span>{clicked}</span>
+      <p>{clicked}</p>
       <div
         style={{
           overflowX: "scroll",
@@ -75,7 +71,11 @@ export default function Maps() {
           // backgroundColor: "cyan",
         }}
       >
-        {<SvgMapaFf width={width} handleOnClick={handleOnClick} />}
+        <TransformWrapper wheel={{ step: 0.05 }}>
+          <TransformComponent>
+            <SvgMapaFf width="1020" handleclick={handleOnClick} />
+          </TransformComponent>
+        </TransformWrapper>
       </div>
     </MainContainer>
 
