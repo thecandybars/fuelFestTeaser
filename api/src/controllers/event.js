@@ -1,5 +1,5 @@
 const dbError = require("../utils/dbError");
-const { Event } = require("../db.js");
+const { Event, MapLocation } = require("../db.js");
 const { getCurrentFestival } = require("./festival");
 
 /////// EVENTS /////////////////
@@ -10,6 +10,7 @@ async function getAllEvents() {
     const response = await Event.findAll({
       where: { festivalId: festival.id },
       order: [["date", "ASC"]],
+      include: MapLocation,
       // order: sequelize.literal("date DESC"),
     });
     return !response ? dbError(`No events found`, 404) : response;
@@ -21,7 +22,7 @@ async function getAllEvents() {
 async function getEventById(id) {
   try {
     const festival = await getCurrentFestival();
-    const event = await Event.findByPk(id);
+    const event = await Event.findByPk(id, { include: MapLocation });
     const response =
       event.festivalId === festival.id
         ? event

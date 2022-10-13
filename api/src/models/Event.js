@@ -34,10 +34,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    // location: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
     locationId: {
       type: DataTypes.UUID,
       allowNull: true,

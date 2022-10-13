@@ -131,6 +131,11 @@ conn.sync({ force, alter }).then(() => {
         title: "Yokohama Main Stage",
         category: "event",
       },
+      {
+        id: "111003c5-0005-4b1c-7777-abcdabcd0000",
+        title: "Drift Viewing Stage",
+        category: "event",
+      },
       // VENDORS
       {
         id: "111003c5-0013-4b1c-7777-abcdabcd0000",
@@ -166,6 +171,16 @@ conn.sync({ force, alter }).then(() => {
       {
         id: "111003c5-0019-4b1c-7777-abcdabcd0000",
         title: "Bathroom",
+        category: "other",
+      },
+      {
+        id: "111003c5-0020-4b1c-7777-abcdabcd0000",
+        title: "ADA Parking",
+        category: "other",
+      },
+      {
+        id: "111003c5-0021-4b1c-7777-abcdabcd0000",
+        title: "Motortrend VIP",
         category: "other",
       },
     ]);
@@ -835,8 +850,7 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 14:00:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
-          location: "Main Stage",
-          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
           description: "Start your engines, first drift session is here",
           image: "uploads/event/event-1663339260770.jpeg",
           geolocation: "174.32,65.46",
@@ -850,7 +864,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 14:40:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Come kick the party off with Meirlin at the Yokohama Main Stage !",
@@ -865,7 +878,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 15:55:00.000 -0500",
           dateEnd: "2022-03-02 16:40:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description: "Gawm mixes up some hot tracks on the main stage!",
           image: "uploads/event/event-1663338953372.jpg",
@@ -879,8 +891,7 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 16:00:00.000 -0500",
           dateEnd: "2022-03-02 17:30:00.000 -0500",
-          location: "Main Stage",
-          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
           description: "On your mark, get set, drift!",
           image: "uploads/event/event-1663339270093.jpg",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
@@ -893,7 +904,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 17:10:00.000 -0500",
           dateEnd: "2022-03-02 18:10:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Come listen to Alexcis sing his hits like 'Until The Day', 'Chico', and more!",
@@ -908,8 +918,7 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 18:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
-          location: "Main Stage",
-          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
           description: "Can't get enough drifting",
           image: "uploads/event/event-1663339279665.jpg",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
@@ -923,7 +932,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 18:25:00.000 -0500",
           dateEnd: "2022-03-02 19:00:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Special guest Symba warms up the stage before Cody comes out!",
@@ -938,7 +946,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 19:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Cody Walker comes and joined the party on stage with everyone!",
@@ -953,7 +960,6 @@ conn.sync({ force, alter }).then(() => {
           date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 19:30:00.000 -0500",
           dateEnd: "2022-03-02 21:00:00.000 -0500",
-          location: "Yokohama Main Stage",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Grammy-nominated artist Joyner Lucas joins us as the FuelFest LA 2022 headline event!",

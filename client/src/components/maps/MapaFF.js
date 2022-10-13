@@ -3,8 +3,8 @@ const SvgMapaFf = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    // viewBox="0 0 1030 600"
-    viewBox="0 0 2890.67 1685.15"
+    // viewBox="0 0 5781.34 3470.3"
+    viewBox="0 0 2890.67 1685.15" // Original size
     role="img"
     {...props}
   >

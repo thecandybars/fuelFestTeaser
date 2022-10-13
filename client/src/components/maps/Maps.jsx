@@ -7,6 +7,7 @@ import label from "../../img/maps/map2.png";
 import originalMap from "./originalMap";
 import { Location } from "../../iconComponents";
 import SvgMapaFf from "./MapaFF";
+import svgImage from "./MAPA-FF.svg";
 import {
   TransformComponent,
   TransformWrapper,
@@ -59,19 +60,25 @@ export default function Maps() {
         style={{
           overflowX: "hidden",
           overflowY: "hidden",
+          height: "100%",
           // height: "600px",
-          height: "90%",
-          border: "1px solid red",
+          // height: "90%",
+          // border: "2px solid red",
         }}
       >
         <TransformWrapper
           wheel={{ step: 0.1 }}
-          initialScale={1.3}
+          initialScale={2.8}
           centerOnInit={true}
           centerZoomedOut={true}
         >
           <TransformComponent>
-            <SvgMapaFf height="100vh" handleclick={handleOnClick} />
+            {/* <img alt="" src={svgImage} width="400px" /> */}
+            <SvgMapaFf
+              width="400px"
+              height="75vh"
+              handleclick={handleOnClick}
+            />
           </TransformComponent>
         </TransformWrapper>
       </div>

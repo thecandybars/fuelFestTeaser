@@ -7,6 +7,10 @@ import CardsContainerColumn from "../_shared/CardsContainerColumn";
 
 export default function Events() {
   const [fetchedEvents, setFetchedEvents] = useState([]);
+  console.log(
+    "🚀 ~ file: Events.jsx ~ line 10 ~ Events ~ fetchedEvents",
+    fetchedEvents
+  );
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [fetchedFavs, setFetchedFavs] = useState([]);
 
@@ -34,7 +38,7 @@ export default function Events() {
           title={event.title}
           date={event.date}
           image={event.image}
-          location={event.location}
+          location={event.mapLocation.title}
           desc={eventShowingDesc === event.id ? event.description : ""}
           isFavorite={
             !!fetchedFavs.find((favEvent) => event.id === favEvent.id)
