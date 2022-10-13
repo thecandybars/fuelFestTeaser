@@ -11,6 +11,7 @@ import {
   TransformComponent,
   TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
+import { getMapLocation } from "../../services/mapLocation";
 
 export default function Maps() {
   // ZOOM
@@ -36,44 +37,41 @@ export default function Maps() {
     transition: " 250ms cubic-bezier(0.5, 0, 0.5, 1)",
   };
   const [clicked, setClicked] = useState("");
+  const [zoomIn, setZoomIn] = useState("");
   const [yPos, setYpos] = useState(0);
   const [xPos, setXpos] = useState(0);
 
-  const handleOnClick = (e) => {
-    setClicked(e.target.id);
+  const handleOnClick = async (e) => {
+    const response = await getMapLocation(e.target.id);
+    console.log(
+      "🚀 ~ file: Maps.jsx ~ line 46 ~ handleOnClick ~ response",
+      response
+    );
   };
 
   return (
     <MainContainer>
       <Title backButton="true">MAPS</Title>
+      <button onClick={() => setZoomIn("Meguiars")}>Meguiars</button>
+      <button onClick={() => setZoomIn("Market")}>Market</button>
 
-      {/* <input
-        value={xPos}
-        type="range"
-        min="0"
-        max="200"
-        onChange={(e) => setXpos(e.target.value)}
-      />
-      <input
-        value={yPos}
-        type="range"
-        min="-200"
-        max="200"
-        onChange={(e) => setYpos(e.target.value)}
-      /> */}
-      <p>{clicked}</p>
       <div
         style={{
-          overflowX: "scroll",
-          overflowY: "scroll",
-          height: "600px",
-          width: "400px",
-          // backgroundColor: "cyan",
+          overflowX: "hidden",
+          overflowY: "hidden",
+          // height: "600px",
+          height: "90%",
+          border: "1px solid red",
         }}
       >
-        <TransformWrapper wheel={{ step: 0.05 }}>
+        <TransformWrapper
+          wheel={{ step: 0.1 }}
+          initialScale={1.3}
+          centerOnInit={true}
+          centerZoomedOut={true}
+        >
           <TransformComponent>
-            <SvgMapaFf width="1020" handleclick={handleOnClick} />
+            <SvgMapaFf height="100vh" handleclick={handleOnClick} />
           </TransformComponent>
         </TransformWrapper>
       </div>

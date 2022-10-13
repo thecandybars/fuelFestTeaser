@@ -91,6 +91,7 @@ const {
   VoucherCoupon,
   Badge,
   Template,
+  MapLocation,
 } = sequelize.models;
 
 // FESTIVAL
@@ -182,6 +183,11 @@ Vendor.hasMany(Voucher);
 
 // SPONSORS AND VENDORS
 Sponsor.hasOne(Vendor, { foreignKey: "sponsorId" });
+
+// MAPS
+Car.belongsTo(MapLocation, { foreignKey: "locationId" });
+Event.belongsTo(MapLocation, { foreignKey: "locationId" });
+Vendor.belongsTo(MapLocation, { foreignKey: "locationId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

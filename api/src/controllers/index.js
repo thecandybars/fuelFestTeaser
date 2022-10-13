@@ -26,6 +26,7 @@ const wallet = require("./wallet.js");
 const transaction = require("./transaction.js");
 const asset = require("./asset.js");
 const voucher = require("./voucher.js");
+const mapLocation = require("./mapLocation.js");
 
 module.exports = {
   ...festival,
@@ -42,4 +43,5 @@ module.exports = {
   ...transaction,
   ...asset,
   ...voucher,
+  ...mapLocation,
 };

@@ -3,6 +3,7 @@ const SvgMapaFf = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
+    // viewBox="0 0 1030 600"
     viewBox="0 0 2890.67 1685.15"
     role="img"
     {...props}
@@ -383,8 +384,10 @@ const SvgMapaFf = (props) => (
 
     <g id="MAPA-FF_svg__Layer_2">
       <path
+        style={{ fill: "cornflowerblue" }}
+        visibility="visible"
         onClick={(e) => props.handleclick(e)}
-        id="Meguiars"
+        id="111003c5-0018-4b1c-7777-abcdabcd0000"
         className="MAPA-FF_svg__cls-14"
         d="M329.59 728.48c-2.93-21.67-14.35-37.27-35.14-44.27-20.07-6.76-38.75-2.6-53.67 12.76-15 15.43-18.86 33.74-11.15 54.23 11.87 31.52 29.83 59.69 48.06 88.69 17.9-27.93 34.96-55.32 46.98-85.45 3.29-8.25 6.15-16.84 4.91-25.96Z"
       />
@@ -408,7 +411,7 @@ const SvgMapaFf = (props) => (
       />
       <path
         onClick={(e) => props.handleclick(e)}
-        id="Yokohama stage"
+        id="111003c5-0004-4b1c-7777-abcdabcd0000"
         className="MAPA-FF_svg__cls-14"
         d="M1379.92 640.74c-2.93-21.67-14.35-37.27-35.14-44.27-20.07-6.76-38.75-2.6-53.67 12.76-15 15.43-18.86 33.74-11.15 54.23 11.87 31.52 29.83 59.69 48.06 88.69 17.9-27.93 34.96-55.32 46.98-85.45 3.29-8.25 6.15-16.84 4.91-25.96Z"
       />

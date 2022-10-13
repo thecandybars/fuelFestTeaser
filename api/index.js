@@ -19,6 +19,7 @@ const {
   Asset,
   Template,
   Voucher,
+  MapLocation,
 } = require("./src/db.js");
 
 // Syncing all the models at once.
@@ -102,6 +103,72 @@ conn.sync({ force, alter }).then(() => {
         ignoreDuplicates: true,
       }
     );
+    await MapLocation.bulkCreate([
+      // CARS
+      {
+        id: "111003c5-0000-4b1c-7777-abcdabcd0000",
+        title: "Mitsubishi Eclipse",
+        category: "car",
+      },
+      {
+        id: "111003c5-0001-4b1c-7777-abcdabcd0000",
+        title: "Toyota Supra",
+        category: "car",
+      },
+      {
+        id: "111003c5-0002-4b1c-7777-abcdabcd0000",
+        title: "Mazda RX7",
+        category: "car",
+      },
+      {
+        id: "111003c5-0003-4b1c-7777-abcdabcd0000",
+        title: "Nissan Skyline GT-R",
+        category: "car",
+      },
+      // EVENTS
+      {
+        id: "111003c5-0004-4b1c-7777-abcdabcd0000",
+        title: "Yokohama Main Stage",
+        category: "event",
+      },
+      // VENDORS
+      {
+        id: "111003c5-0013-4b1c-7777-abcdabcd0000",
+        title: "Corbeau Seats",
+        category: "vendor",
+      },
+      {
+        id: "111003c5-0014-4b1c-7777-abcdabcd0000",
+        title: "Dafski",
+        category: "vendor",
+      },
+      {
+        id: "111003c5-0015-4b1c-7777-abcdabcd0000",
+        title: "Tyre Shop & service",
+        category: "vendor",
+      },
+      {
+        id: "111003c5-0016-4b1c-7777-abcdabcd0000",
+        title: "Coca Cola",
+        category: "vendor",
+      },
+      {
+        id: "111003c5-0017-4b1c-7777-abcdabcd0000",
+        title: "Fuel Fest",
+        category: "vendor",
+      },
+      {
+        id: "111003c5-0018-4b1c-7777-abcdabcd0000",
+        title: "Meguiars",
+        category: "vendor",
+      },
+      // OTHERS
+      {
+        id: "111003c5-0019-4b1c-7777-abcdabcd0000",
+        title: "Bathroom",
+        category: "other",
+      },
+    ]);
     await Sponsor.bulkCreate(
       [
         {
@@ -253,7 +320,7 @@ conn.sync({ force, alter }).then(() => {
         logo: "uploads/vendor/vendor-1663189937301.png",
         image: "",
         tent: "A89",
-        geolocation: "A89",
+        locationId: "111003c5-0013-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
       },
       {
@@ -269,7 +336,7 @@ conn.sync({ force, alter }).then(() => {
         logo: "uploads/vendor/vendor-1663189943218.jpg",
         image: "",
         tent: "A90",
-        geolocation: "A90",
+        locationId: "111003c5-0014-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
       },
       {
@@ -284,7 +351,7 @@ conn.sync({ force, alter }).then(() => {
         logo: "uploads/vendor/vendor-1663189924900.jpg",
         image: "",
         tent: "A91",
-        geolocation: "A91",
+        locationId: "111003c5-0015-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
       },
       {
@@ -299,7 +366,7 @@ conn.sync({ force, alter }).then(() => {
         logo: "",
         image: "",
         tent: "A92",
-        geolocation: "A92",
+        locationId: "111003c5-0016-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
       },
       {
@@ -314,7 +381,23 @@ conn.sync({ force, alter }).then(() => {
         logo: "",
         image: "",
         tent: "A93",
-        geolocation: "A93",
+        locationId: "111003c5-0017-4b1c-7777-abcdabcd0000",
+        festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
+      },
+      {
+        id: "00000005-21ae-4db8-8d1d-bb831eabc337",
+        title: "Meguiars",
+        isSponsor: true,
+        category: "none",
+        descriptionShort: "Turpis massa sed elementum tempus.",
+        descriptionLong:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam.",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        logo: "uploads/vendor/vendor-1663189943219.jpg",
+        image: "",
+        tent: "A97",
+        locationId: "111003c5-0018-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
       },
     ]);
@@ -371,7 +454,7 @@ conn.sync({ force, alter }).then(() => {
           description:
             "Full Replica of the 1995 Eclipse driven by Brian O'Conner in The Fast and the Furious movie. Autographed by Cody Walker",
           location: "R35",
-          geolocation: "174.2,65.93",
+          locationId: "111003c5-0000-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
           price: 34999,
@@ -398,7 +481,7 @@ conn.sync({ force, alter }).then(() => {
           description:
             "I'll miss my exit to keep on racing with the guy that I just met on the freeway a little longer...",
           location: "T25",
-          geolocation: "174.2,65.93",
+          locationId: "111003c5-0001-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
           price: 79499,
@@ -424,7 +507,7 @@ conn.sync({ force, alter }).then(() => {
           otherSponsors: "",
           description: "Full LSX Engine Swap Madness!",
           location: "A72",
-          geolocation: "174.2,65.93",
+          locationId: "111003c5-0002-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
           price: 89999,
@@ -450,7 +533,7 @@ conn.sync({ force, alter }).then(() => {
           otherSponsors: "",
           description: "#M3GATRN Skyline GT-R w/ Widebody (R34 Facelift)",
           location: "H15",
-          geolocation: "174.2,65.93",
+          locationId: "111003c5-0003-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f9099948082",
           price: 45999,
@@ -753,6 +836,7 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 14:00:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
           location: "Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description: "Start your engines, first drift session is here",
           image: "uploads/event/event-1663339260770.jpeg",
           geolocation: "174.32,65.46",
@@ -767,10 +851,10 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 14:40:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Come kick the party off with Meirlin at the Yokohama Main Stage !",
           image: "uploads/event/event-1663338965932.jpeg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "music",
           duartion: "30",
@@ -782,9 +866,9 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 15:55:00.000 -0500",
           dateEnd: "2022-03-02 16:40:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description: "Gawm mixes up some hot tracks on the main stage!",
           image: "uploads/event/event-1663338953372.jpg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "music",
           duartion: "30",
@@ -796,9 +880,9 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 16:00:00.000 -0500",
           dateEnd: "2022-03-02 17:30:00.000 -0500",
           location: "Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description: "On your mark, get set, drift!",
           image: "uploads/event/event-1663339270093.jpg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "drifting",
           duartion: "30",
@@ -810,10 +894,10 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 17:10:00.000 -0500",
           dateEnd: "2022-03-02 18:10:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Come listen to Alexcis sing his hits like 'Until The Day', 'Chico', and more!",
           image: "uploads/event/event-1663338971431.jpeg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "music",
           duartion: "30",
@@ -825,9 +909,9 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 18:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
           location: "Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description: "Can't get enough drifting",
           image: "uploads/event/event-1663339279665.jpg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "drifting",
           duartion: "30",
@@ -840,10 +924,10 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 18:25:00.000 -0500",
           dateEnd: "2022-03-02 19:00:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Special guest Symba warms up the stage before Cody comes out!",
           image: "uploads/event/event-1663338960119.jpg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "music",
           duartion: "30",
@@ -855,10 +939,10 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 19:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Cody Walker comes and joined the party on stage with everyone!",
           image: "uploads/event/event-1663338976179.jpeg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "guest",
           duartion: "30",
@@ -870,10 +954,10 @@ conn.sync({ force, alter }).then(() => {
           dateStart: "2022-03-02 19:30:00.000 -0500",
           dateEnd: "2022-03-02 21:00:00.000 -0500",
           location: "Yokohama Main Stage",
+          locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
           description:
             "Grammy-nominated artist Joyner Lucas joins us as the FuelFest LA 2022 headline event!",
           image: "uploads/event/event-1663338981576.jpeg",
-          geolocation: "174.32,65.46",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           category: "music",
           duartion: "30",

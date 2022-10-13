@@ -15,22 +15,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      // number: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: true,
-      // },
-      // manufacturer: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true,
-      // },
-      // tireManufacturer: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true,
-      // },
-      // chasis: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true,
-      // },
       description: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -43,8 +27,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      geolocation: {
-        type: DataTypes.STRING,
+      locationId: {
+        type: DataTypes.UUID,
         allowNull: true,
       },
       price: {

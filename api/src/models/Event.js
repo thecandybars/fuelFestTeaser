@@ -38,15 +38,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    locationId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    geolocation: {
       type: DataTypes.STRING,
       allowNull: false,
     },
