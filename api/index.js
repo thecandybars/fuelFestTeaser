@@ -136,6 +136,12 @@ conn.sync({ force, alter }).then(() => {
         title: "Drift Viewing Stage",
         category: "event",
       },
+      // CAR SHOW
+      {
+        id: "111003c5-0012-4b1c-7777-abcdabcd0000",
+        title: "Car show",
+        category: "car",
+      },
       // VENDORS
       {
         id: "111003c5-0013-4b1c-7777-abcdabcd0000",
@@ -401,12 +407,13 @@ conn.sync({ force, alter }).then(() => {
       },
       {
         id: "00000005-21ae-4db8-8d1d-bb831eabc337",
-        title: "Meguiars",
+        title: "Meguiar's",
         isSponsor: true,
         category: "none",
-        descriptionShort: "Turpis massa sed elementum tempus.",
+        descriptionShort:
+          "Automotive Cleaning and Protectant Products - Accessories",
         descriptionLong:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam.",
+          "Meguiar's passion for car care transcends the research, development and the manufacturing of highquality leading products.",
         timeOpen: "9:00",
         timeClose: "19:00",
         logo: "uploads/vendor/vendor-1663189943219.jpg",

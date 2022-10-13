@@ -1,4 +1,4 @@
-import { Drawer } from "@mui/material";
+import { Dialog, Drawer } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MainContainer from "../_shared/MainContainer";
 import Title from "../../components/_shared/Title";
@@ -7,12 +7,12 @@ import label from "../../img/maps/map2.png";
 import originalMap from "./originalMap";
 import { Location } from "../../iconComponents";
 import SvgMapaFf from "./MapaFF";
-import svgImage from "./MAPA-FF.svg";
 import {
   TransformComponent,
   TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 import { getMapLocation } from "../../services/mapLocation";
+import DialogLocationData from "./DialogLocationData";
 
 export default function Maps() {
   // ZOOM
@@ -42,47 +42,85 @@ export default function Maps() {
   const [yPos, setYpos] = useState(0);
   const [xPos, setXpos] = useState(0);
 
+  // CLICK ON LOCATION
+  const [locationData, setLocationData] = useState({});
+  console.log(
+    "🚀 ~ file: Maps.jsx ~ line 46 ~ Maps ~ locationData",
+    locationData
+  );
   const handleOnClick = async (e) => {
     const response = await getMapLocation(e.target.id);
-    console.log(
-      "🚀 ~ file: Maps.jsx ~ line 46 ~ handleOnClick ~ response",
-      response
-    );
+    setLocationData(response.data);
   };
+  // DIALOG
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleDialogClose = () => setDialogOpen(false);
+  useEffect(() => {
+    Object.keys(locationData).length > 0 && setDialogOpen(true);
+  }, [locationData]);
 
   return (
-    <MainContainer>
-      <Title backButton="true">MAPS</Title>
-      <button onClick={() => setZoomIn("Meguiars")}>Meguiars</button>
-      <button onClick={() => setZoomIn("Market")}>Market</button>
-
-      <div
-        style={{
-          overflowX: "hidden",
-          overflowY: "hidden",
-          height: "100%",
-          // height: "600px",
-          // height: "90%",
-          // border: "2px solid red",
-        }}
+    <>
+      <Drawer
+        anchor="bottom"
+        onClose={handleDialogClose}
+        open={dialogOpen}
+        variant="persistent"
+        style={{ borderRadius: "50%" }}
       >
-        <TransformWrapper
-          wheel={{ step: 0.1 }}
-          initialScale={2.8}
-          centerOnInit={true}
-          centerZoomedOut={true}
+        {Object.keys(locationData).length > 0 && (
+          <DialogLocationData data={locationData} close={handleDialogClose} />
+        )}
+      </Drawer>
+      <MainContainer>
+        <Title backButton="true">MAPS</Title>
+
+        <div
+          style={{
+            overflowX: "hidden",
+            overflowY: "hidden",
+            height: "90%",
+            border: "2px solid red",
+          }}
         >
-          <TransformComponent>
-            {/* <img alt="" src={svgImage} width="400px" /> */}
-            <SvgMapaFf
-              width="400px"
-              height="75vh"
-              handleclick={handleOnClick}
-            />
-          </TransformComponent>
-        </TransformWrapper>
-      </div>
-    </MainContainer>
+          <TransformWrapper
+            wheel={{ step: 0.1 }}
+            initialScale={2.8}
+            centerOnInit={true}
+            centerZoomedOut={true}
+          >
+            {({ zoomToElement, zoomIn, ...rest }) => (
+              <>
+                <button
+                  onClick={() =>
+                    zoomToElement(
+                      "111003c5-0018-4b1c-7777-abcdabcd0000",
+                      2,
+                      300,
+                      "easeOut"
+                    )
+                  }
+                >
+                  Meguiars
+                </button>
+                <button onClick={() => zoomIn()}>zoom in</button>
+                <TransformComponent
+                  style={{ display: "flex", alignItems: "flex-start" }}
+                >
+                  <SvgMapaFf
+                    width="400px"
+                    height="75vh"
+                    handleclick={handleOnClick}
+                    // offsetWidth={1}
+                    // offsetHeight={1}
+                  />
+                </TransformComponent>
+              </>
+            )}
+          </TransformWrapper>
+        </div>
+      </MainContainer>
+    </>
 
     // <MainContainer>
     //   <Title backButton="true">MAPS</Title>

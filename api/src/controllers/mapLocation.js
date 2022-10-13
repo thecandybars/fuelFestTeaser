@@ -19,7 +19,7 @@ async function getMapLocation(req) {
       info = await Event.findAll({ where: { locationId: mapLocation.id } });
 
     return Object.keys(mapLocation).length > 0
-      ? dbSuccess("Found Map Location", { mapLocation, info })
+      ? dbSuccess("Get Map Location " + mapLocation.id, { mapLocation, info })
       : dbError(`No location found`, 404);
   } catch (err) {
     return err;
