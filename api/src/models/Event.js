@@ -18,10 +18,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+    // date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    // },
     dateStart: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -30,10 +30,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    duration: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+    // duration: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
     // location: {
     //   type: DataTypes.STRING,
     //   allowNull: true,

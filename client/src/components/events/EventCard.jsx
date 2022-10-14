@@ -8,6 +8,7 @@ import { Favorites } from "../../iconComponents";
 import { theme } from "../../common/theme";
 import HorizontalCardContainer from "../_shared/HorizontalCardContainer";
 import ExpandeMoreTriangle from "../_shared/ExpandeMoreTriangle";
+import OpenInMap from "../_shared/OpenInMap";
 
 const Container = styled.div`
   display: flex;
@@ -95,10 +96,13 @@ export default function EventCard(props) {
               <Icon alt="" src={icons.event.clock} />
               {`${fullDateStart.getHours()}:${dayNumberStart}`}
             </p>
-            <p>
-              <Icon alt="" src={icons.location} />
-              {props.location}
-            </p>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <p>
+                <Icon alt="" src={icons.location} />
+                {props.location}
+              </p>
+              <OpenInMap />
+            </div>
           </EventData>
 
           <Favorites

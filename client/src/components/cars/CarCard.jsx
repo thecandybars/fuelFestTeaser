@@ -7,6 +7,7 @@ import { Favorites } from "../../iconComponents";
 import camelCase from "../../common/camelCase";
 import { theme } from "../../common/theme";
 import HorizontalCardContainer from "../_shared/HorizontalCardContainer";
+import OpenInMap from "../_shared/OpenInMap";
 const Container = styled.div`
   display: flex;
   margin-top: 10px;
@@ -124,11 +125,7 @@ export default function CarCard(props) {
                   </SmIcon>
                   <p>{props.car.location}</p>
                 </OneColumn>
-                <MapLink>
-                  <Map />
-                  {/* <p>open in</p> */}
-                  <p>map</p>
-                </MapLink>
+                <OpenInMap direction="horizontal" />
               </TwoColumns>
               {/* ROW VOTING CATEGORIES*/}
               <OneColumn>

@@ -13,7 +13,27 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    category: {
+    descriptionShort: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    descriptionLong: {
+      type: DataTypes.STRING(700),
+      allowNull: true,
+    },
+    timeOpen: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    timeClose: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    url: {
       type: DataTypes.STRING,
       allowNull: true,
     },

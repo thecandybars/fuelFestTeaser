@@ -9,7 +9,7 @@ async function getAllEvents() {
     const festival = await getCurrentFestival();
     const response = await Event.findAll({
       where: { festivalId: festival.id },
-      order: [["date", "ASC"]],
+      order: [["dateStart", "ASC"]],
       include: MapLocation,
       // order: sequelize.literal("date DESC"),
     });

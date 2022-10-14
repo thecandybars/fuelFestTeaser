@@ -7,6 +7,7 @@ import { theme } from "../../common/theme";
 import HorizontalCardContainer from "../_shared/HorizontalCardContainer";
 import { Location, Map } from "../../iconComponents";
 import styledEngine from "@mui/styled-engine";
+import OpenInMap from "../_shared/OpenInMap";
 
 const StyledBadge = styledEngine(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -120,14 +121,13 @@ export default function VendorCard(props) {
         <VendorData>
           <h2>{props.data.title}</h2>
           <h3>{props.data.descriptionShort}</h3>
-          <p>
-            <Location style={{ fill: theme.white, fontSize: "2rem" }} />
-            {props.data.tent}
-          </p>
-          <p>
-            <Map style={{ fill: theme.red, fontSize: "2rem" }} />
-            See it in the map
-          </p>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <p>
+              <Location style={{ fill: theme.white, fontSize: "2rem" }} />
+              {props.data.tent}
+            </p>
+            <OpenInMap direction="horizontal" />
+          </div>
         </VendorData>
 
         <Favorites

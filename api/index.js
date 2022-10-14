@@ -104,90 +104,141 @@ conn.sync({ force, alter }).then(() => {
       }
     );
     await MapLocation.bulkCreate([
-      // CARS
-      {
-        id: "111003c5-0000-4b1c-7777-abcdabcd0000",
-        title: "Mitsubishi Eclipse",
-        category: "car",
-      },
-      {
-        id: "111003c5-0001-4b1c-7777-abcdabcd0000",
-        title: "Toyota Supra",
-        category: "car",
-      },
-      {
-        id: "111003c5-0002-4b1c-7777-abcdabcd0000",
-        title: "Mazda RX7",
-        category: "car",
-      },
-      {
-        id: "111003c5-0003-4b1c-7777-abcdabcd0000",
-        title: "Nissan Skyline GT-R",
-        category: "car",
-      },
-      // EVENTS
+      // AREAS
       {
         id: "111003c5-0004-4b1c-7777-abcdabcd0000",
         title: "Yokohama Main Stage",
-        category: "event",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/YokohamaStage_UK.jpg",
+        url: "/events",
       },
       {
         id: "111003c5-0005-4b1c-7777-abcdabcd0000",
         title: "Drift Viewing Stage",
-        category: "event",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/driftView.jpg",
+        url: "/events",
       },
-      // CAR SHOW
       {
         id: "111003c5-0012-4b1c-7777-abcdabcd0000",
         title: "Car show",
-        category: "car",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/carShow.jpeg",
+        url: "/cars",
       },
       // VENDORS
       {
         id: "111003c5-0013-4b1c-7777-abcdabcd0000",
         title: "Corbeau Seats",
-        category: "vendor",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/vendor/vendor-1663189937301.png",
+        url: "/vendor/00000000-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0014-4b1c-7777-abcdabcd0000",
         title: "Dafski",
-        category: "vendor",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/vendor/vendor-1663189943218.jpg",
+        url: "/vendor/00000001-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0015-4b1c-7777-abcdabcd0000",
         title: "Tyre Shop & service",
-        category: "vendor",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/vendor/vendor-1663189924900.jpg",
+        url: "/vendor/00000002-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0016-4b1c-7777-abcdabcd0000",
         title: "Coca Cola",
-        category: "vendor",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/cocaCola.jpg",
+        url: "/vendor/00000003-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0017-4b1c-7777-abcdabcd0000",
         title: "Fuel Fest",
-        category: "vendor",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/ffTent.jpg",
+        url: "/vendor/00000004-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0018-4b1c-7777-abcdabcd0000",
         title: "Meguiars",
-        category: "vendor",
+        descriptionShort:
+          "Automotive Cleaning and Protectant Products - Accessories",
+        descriptionLong:
+          "Meguiar's passion for car care transcends the research, development and the manufacturing of highquality leading products.",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/vendor/vendor-1663189943219.jpg",
+        url: "/vendor/00000005-21ae-4db8-8d1d-bb831eabc337",
       },
-      // OTHERS
+      // AREAS
       {
         id: "111003c5-0019-4b1c-7777-abcdabcd0000",
         title: "Bathroom",
-        category: "other",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/bathroom.png",
+        url: "",
       },
       {
         id: "111003c5-0020-4b1c-7777-abcdabcd0000",
         title: "ADA Parking",
-        category: "other",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/ada.png",
+        url: "",
       },
       {
         id: "111003c5-0021-4b1c-7777-abcdabcd0000",
         title: "Motortrend VIP",
-        category: "other",
+        descriptionShort: "Turpis nunc eget lorem dolor",
+        descriptionLong:
+          "Amet massa vitae tortor condimentum lacinia quis. At varius vel pharetra vel. Sit amet tellus cras adipiscing enim eu turpis egestas. In nisl nisi scelerisque eu ultrices vitae auctor eu. ",
+        timeOpen: "9:00",
+        timeClose: "19:00",
+        image: "uploads/mapLocation/MotorTrend-618233876.png",
+        url: "",
       },
     ]);
     await Sponsor.bulkCreate(
@@ -385,7 +436,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         logo: "",
-        image: "",
+        image: "uploads/vendor/cocaCola.jpg",
         tent: "A92",
         locationId: "111003c5-0016-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
@@ -400,7 +451,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         logo: "",
-        image: "",
+        image: "uploads/vendor/ffTent.jpg",
         tent: "A93",
         locationId: "111003c5-0017-4b1c-7777-abcdabcd0000",
         festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
@@ -476,7 +527,7 @@ conn.sync({ force, alter }).then(() => {
           description:
             "Full Replica of the 1995 Eclipse driven by Brian O'Conner in The Fast and the Furious movie. Autographed by Cody Walker",
           location: "R35",
-          locationId: "111003c5-0000-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0012-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148082",
           price: 34999,
@@ -503,7 +554,7 @@ conn.sync({ force, alter }).then(() => {
           description:
             "I'll miss my exit to keep on racing with the guy that I just met on the freeway a little longer...",
           location: "T25",
-          locationId: "111003c5-0001-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0012-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c314808b",
           price: 79499,
@@ -529,7 +580,7 @@ conn.sync({ force, alter }).then(() => {
           otherSponsors: "",
           description: "Full LSX Engine Swap Madness!",
           location: "A72",
-          locationId: "111003c5-0002-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0012-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f90c3148081",
           price: 89999,
@@ -555,7 +606,7 @@ conn.sync({ force, alter }).then(() => {
           otherSponsors: "",
           description: "#M3GATRN Skyline GT-R w/ Widebody (R34 Facelift)",
           location: "H15",
-          locationId: "111003c5-0003-4b1c-7777-abcdabcd0000",
+          locationId: "111003c5-0012-4b1c-7777-abcdabcd0000",
           festivalId: "40f41d79-21ae-4db8-8d1d-bb831eabc337",
           carOwnerId: "12dcd2f1-3e86-4fb9-bc07-4f9099948082",
           price: 45999,
@@ -854,7 +905,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0000",
           title: "Drifting Session 1",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 14:00:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
           locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
@@ -868,7 +918,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0003",
           title: "Meirlin",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 14:40:00.000 -0500",
           dateEnd: "2022-03-02 15:30:00.000 -0500",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
@@ -882,7 +931,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0004",
           title: "Gawm",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 15:55:00.000 -0500",
           dateEnd: "2022-03-02 16:40:00.000 -0500",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
@@ -895,7 +943,7 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0001",
           title: "Drifting Session 2",
-          date: "2022-03-02 11:20:00.000 -0500",
+          // date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 16:00:00.000 -0500",
           dateEnd: "2022-03-02 17:30:00.000 -0500",
           locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
@@ -908,7 +956,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0005",
           title: "Alexcis",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 17:10:00.000 -0500",
           dateEnd: "2022-03-02 18:10:00.000 -0500",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
@@ -922,7 +969,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0002",
           title: "Drifting Session 3",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 18:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
           locationId: "111003c5-0005-4b1c-7777-abcdabcd0000",
@@ -936,7 +982,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0006",
           title: "Symba",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 18:25:00.000 -0500",
           dateEnd: "2022-03-02 19:00:00.000 -0500",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",
@@ -950,7 +995,6 @@ conn.sync({ force, alter }).then(() => {
         {
           id: "330003c5-777e-4b1c-9eff-abcdabcd0007",
           title: "Cody Walker on Stage!",
-          date: "2022-03-02 11:20:00.000 -0500",
           dateStart: "2022-03-02 19:00:00.000 -0500",
           dateEnd: "2022-03-02 19:30:00.000 -0500",
           locationId: "111003c5-0004-4b1c-7777-abcdabcd0000",

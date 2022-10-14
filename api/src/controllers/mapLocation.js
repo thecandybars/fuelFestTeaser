@@ -8,18 +8,9 @@ const dbSuccess = require("../utils/dbSuccess.js");
 async function getMapLocation(req) {
   try {
     const { mapLocationId } = req.params;
-    const mapLocation = await MapLocation.findByPk(mapLocationId, {});
-    let info;
-    if (mapLocation.category === "car")
-      info = await Car.findOne({ where: { locationId: mapLocation.id } });
-    if (mapLocation.category === "vendor")
-      info = await Vendor.findOne({ where: { locationId: mapLocation.id } });
-    // Probably is not needed to look for event or all events info
-    if (mapLocation.category === "event")
-      info = await Event.findAll({ where: { locationId: mapLocation.id } });
-
+    const mapLocation = await MapLocation.findByPk(mapLocationId);
     return Object.keys(mapLocation).length > 0
-      ? dbSuccess("Get Map Location " + mapLocation.id, { mapLocation, info })
+      ? dbSuccess("Get Map Location " + mapLocation.id, mapLocation)
       : dbError(`No location found`, 404);
   } catch (err) {
     return err;

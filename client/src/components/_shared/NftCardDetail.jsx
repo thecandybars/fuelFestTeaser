@@ -12,6 +12,7 @@ import Title from "../../components/_shared/Title";
 import { theme } from "../../common/theme";
 import { Link } from "react-router-dom";
 import { Location, Map } from "../../iconComponents";
+import OpenInMap from "./OpenInMap";
 
 // STYLED COMPONENTS
 const StyledLeft = styled.div`
@@ -206,10 +207,13 @@ export default function NftCardDetail(props) {
               <Grid4>
                 <Location style={{ fill: "white", fontSize: "1.8rem" }} />
                 <StyledSubtitle>Tent #{props.data.vendorTent}</StyledSubtitle>
-                <Map style={{ fill: `${theme.red}`, fontSize: "1.8rem" }} />
-                <StyledInfo style={{ textDecoration: "underline" }}>
-                  <Link to="#">See it on map</Link>
-                </StyledInfo>
+                <div></div>
+                <OpenInMap
+                  color={theme.red}
+                  text="Open in Map"
+                  fontSize="1rem"
+                  direction="horizontal"
+                />
               </Grid4>
             </StyledDataCol>
           </>

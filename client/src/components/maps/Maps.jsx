@@ -45,10 +45,6 @@ export default function Maps() {
 
   // CLICK ON LOCATION
   const [locationData, setLocationData] = useState({});
-  console.log(
-    "🚀 ~ file: Maps.jsx ~ line 46 ~ Maps ~ locationData",
-    locationData
-  );
   const handleOnClick = async (e) => {
     const response = await getMapLocation(e.target.id);
     setLocationData(response.data);
@@ -92,7 +88,7 @@ export default function Maps() {
           >
             {({ zoomToElement, zoomIn, ...rest }) => (
               <>
-                <button
+                {/* <button
                   onClick={() =>
                     zoomToElement(
                       "111003c5-0018-4b1c-7777-abcdabcd0000",
@@ -104,7 +100,7 @@ export default function Maps() {
                 >
                   Meguiars
                 </button>
-                <button onClick={() => zoomIn()}>zoom in</button>
+                <button onClick={() => zoomIn()}>zoom in</button> */}
                 <TransformComponent
                   style={{ display: "flex", alignItems: "flex-start" }}
                 >

@@ -10,7 +10,10 @@ const StyledTitle = styled.div`
   img {
     border-radius: 100%;
     width: 60px;
+    height: 60px;
     margin-right: 15px;
+    object-fit: cover;
+    object-position: center;
   }
   h2 {
     font-size: 2.3rem;
@@ -55,37 +58,35 @@ const StyledSeeMore = styled.div`
 
 export default function DialogLocationData(props) {
   console.log(
-    "🚀 ~ file: DialogLocationData.jsx ~ line 5 ~ DialogLocationData ~ props",
+    "🚀 ~ file: DialogLocationData.jsx ~ line 57 ~ DialogLocationData ~ props",
     props
   );
   const apiURL = process.env.REACT_APP_API;
-  let renderDialogInfo;
-  if ((props.data.mapLocation.category = "vendor")) {
-    renderDialogInfo = (
-      <div>
-        <StyledTitle>
-          <img alt="logo" src={apiURL + "/" + props.data.info.logo} />
-          <h2>{props.data.info.title}</h2>
-        </StyledTitle>
-        <StyledDesc>
-          <h3>{props.data.info.descriptionShort}</h3>
-          <p>{props.data.info.descriptionLong}</p>
-        </StyledDesc>
-        <StyledBottomInfo>
-          <StyledInfo>
-            <AccessTimeIcon style={{ fill: theme.black }} />
-            <p>
-              <span>OPEN </span>- Closes at {props.data.info.timeClose}
-            </p>
-          </StyledInfo>
-          <StyledSeeMore>
-            <OpenInNewIcon style={{ fill: theme.black }} />
-            <p>See More</p>
-          </StyledSeeMore>
-        </StyledBottomInfo>
-      </div>
-    );
-  }
+  const renderDialogInfo = (
+    <div>
+      <StyledTitle>
+        <img alt="logo" src={apiURL + "/" + props.data.image} />
+        <h2>{props.data.title}</h2>
+      </StyledTitle>
+      <StyledDesc>
+        <h3>{props.data.descriptionShort}</h3>
+        <p>{props.data.descriptionLong}</p>
+      </StyledDesc>
+      <StyledBottomInfo>
+        <StyledInfo>
+          <AccessTimeIcon style={{ fill: theme.black }} />
+          <p>
+            <span>OPEN </span>- Closes at {props.data.timeClose}
+          </p>
+        </StyledInfo>
+        <StyledSeeMore>
+          <OpenInNewIcon style={{ fill: theme.black }} />
+          <p>See More</p>
+        </StyledSeeMore>
+      </StyledBottomInfo>
+    </div>
+  );
+
   return (
     <div
       style={{
