@@ -1,10 +1,9 @@
 import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { theme } from "../../common/theme";
 import styled from "styled-components";
-
+import DragHandleIcon from "@mui/icons-material/DragHandle";
 const StyledTitle = styled.div`
   display: flex;
   align-items: center;
@@ -88,10 +87,18 @@ export default function DialogLocationData(props) {
     );
   }
   return (
-    <div style={{ padding: "5px 20px" }}>
-      <CloseIcon
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        padding: "5px 20px 60px",
+      }}
+    >
+      <DragHandleIcon
         onClick={() => props.close()}
         style={{ margin: "auto", textAlign: "center" }}
+        color="darkGray"
       />
       {renderDialogInfo}
     </div>

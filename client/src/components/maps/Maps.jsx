@@ -13,6 +13,7 @@ import {
 } from "@pronestor/react-zoom-pan-pinch";
 import { getMapLocation } from "../../services/mapLocation";
 import DialogLocationData from "./DialogLocationData";
+import style from "./Maps.module.css";
 
 export default function Maps() {
   // ZOOM
@@ -66,7 +67,7 @@ export default function Maps() {
         onClose={handleDialogClose}
         open={dialogOpen}
         variant="persistent"
-        style={{ borderRadius: "50%" }}
+        className={style.drawer}
       >
         {Object.keys(locationData).length > 0 && (
           <DialogLocationData data={locationData} close={handleDialogClose} />
@@ -80,7 +81,7 @@ export default function Maps() {
             overflowX: "hidden",
             overflowY: "hidden",
             height: "90%",
-            border: "2px solid red",
+            // border: "2px solid red",
           }}
         >
           <TransformWrapper

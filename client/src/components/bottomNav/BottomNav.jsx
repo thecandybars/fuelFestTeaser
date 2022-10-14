@@ -3,6 +3,24 @@ import style from "./BottomNav.module.css";
 import { NavLink } from "react-router-dom";
 import { Icons } from "../../common/Ico";
 import { theme } from "../../common/theme";
+import styled from "styled-components";
+
+const StyledContainer = styled.nav`
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10000;
+`;
+const StyledUl = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+const StyledLi = styled.li`
+  padding: 7px;
+  width: 48px;
+`;
 
 export default function BottomNav() {
   const activeStyle = {
@@ -10,9 +28,9 @@ export default function BottomNav() {
   };
 
   return (
-    <nav className={style.bottomContainer}>
-      <ul className={style.bottomNav}>
-        <li className={style.bottomNav_item}>
+    <StyledContainer>
+      <StyledUl>
+        <StyledLi>
           <NavLink
             to="/"
             className={style.icon}
@@ -20,8 +38,8 @@ export default function BottomNav() {
           >
             <Icons.Home />
           </NavLink>
-        </li>
-        <li className={style.bottomNav_item}>
+        </StyledLi>
+        <StyledLi>
           <NavLink
             to="/wallet"
             className={style.icon}
@@ -29,26 +47,18 @@ export default function BottomNav() {
           >
             <Icons.Wallet />
           </NavLink>
-        </li>
-        <li className={style.bottomNav_item}>
-          <NavLink
-            to="/"
-            className={style.icon}
-            // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
+        </StyledLi>
+        <StyledLi>
+          <NavLink to="/" className={style.icon}>
             <Icons.Qr />
           </NavLink>
-        </li>
-        <li className={style.bottomNav_item}>
-          <NavLink
-            to="/"
-            className={style.icon}
-            // style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
+        </StyledLi>
+        <StyledLi>
+          <NavLink to="/" className={style.icon}>
             <Icons.Favorite />
           </NavLink>
-        </li>
-      </ul>
-    </nav>
+        </StyledLi>
+      </StyledUl>
+    </StyledContainer>
   );
 }
