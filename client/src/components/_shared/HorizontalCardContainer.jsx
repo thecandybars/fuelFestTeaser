@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  margin: 10px 0 5px;
+  margin: 5px 0 5px;
   padding-bottom: 10px;
   border-bottom: 1px solid ${(props) => props.theme.grayLine};
   cursor: pointer;

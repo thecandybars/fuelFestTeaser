@@ -148,7 +148,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/vendor/vendor-1663189937301.png",
-        url: "/vendor/00000000-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000000-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0014-4b1c-7777-abcdabcd0000",
@@ -159,7 +159,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/vendor/vendor-1663189943218.jpg",
-        url: "/vendor/00000001-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000001-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0015-4b1c-7777-abcdabcd0000",
@@ -170,7 +170,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/vendor/vendor-1663189924900.jpg",
-        url: "/vendor/00000002-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000002-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0016-4b1c-7777-abcdabcd0000",
@@ -181,7 +181,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/mapLocation/cocaCola.jpg",
-        url: "/vendor/00000003-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000003-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0017-4b1c-7777-abcdabcd0000",
@@ -192,7 +192,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/mapLocation/ffTent.jpg",
-        url: "/vendor/00000004-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000004-21ae-4db8-8d1d-bb831eabc337",
       },
       {
         id: "111003c5-0018-4b1c-7777-abcdabcd0000",
@@ -204,7 +204,7 @@ conn.sync({ force, alter }).then(() => {
         timeOpen: "9:00",
         timeClose: "19:00",
         image: "uploads/vendor/vendor-1663189943219.jpg",
-        url: "/vendor/00000005-21ae-4db8-8d1d-bb831eabc337",
+        url: "/vendors/00000005-21ae-4db8-8d1d-bb831eabc337",
       },
       // AREAS
       {

@@ -11,7 +11,6 @@ import CardsContainerColumn from "../_shared/CardsContainerColumn";
 
 export default function Vendors() {
   const [fetchedVendors, setFetchedVendors] = useState([]);
-
   const [filteredVendors, setFilteredVendors] = useState([]);
   //INIT
   useEffect(() => {

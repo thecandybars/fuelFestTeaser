@@ -4,6 +4,7 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { theme } from "../../common/theme";
 import styled from "styled-components";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
+import { useNavigate } from "react-router-dom";
 const StyledTitle = styled.div`
   display: flex;
   align-items: center;
@@ -61,6 +62,7 @@ export default function DialogLocationData(props) {
     "🚀 ~ file: DialogLocationData.jsx ~ line 57 ~ DialogLocationData ~ props",
     props
   );
+  const navigate = useNavigate();
   const apiURL = process.env.REACT_APP_API;
   const renderDialogInfo = (
     <div>
@@ -79,7 +81,9 @@ export default function DialogLocationData(props) {
             <span>OPEN </span>- Closes at {props.data.timeClose}
           </p>
         </StyledInfo>
-        <StyledSeeMore>
+        <StyledSeeMore
+          onClick={() => navigate(props.data.url && props.data.url)}
+        >
           <OpenInNewIcon style={{ fill: theme.black }} />
           <p>See More</p>
         </StyledSeeMore>

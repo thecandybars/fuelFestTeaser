@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Owner, Location, Map } from "../../iconComponents";
-import { icons } from "../../common/icons";
+import PersonIcon from "@mui/icons-material/Person";
+import PlaceIcon from "@mui/icons-material/Place";
 import { Favorites } from "../../iconComponents";
-import camelCase from "../../common/camelCase";
 import { theme } from "../../common/theme";
 import HorizontalCardContainer from "../_shared/HorizontalCardContainer";
 import OpenInMap from "../_shared/OpenInMap";
-const Container = styled.div`
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 3px;
-  cursor: pointer;
-`;
+import UpgradeIconsRow from "../_shared/UpgradeIconsRow";
+
 const CarImage = styled.img`
-  width: 140px;
+  width: 170px;
+  height: 100%;
   object-fit: cover;
   object-position: bottom;
   border-radius: 5px;
@@ -30,17 +26,19 @@ const OneColumn = styled.div`
   display: flex;
   align-items: center;
   padding-top: 2px;
+  font-family: "Oswald";
+  font-size: 1.3rem;
 `;
 const TwoColumns = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 2px;
+  /* padding-top: 2px; */
   justify-content: space-between;
   width: 100%;
 `;
 const CarTitle = styled.h3`
-  font-size: 1.3rem;
-  margin-bottom: 7px;
+  font-size: 1.7rem;
+  margin-top: 7px;
 `;
 const MapLink = styled.div`
   display: flex;
@@ -61,7 +59,7 @@ const SmIcon = styled.div`
   fill: white;
 `;
 const VoteIcon = styled.img`
-  width: 36px;
+  width: 30px;
   /* background-color: pink; */
   display: flex;
   /* justify-content: center; */
@@ -73,6 +71,7 @@ const VoteIcon = styled.img`
 `;
 
 export default function CarCard(props) {
+  console.log("🚀 ~ file: CarCard.jsx ~ line 81 ~ CarCard ~ props", props);
   const apiURL = process.env.REACT_APP_API;
   const navigate = useNavigate();
 
@@ -86,8 +85,21 @@ export default function CarCard(props) {
   return (
     <>
       <div onClick={() => navigate(`/car/${props.car.id}`)}>
+        {/* TITLE + FAVORITE */}
+        <TwoColumns>
+          <CarTitle>
+            {props.car.year && props.car.year + " "}
+            {props.car.title}
+          </CarTitle>
+          <Favorites
+            style={favIconStyle}
+            onClick={(e) => {
+              e.stopPropagation();
+              props.togFav(props.car.id);
+            }}
+          />
+        </TwoColumns>
         <HorizontalCardContainer>
-          {/* Delete TwoColumns element to force image to be square */}
           <TwoColumns style={{ alignItems: "flex-start" }}>
             <CarImage
               alt="A car"
@@ -96,46 +108,28 @@ export default function CarCard(props) {
               }`}
             />
             <CarData>
-              {/* TITLE + FAVORITE */}
-              <TwoColumns>
-                <CarTitle>
-                  {props.car.year && props.car.year + " "}
-                  {props.car.title}
-                </CarTitle>
-                <Favorites
-                  style={favIconStyle}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    props.togFav(props.car.id);
-                  }}
-                />
-              </TwoColumns>
               {/* ROW OWNER */}
               <OneColumn>
-                <SmIcon>
-                  <Owner />
-                </SmIcon>
+                <PersonIcon />
                 <p>{props.car.carOwner.name}</p>
               </OneColumn>
               {/* ROW LOCATION + MAP*/}
               <TwoColumns>
                 <OneColumn>
-                  <SmIcon>
-                    <Location />
-                  </SmIcon>
+                  <PlaceIcon />
                   <p>{props.car.location}</p>
+                  <OpenInMap
+                    direction="horizontal"
+                    style={{ marginLeft: "15px" }}
+                  />
                 </OneColumn>
-                <OpenInMap direction="horizontal" />
               </TwoColumns>
               {/* ROW VOTING CATEGORIES*/}
               <OneColumn>
-                {props.car.voteCategories.map((voteCat) => (
-                  <VoteIcon
-                    alt={voteCat.title}
-                    src={icons.voting[camelCase(voteCat.title)]}
-                    key={voteCat.id}
-                  />
-                ))}
+                <UpgradeIconsRow
+                  carDetails={props.car}
+                  style={{ marginRight: "8px" }}
+                />
               </OneColumn>
             </CarData>
           </TwoColumns>

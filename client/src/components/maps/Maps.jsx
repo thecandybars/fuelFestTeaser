@@ -55,6 +55,8 @@ export default function Maps() {
   useEffect(() => {
     Object.keys(locationData).length > 0 && setDialogOpen(true);
   }, [locationData]);
+  // TRANSFORM
+  const [userTransform, setUserTransform] = useState({ x: 0, y: 0, scale: 0 });
 
   return (
     <>
@@ -81,35 +83,46 @@ export default function Maps() {
           }}
         >
           <TransformWrapper
-            wheel={{ step: 0.1 }}
+            wheel={{ step: 0.04 }}
             initialScale={2.8}
             centerOnInit={true}
             centerZoomedOut={true}
+            maxScale={20}
           >
-            {({ zoomToElement, zoomIn, ...rest }) => (
+            {({ setTransform, resetTransform, ...rest }) => (
               <>
                 {/* <button
                   onClick={() =>
-                    zoomToElement(
-                      "111003c5-0018-4b1c-7777-abcdabcd0000",
-                      2,
-                      300,
-                      "easeOut"
+                    setTransform(
+                      userTransform.x,
+                      userTransform.y,
+                      userTransform.scale,
+                      1500
                     )
                   }
                 >
-                  Meguiars
+                  setTransform
                 </button>
-                <button onClick={() => zoomIn()}>zoom in</button> */}
+                <button onClick={() => resetTransform()}>Reset</button>
+                <input
+                  value={userTransform.x}
+                  onChange={(e) => setUserTransform({ x: e.target.value })}
+                />
+                <input
+                  value={userTransform.y}
+                  onChange={(e) => setUserTransform({ y: e.target.value })}
+                />
+                <input
+                  value={userTransform.scale}
+                  onChange={(e) => setUserTransform({ scale: e.target.value })}
+                /> */}
                 <TransformComponent
                   style={{ display: "flex", alignItems: "flex-start" }}
                 >
                   <SvgMapaFf
                     width="400px"
                     height="75vh"
-                    handleclick={handleOnClick}
-                    // offsetWidth={1}
-                    // offsetHeight={1}
+                    handleOnClick={handleOnClick}
                   />
                 </TransformComponent>
               </>

@@ -3,6 +3,7 @@ import { Map } from "../../iconComponents";
 import styled from "styled-components";
 import { theme } from "../../common/theme";
 import { useNavigate } from "react-router-dom";
+import MapIcon from "@mui/icons-material/Map";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const StyledVerticalLine = styled.p`
 `;
 const StyledHorizontalLine = styled.span`
   font-size: 1rem;
+  margin-left: 3px;
 `;
 OpenInMap.defaultProps = {
   direction: "horizontal",
@@ -39,7 +41,7 @@ export default function OpenInMap(props) {
       </StyledHorizontalLine>
     );
   return (
-    <div onClick={() => navigate("/maps/" + props.param)}>
+    <div onClick={() => navigate("/maps/" + props.param)} style={props.style}>
       <StyledContainer
         style={{
           flexDirection: direction,
@@ -48,6 +50,7 @@ export default function OpenInMap(props) {
         }}
       >
         <Map />
+        {/* <MapIcon /> */}
         {renderText}
       </StyledContainer>
     </div>

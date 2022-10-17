@@ -37,6 +37,7 @@ function App() {
           <Route path="/car/:carId" element={<CarDetails />} />
           <Route path="/events" element={<Events />} />
           <Route path="/vendors" element={<Vendors />} />
+          <Route path="/vendors/:vednorId" element={<Vendors />} />
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/maps" element={<Maps />} />
           <Route path="/wallet" element={<Wallet />} />
