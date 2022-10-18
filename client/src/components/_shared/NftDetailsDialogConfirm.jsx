@@ -55,10 +55,12 @@ const StyledSummary = styled.div`
   }
   div {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 5px;
   }
   h3 {
-    width: 130px;
+    min-width: 130px;
     font-size: 1.1rem;
   }
   p {
@@ -188,6 +190,7 @@ export default function NftDetailsDialogConfirm(props) {
           <div key={detail.label}>
             <h3>{detail.label}</h3>
             {detail.highlight ? <p>{detail.data}</p> : <p>{detail.data}</p>}
+            {detail.additional && detail.additional}
           </div>
         ))}
       </StyledSummary>

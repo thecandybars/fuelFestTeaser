@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dialog } from "@mui/material";
+import { Avatar, Dialog } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { getVoucher } from "../../../services/assets";
 import MainContainer from "../../_shared/MainContainer";
@@ -12,16 +12,25 @@ import NftDetailsDialogConfirm from "../../_shared/NftDetailsDialogConfirm";
 import ConfirmCancelDialog from "../../_shared/ConfirmCancelDialog";
 import sendImg from "../../../img/send.png";
 import sendingImg from "../../../img/sending.png";
+import { getUser } from "../../../services/user";
 
 export default function VendorRedeemVoucher() {
   const { voucherId } = useParams();
-  const [fetchedVoucher, setFetchedVoucher] = useState({});
+  const apiURL = process.env.REACT_APP_API;
 
+  // VOUCHER DATA
+  const [fetchedVoucher, setFetchedVoucher] = useState({});
   useEffect(() => {
     fetchVoucher();
+    fetchUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const fetchVoucher = async () =>
     setFetchedVoucher(await getVoucher(voucherId));
+
+  // USER DATA
+  const [fetchedUser, setFetchedUser] = useState({});
+  const fetchUser = async () => setFetchedUser(await getUser(userId));
 
   // VENDOR CONFIRMATION
   const [vendorConfirm, setVendorConfirm] = useState({});
@@ -42,8 +51,15 @@ export default function VendorRedeemVoucher() {
       setNftDetailsDialogData([
         {
           label: "User",
-          data: userId,
+          data: fetchedUser.firstName + " " + fetchedUser.lastName,
           highlight: false,
+          additional: (
+            <Avatar
+              alt=""
+              src={apiURL + "/" + fetchedUser.image}
+              sx={{ marginLeft: "5px", width: "50px", height: "50px" }}
+            ></Avatar>
+          ),
         },
         {
           label: "Voucher Id",
@@ -52,12 +68,12 @@ export default function VendorRedeemVoucher() {
         },
         {
           label: "Vendor",
-          data: fetchedVoucher.vendor.title,
+          data: fetchedVoucher.voucher.vendor.title,
           highlight: false,
         },
         {
           label: "Description",
-          data: fetchedVoucher.title,
+          data: fetchedVoucher.voucher.title,
           highlight: false,
         },
       ]);
@@ -163,8 +179,8 @@ export default function VendorRedeemVoucher() {
         <NftDetailsDialogConfirm
           title="Voucher Redeem Requested"
           details={nftDetailsDialogData}
-          image={fetchedVoucher.image}
-          description={fetchedVoucher.description}
+          image={fetchedVoucher.voucher.image}
+          description={fetchedVoucher.voucher.description}
           primaryButton={{
             label: "Accept voucher",
             action: acceptVoucher,
