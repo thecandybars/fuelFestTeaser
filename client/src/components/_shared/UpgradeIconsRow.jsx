@@ -52,23 +52,55 @@ export const upgrades = [
   },
 ];
 
+UpgradeIconsRow.defaultProps = {
+  max: 4,
+};
+
 export default function UpgradeIconsRow(props) {
-  const renderCarUpgradeList = upgrades.map(
-    (upgrade) =>
-      props.carDetails[upgrade.field] !== "" && (
-        <Avatar
-        //   sx={{
-        //     bgcolor: theme.black,
-        //     fill: theme.white,
-        //     width: "30px",
-        //     height: "30px",
-        //     fontSize: "1.5rem",
-        //   }}
-        >
-          {upgrade.icon}
-        </Avatar>
-      )
-  );
+  // AVATAR LIST
+  let renderCarUpgradeList = upgrades
+    .map(
+      (upgrade) =>
+        props.carDetails[upgrade.field] !== "" && (
+          <Avatar
+            sx={{
+              bgcolor: theme.black,
+              fill: theme.white,
+              width: "33px",
+              height: "33px",
+              fontSize: "3rem",
+              border: "2px solid " + theme.white,
+              marginRight: "2px",
+              padding: "5px",
+              ...props.style,
+            }}
+            key={upgrade.field}
+          >
+            {upgrade.icon}
+          </Avatar>
+        )
+    )
+    .filter((avatar) => !!avatar); //filter out empty (=false) elements in array
+
+  // OVERFLOW AVATAR
+  const overflow = renderCarUpgradeList.length - props.max;
+  renderCarUpgradeList = renderCarUpgradeList.slice(0, props.max);
+  if (overflow > 0)
+    renderCarUpgradeList.push(
+      <Avatar
+        sx={{
+          bgcolor: "transparent",
+          color: theme.white,
+          fontSize: "1.2rem",
+          border: "0px",
+          ...props.overflowStyle,
+        }}
+        key={"overflow"}
+      >
+        {"+" + overflow}
+      </Avatar>
+    );
+
   //   const renderCarUpgradeList = upgrades.map(
   //     (upgrade) =>
   //       props.carDetails[upgrade.field] !== "" && (
@@ -86,38 +118,8 @@ export default function UpgradeIconsRow(props) {
   //       )
   //   );
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <h5 style={{ marginBottom: "5px" }}>Upgrades: </h5>
-      <AvatarGroup
-        sx={{
-          "& .MuiAvatar-root": {
-            bgcolor: theme.black,
-            fill: theme.white,
-            width: "30px",
-            height: "30px",
-            fontSize: "1.5rem",
-          },
-          "& .MuiAvatar-root :nth-last-child(0)": {
-            fontSize: "1.1rem",
-          },
-        }}
-        max={6}
-        spacing="-2"
-      >
-        {renderCarUpgradeList}
-      </AvatarGroup>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {renderCarUpgradeList}
     </div>
-
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     justifyContent: "flex-start",
-    //     alignItems: "center",
-    //     flexWrap: "wrap",
-    //   }}
-    // >
-    //   {/* <h5>Upgrades: </h5> */}
-    //   {renderCarUpgradeList}
-    // </div>
   );
 }

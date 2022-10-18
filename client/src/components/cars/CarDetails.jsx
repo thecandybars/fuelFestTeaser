@@ -238,7 +238,12 @@ export default function CarDetails(props) {
   const [displayUpgrades, setDisplayUpgrades] = useState(false);
   const handleDisplayUpgrades = () => setDisplayUpgrades((prev) => !prev);
   const renderCarUpgradeList = (
-    <UpgradeIconsRow carDetails={carDetails} style={{ fill: theme.black }} />
+    <UpgradeIconsRow
+      carDetails={carDetails}
+      style={{ fill: theme.white }}
+      overflowStyle={{ color: theme.black }}
+      max={99}
+    />
   );
   const renderCarUpgradeDetails = upgrades.map(
     (upgrade) =>

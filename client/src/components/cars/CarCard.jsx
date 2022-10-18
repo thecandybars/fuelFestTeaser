@@ -10,7 +10,7 @@ import OpenInMap from "../_shared/OpenInMap";
 import UpgradeIconsRow from "../_shared/UpgradeIconsRow";
 
 const CarImage = styled.img`
-  width: 170px;
+  width: 200px;
   height: 100%;
   object-fit: cover;
   object-position: bottom;
@@ -40,24 +40,7 @@ const CarTitle = styled.h3`
   font-size: 1.7rem;
   margin-top: 7px;
 `;
-const MapLink = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-size: 2rem;
-  fill: ${(props) => props.theme.yellow};
-  p {
-    font-size: small;
-    color: ${(props) => props.theme.yellow};
-  }
-`;
-const SmIcon = styled.div`
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  margin-right: 2px;
-  fill: white;
-`;
+
 const VoteIcon = styled.img`
   width: 30px;
   /* background-color: pink; */
@@ -71,7 +54,6 @@ const VoteIcon = styled.img`
 `;
 
 export default function CarCard(props) {
-  console.log("🚀 ~ file: CarCard.jsx ~ line 81 ~ CarCard ~ props", props);
   const apiURL = process.env.REACT_APP_API;
   const navigate = useNavigate();
 
@@ -125,11 +107,11 @@ export default function CarCard(props) {
                 </OneColumn>
               </TwoColumns>
               {/* ROW VOTING CATEGORIES*/}
-              <OneColumn>
-                <UpgradeIconsRow
-                  carDetails={props.car}
-                  style={{ marginRight: "8px" }}
-                />
+              <OneColumn
+                style={{ flexDirection: "column", alignItems: "flex-start" }}
+              >
+                <h4 style={{ marginBottom: "5px" }}>Upgrades</h4>
+                <UpgradeIconsRow carDetails={props.car} />
               </OneColumn>
             </CarData>
           </TwoColumns>
