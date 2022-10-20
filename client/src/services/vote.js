@@ -8,3 +8,18 @@ export async function postCarVote(params) {
   });
   return data;
 }
+export async function updateCarVote(params) {
+  const { data } = await axios.put(`/vote/car/${params.voteId}`, {
+    votingTokens: params.votingTokens,
+  });
+  return data;
+}
+export async function deleteCarVote(voteId) {
+  console.log("🚀 ~ file: vote.js ~ line 18 ~ deleteCarVote ~ voteId", voteId);
+  const { data } = await axios.delete(`/vote/car/${voteId}`);
+  return data;
+}
+export async function getAllVoteCategories() {
+  const { data } = await axios.get(`/vote/category`);
+  return data;
+}

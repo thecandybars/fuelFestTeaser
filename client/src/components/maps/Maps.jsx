@@ -57,6 +57,7 @@ export default function Maps() {
   }, [locationData]);
   // TRANSFORM
   const [userTransform, setUserTransform] = useState({ x: 0, y: 0, scale: 0 });
+  // ZOOM
 
   return (
     <>

@@ -1,4 +1,7 @@
 import * as React from "react";
+// import svgPanZoom from "svg-pan-zoom";
+
+// const zoomTo = svgPanZoom("111003c5-0020-4b1c-7777-abcdabcd0000");
 const SvgMapaFfFlat = (props) => (
   <svg
     viewBox="0 0 2890.67 1685.15"

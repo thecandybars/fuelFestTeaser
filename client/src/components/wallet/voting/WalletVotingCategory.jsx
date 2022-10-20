@@ -3,13 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import MainContainer from "../../_shared/MainContainer";
 import Title from "../../../components/_shared/Title";
 import { getVotingCategory } from "../../../services/voting";
-import VoteCarCard from "./VoteCarCard";
+import VoteCarCard from "./VoteCarCardMain";
 
 export default function WalletVotingCategory() {
   const { voteCategory } = useParams();
   // const apiURL = process.env.REACT_APP_API;
   //   INIT
   const [voteCategoryFetched, setVoteCategoryFetched] = useState({});
+  console.log(
+    "🚀 ~ file: WalletVotingCategory.jsx ~ line 13 ~ WalletVotingCategory ~ voteCategoryFetched",
+    voteCategoryFetched
+  );
 
   useEffect(() => {
     fetchVoteCategory(voteCategory);
