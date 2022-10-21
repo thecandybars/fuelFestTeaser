@@ -5,7 +5,7 @@ const StyledMain = styled.main`
   /* margin: 0 10px; */
   padding: 10px;
   /*=150px?? The height of BottomBar */
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme.black};
   overflow-y: scroll;
