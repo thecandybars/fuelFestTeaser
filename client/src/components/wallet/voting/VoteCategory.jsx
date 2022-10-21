@@ -8,8 +8,9 @@ import {
 import { walletId } from "../../../common/getLoginData";
 import styled from "styled-components";
 import PersonIcon from "@mui/icons-material/Person";
-import { Slider } from "@mui/material";
-import { theme } from "../../../common/theme";
+import { Button, Slider, Typography } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme, themeMUI } from "../../../common/theme";
 
 const StyledContainer = styled.div`
   padding: 30px;
@@ -71,19 +72,29 @@ const StyledSlider = styled.div`
   font-size: 1rem;
   display: flex;
   align-items: center;
-  input[type="range"] {
-    height: 30px;
-    margin: 10px 0;
+  input {
+    height: 10px;
+    margin: 20px 0;
     width: 85%;
-    background: #3ab54a;
+    -webkit-appearance: none;
+    background: ${(props) => props.theme.green};
     border-radius: 20px;
-    border: 2px solid #ffffff;
+    border: 2px solid ${(props) => props.theme.white};
+  }
+  input::-webkit-slider-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 20px;
+    background: ${(props) => props.theme.yellow};
+    cursor: pointer;
+    -webkit-appearance: none;
   }
 
   span {
     font-family: "Oswald";
-    color: ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.white};
     margin-left: 10px;
+    font-size: 0.8rem;
   }
 `;
 const StyledButtons = styled.div`
@@ -94,15 +105,15 @@ const StyledButtons = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
   div:nth-child(1) {
     background-color: ${(props) => props.theme.green};
-    width: 60%;
+    width: 70%;
     border-radius: 20px;
     margin-bottom: 15px;
   }
   div:nth-child(2) {
-    width: 60%;
+    width: 70%;
     color: ${(props) => props.theme.white};
     text-decoration: underline;
   }
@@ -172,6 +183,31 @@ export default function VoteCategory(props) {
       )
     );
   };
+  const handleVoteUpdateMUI = (e) => {
+    setWarning("");
+    // Sums all votes EXCEPT this car
+    let totalVoting = carList.reduce(
+      (prev, car) => (car.id !== e.target.name ? prev + car.vote : prev),
+      0
+    );
+    if (totalVoting > props.wallet.frozen) totalVoting = props.wallet.frozen;
+    const available = props.wallet.frozen - totalVoting;
+    let vote = percentageTodrift(e.target.value);
+    if (vote > available) {
+      // setWarning("Max reached!");
+      vote = available;
+    }
+    let action;
+    if (carList.find((car) => car.id === e.target.name).action !== "create")
+      // action = vote > 0 ? "update" : "delete";
+      action = "update";
+    else action = "create";
+    setCarList((prev) =>
+      prev.map((car) =>
+        car.id === e.target.name ? { ...car, vote, action } : { ...car }
+      )
+    );
+  };
 
   // CONVERT DRIFT TO %
   function driftToPercentage(drift) {
@@ -199,16 +235,16 @@ export default function VoteCategory(props) {
             <img alt="" src={apiURL + "/" + car.image} />
           </StyledVoteCard>
           <StyledSlider>
-            {/* <Slider
-              id={car.id}
+            <Slider
+              name={car.id}
               value={driftToPercentage(car.vote)}
               min={0}
               max={100}
-              onChange={(e) => handleVoteUpdate(e)}
-              // valueLabelDisplay="on"
-              color="yellow"
-            /> */}
-            <input
+              onChange={handleVoteUpdateMUI}
+              // color="green"
+              sx={{ marginRight: "20px" }}
+            />
+            {/* <input
               type="range"
               id={car.id}
               value={driftToPercentage(car.vote)}
@@ -216,7 +252,7 @@ export default function VoteCategory(props) {
               max={100}
               onChange={(e) => handleVoteUpdate(e)}
               size={100}
-            />
+            /> */}
             <span>{driftToPercentage(car.vote)}%</span>
           </StyledSlider>
         </div>

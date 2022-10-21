@@ -15,20 +15,22 @@ export const themeMUI = createTheme({
     dialogBackground: { main: "rgba(10, 10, 10, 0.97)" },
     grayLine: { main: "#2d2d2d" },
     black: { main: "#000000" },
+    test: { main: "#a0ff0e" },
   },
 });
 // STYLED COMPONENTS THEME
 export const theme = {
+  red: "#da1921",
   yellow: "#feae2e",
   white: "#fff",
   orange: "#f15a24",
   darkWhite: "#c7c7c7",
   lightGray: "#ffffff3b",
   darkGray: "#919191",
-  red: "#da1921",
   green: "#3ab54a",
   darkGreen: "#009245",
   dialogBackground: "rgba(10, 10, 10, 0.97)",
   grayLine: "#2d2d2d",
   black: "#000000",
+  test: "#a0ff0e",
 };

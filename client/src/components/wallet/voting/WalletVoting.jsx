@@ -13,7 +13,7 @@ import VoteCarCardMain from "./VoteCarCardMain";
 import { walletId } from "../../../common/getLoginData";
 import { getWallet } from "../../../services/wallet";
 import { getAllVoteCategories, postCarVote } from "../../../services/vote";
-import { Dialog } from "@mui/material";
+import { Dialog, InputLabel, MenuItem, Select } from "@mui/material";
 import VoteCategory from "./VoteCategory";
 
 const Flex = styled.div`
@@ -144,6 +144,21 @@ export default function WalletVoting() {
       </Dialog>
       <MainContainer>
         <Title backButton="true">VOTING</Title>
+        {/* <InputLabel color="primary" id="demo-simple-select-label">
+          Age
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={age}
+          label="Age"
+          // onChange={}
+          color="primary"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select> */}
         <Flex>{renderVoteCarCardsMain}</Flex>
       </MainContainer>
     </>

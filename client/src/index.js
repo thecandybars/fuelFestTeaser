@@ -19,11 +19,11 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProviderMUI theme={themeMUI}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </ThemeProviderMUI>
+      {/* <ThemeProviderMUI theme={themeMUI}> */}
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+      {/* </ThemeProviderMUI> */}
     </BrowserRouter>
   </React.StrictMode>
 );
