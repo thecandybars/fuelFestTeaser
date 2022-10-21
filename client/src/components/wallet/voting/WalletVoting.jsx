@@ -103,7 +103,7 @@ export default function WalletVoting() {
               ? null
               : "create",
           }} // action : wallet already voted for this car ? null : create
-          handleClose={() => setOpenDialog(false)}
+          handleClose={() => handleDialogClose()}
         />
       )
     );
@@ -124,9 +124,11 @@ export default function WalletVoting() {
   // RENDER VOTE CAR CARDS
   const renderVoteCarCardsMain = filteredCars.map((car) => (
     <VoteCarCardMain
-      data={car}
+      car={car}
       key={car.id}
       handleCategoryClick={handleCategoryClick}
+      votes={walletVotes.votes.filter((vote) => vote.carId === car.id) || []}
+      frozenDrift={walletVotes.frozen}
     />
   ));
 
@@ -135,9 +137,9 @@ export default function WalletVoting() {
       <Dialog
         open={openDialog}
         onClose={() => handleDialogClose()}
-        sx={{ margin: "20px" }}
+        fullWidth
+        maxWidth="lg"
       >
-        <h3>VOTE DETAILS</h3>
         {renderDialogVotes}
       </Dialog>
       <MainContainer>

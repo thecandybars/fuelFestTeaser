@@ -25,19 +25,22 @@ import NftVoucherDetail from "./components/wallet/marketplace/NftVoucherDetail";
 import VendorRedeemVoucher from "./components/wallet/voucher/VendorRedeemVoucher";
 import NftGarageVoucherDetail from "./components/wallet/nftGarage/NftGarageVoucherDetail";
 import RedeemVoucherDetail from "./components/wallet/voucher/RedeemVoucherDetail";
+import TestComponent from "./components/TestComponent";
 
 function App() {
   return (
     <div className="wrapper">
       <TopNav />
       <main>
+        {/* <TestComponent /> */}
+
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/car/:carId" element={<CarDetails />} />
           <Route path="/events" element={<Events />} />
           <Route path="/vendors" element={<Vendors />} />
-          <Route path="/vendors/:vednorId" element={<Vendors />} />
+          <Route path="/vendors/:vendorId" element={<Vendors />} />
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/maps" element={<Maps />} />
           <Route path="/wallet" element={<Wallet />} />

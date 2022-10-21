@@ -516,7 +516,7 @@ conn.sync({ force, alter }).then(() => {
     await Car.bulkCreate(
       [
         {
-          id: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          id: "00000000-aaaa-45f8-8b73-2a199025318a",
           title: "Mitsubishi Eclipse",
           number: 1984,
           manufacturer: "Mitsubishi",
@@ -543,7 +543,7 @@ conn.sync({ force, alter }).then(() => {
           others: "Full Replica of F&F Eclipse",
         },
         {
-          id: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          id: "10000000-aaaa-45f8-8b73-2a199025318a",
           title: "Toyota Supra",
           number: 124,
           manufacturer: "Toyota",
@@ -570,7 +570,7 @@ conn.sync({ force, alter }).then(() => {
           others: "",
         },
         {
-          id: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          id: "20000000-aaaa-45f8-8b73-2a199025318a",
           title: "Mazda RX7",
           number: 73,
           manufacturer: "Mazda",
@@ -596,7 +596,7 @@ conn.sync({ force, alter }).then(() => {
           others: "",
         },
         {
-          id: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          id: "30000000-aaaa-45f8-8b73-2a199025318a",
           title: "Nissan Skyline GT-R",
           number: 23,
           manufacturer: "GT",
@@ -631,54 +631,54 @@ conn.sync({ force, alter }).then(() => {
         // ECLIPSE
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0000",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0005",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         // SUPRA
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0001",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0006",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0010",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         // RX7
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0003",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0007",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0008",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         // SKYLINE
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0002",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0004",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           sponsorId: "12dcd2f1-3e86-4fb9-bc07-abcdabcd0009",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -690,86 +690,86 @@ conn.sync({ force, alter }).then(() => {
         // MITSUBISHI ECPLIPSE
         {
           image: "uploads/car/car-1663597280935.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597280938.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597280949.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597280952.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597280956.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         // TOYOTA SUPRA
         {
           image: "uploads/car/car-1663597390410.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597390413.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597390414.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597390418.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597390421.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         // MAZDA RX7
         {
           image: "uploads/car/car-1663597491251.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597491255.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597491268.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597491276.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597491280.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         // NISSAN SKYLINE
         {
           image: "uploads/car/car-1663597573540.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597573543.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597573548.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597573550.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           image: "uploads/car/car-1663597573552.jpg",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -780,36 +780,36 @@ conn.sync({ force, alter }).then(() => {
       [
         {
           id: "43957a19-fa0d-4796-8614-87b427039f81",
-          title: "Best interior",
-          icon: "uploads/voteCategory/voteCategory-1660858326182.svg",
+          title: "Best Interior",
+          icon: "uploads/voteCategory/interior.png",
           category: "interior",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
-          title: "Best ligths",
-          icon: "uploads/voteCategory/voteCategory-1660858314514.svg",
+          title: "Best Ligths",
+          icon: "uploads/voteCategory/lights.png",
           category: "lights",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "43957a19-fa0d-4796-8614-87b427039f41",
-          title: "Best paint",
-          icon: "uploads/voteCategory/voteCategory-1660858304071.svg",
+          title: "Best Paint",
+          icon: "uploads/voteCategory/paint.png",
           category: "paint",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "43957a19-fa0d-4796-8614-87b423039f41",
-          title: "Best rims",
-          icon: "uploads/voteCategory/voteCategory-1660858293218.svg",
+          title: "Best Rims",
+          icon: "uploads/voteCategory/rims.png",
           category: "rims",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
         {
           id: "13957a19-fa0d-4796-8614-87b423039f41",
-          title: "Best stereo",
-          icon: "uploads/voteCategory/voteCategory-1660858276661.svg",
+          title: "Best Stereo",
+          icon: "uploads/voteCategory/stereo.png",
           category: "stereo",
           desc: "Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida.",
         },
@@ -823,28 +823,29 @@ conn.sync({ force, alter }).then(() => {
         // INTERIOR
 
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
         },
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
         },
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
         },
-        // {
-        //   carId: "7ad0230c-81a1-402f-8baa-922f6d8bba7d",
-        //   voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
-        // },
+        {
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
+          voteCategoryId: "f1c1b970-2d46-4ce1-a175-71af6cfe9b03",
+        },
+
         // BEST LIGHTS
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
         },
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f81",
         },
 
@@ -854,12 +855,12 @@ conn.sync({ force, alter }).then(() => {
         // },
         // BEST PAINT
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
         },
 
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b427039f41",
         },
         // {
@@ -868,26 +869,26 @@ conn.sync({ force, alter }).then(() => {
         // },
         // BEST RIMS
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
         },
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
         },
 
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "43957a19-fa0d-4796-8614-87b423039f41",
         },
 
         // BEST STEREO
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
         },
         {
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
           voteCategoryId: "13957a19-fa0d-4796-8614-87b423039f41",
         },
 
@@ -1109,7 +1110,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "543691f2-9c20-2166-99bd-7bc906e35f0a",
@@ -1127,7 +1128,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f2-9c20-4166-59bd-7bc906ed5f0a",
@@ -1144,7 +1145,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc2-1d0974d24aeb",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f1-9c20-4166-99bd-7bc906e35f0a",
@@ -1161,7 +1162,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc3-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319d",
+          carId: "30000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -1210,7 +1211,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "0bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f2-9c20-4166-29bd-7bc906ed5f0a",
@@ -1227,7 +1228,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "1bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f1-9c23-4166-99bd-7bc906e35f0a",
@@ -1244,7 +1245,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "2bb148fa-9031-4393-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318a",
+          carId: "00000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -1293,7 +1294,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4390-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f2-9c20-4166-59bd-7bc936ed5f0a",
@@ -1310,7 +1311,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4391-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f1-9c20-4166-79bd-7bc906e35f0a",
@@ -1327,7 +1328,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4392-9fc1-1d0974d24aea",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025319c",
+          carId: "10000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {
@@ -1376,7 +1377,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: false,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a00",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f2-9c20-4166-522d-7bc906ed5f0a",
@@ -1393,7 +1394,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a01",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
         {
           id: "593691f1-9c20-4166-44bd-7bc906e35f0a",
@@ -1410,7 +1411,7 @@ conn.sync({ force, alter }).then(() => {
           transferable: true,
           assetId: "dbb148fa-9031-4393-9fc1-1d0974d24a02",
           templateId: "c98fc7a9-2824-4a62-a543-56b9dca0a176",
-          carId: "99ac1b58-3926-45f8-8b73-2a199025318d",
+          carId: "20000000-aaaa-45f8-8b73-2a199025318a",
         },
       ],
       {

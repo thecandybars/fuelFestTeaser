@@ -10,10 +10,6 @@ export default function WalletVotingCategory() {
   // const apiURL = process.env.REACT_APP_API;
   //   INIT
   const [voteCategoryFetched, setVoteCategoryFetched] = useState({});
-  console.log(
-    "🚀 ~ file: WalletVotingCategory.jsx ~ line 13 ~ WalletVotingCategory ~ voteCategoryFetched",
-    voteCategoryFetched
-  );
 
   useEffect(() => {
     fetchVoteCategory(voteCategory);

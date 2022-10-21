@@ -10,7 +10,7 @@ import OpenInMap from "../_shared/OpenInMap";
 import UpgradeIconsRow from "../_shared/UpgradeIconsRow";
 
 const CarImage = styled.img`
-  width: 200px;
+  width: 180px;
   height: 100%;
   object-fit: cover;
   object-position: bottom;

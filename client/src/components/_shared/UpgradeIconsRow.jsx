@@ -118,7 +118,7 @@ export default function UpgradeIconsRow(props) {
   //       )
   //   );
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
       {renderCarUpgradeList}
     </div>
   );

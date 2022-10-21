@@ -6,10 +6,116 @@ import {
   updateCarVote,
 } from "../../../services/vote";
 import { walletId } from "../../../common/getLoginData";
+import styled from "styled-components";
+import PersonIcon from "@mui/icons-material/Person";
+import { Slider } from "@mui/material";
+import { theme } from "../../../common/theme";
+
+const StyledContainer = styled.div`
+  padding: 30px;
+  background-color: ${(props) => props.theme.black};
+`;
+const StyledTitle = styled.h3`
+  font-size: 1.8rem;
+  color: ${(props) => props.theme.darkGreen};
+  margin-bottom: 15px;
+`;
+const StyledTopInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-family: "Oswald";
+  div {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    width: 23px;
+    margin-right: 3px;
+    filter: invert(63%) sepia(65%) saturate(507%) hue-rotate(353deg)
+      brightness(102%) contrast(99%);
+  }
+  h4 {
+    font-size: 1rem;
+    color: ${(props) => props.theme.white};
+    width: 100px;
+  }
+  p {
+    font-size: 1rem;
+    color: ${(props) => props.theme.yellow};
+  }
+`;
+const StyledVoteCard = styled.div`
+  font-size: 1rem;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    /* width: 350px; */
+  }
+  h4 {
+    display: flex;
+    color: ${(props) => props.theme.white};
+  }
+  h3 {
+    color: ${(props) => props.theme.yellow};
+    font-size: 1.7rem;
+  }
+  img {
+    width: 100px;
+    margin-left: 30px;
+  }
+`;
+const StyledSlider = styled.div`
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  input[type="range"] {
+    height: 30px;
+    margin: 10px 0;
+    width: 85%;
+    background: #3ab54a;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+  }
+
+  span {
+    font-family: "Oswald";
+    color: ${(props) => props.theme.yellow};
+    margin-left: 10px;
+  }
+`;
+const StyledButtons = styled.div`
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.white};
+  font-family: "Oswald";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  div:nth-child(1) {
+    background-color: ${(props) => props.theme.green};
+    width: 60%;
+    border-radius: 20px;
+    margin-bottom: 15px;
+  }
+  div:nth-child(2) {
+    width: 60%;
+    color: ${(props) => props.theme.white};
+    text-decoration: underline;
+  }
+`;
 
 export default function VoteCategory(props) {
+  console.log(
+    "🚀 ~ file: VoteCategory.jsx ~ line 11 ~ VoteCategory ~ props",
+    props
+  );
   const [carList, setCarList] = useState([]);
   const [warning, setWarning] = useState([""]);
+  const apiURL = process.env.REACT_APP_API;
 
   useEffect(() => {
     const tempCarList = props.cars.map((car) => ({
@@ -81,19 +187,38 @@ export default function VoteCategory(props) {
     carList.map(
       (car) => (
         <div key={car.title}>
-          <p>{car.title}</p>
-          <p>{car.owner}</p>
-          <p>{car.vote} drift</p>
-          <input
-            type="range"
-            id={car.id}
-            value={driftToPercentage(car.vote)}
-            min={0}
-            max={100}
-            onChange={(e) => handleVoteUpdate(e)}
-          />
-          <p>{driftToPercentage(car.vote)}%</p>
-          <br />
+          <StyledVoteCard>
+            <div>
+              <h4>{car.title}</h4>
+              <h4>
+                <PersonIcon />
+                {car.owner}
+              </h4>
+              <h3>{car.vote} DRIFT</h3>
+            </div>
+            <img alt="" src={apiURL + "/" + car.image} />
+          </StyledVoteCard>
+          <StyledSlider>
+            {/* <Slider
+              id={car.id}
+              value={driftToPercentage(car.vote)}
+              min={0}
+              max={100}
+              onChange={(e) => handleVoteUpdate(e)}
+              // valueLabelDisplay="on"
+              color="yellow"
+            /> */}
+            <input
+              type="range"
+              id={car.id}
+              value={driftToPercentage(car.vote)}
+              min={0}
+              max={100}
+              onChange={(e) => handleVoteUpdate(e)}
+              size={100}
+            />
+            <span>{driftToPercentage(car.vote)}%</span>
+          </StyledSlider>
         </div>
       )
       // console.log(car.id)
@@ -133,20 +258,38 @@ export default function VoteCategory(props) {
           );
         }
       }
+      console.log("Voting changes saved...");
+      props.handleClose();
       // if (carList[i].action === "delete") {
 
       // }
     }
   };
   return (
-    <div>
-      <p>Frozen: {props.wallet.frozen}</p>
-      <p>Category: {props.category && props.category.category}</p>
-      <p style={{ color: "red" }}>{warning}</p>
-      <br />
-      {renderVoteCarCardsCategory}
-      <button onClick={() => handleVote()}>VOTE</button>
-      <button onClick={() => props.handleClose()}>Cancel</button>
-    </div>
+    <StyledContainer>
+      <StyledTitle>Voting details</StyledTitle>
+      <StyledTopInfo>
+        {props.category && (
+          <div>
+            <h4>Category</h4>
+            <img
+              alt={props.category.category}
+              src={apiURL + "/" + props.category.icon}
+              width="25px"
+            />
+            <p>{props.category.title}</p>
+          </div>
+        )}
+        <div>
+          <h4>Tokens</h4>
+          <p>{props.wallet.frozen} DRIFT</p>
+        </div>
+      </StyledTopInfo>
+      <>{renderVoteCarCardsCategory}</>
+      <StyledButtons>
+        <div onClick={() => handleVote()}>VOTE</div>
+        <div onClick={() => props.handleClose()}>Cancel</div>
+      </StyledButtons>
+    </StyledContainer>
   );
 }
