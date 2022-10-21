@@ -7,8 +7,8 @@ import styled from "styled-components";
 
 const StyledContainer = styled.nav`
   background-color: rgb(0, 0, 0);
-  /* position: fixed;
-  bottom: 0; */
+  position: fixed;
+  bottom: 0;
   width: 100%;
   z-index: 10000;
 `;
