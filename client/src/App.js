@@ -49,7 +49,8 @@ function App() {
             path="/wallet/voucherRedeem/:voucherId"
             element={<RedeemVoucherDetail />}
           />
-          <Route path="/wallet/voting" element={<WalletVoting />} />
+          {/* <Route path="/wallet/voting" element={<WalletVoting />} /> */}
+          <Route path="/wallet/voting" element={<Voting />} />
           <Route
             path="/wallet/voting/category/:voteCategory"
             element={<WalletVotingCategory />}
