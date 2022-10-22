@@ -127,7 +127,11 @@ export default function WalletVoting() {
       car={car}
       key={car.id}
       handleCategoryClick={handleCategoryClick}
-      votes={walletVotes.votes.filter((vote) => vote.carId === car.id) || []}
+      votes={
+        (Object.keys(walletVotes).length > 0 &&
+          walletVotes.votes.filter((vote) => vote.carId === car.id)) ||
+        []
+      }
       frozenDrift={walletVotes.frozen}
     />
   ));
